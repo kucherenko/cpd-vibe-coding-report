@@ -2,6 +2,7 @@
 	import summaries from '$lib/data/summaries.json';
 	import charts from '$lib/data/charts.json';
 	import meta from '$lib/data/meta.json';
+	import { base } from '$app/paths';
 	import { readableNumber, severityClass, severityLabel, capitalize } from '$lib/utils.js';
 
 	const topByPct = summaries.slice(0, 15);
@@ -76,7 +77,7 @@
 								<td class="num">{p.totalClones}</td>
 								<td class="num">{readableNumber(p.totalLines)}</td>
 								<td class="pct">{p.percentage.toFixed(2)}%</td>
-								<td><a href="/detail/{p.project}/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Open</a></td>
+								<td><a href="{base}/detail/{p.project}/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Open</a></td>
 								<td><span class="badge {severityClass(p.percentage)}">{severityLabel(p.percentage)}</span></td>
 							</tr>
 						{/each}
@@ -152,7 +153,7 @@
 								<td class="num">{readableNumber(p.totalLines)}</td>
 								<td class="num">{readableNumber(p.totalDuplicatedLines)}</td>
 								<td class="pct">{p.percentage.toFixed(2)}%</td>
-									<td><a href="/detail/{p.project}/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Open</a></td>
+									<td><a href="{base}/detail/{p.project}/"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Open</a></td>
 									<td>{p.formatStats && Object.keys(p.formatStats).length > 0 ? capitalize(Object.entries(p.formatStats).sort((a,b) => b[1].count - a[1].count)[0][0]) : '-'}</td>
 									<td>{p.cloneTypeCounts && Object.keys(p.cloneTypeCounts).length > 0 ? capitalize(Object.entries(p.cloneTypeCounts).sort((a,b) => b[1] - a[1])[0][0]) : '-'}</td>
 							</tr>
