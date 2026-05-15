@@ -1,0 +1,526 @@
+{
+  "topDuplication": [
+    {
+      "project": "frontend-slides",
+      "percentage": 42.33,
+      "clones": 16
+    },
+    {
+      "project": "agent-skills",
+      "percentage": 37.48,
+      "clones": 51
+    },
+    {
+      "project": "open-design",
+      "percentage": 28.8,
+      "clones": 3582
+    },
+    {
+      "project": "cofounder",
+      "percentage": 25.26,
+      "clones": 118
+    },
+    {
+      "project": "openv0",
+      "percentage": 22.35,
+      "clones": 110
+    },
+    {
+      "project": "context-engineering-intro",
+      "percentage": 20.65,
+      "clones": 98
+    },
+    {
+      "project": "cockpit-tools",
+      "percentage": 20.54,
+      "clones": 620
+    },
+    {
+      "project": "claude_code_agent",
+      "percentage": 14.95,
+      "clones": 1377
+    },
+    {
+      "project": "adversarial-dev",
+      "percentage": 12.36,
+      "clones": 15
+    },
+    {
+      "project": "vibra-code",
+      "percentage": 9.19,
+      "clones": 5559
+    },
+    {
+      "project": "n8n-mcp",
+      "percentage": 8.98,
+      "clones": 988
+    },
+    {
+      "project": "onlook",
+      "percentage": 8.91,
+      "clones": 426
+    },
+    {
+      "project": "stagewise",
+      "percentage": 8.49,
+      "clones": 462
+    },
+    {
+      "project": "deutsia-radio",
+      "percentage": 8.42,
+      "clones": 286
+    },
+    {
+      "project": "VibeVoice",
+      "percentage": 7.93,
+      "clones": 45
+    }
+  ],
+  "topCloneCount": [
+    {
+      "project": "vibra-code",
+      "clones": 5559,
+      "percentage": 9.19
+    },
+    {
+      "project": "void",
+      "clones": 5312,
+      "percentage": 6.6
+    },
+    {
+      "project": "open-design",
+      "clones": 3582,
+      "percentage": 28.8
+    },
+    {
+      "project": "oh-my-claudecode",
+      "clones": 2247,
+      "percentage": 6.11
+    },
+    {
+      "project": "claude_code_agent",
+      "clones": 1377,
+      "percentage": 14.95
+    },
+    {
+      "project": "n8n-mcp",
+      "clones": 988,
+      "percentage": 8.98
+    },
+    {
+      "project": "cherry-studio",
+      "clones": 924,
+      "percentage": 6.25
+    },
+    {
+      "project": "refly",
+      "clones": 774,
+      "percentage": 4.42
+    },
+    {
+      "project": "claude-task-master",
+      "clones": 697,
+      "percentage": 6.06
+    },
+    {
+      "project": "cockpit-tools",
+      "clones": 620,
+      "percentage": 20.54
+    },
+    {
+      "project": "stagewise",
+      "clones": 462,
+      "percentage": 8.49
+    },
+    {
+      "project": "onlook",
+      "clones": 426,
+      "percentage": 8.91
+    },
+    {
+      "project": "hapi",
+      "clones": 413,
+      "percentage": 4.89
+    },
+    {
+      "project": "serena",
+      "clones": 299,
+      "percentage": 4.71
+    },
+    {
+      "project": "deutsia-radio",
+      "clones": 286,
+      "percentage": 8.42
+    }
+  ],
+  "formatDistribution": [
+    {
+      "format": "Typescript",
+      "count": 11253,
+      "lines": 173600
+    },
+    {
+      "format": "Javascript",
+      "count": 3547,
+      "lines": 95023
+    },
+    {
+      "format": "Tsx",
+      "count": 2229,
+      "lines": 47393
+    },
+    {
+      "format": "Markdown",
+      "count": 1531,
+      "lines": 125217
+    },
+    {
+      "format": "Json",
+      "count": 1500,
+      "lines": 68467
+    },
+    {
+      "format": "Kotlin",
+      "count": 938,
+      "lines": 27563
+    },
+    {
+      "format": "Python",
+      "count": 839,
+      "lines": 17441
+    },
+    {
+      "format": "Markup",
+      "count": 829,
+      "lines": 62699
+    },
+    {
+      "format": "Css",
+      "count": 497,
+      "lines": 55257
+    },
+    {
+      "format": "Rust",
+      "count": 496,
+      "lines": 21211
+    },
+    {
+      "format": "Objectivec",
+      "count": 398,
+      "lines": 28527
+    },
+    {
+      "format": "Yaml",
+      "count": 371,
+      "lines": 11407
+    },
+    {
+      "format": "Cpp",
+      "count": 323,
+      "lines": 4929
+    },
+    {
+      "format": "Swift",
+      "count": 268,
+      "lines": 7234
+    },
+    {
+      "format": "C-header",
+      "count": 183,
+      "lines": 5260
+    },
+    {
+      "format": "Java",
+      "count": 108,
+      "lines": 3904
+    },
+    {
+      "format": "Bash",
+      "count": 87,
+      "lines": 10061
+    },
+    {
+      "format": "Txt",
+      "count": 65,
+      "lines": 2279
+    },
+    {
+      "format": "Php",
+      "count": 46,
+      "lines": 649
+    },
+    {
+      "format": "Diff",
+      "count": 28,
+      "lines": 1263
+    },
+    {
+      "format": "Groovy",
+      "count": 26,
+      "lines": 1718
+    },
+    {
+      "format": "Ruby",
+      "count": 17,
+      "lines": 255
+    },
+    {
+      "format": "Prolog",
+      "count": 8,
+      "lines": 510
+    },
+    {
+      "format": "Scss",
+      "count": 8,
+      "lines": 212
+    },
+    {
+      "format": "Sql",
+      "count": 7,
+      "lines": 243
+    },
+    {
+      "format": "Nginx",
+      "count": 6,
+      "lines": 96
+    },
+    {
+      "format": "Toml",
+      "count": 1,
+      "lines": 18
+    },
+    {
+      "format": "Properties",
+      "count": 1,
+      "lines": 42
+    },
+    {
+      "format": "Handlebars",
+      "count": 1,
+      "lines": 8
+    },
+    {
+      "format": "Log",
+      "count": 1,
+      "lines": 41
+    }
+  ],
+  "typeDistribution": [
+    {
+      "type": "Code",
+      "count": 24081
+    },
+    {
+      "type": "Documentation",
+      "count": 1531
+    }
+  ],
+  "histogram": [
+    {
+      "range": "0-2%",
+      "count": 13
+    },
+    {
+      "range": "2-4%",
+      "count": 6
+    },
+    {
+      "range": "4-6%",
+      "count": 5
+    },
+    {
+      "range": "6-8%",
+      "count": 11
+    },
+    {
+      "range": "8-10%",
+      "count": 5
+    },
+    {
+      "range": "10-12%",
+      "count": 0
+    },
+    {
+      "range": "12-14%",
+      "count": 1
+    },
+    {
+      "range": "14-16%",
+      "count": 1
+    },
+    {
+      "range": "16-18%",
+      "count": 0
+    },
+    {
+      "range": "18-20%",
+      "count": 0
+    },
+    {
+      "range": "20-22%",
+      "count": 2
+    },
+    {
+      "range": "22-24%",
+      "count": 1
+    },
+    {
+      "range": "24-26%",
+      "count": 1
+    },
+    {
+      "range": "26-28%",
+      "count": 0
+    },
+    {
+      "range": "28-30%",
+      "count": 1
+    },
+    {
+      "range": "30-32%",
+      "count": 0
+    },
+    {
+      "range": "32-34%",
+      "count": 0
+    },
+    {
+      "range": "34-36%",
+      "count": 0
+    },
+    {
+      "range": "36-38%",
+      "count": 1
+    },
+    {
+      "range": "38-40%",
+      "count": 0
+    },
+    {
+      "range": "40-42%",
+      "count": 0
+    }
+  ],
+  "stackedTypes": [
+    {
+      "project": "frontend-slides",
+      "code": 12,
+      "config": 0,
+      "test": 0,
+      "documentation": 4,
+      "other": 0
+    },
+    {
+      "project": "agent-skills",
+      "code": 25,
+      "config": 0,
+      "test": 0,
+      "documentation": 26,
+      "other": 0
+    },
+    {
+      "project": "open-design",
+      "code": 2889,
+      "config": 0,
+      "test": 0,
+      "documentation": 693,
+      "other": 0
+    },
+    {
+      "project": "cofounder",
+      "code": 118,
+      "config": 0,
+      "test": 0,
+      "documentation": 0,
+      "other": 0
+    },
+    {
+      "project": "openv0",
+      "code": 108,
+      "config": 0,
+      "test": 0,
+      "documentation": 2,
+      "other": 0
+    },
+    {
+      "project": "context-engineering-intro",
+      "code": 64,
+      "config": 0,
+      "test": 0,
+      "documentation": 34,
+      "other": 0
+    },
+    {
+      "project": "cockpit-tools",
+      "code": 620,
+      "config": 0,
+      "test": 0,
+      "documentation": 0,
+      "other": 0
+    },
+    {
+      "project": "claude_code_agent",
+      "code": 955,
+      "config": 0,
+      "test": 0,
+      "documentation": 422,
+      "other": 0
+    },
+    {
+      "project": "adversarial-dev",
+      "code": 15,
+      "config": 0,
+      "test": 0,
+      "documentation": 0,
+      "other": 0
+    },
+    {
+      "project": "vibra-code",
+      "code": 5460,
+      "config": 0,
+      "test": 0,
+      "documentation": 99,
+      "other": 0
+    },
+    {
+      "project": "n8n-mcp",
+      "code": 981,
+      "config": 0,
+      "test": 0,
+      "documentation": 7,
+      "other": 0
+    },
+    {
+      "project": "onlook",
+      "code": 425,
+      "config": 0,
+      "test": 0,
+      "documentation": 1,
+      "other": 0
+    },
+    {
+      "project": "stagewise",
+      "code": 457,
+      "config": 0,
+      "test": 0,
+      "documentation": 5,
+      "other": 0
+    },
+    {
+      "project": "deutsia-radio",
+      "code": 286,
+      "config": 0,
+      "test": 0,
+      "documentation": 0,
+      "other": 0
+    },
+    {
+      "project": "VibeVoice",
+      "code": 42,
+      "config": 0,
+      "test": 0,
+      "documentation": 3,
+      "other": 0
+    }
+  ]
+}

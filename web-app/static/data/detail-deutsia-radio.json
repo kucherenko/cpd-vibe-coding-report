@@ -1,0 +1,5242 @@
+{
+  "project": "deutsia-radio",
+  "owner": "deutsia",
+  "totalClones": 286,
+  "totalLines": 47879,
+  "totalDuplicatedLines": 4030,
+  "percentage": 8.42,
+  "formatStats": {
+    "kotlin": {
+      "count": 94,
+      "lines": 1277
+    },
+    "markup": {
+      "count": 188,
+      "lines": 2016
+    },
+    "css": {
+      "count": 4,
+      "lines": 1023
+    }
+  },
+  "cloneTypeCounts": {
+    "code": 286
+  },
+  "crossProjectClones": 0,
+  "jscpd": {
+    "statistics": {
+      "detectionDate": "2026-05-15T15:09:34.299Z",
+      "formats": {
+        "kotlin": {
+          "sources": {
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radioregistry/RadioRegistryClientTorFallbackTest.kt": {
+              "lines": 331,
+              "tokens": 2709,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 6,
+              "duplicatedTokens": 113,
+              "percentage": 1.81,
+              "percentageTokens": 4.17,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerDnsLeakTest.kt": {
+              "lines": 563,
+              "tokens": 4679,
+              "sources": 1,
+              "clones": 8,
+              "duplicatedLines": 67,
+              "duplicatedTokens": 976,
+              "percentage": 11.9,
+              "percentageTokens": 20.86,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerApiTest.kt": {
+              "lines": 427,
+              "tokens": 3426,
+              "sources": 1,
+              "clones": 7,
+              "duplicatedLines": 93,
+              "duplicatedTokens": 851,
+              "percentage": 21.78,
+              "percentageTokens": 24.84,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/SkeletonListAdapter.kt": {
+              "lines": 78,
+              "tokens": 709,
+              "sources": 1,
+              "clones": 3,
+              "duplicatedLines": 51,
+              "duplicatedTokens": 394,
+              "percentage": 65.38,
+              "percentageTokens": 55.57,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/SkeletonCarouselAdapter.kt": {
+              "lines": 76,
+              "tokens": 722,
+              "sources": 1,
+              "clones": 3,
+              "duplicatedLines": 51,
+              "duplicatedTokens": 394,
+              "percentage": 67.11,
+              "percentageTokens": 54.57,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioListAdapter.kt": {
+              "lines": 245,
+              "tokens": 2187,
+              "sources": 1,
+              "clones": 7,
+              "duplicatedLines": 89,
+              "duplicatedTokens": 828,
+              "percentage": 36.33,
+              "percentageTokens": 37.86,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioCarouselAdapter.kt": {
+              "lines": 175,
+              "tokens": 1564,
+              "sources": 1,
+              "clones": 9,
+              "duplicatedLines": 145,
+              "duplicatedTokens": 1274,
+              "percentage": 82.86,
+              "percentageTokens": 81.46,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseStationsAdapter.kt": {
+              "lines": 281,
+              "tokens": 2484,
+              "sources": 1,
+              "clones": 5,
+              "duplicatedLines": 58,
+              "duplicatedTokens": 556,
+              "percentage": 20.64,
+              "percentageTokens": 22.38,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseRadioRegistryOnlyFragment.kt": {
+              "lines": 930,
+              "tokens": 8038,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseDisabledFragment.kt": {
+              "lines": 22,
+              "tokens": 143,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 65,
+              "percentage": 36.36,
+              "percentageTokens": 45.45,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseContainerFragment.kt": {
+              "lines": 86,
+              "tokens": 544,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 65,
+              "percentage": 9.3,
+              "percentageTokens": 11.95,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseCarouselAdapter.kt": {
+              "lines": 154,
+              "tokens": 1412,
+              "sources": 1,
+              "clones": 5,
+              "duplicatedLines": 96,
+              "duplicatedTokens": 852,
+              "percentage": 62.34,
+              "percentageTokens": 60.34,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radioregistry/RadioRegistryStation.kt": {
+              "lines": 242,
+              "tokens": 2218,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radioregistry/RadioRegistryRepository.kt": {
+              "lines": 202,
+              "tokens": 1435,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radioregistry/RadioRegistryClient.kt": {
+              "lines": 536,
+              "tokens": 4070,
+              "sources": 1,
+              "clones": 8,
+              "duplicatedLines": 93,
+              "duplicatedTokens": 841,
+              "percentage": 17.35,
+              "percentageTokens": 20.66,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserStation.kt": {
+              "lines": 298,
+              "tokens": 2734,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManager.kt": {
+              "lines": 436,
+              "tokens": 3224,
+              "sources": 1,
+              "clones": 6,
+              "duplicatedLines": 90,
+              "duplicatedTokens": 777,
+              "percentage": 20.64,
+              "percentageTokens": 24.1,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserRepository.kt": {
+              "lines": 469,
+              "tokens": 3401,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 34,
+              "duplicatedTokens": 404,
+              "percentage": 7.25,
+              "percentageTokens": 11.88,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt": {
+              "lines": 708,
+              "tokens": 5290,
+              "sources": 1,
+              "clones": 11,
+              "duplicatedLines": 140,
+              "duplicatedTokens": 1190,
+              "percentage": 19.77,
+              "percentageTokens": 22.5,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/util/SleepTimerUtilsTest.kt": {
+              "lines": 184,
+              "tokens": 1513,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/security/SecureObjectLifecycleTest.kt": {
+              "lines": 570,
+              "tokens": 4119,
+              "sources": 1,
+              "clones": 10,
+              "duplicatedLines": 119,
+              "duplicatedTokens": 1118,
+              "percentage": 20.88,
+              "percentageTokens": 27.14,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/security/PasswordHashUtilTest.kt": {
+              "lines": 390,
+              "tokens": 2946,
+              "sources": 1,
+              "clones": 4,
+              "duplicatedLines": 54,
+              "duplicatedTokens": 499,
+              "percentage": 13.85,
+              "percentageTokens": 16.94,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/security/PasswordEncryptionUtilTest.kt": {
+              "lines": 478,
+              "tokens": 4168,
+              "sources": 1,
+              "clones": 24,
+              "duplicatedLines": 203,
+              "duplicatedTokens": 2447,
+              "percentage": 42.47,
+              "percentageTokens": 58.71,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/security/MemorySafetyTest.kt": {
+              "lines": 522,
+              "tokens": 3673,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 30,
+              "duplicatedTokens": 253,
+              "percentage": 5.75,
+              "percentageTokens": 6.89,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/security/InputValidationSecurityTest.kt": {
+              "lines": 452,
+              "tokens": 3612,
+              "sources": 1,
+              "clones": 14,
+              "duplicatedLines": 130,
+              "duplicatedTokens": 1435,
+              "percentage": 28.76,
+              "percentageTokens": 39.73,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/security/DigestAuthenticatorTest.kt": {
+              "lines": 450,
+              "tokens": 3734,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/security/DataResidueSecurityTest.kt": {
+              "lines": 599,
+              "tokens": 4260,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 30,
+              "duplicatedTokens": 253,
+              "percentage": 5.01,
+              "percentageTokens": 5.94,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/security/CryptographicSecurityTest.kt": {
+              "lines": 494,
+              "tokens": 3892,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 30,
+              "duplicatedTokens": 249,
+              "percentage": 6.07,
+              "percentageTokens": 6.4,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/utils/PasswordHashUtil.kt": {
+              "lines": 136,
+              "tokens": 773,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/utils/PasswordEncryptionUtil.kt": {
+              "lines": 305,
+              "tokens": 1801,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/utils/DigestAuthenticator.kt": {
+              "lines": 237,
+              "tokens": 1649,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/utils/DatabaseEncryptionManager.kt": {
+              "lines": 449,
+              "tokens": 2718,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 43,
+              "duplicatedTokens": 262,
+              "percentage": 9.58,
+              "percentageTokens": 9.64,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/utils/BiometricAuthManager.kt": {
+              "lines": 192,
+              "tokens": 1177,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 43,
+              "duplicatedTokens": 262,
+              "percentage": 22.4,
+              "percentageTokens": 22.26,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/util/StationImportExport.kt": {
+              "lines": 911,
+              "tokens": 9036,
+              "sources": 1,
+              "clones": 8,
+              "duplicatedLines": 70,
+              "duplicatedTokens": 784,
+              "percentage": 7.68,
+              "percentageTokens": 8.68,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/util/SleepTimerUtils.kt": {
+              "lines": 80,
+              "tokens": 396,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/util/SecureImageLoader.kt": {
+              "lines": 519,
+              "tokens": 3786,
+              "sources": 1,
+              "clones": 9,
+              "duplicatedLines": 85,
+              "duplicatedTokens": 900,
+              "percentage": 16.38,
+              "percentageTokens": 23.77,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/util/PlaylistResolver.kt": {
+              "lines": 498,
+              "tokens": 4347,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/util/BandwidthTrackingInterceptor.kt": {
+              "lines": 84,
+              "tokens": 589,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/TorStatusView.kt": {
+              "lines": 231,
+              "tokens": 1906,
+              "sources": 1,
+              "clones": 5,
+              "duplicatedLines": 68,
+              "duplicatedTokens": 468,
+              "percentage": 29.44,
+              "percentageTokens": 24.55,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/TorQuickControlBottomSheet.kt": {
+              "lines": 413,
+              "tokens": 3250,
+              "sources": 1,
+              "clones": 6,
+              "duplicatedLines": 84,
+              "duplicatedTokens": 728,
+              "percentage": 20.34,
+              "percentageTokens": 22.4,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/StationActionHelper.kt": {
+              "lines": 338,
+              "tokens": 2130,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 32,
+              "duplicatedTokens": 234,
+              "percentage": 9.47,
+              "percentageTokens": 10.99,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/SleepTimerStatusView.kt": {
+              "lines": 95,
+              "tokens": 665,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/ShimmerFrameLayout.kt": {
+              "lines": 115,
+              "tokens": 887,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/RadioViewModel.kt": {
+              "lines": 221,
+              "tokens": 1578,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/MiniPlayerView.kt": {
+              "lines": 407,
+              "tokens": 3257,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 38,
+              "duplicatedTokens": 280,
+              "percentage": 9.34,
+              "percentageTokens": 8.6,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/LocaleHelper.kt": {
+              "lines": 74,
+              "tokens": 393,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/EqualizerBottomSheet.kt": {
+              "lines": 278,
+              "tokens": 2341,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/CustomProxyStatusView.kt": {
+              "lines": 189,
+              "tokens": 1570,
+              "sources": 1,
+              "clones": 3,
+              "duplicatedLines": 58,
+              "duplicatedTokens": 326,
+              "percentage": 30.69,
+              "percentageTokens": 20.76,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/AddEditRadioDialog.kt": {
+              "lines": 433,
+              "tokens": 4718,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/tor/TorService.kt": {
+              "lines": 162,
+              "tokens": 1406,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/tor/TorManager.kt": {
+              "lines": 844,
+              "tokens": 6026,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 22,
+              "duplicatedTokens": 202,
+              "percentage": 2.61,
+              "percentageTokens": 3.35,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/i2p/I2PManager.kt": {
+              "lines": 212,
+              "tokens": 1271,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/RadioStationPasswordHelper.kt": {
+              "lines": 83,
+              "tokens": 514,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/RadioStation.kt": {
+              "lines": 234,
+              "tokens": 1578,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/RadioRepository.kt": {
+              "lines": 132,
+              "tokens": 998,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/RadioDatabase.kt": {
+              "lines": 285,
+              "tokens": 1523,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/RadioDao.kt": {
+              "lines": 155,
+              "tokens": 991,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/DefaultStations.kt": {
+              "lines": 151,
+              "tokens": 1165,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/BrowseHistory.kt": {
+              "lines": 48,
+              "tokens": 180,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/auto/DeutsiaMediaLibraryService.kt": {
+              "lines": 567,
+              "tokens": 4294,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/auto/AndroidAutoProxyHttp.kt": {
+              "lines": 130,
+              "tokens": 974,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/auto/AndroidAutoComponentManager.kt": {
+              "lines": 111,
+              "tokens": 395,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/audio/EqualizerManager.kt": {
+              "lines": 535,
+              "tokens": 3713,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/MainActivity.kt": {
+              "lines": 863,
+              "tokens": 6246,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/I2PRadioApplication.kt": {
+              "lines": 47,
+              "tokens": 308,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/HlsRecorder.kt": {
+              "lines": 410,
+              "tokens": 3699,
+              "sources": 1,
+              "clones": 6,
+              "duplicatedLines": 99,
+              "duplicatedTokens": 1021,
+              "percentage": 24.15,
+              "percentageTokens": 27.6,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/DashRecorder.kt": {
+              "lines": 575,
+              "tokens": 5603,
+              "sources": 1,
+              "clones": 6,
+              "duplicatedLines": 99,
+              "duplicatedTokens": 1021,
+              "percentage": 17.22,
+              "percentageTokens": 18.22,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/AuthenticationActivity.kt": {
+              "lines": 213,
+              "tokens": 1405,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/androidTest/java/com/opensource/i2pradio/ExampleInstrumentedTest.kt": {
+              "lines": 23,
+              "tokens": 125,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/build.gradle.kts": {
+              "lines": 128,
+              "tokens": 640,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/settings.gradle.kts": {
+              "lines": 23,
+              "tokens": 120,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/build.gradle.kts": {
+              "lines": 4,
+              "tokens": 38,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 22538,
+            "tokens": 175085,
+            "sources": 72,
+            "clones": 94,
+            "duplicatedLines": 1183,
+            "duplicatedTokens": 11161,
+            "percentage": 5.25,
+            "percentageTokens": 6.37,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markdown": {
+          "sources": {
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/README_TESTS.md": {
+              "lines": 189,
+              "tokens": 1627,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/security/README_SECURITY_TESTS.md": {
+              "lines": 425,
+              "tokens": 2815,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/SECURITY.md": {
+              "lines": 45,
+              "tokens": 390,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/README.md": {
+              "lines": 255,
+              "tokens": 3253,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/PRIVACY_POLICY.md": {
+              "lines": 105,
+              "tokens": 1375,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/CPD_REPORT.md": {
+              "lines": 28,
+              "tokens": 194,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/CONTRIBUTING.md": {
+              "lines": 30,
+              "tokens": 212,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/CHANGELOG.md": {
+              "lines": 322,
+              "tokens": 4404,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1399,
+            "tokens": 14270,
+            "sources": 8,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "bash": {
+          "sources": {
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/README_TESTS.md": {
+              "lines": 15,
+              "tokens": 27,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/security/README_SECURITY_TESTS.md": {
+              "lines": 17,
+              "tokens": 76,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.git/hooks/update.sample": {
+              "lines": 127,
+              "tokens": 726,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.git/hooks/sendemail-validate.sample": {
+              "lines": 76,
+              "tokens": 338,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.git/hooks/push-to-checkout.sample": {
+              "lines": 77,
+              "tokens": 253,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.git/hooks/prepare-commit-msg.sample": {
+              "lines": 41,
+              "tokens": 93,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.git/hooks/pre-receive.sample": {
+              "lines": 23,
+              "tokens": 113,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.git/hooks/pre-rebase.sample": {
+              "lines": 168,
+              "tokens": 1323,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.git/hooks/pre-push.sample": {
+              "lines": 52,
+              "tokens": 215,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.git/hooks/pre-merge-commit.sample": {
+              "lines": 12,
+              "tokens": 38,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.git/hooks/pre-commit.sample": {
+              "lines": 48,
+              "tokens": 272,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.git/hooks/pre-applypatch.sample": {
+              "lines": 13,
+              "tokens": 56,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.git/hooks/post-update.sample": {
+              "lines": 7,
+              "tokens": 17,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.git/hooks/commit-msg.sample": {
+              "lines": 23,
+              "tokens": 89,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.git/hooks/applypatch-msg.sample": {
+              "lines": 14,
+              "tokens": 58,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/gradlew": {
+              "lines": 184,
+              "tokens": 1326,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/README.md": {
+              "lines": 30,
+              "tokens": 47,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 927,
+            "tokens": 5067,
+            "sources": 17,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "txt": {
+          "sources": {
+            "projects/deutsia-radio/fastlane/metadata/android/en-US/changelogs/10701.txt": {
+              "lines": 8,
+              "tokens": 103,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/fastlane/metadata/android/en-US/changelogs/10700.txt": {
+              "lines": 11,
+              "tokens": 176,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/fastlane/metadata/android/en-US/full_description.txt": {
+              "lines": 12,
+              "tokens": 132,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 31,
+            "tokens": 411,
+            "sources": 3,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markup": {
+          "sources": {
+            "projects/deutsia-radio/app/src/main/res/xml/data_extraction_rules.xml": {
+              "lines": 18,
+              "tokens": 25,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/xml/backup_rules.xml": {
+              "lines": 12,
+              "tokens": 12,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/xml/automotive_app_desc.xml": {
+              "lines": 11,
+              "tokens": 22,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-zh/strings.xml": {
+              "lines": 728,
+              "tokens": 10280,
+              "sources": 1,
+              "clones": 73,
+              "duplicatedLines": 644,
+              "duplicatedTokens": 8329,
+              "percentage": 88.46,
+              "percentageTokens": 81.02,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-vi/strings.xml": {
+              "lines": 728,
+              "tokens": 15698,
+              "sources": 1,
+              "clones": 16,
+              "duplicatedLines": 112,
+              "duplicatedTokens": 1491,
+              "percentage": 15.38,
+              "percentageTokens": 9.5,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-uk/strings.xml": {
+              "lines": 728,
+              "tokens": 13128,
+              "sources": 1,
+              "clones": 9,
+              "duplicatedLines": 65,
+              "duplicatedTokens": 841,
+              "percentage": 8.93,
+              "percentageTokens": 6.41,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-tr/strings.xml": {
+              "lines": 728,
+              "tokens": 13018,
+              "sources": 1,
+              "clones": 14,
+              "duplicatedLines": 122,
+              "duplicatedTokens": 1757,
+              "percentage": 16.76,
+              "percentageTokens": 13.5,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-ru/strings.xml": {
+              "lines": 727,
+              "tokens": 13119,
+              "sources": 1,
+              "clones": 7,
+              "duplicatedLines": 59,
+              "duplicatedTokens": 776,
+              "percentage": 8.12,
+              "percentageTokens": 5.92,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-pt/strings.xml": {
+              "lines": 728,
+              "tokens": 13924,
+              "sources": 1,
+              "clones": 15,
+              "duplicatedLines": 154,
+              "duplicatedTokens": 2077,
+              "percentage": 21.15,
+              "percentageTokens": 14.92,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-night/themes.xml": {
+              "lines": 98,
+              "tokens": 304,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-my/strings.xml": {
+              "lines": 728,
+              "tokens": 12380,
+              "sources": 1,
+              "clones": 12,
+              "duplicatedLines": 97,
+              "duplicatedTokens": 1324,
+              "percentage": 13.32,
+              "percentageTokens": 10.69,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-ko/strings.xml": {
+              "lines": 727,
+              "tokens": 12803,
+              "sources": 1,
+              "clones": 5,
+              "duplicatedLines": 42,
+              "duplicatedTokens": 550,
+              "percentage": 5.78,
+              "percentageTokens": 4.3,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-ja/strings.xml": {
+              "lines": 727,
+              "tokens": 9797,
+              "sources": 1,
+              "clones": 5,
+              "duplicatedLines": 48,
+              "duplicatedTokens": 611,
+              "percentage": 6.6,
+              "percentageTokens": 6.24,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-it/strings.xml": {
+              "lines": 727,
+              "tokens": 13641,
+              "sources": 1,
+              "clones": 8,
+              "duplicatedLines": 73,
+              "duplicatedTokens": 961,
+              "percentage": 10.04,
+              "percentageTokens": 7.04,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-hi/strings.xml": {
+              "lines": 727,
+              "tokens": 14745,
+              "sources": 1,
+              "clones": 5,
+              "duplicatedLines": 48,
+              "duplicatedTokens": 613,
+              "percentage": 6.6,
+              "percentageTokens": 4.16,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-fr/strings.xml": {
+              "lines": 727,
+              "tokens": 14549,
+              "sources": 1,
+              "clones": 9,
+              "duplicatedLines": 79,
+              "duplicatedTokens": 1059,
+              "percentage": 10.87,
+              "percentageTokens": 7.28,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-fa/strings.xml": {
+              "lines": 728,
+              "tokens": 14498,
+              "sources": 1,
+              "clones": 5,
+              "duplicatedLines": 42,
+              "duplicatedTokens": 548,
+              "percentage": 5.77,
+              "percentageTokens": 3.78,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-es/strings.xml": {
+              "lines": 728,
+              "tokens": 14158,
+              "sources": 1,
+              "clones": 13,
+              "duplicatedLines": 119,
+              "duplicatedTokens": 1634,
+              "percentage": 16.35,
+              "percentageTokens": 11.54,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-de/strings.xml": {
+              "lines": 728,
+              "tokens": 13140,
+              "sources": 1,
+              "clones": 8,
+              "duplicatedLines": 74,
+              "duplicatedTokens": 975,
+              "percentage": 10.16,
+              "percentageTokens": 7.42,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values-ar/strings.xml": {
+              "lines": 727,
+              "tokens": 13441,
+              "sources": 1,
+              "clones": 5,
+              "duplicatedLines": 42,
+              "duplicatedTokens": 548,
+              "percentage": 5.78,
+              "percentageTokens": 4.08,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values/themes.xml": {
+              "lines": 109,
+              "tokens": 347,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values/strings.xml": {
+              "lines": 731,
+              "tokens": 13503,
+              "sources": 1,
+              "clones": 7,
+              "duplicatedLines": 62,
+              "duplicatedTokens": 890,
+              "percentage": 8.48,
+              "percentageTokens": 6.59,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values/dimens.xml": {
+              "lines": 5,
+              "tokens": 53,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values/colors_red.xml": {
+              "lines": 21,
+              "tokens": 255,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values/colors_purple.xml": {
+              "lines": 21,
+              "tokens": 255,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values/colors_peach.xml": {
+              "lines": 21,
+              "tokens": 255,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values/colors_orange.xml": {
+              "lines": 21,
+              "tokens": 255,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values/colors_material3.xml": {
+              "lines": 75,
+              "tokens": 1041,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values/colors_green.xml": {
+              "lines": 21,
+              "tokens": 255,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values/colors_classic.xml": {
+              "lines": 77,
+              "tokens": 1045,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values/colors_blue.xml": {
+              "lines": 23,
+              "tokens": 259,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values/colors.xml": {
+              "lines": 21,
+              "tokens": 207,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml": {
+              "lines": 4,
+              "tokens": 49,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml": {
+              "lines": 4,
+              "tokens": 49,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/menu/station_menu.xml": {
+              "lines": 8,
+              "tokens": 55,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/menu/selection_menu.xml": {
+              "lines": 11,
+              "tokens": 76,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout-land/fragment_now_playing.xml": {
+              "lines": 430,
+              "tokens": 2623,
+              "sources": 1,
+              "clones": 5,
+              "duplicatedLines": 69,
+              "duplicatedTokens": 421,
+              "percentage": 16.05,
+              "percentageTokens": 16.05,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/view_tor_status.xml": {
+              "lines": 38,
+              "tokens": 231,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/view_sleep_timer_status.xml": {
+              "lines": 43,
+              "tokens": 266,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/view_mini_player.xml": {
+              "lines": 150,
+              "tokens": 956,
+              "sources": 1,
+              "clones": 3,
+              "duplicatedLines": 26,
+              "duplicatedTokens": 179,
+              "percentage": 17.33,
+              "percentageTokens": 18.72,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/view_custom_proxy_status.xml": {
+              "lines": 46,
+              "tokens": 280,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/popup_station_menu.xml": {
+              "lines": 79,
+              "tokens": 457,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 28,
+              "duplicatedTokens": 178,
+              "percentage": 35.44,
+              "percentageTokens": 38.95,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/item_radio_station.xml": {
+              "lines": 125,
+              "tokens": 800,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 62,
+              "percentage": 7.2,
+              "percentageTokens": 7.75,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/item_list_text.xml": {
+              "lines": 11,
+              "tokens": 82,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 58,
+              "percentage": 72.73,
+              "percentageTokens": 70.73,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/item_genre_choice.xml": {
+              "lines": 25,
+              "tokens": 156,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/item_equalizer_band.xml": {
+              "lines": 34,
+              "tokens": 211,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/item_dropdown_text.xml": {
+              "lines": 11,
+              "tokens": 82,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 58,
+              "percentage": 72.73,
+              "percentageTokens": 70.73,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/item_browse_station_skeleton.xml": {
+              "lines": 104,
+              "tokens": 606,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/item_browse_station_card_skeleton.xml": {
+              "lines": 63,
+              "tokens": 328,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/item_browse_station_card.xml": {
+              "lines": 97,
+              "tokens": 563,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 55,
+              "percentage": 8.25,
+              "percentageTokens": 9.77,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/item_browse_station.xml": {
+              "lines": 131,
+              "tokens": 842,
+              "sources": 1,
+              "clones": 3,
+              "duplicatedLines": 25,
+              "duplicatedTokens": 172,
+              "percentage": 19.08,
+              "percentageTokens": 20.43,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/fragment_now_playing.xml": {
+              "lines": 435,
+              "tokens": 2654,
+              "sources": 1,
+              "clones": 5,
+              "duplicatedLines": 69,
+              "duplicatedTokens": 421,
+              "percentage": 15.86,
+              "percentageTokens": 15.86,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/fragment_library.xml": {
+              "lines": 151,
+              "tokens": 911,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 11,
+              "duplicatedTokens": 66,
+              "percentage": 7.28,
+              "percentageTokens": 7.24,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/fragment_browse_stations.xml": {
+              "lines": 852,
+              "tokens": 4991,
+              "sources": 1,
+              "clones": 43,
+              "duplicatedLines": 576,
+              "duplicatedTokens": 3498,
+              "percentage": 67.61,
+              "percentageTokens": 70.09,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/fragment_browse_radio_registry_only.xml": {
+              "lines": 420,
+              "tokens": 2434,
+              "sources": 1,
+              "clones": 8,
+              "duplicatedLines": 213,
+              "duplicatedTokens": 1244,
+              "percentage": 50.71,
+              "percentageTokens": 51.11,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/fragment_browse_disabled.xml": {
+              "lines": 78,
+              "tokens": 464,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/fragment_browse_container.xml": {
+              "lines": 5,
+              "tokens": 40,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/dialog_sleep_timer.xml": {
+              "lines": 253,
+              "tokens": 1549,
+              "sources": 1,
+              "clones": 3,
+              "duplicatedLines": 29,
+              "duplicatedTokens": 170,
+              "percentage": 11.46,
+              "percentageTokens": 10.97,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/dialog_import_confirmation.xml": {
+              "lines": 34,
+              "tokens": 212,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/dialog_configure_proxy.xml": {
+              "lines": 182,
+              "tokens": 1060,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/dialog_add_edit_radio.xml": {
+              "lines": 366,
+              "tokens": 2094,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 11,
+              "duplicatedTokens": 60,
+              "percentage": 3.01,
+              "percentageTokens": 2.87,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/bottom_sheet_tor_control.xml": {
+              "lines": 261,
+              "tokens": 1505,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 22,
+              "duplicatedTokens": 118,
+              "percentage": 8.43,
+              "percentageTokens": 7.84,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/bottom_sheet_equalizer.xml": {
+              "lines": 194,
+              "tokens": 1137,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 28,
+              "duplicatedTokens": 164,
+              "percentage": 14.43,
+              "percentageTokens": 14.42,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/activity_main.xml": {
+              "lines": 75,
+              "tokens": 429,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/activity_authentication.xml": {
+              "lines": 121,
+              "tokens": 712,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/warning_background.xml": {
+              "lines": 5,
+              "tokens": 48,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/spinner_background.xml": {
+              "lines": 8,
+              "tokens": 68,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/skeleton_shimmer_gradient.xml": {
+              "lines": 10,
+              "tokens": 65,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/skeleton_placeholder_image.xml": {
+              "lines": 6,
+              "tokens": 50,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/skeleton_placeholder_circle.xml": {
+              "lines": 5,
+              "tokens": 37,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/skeleton_placeholder.xml": {
+              "lines": 6,
+              "tokens": 50,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/recording_indicator_bg.xml": {
+              "lines": 10,
+              "tokens": 82,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_wifi_off.xml": {
+              "lines": 10,
+              "tokens": 69,
+              "sources": 1,
+              "clones": 13,
+              "duplicatedLines": 117,
+              "duplicatedTokens": 819,
+              "percentage": 1170,
+              "percentageTokens": 1186.96,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_warning.xml": {
+              "lines": 10,
+              "tokens": 69,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 63,
+              "percentage": 90,
+              "percentageTokens": 91.3,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_volume_off.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 19,
+              "duplicatedLines": 150,
+              "duplicatedTokens": 1064,
+              "percentage": 1666.67,
+              "percentageTokens": 1716.13,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_volume.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_tor_on.xml": {
+              "lines": 10,
+              "tokens": 65,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_tor_off.xml": {
+              "lines": 10,
+              "tokens": 65,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_tor_error.xml": {
+              "lines": 12,
+              "tokens": 81,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_tor_connecting.xml": {
+              "lines": 10,
+              "tokens": 65,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_tor.xml": {
+              "lines": 10,
+              "tokens": 65,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_timer.xml": {
+              "lines": 8,
+              "tokens": 60,
+              "sources": 1,
+              "clones": 6,
+              "duplicatedLines": 42,
+              "duplicatedTokens": 324,
+              "percentage": 525,
+              "percentageTokens": 540,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_stop_record.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_stop.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 62,
+              "percentage": 100,
+              "percentageTokens": 100,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_star.xml": {
+              "lines": 10,
+              "tokens": 69,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 63,
+              "percentage": 90,
+              "percentageTokens": 91.3,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_sort.xml": {
+              "lines": 8,
+              "tokens": 60,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 7,
+              "duplicatedTokens": 54,
+              "percentage": 87.5,
+              "percentageTokens": 90,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_share.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_search.xml": {
+              "lines": 8,
+              "tokens": 60,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 7,
+              "duplicatedTokens": 54,
+              "percentage": 87.5,
+              "percentageTokens": 90,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_record.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_radio.xml": {
+              "lines": 10,
+              "tokens": 69,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_public.xml": {
+              "lines": 10,
+              "tokens": 69,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 63,
+              "percentage": 90,
+              "percentageTokens": 91.3,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_proxy_i2p.xml": {
+              "lines": 8,
+              "tokens": 60,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 7,
+              "duplicatedTokens": 54,
+              "percentage": 87.5,
+              "percentageTokens": 90,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_proxy_direct.xml": {
+              "lines": 8,
+              "tokens": 60,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 7,
+              "duplicatedTokens": 54,
+              "percentage": 87.5,
+              "percentageTokens": 90,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_proxy_custom_on.xml": {
+              "lines": 10,
+              "tokens": 65,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_proxy_custom_off.xml": {
+              "lines": 10,
+              "tokens": 65,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_proxy_custom_error.xml": {
+              "lines": 13,
+              "tokens": 84,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_proxy_custom.xml": {
+              "lines": 8,
+              "tokens": 60,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 7,
+              "duplicatedTokens": 54,
+              "percentage": 87.5,
+              "percentageTokens": 90,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_play_arrow.xml": {
+              "lines": 10,
+              "tokens": 69,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 63,
+              "percentage": 90,
+              "percentageTokens": 91.3,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_play.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_pause.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_palette.xml": {
+              "lines": 22,
+              "tokens": 145,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 63,
+              "percentage": 40.91,
+              "percentageTokens": 43.45,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_orbot.xml": {
+              "lines": 16,
+              "tokens": 103,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_music_note.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_more_vert.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_mic.xml": {
+              "lines": 10,
+              "tokens": 69,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 63,
+              "percentage": 90,
+              "percentageTokens": 91.3,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_menu.xml": {
+              "lines": 8,
+              "tokens": 60,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 7,
+              "duplicatedTokens": 54,
+              "percentage": 87.5,
+              "percentageTokens": 90,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_location.xml": {
+              "lines": 10,
+              "tokens": 69,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 63,
+              "percentage": 90,
+              "percentageTokens": 91.3,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_link.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_launcher_monochrome.xml": {
+              "lines": 30,
+              "tokens": 134,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_launcher_foreground.xml": {
+              "lines": 49,
+              "tokens": 228,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_label.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_keyboard_arrow_up.xml": {
+              "lines": 10,
+              "tokens": 69,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 63,
+              "percentage": 90,
+              "percentageTokens": 91.3,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_invizible.xml": {
+              "lines": 10,
+              "tokens": 65,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_image.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_i2p.xml": {
+              "lines": 10,
+              "tokens": 65,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_history.xml": {
+              "lines": 10,
+              "tokens": 69,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 63,
+              "percentage": 90,
+              "percentageTokens": 91.3,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_github.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_folder.xml": {
+              "lines": 10,
+              "tokens": 69,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 63,
+              "percentage": 90,
+              "percentageTokens": 91.3,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_filter_list.xml": {
+              "lines": 10,
+              "tokens": 69,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 63,
+              "percentage": 90,
+              "percentageTokens": 91.3,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_filter.xml": {
+              "lines": 8,
+              "tokens": 60,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 7,
+              "duplicatedTokens": 54,
+              "percentage": 87.5,
+              "percentageTokens": 90,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_fiber_manual_record.xml": {
+              "lines": 10,
+              "tokens": 65,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_favorite_border.xml": {
+              "lines": 8,
+              "tokens": 60,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 7,
+              "duplicatedTokens": 54,
+              "percentage": 87.5,
+              "percentageTokens": 90,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_favorite.xml": {
+              "lines": 8,
+              "tokens": 60,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 7,
+              "duplicatedTokens": 54,
+              "percentage": 87.5,
+              "percentageTokens": 90,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_equalizer.xml": {
+              "lines": 10,
+              "tokens": 70,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_edit.xml": {
+              "lines": 9,
+              "tokens": 63,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 88.89,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_download.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_delete.xml": {
+              "lines": 9,
+              "tokens": 63,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 88.89,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_close.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_chevron_right.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_check.xml": {
+              "lines": 10,
+              "tokens": 69,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 63,
+              "percentage": 90,
+              "percentageTokens": 91.3,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_bandwidth.xml": {
+              "lines": 14,
+              "tokens": 92,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_arrow_drop_down.xml": {
+              "lines": 10,
+              "tokens": 69,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 63,
+              "percentage": 90,
+              "percentageTokens": 91.3,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_arrow_back.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/ic_add.xml": {
+              "lines": 9,
+              "tokens": 62,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 56,
+              "percentage": 88.89,
+              "percentageTokens": 90.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/gradient_bottom_dark.xml": {
+              "lines": 10,
+              "tokens": 65,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/circle_background_translucent.xml": {
+              "lines": 5,
+              "tokens": 37,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/bottom_sheet_handle.xml": {
+              "lines": 5,
+              "tokens": 48,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/drawable/bg_sleep_timer_chip.xml": {
+              "lines": 5,
+              "tokens": 48,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/color/chip_text_selector.xml": {
+              "lines": 5,
+              "tokens": 68,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/color/chip_background_selector.xml": {
+              "lines": 5,
+              "tokens": 68,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/anim/layout_animation_fall_down.xml": {
+              "lines": 4,
+              "tokens": 33,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/anim/item_slide_up.xml": {
+              "lines": 11,
+              "tokens": 76,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/anim/fade_out.xml": {
+              "lines": 4,
+              "tokens": 33,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/anim/fade_in.xml": {
+              "lines": 4,
+              "tokens": 33,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/AndroidManifest.xml": {
+              "lines": 88,
+              "tokens": 523,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.idea/vcs.xml": {
+              "lines": 5,
+              "tokens": 48,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.idea/runConfigurations.xml": {
+              "lines": 16,
+              "tokens": 152,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.idea/misc.xml": {
+              "lines": 8,
+              "tokens": 122,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.idea/migrations.xml": {
+              "lines": 9,
+              "tokens": 68,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.idea/markdown.xml": {
+              "lines": 7,
+              "tokens": 64,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.idea/kotlinc.xml": {
+              "lines": 5,
+              "tokens": 48,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.idea/gradle.xml": {
+              "lines": 18,
+              "tokens": 178,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.idea/deploymentTargetSelector.xml": {
+              "lines": 9,
+              "tokens": 74,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.idea/compiler.xml": {
+              "lines": 5,
+              "tokens": 42,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.idea/AndroidProjectSystem.xml": {
+              "lines": 5,
+              "tokens": 48,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 18715,
+            "tokens": 265984,
+            "sources": 155,
+            "clones": 188,
+            "duplicatedLines": 1828,
+            "duplicatedTokens": 18217,
+            "percentage": 9.77,
+            "percentageTokens": 6.85,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "css": {
+          "sources": {
+            "projects/deutsia-radio/app/src/main/res/values-night/themes.xml": {
+              "lines": 94,
+              "tokens": 272,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/values/themes.xml": {
+              "lines": 105,
+              "tokens": 315,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout-land/fragment_now_playing.xml": {
+              "lines": 388,
+              "tokens": 2375,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/view_sleep_timer_status.xml": {
+              "lines": 0,
+              "tokens": 3,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/view_mini_player.xml": {
+              "lines": 58,
+              "tokens": 377,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/item_radio_station.xml": {
+              "lines": 49,
+              "tokens": 325,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/item_browse_station_skeleton.xml": {
+              "lines": 0,
+              "tokens": 3,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/item_browse_station_card.xml": {
+              "lines": 35,
+              "tokens": 210,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/item_browse_station.xml": {
+              "lines": 68,
+              "tokens": 447,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/fragment_now_playing.xml": {
+              "lines": 393,
+              "tokens": 2401,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/fragment_library.xml": {
+              "lines": 100,
+              "tokens": 611,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/fragment_browse_stations.xml": {
+              "lines": 727,
+              "tokens": 4272,
+              "sources": 1,
+              "clones": 3,
+              "duplicatedLines": 1431,
+              "duplicatedTokens": 8416,
+              "percentage": 196.84,
+              "percentageTokens": 197,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/fragment_browse_radio_registry_only.xml": {
+              "lines": 345,
+              "tokens": 2012,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 261,
+              "duplicatedTokens": 1540,
+              "percentage": 75.65,
+              "percentageTokens": 76.54,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/fragment_browse_disabled.xml": {
+              "lines": 34,
+              "tokens": 211,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/dialog_sleep_timer.xml": {
+              "lines": 193,
+              "tokens": 1200,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 210,
+              "duplicatedTokens": 1388,
+              "percentage": 108.81,
+              "percentageTokens": 115.67,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/dialog_configure_proxy.xml": {
+              "lines": 135,
+              "tokens": 780,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 136,
+              "duplicatedTokens": 772,
+              "percentage": 100.74,
+              "percentageTokens": 98.97,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/dialog_add_edit_radio.xml": {
+              "lines": 336,
+              "tokens": 1931,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/bottom_sheet_tor_control.xml": {
+              "lines": 200,
+              "tokens": 1150,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/bottom_sheet_equalizer.xml": {
+              "lines": 163,
+              "tokens": 947,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/res/layout/activity_authentication.xml": {
+              "lines": 83,
+              "tokens": 492,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 3506,
+            "tokens": 20334,
+            "sources": 20,
+            "clones": 4,
+            "duplicatedLines": 1019,
+            "duplicatedTokens": 6058,
+            "percentage": 29.06,
+            "percentageTokens": 29.79,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "json": {
+          "sources": {
+            "projects/deutsia-radio/app/src/main/assets/tor_stations.json": {
+              "lines": 43,
+              "tokens": 258,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/assets/i2p_stations.json": {
+              "lines": 184,
+              "tokens": 1134,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/app/src/main/assets/bundled_stations.json": {
+              "lines": 63,
+              "tokens": 390,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/CPD_SUMMARY.json": {
+              "lines": 25,
+              "tokens": 144,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 315,
+            "tokens": 1926,
+            "sources": 4,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "properties": {
+          "sources": {
+            "projects/deutsia-radio/gradle/wrapper/gradle-wrapper.properties": {
+              "lines": 6,
+              "tokens": 24,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/gradle.properties": {
+              "lines": 22,
+              "tokens": 52,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 28,
+            "tokens": 76,
+            "sources": 2,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "yaml": {
+          "sources": {
+            "projects/deutsia-radio/.github/workflows/trivy.yml": {
+              "lines": 36,
+              "tokens": 214,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.github/workflows/test.yml": {
+              "lines": 37,
+              "tokens": 233,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.github/workflows/scorecard.yml": {
+              "lines": 36,
+              "tokens": 206,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.github/workflows/build.yml": {
+              "lines": 33,
+              "tokens": 207,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/.github/dependabot.yml": {
+              "lines": 16,
+              "tokens": 85,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deutsia-radio/zapstore.yaml": {
+              "lines": 6,
+              "tokens": 31,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 164,
+            "tokens": 976,
+            "sources": 6,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "perl": {
+          "sources": {
+            "projects/deutsia-radio/.git/hooks/fsmonitor-watchman.sample": {
+              "lines": 173,
+              "tokens": 1013,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 173,
+            "tokens": 1013,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "toml": {
+          "sources": {
+            "projects/deutsia-radio/gradle/libs.versions.toml": {
+              "lines": 24,
+              "tokens": 338,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 24,
+            "tokens": 338,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "prolog": {
+          "sources": {
+            "projects/deutsia-radio/app/proguard-rules.pro": {
+              "lines": 59,
+              "tokens": 668,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 59,
+            "tokens": 668,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        }
+      },
+      "total": {
+        "lines": 47879,
+        "tokens": 486148,
+        "sources": 290,
+        "clones": 286,
+        "duplicatedLines": 4030,
+        "duplicatedTokens": 35436,
+        "percentage": 8.42,
+        "percentageTokens": 7.29,
+        "newDuplicatedLines": 0,
+        "newClones": 0
+      }
+    },
+    "duplicates": [
+      {
+        "format": "kotlin",
+        "lines": 7,
+        "tokens": 0,
+        "fragment": "(any()) } returns false\n        every { PreferencesHelper.getCustomProxyHost(any()) } returns \"\"\n        every { PreferencesHelper.getCustomProxyPort(any()) } returns 0\n        every { PreferencesHelper.getCustomProxyProtocol(any()) } returns \"SOCKS5\"\n        every { PreferencesHelper.getCustomProxyUsername(any()) } returns \"\"\n        every { PreferencesHelper.getCustomProxyPassword(any()) } retur",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerDnsLeakTest.kt",
+          "start": 59,
+          "end": 65,
+          "startLoc": {
+            "line": 59,
+            "column": 65,
+            "position": 411
+          },
+          "endLoc": {
+            "line": 65,
+            "column": 6,
+            "position": 524
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radioregistry/RadioRegistryClientTorFallbackTest.kt",
+          "start": 51,
+          "end": 58,
+          "startLoc": {
+            "line": 51,
+            "column": 61,
+            "position": 410
+          },
+          "endLoc": {
+            "line": 58,
+            "column": 22,
+            "position": 524
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": "protocol is recognized as SOCKS proxy type`() = runTest {\n        every { PreferencesHelper.isForceCustomProxy(any()) } returns true\n        every { PreferencesHelper.getCustomProxyHost(any()) } returns \"127.0.0.1\"\n        every { PreferencesHelper.getCustomProxyPort(any()) } returns 1080\n        every { PreferencesHelper.getCustomProxyProtocol(any()) } returns \"SOCKS5\"\n\n        val server = Radio",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerDnsLeakTest.kt",
+          "start": 469,
+          "end": 477,
+          "startLoc": {
+            "line": 469,
+            "column": 22,
+            "position": 3756
+          },
+          "endLoc": {
+            "line": 477,
+            "column": 22,
+            "position": 3875
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerDnsLeakTest.kt",
+          "start": 456,
+          "end": 285,
+          "startLoc": {
+            "line": 456,
+            "column": 22,
+            "position": 3607
+          },
+          "endLoc": {
+            "line": 285,
+            "column": 55,
+            "position": 2313
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 7,
+        "tokens": 0,
+        "fragment": "every { PreferencesHelper.isEmbeddedTorEnabled(any()) } returns false\n        every { PreferencesHelper.isForceTorAll(any()) } returns false\n        every { PreferencesHelper.isForceTorExceptI2P(any()) } returns false\n        every { PreferencesHelper.isForceCustomProxy(any()) } returns false\n        every { PreferencesHelper.isForceCustomProxyExceptTorI2P(any()) } returns false\n\n        val",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerDnsLeakTest.kt",
+          "start": 520,
+          "end": 526,
+          "startLoc": {
+            "line": 520,
+            "column": 9,
+            "position": 4288
+          },
+          "endLoc": {
+            "line": 526,
+            "column": 12,
+            "position": 4389
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerDnsLeakTest.kt",
+          "start": 55,
+          "end": 60,
+          "startLoc": {
+            "line": 55,
+            "column": 9,
+            "position": 324
+          },
+          "endLoc": {
+            "line": 60,
+            "column": 14,
+            "position": 424
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": "package com.opensource.i2pradio.data.radiobrowser\n\nimport android.content.Context\nimport com.opensource.i2pradio.tor.TorManager\nimport com.opensource.i2pradio.ui.PreferencesHelper\nimport io.mockk.*\nimport kotlinx.coroutines.ExperimentalCoroutinesApi\nimport kotlinx.coroutines.test.runTest\nimport okhttp3.mockwebserver",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerApiTest.kt",
+          "start": 1,
+          "end": 9,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 9,
+            "column": 29,
+            "position": 75
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerDnsLeakTest.kt",
+          "start": 1,
+          "end": 9,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 9,
+            "column": 19,
+            "position": 75
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 21,
+        "tokens": 0,
+        "fragment": "mockkObject(PreferencesHelper)\n        every { PreferencesHelper.isEmbeddedTorEnabled(any()) } returns false\n        every { PreferencesHelper.isForceTorAll(any()) } returns false\n        every { PreferencesHelper.isForceTorExceptI2P(any()) } returns false\n        every { PreferencesHelper.isForceCustomProxy(any()) } returns false\n        every { PreferencesHelper.isForceCustomProxyExceptTorI2P(an",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerApiTest.kt",
+          "start": 48,
+          "end": 68,
+          "startLoc": {
+            "line": 48,
+            "column": 9,
+            "position": 290
+          },
+          "endLoc": {
+            "line": 68,
+            "column": 34,
+            "position": 531
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerDnsLeakTest.kt",
+          "start": 54,
+          "end": 74,
+          "startLoc": {
+            "line": 54,
+            "column": 9,
+            "position": 318
+          },
+          "endLoc": {
+            "line": 74,
+            "column": 36,
+            "position": 559
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 6,
+        "tokens": 0,
+        "fragment": "() = runTest {\n        every { PreferencesHelper.isForceCustomProxy(any()) } returns true\n        every { PreferencesHelper.getCustomProxyHost(any()) } returns \"127.0.0.1\"\n        every { PreferencesHelper.getCustomProxyPort(any()) } returns 1080\n        every { PreferencesHelper.getCustomProxyProtocol(any()) } returns \"SOCKS5\"\n        every { PreferencesHelper.getCustomProxyUsername(any()) } retu",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerApiTest.kt",
+          "start": 230,
+          "end": 235,
+          "startLoc": {
+            "line": 230,
+            "column": 75,
+            "position": 1760
+          },
+          "endLoc": {
+            "line": 235,
+            "column": 77,
+            "position": 1867
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerDnsLeakTest.kt",
+          "start": 456,
+          "end": 339,
+          "startLoc": {
+            "line": 456,
+            "column": 65,
+            "position": 3620
+          },
+          "endLoc": {
+            "line": 339,
+            "column": 81,
+            "position": 2840
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 16,
+        "tokens": 0,
+        "fragment": "(any()) } returns true\n        every { TorManager.isConnected() } returns false\n\n        val server = RadioBrowserServerManager.getCurrentServer(mockContext)\n\n        // Must return hardcoded fallback (no clearnet)\n        assertNotNull(server)\n        assertTrue(\n            server == \"de1.api.radio-browser.info\" ||\n            server == \"de2.api.radio-browser.info\" ||\n            server == \"fi1.",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerApiTest.kt",
+          "start": 336,
+          "end": 351,
+          "startLoc": {
+            "line": 336,
+            "column": 54,
+            "position": 2626
+          },
+          "endLoc": {
+            "line": 351,
+            "column": 27,
+            "position": 2726
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerApiTest.kt",
+          "start": 319,
+          "end": 334,
+          "startLoc": {
+            "line": 319,
+            "column": 48,
+            "position": 2472
+          },
+          "endLoc": {
+            "line": 334,
+            "column": 24,
+            "position": 2572
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 16,
+        "tokens": 0,
+        "fragment": "(any()) } returns true\n        every { PreferencesHelper.getCustomProxyHost(any()) } returns \"\"\n        every { PreferencesHelper.getCustomProxyPort(any()) } returns 0\n\n        val server = RadioBrowserServerManager.getCurrentServer(mockContext)\n\n        // Must return hardcoded fallback (no clearnet)\n        assertNotNull(server)\n        assertTrue(\n            server == \"de1.api.radio-browser.in",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerApiTest.kt",
+          "start": 369,
+          "end": 384,
+          "startLoc": {
+            "line": 369,
+            "column": 65,
+            "position": 2919
+          },
+          "endLoc": {
+            "line": 384,
+            "column": 80,
+            "position": 3033
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerApiTest.kt",
+          "start": 352,
+          "end": 367,
+          "startLoc": {
+            "line": 352,
+            "column": 53,
+            "position": 2758
+          },
+          "endLoc": {
+            "line": 367,
+            "column": 10,
+            "position": 2872
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 14,
+        "tokens": 0,
+        "fragment": "package com.opensource.i2pradio.ui.browse\n\nimport android.animation.ValueAnimator\nimport android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nimport android.view.animation.LinearInterpolator\nimport androidx.recyclerview.widget.RecyclerView\nimport com.opensource.i2pradio.R\n\n/**\n * Adapter that displays skeleton placeholder cards with shimmer animation.\n * Used while ca",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/SkeletonCarouselAdapter.kt",
+          "start": 1,
+          "end": 14,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 14,
+            "column": 4,
+            "position": 76
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/SkeletonListAdapter.kt",
+          "start": 1,
+          "end": 14,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 14,
+            "column": 4,
+            "position": 76
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 26,
+        "tokens": 0,
+        "fragment": ", parent, false)\n        return ViewHolder(view)\n    }\n\n    override fun onBindViewHolder(holder: ViewHolder, position: Int) {\n        holder.startShimmer(position)\n    }\n\n    override fun onViewRecycled(holder: ViewHolder) {\n        super.onViewRecycled(holder)\n        holder.stopShimmer()\n    }\n\n    override fun getItemCount(): Int = itemCount\n\n    fun stopAllShimmers() {\n        shimmerAnimator",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/SkeletonCarouselAdapter.kt",
+          "start": 23,
+          "end": 48,
+          "startLoc": {
+            "line": 23,
+            "column": 64,
+            "position": 181
+          },
+          "endLoc": {
+            "line": 48,
+            "column": 16,
+            "position": 397
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/SkeletonListAdapter.kt",
+          "start": 23,
+          "end": 48,
+          "startLoc": {
+            "line": 23,
+            "column": 59,
+            "position": 181
+          },
+          "endLoc": {
+            "line": 48,
+            "column": 57,
+            "position": 397
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 14,
+        "tokens": 0,
+        "fragment": "}\n        }\n\n        fun stopShimmer() {\n            animator?.cancel()\n            animator?.let { shimmerAnimators.remove(it) }\n            animator = null\n        }\n\n        private fun Int.dpToPx(context: android.content.Context): Int {\n            return (this * context.resources.displayMetrics.density).toInt()\n        }\n    }\n}",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/SkeletonCarouselAdapter.kt",
+          "start": 64,
+          "end": 77,
+          "startLoc": {
+            "line": 64,
+            "column": 54,
+            "position": 620
+          },
+          "endLoc": {
+            "line": 77,
+            "column": 2,
+            "position": 722
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/SkeletonListAdapter.kt",
+          "start": 66,
+          "end": 79,
+          "startLoc": {
+            "line": 66,
+            "column": 13,
+            "position": 607
+          },
+          "endLoc": {
+            "line": 79,
+            "column": 2,
+            "position": 709
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 17,
+        "tokens": 0,
+        "fragment": ": Set<String> = emptySet()\n\n    fun updateLikedUuids(uuids: Set<String>) {\n        val oldLikedUuids = likedUuids\n        likedUuids = uuids\n\n        currentList.forEachIndexed { index, station ->\n            val uuid = \"registry_${station.id}\"\n            val wasLiked = oldLikedUuids.contains(uuid)\n            val isLiked = uuids.contains(uuid)\n            if (wasLiked != isLiked) {\n             ",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioCarouselAdapter.kt",
+          "start": 30,
+          "end": 46,
+          "startLoc": {
+            "line": 30,
+            "column": 27,
+            "position": 253
+          },
+          "endLoc": {
+            "line": 46,
+            "column": 13,
+            "position": 390
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioListAdapter.kt",
+          "start": 35,
+          "end": 51,
+          "startLoc": {
+            "line": 35,
+            "column": 27,
+            "position": 329
+          },
+          "endLoc": {
+            "line": 51,
+            "column": 8,
+            "position": 466
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": ")\n    }\n\n    override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {\n        if (payloads.isEmpty()) {\n            super.onBindViewHolder(holder, position, payloads)\n            return\n        }\n        val station = getItem(position)\n        if",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioCarouselAdapter.kt",
+          "start": 53,
+          "end": 62,
+          "startLoc": {
+            "line": 53,
+            "column": 52,
+            "position": 495
+          },
+          "endLoc": {
+            "line": 62,
+            "column": 11,
+            "position": 577
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioListAdapter.kt",
+          "start": 72,
+          "end": 81,
+          "startLoc": {
+            "line": 72,
+            "column": 38,
+            "position": 686
+          },
+          "endLoc": {
+            "line": 81,
+            "column": 12,
+            "position": 768
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 16,
+        "tokens": 0,
+        "fragment": "}\n    }\n\n    private class DiffCallback : DiffUtil.ItemCallback<RadioRegistryStation>() {\n        override fun areItemsTheSame(oldItem: RadioRegistryStation, newItem: RadioRegistryStation): Boolean {\n            return oldItem.id == newItem.id\n        }\n\n        override fun areContentsTheSame(oldItem: RadioRegistryStation, newItem: RadioRegistryStation): Boolean {\n            return oldItem == ne",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioCarouselAdapter.kt",
+          "start": 160,
+          "end": 175,
+          "startLoc": {
+            "line": 160,
+            "column": 9,
+            "position": 1434
+          },
+          "endLoc": {
+            "line": 175,
+            "column": 6,
+            "position": 1562
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioListAdapter.kt",
+          "start": 229,
+          "end": 244,
+          "startLoc": {
+            "line": 229,
+            "column": 9,
+            "position": 2044
+          },
+          "endLoc": {
+            "line": 244,
+            "column": 16,
+            "position": 2172
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": "package com.opensource.i2pradio.ui.browse\n\nimport android.graphics.Color\nimport android.text.SpannableStringBuilder\nimport android.text.Spanned\nimport android.text.style.ForegroundColorSpan\nimport android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nimport android.view",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseStationsAdapter.kt",
+          "start": 1,
+          "end": 10,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 10,
+            "column": 20,
+            "position": 75
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioCarouselAdapter.kt",
+          "start": 1,
+          "end": 10,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 10,
+            "column": 22,
+            "position": 75
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": "}\n\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {\n        val view = LayoutInflater.from(parent.context)\n            .inflate(R.layout.item_browse_station, parent, false)\n        return ViewHolder(view)\n    }\n\n    override fun onBindViewHolder(holder: ViewHolder, position: Int) {\n        val",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseStationsAdapter.kt",
+          "start": 76,
+          "end": 85,
+          "startLoc": {
+            "line": 76,
+            "column": 5,
+            "position": 661
+          },
+          "endLoc": {
+            "line": 85,
+            "column": 12,
+            "position": 755
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioListAdapter.kt",
+          "start": 63,
+          "end": 72,
+          "startLoc": {
+            "line": 63,
+            "column": 5,
+            "position": 584
+          },
+          "endLoc": {
+            "line": 72,
+            "column": 15,
+            "position": 678
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": "inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {\n        private val stationIcon: ImageView = itemView.findViewById(R.id.stationIcon)\n        private val stationName: TextView = itemView.findViewById(R.id.stationName)\n        private val stationInfo: TextView = itemView.findViewById(R.id.stationInfo)\n        private val qualityInfo: TextView = itemView.findViewById(R.id",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseStationsAdapter.kt",
+          "start": 109,
+          "end": 118,
+          "startLoc": {
+            "line": 109,
+            "column": 5,
+            "position": 964
+          },
+          "endLoc": {
+            "line": 118,
+            "column": 46,
+            "position": 1149
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioListAdapter.kt",
+          "start": 90,
+          "end": 99,
+          "startLoc": {
+            "line": 90,
+            "column": 5,
+            "position": 847
+          },
+          "endLoc": {
+            "line": 99,
+            "column": 47,
+            "position": 1032
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 18,
+        "tokens": 0,
+        "fragment": "MotionEvent.ACTION_CANCEL -> {\n                        v.animate()\n                            .scaleX(1f)\n                            .scaleY(1f)\n                            .setDuration(100)\n                            .setInterpolator(DecelerateInterpolator())\n                            .start()\n                    }\n                }\n                false\n            }\n\n            // Click l",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseStationsAdapter.kt",
+          "start": 202,
+          "end": 219,
+          "startLoc": {
+            "line": 202,
+            "column": 34,
+            "position": 1819
+          },
+          "endLoc": {
+            "line": 219,
+            "column": 25,
+            "position": 1904
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioListAdapter.kt",
+          "start": 172,
+          "end": 186,
+          "startLoc": {
+            "line": 172,
+            "column": 21,
+            "position": 1615
+          },
+          "endLoc": {
+            "line": 186,
+            "column": 23,
+            "position": 1697
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 15,
+        "tokens": 0,
+        "fragment": "// Reset to default theme color\n                val typedValue = android.util.TypedValue()\n                itemView.context.theme.resolveAttribute(\n                    com.google.android.material.R.attr.colorOnSurfaceVariant,\n                    typedValue,\n                    true\n                )\n                if (typedValue.resourceId != 0) {\n                    likeButton.setIconTintResourc",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseStationsAdapter.kt",
+          "start": 240,
+          "end": 254,
+          "startLoc": {
+            "line": 240,
+            "column": 17,
+            "position": 2082
+          },
+          "endLoc": {
+            "line": 254,
+            "column": 6,
+            "position": 2199
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioListAdapter.kt",
+          "start": 210,
+          "end": 225,
+          "startLoc": {
+            "line": 210,
+            "column": 17,
+            "position": 1869
+          },
+          "endLoc": {
+            "line": 225,
+            "column": 12,
+            "position": 1987
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": "package com.opensource.i2pradio.ui.browse\n\nimport android.os.Bundle\nimport android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nimport androidx.fragment.app.Fragment\nimport com.opensource.i2pradio.R\nimport",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseContainerFragment.kt",
+          "start": 1,
+          "end": 9,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 9,
+            "column": 7,
+            "position": 65
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseDisabledFragment.kt",
+          "start": 1,
+          "end": 13,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 13,
+            "column": 4,
+            "position": 66
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 12,
+        "tokens": 0,
+        "fragment": "import android.view.LayoutInflater\nimport android.view.View\nimport android.view.ViewGroup\nimport android.widget.ImageButton\nimport android.widget.ImageView\nimport android.widget.TextView\nimport androidx.recyclerview.widget.DiffUtil\nimport androidx.recyclerview.widget.ListAdapter\nimport androidx.recyclerview.widget.RecyclerView\nimport coil.request.Disposable\nimport com.opensource.i2pradio.R\nimport ",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseCarouselAdapter.kt",
+          "start": 3,
+          "end": 14,
+          "startLoc": {
+            "line": 3,
+            "column": 1,
+            "position": 13
+          },
+          "endLoc": {
+            "line": 14,
+            "column": 49,
+            "position": 119
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioCarouselAdapter.kt",
+          "start": 7,
+          "end": 18,
+          "startLoc": {
+            "line": 7,
+            "column": 1,
+            "position": 47
+          },
+          "endLoc": {
+            "line": 18,
+            "column": 50,
+            "position": 153
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 23,
+        "tokens": 0,
+        "fragment": ")\n            if (wasLiked != isLiked) {\n                notifyItemChanged(index, PAYLOAD_LIKED_STATUS)\n            }\n        }\n    }\n\n    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {\n        val view = LayoutInflater.from(parent.context)\n            .inflate(R.layout.item_browse_station_card, parent, false)\n        return ViewHolder(view)\n    }\n\n    override fun",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseCarouselAdapter.kt",
+          "start": 35,
+          "end": 57,
+          "startLoc": {
+            "line": 35,
+            "column": 61,
+            "position": 313
+          },
+          "endLoc": {
+            "line": 57,
+            "column": 64,
+            "position": 523
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioCarouselAdapter.kt",
+          "start": 39,
+          "end": 61,
+          "startLoc": {
+            "line": 39,
+            "column": 46,
+            "position": 355
+          },
+          "endLoc": {
+            "line": 61,
+            "column": 12,
+            "position": 565
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 13,
+        "tokens": 0,
+        "fragment": "))\n        }\n    }\n\n    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {\n        private val stationImage: ImageView = itemView.findViewById(R.id.stationImage)\n        private val stationName: TextView = itemView.findViewById(R.id.stationName)\n        private val stationInfo: TextView = itemView.findViewById(R.id.stationInfo)\n        private val rankBadge: TextView = it",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseCarouselAdapter.kt",
+          "start": 60,
+          "end": 72,
+          "startLoc": {
+            "line": 60,
+            "column": 77,
+            "position": 563
+          },
+          "endLoc": {
+            "line": 72,
+            "column": 46,
+            "position": 736
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioCarouselAdapter.kt",
+          "start": 64,
+          "end": 76,
+          "startLoc": {
+            "line": 64,
+            "column": 62,
+            "position": 615
+          },
+          "endLoc": {
+            "line": 76,
+            "column": 47,
+            "position": 788
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 17,
+        "tokens": 0,
+        "fragment": ") {\n                    crossfade(true)\n                    placeholder(R.drawable.ic_radio)\n                    error(R.drawable.ic_radio)\n                }\n            }\n\n            // Rank badge\n            if (showRankBadge) {\n                rankBadge.visibility = View.VISIBLE\n                rankBadge.text = rank.toString()\n            } else {\n                rankBadge.visibility = View.GO",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseCarouselAdapter.kt",
+          "start": 89,
+          "end": 105,
+          "startLoc": {
+            "line": 89,
+            "column": 78,
+            "position": 924
+          },
+          "endLoc": {
+            "line": 105,
+            "column": 30,
+            "position": 1023
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioCarouselAdapter.kt",
+          "start": 102,
+          "end": 118,
+          "startLoc": {
+            "line": 102,
+            "column": 88,
+            "position": 1019
+          },
+          "endLoc": {
+            "line": 118,
+            "column": 16,
+            "position": 1118
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 36,
+        "tokens": 0,
+        "fragment": "// Click listeners\n            itemView.setOnClickListener { onStationClick(station) }\n            btnLike.setOnClickListener { onLikeClick(station) }\n        }\n\n        fun updateLikedStatus(isLiked: Boolean) {\n            btnLike.setImageResource(\n                if (isLiked) R.drawable.ic_favorite else R.drawable.ic_favorite_border\n            )\n            // Animate the tint color change\n    ",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseCarouselAdapter.kt",
+          "start": 107,
+          "end": 142,
+          "startLoc": {
+            "line": 107,
+            "column": 13,
+            "position": 1037
+          },
+          "endLoc": {
+            "line": 142,
+            "column": 75,
+            "position": 1301
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioCarouselAdapter.kt",
+          "start": 128,
+          "end": 163,
+          "startLoc": {
+            "line": 128,
+            "column": 13,
+            "position": 1189
+          },
+          "endLoc": {
+            "line": 163,
+            "column": 76,
+            "position": 1453
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 15,
+        "tokens": 0,
+        "fragment": "private val SOCKS5_DNS = object : Dns {\n        override fun lookup(hostname: String): List<InetAddress> {\n            Log.d(TAG, \"DNS lookup for '$hostname' - delegating to SOCKS5 proxy\")\n            return listOf(InetAddress.getByAddress(hostname, byteArrayOf(0, 0, 0, 0)))\n        }\n    }\n\n    /**\n     * Get the current API server to use.\n     * If no servers are cached, discovers them first.\n  ",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManager.kt",
+          "start": 70,
+          "end": 84,
+          "startLoc": {
+            "line": 70,
+            "column": 5,
+            "position": 379
+          },
+          "endLoc": {
+            "line": 84,
+            "column": 8,
+            "position": 465
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radioregistry/RadioRegistryClient.kt",
+          "start": 63,
+          "end": 69,
+          "startLoc": {
+            "line": 63,
+            "column": 9,
+            "position": 357
+          },
+          "endLoc": {
+            "line": 69,
+            "column": 6,
+            "position": 442
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 13,
+        "tokens": 0,
+        "fragment": "if (proxyUsername.isNotEmpty() && proxyPassword.isNotEmpty()) {\n                    builder.proxyAuthenticator { _, response ->\n                        val previousAuth = response.request.header(\"Proxy-Authorization\")\n                        if (previousAuth != null) {\n                            return@proxyAuthenticator null\n                        }\n                        val credential = okht",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManager.kt",
+          "start": 287,
+          "end": 299,
+          "startLoc": {
+            "line": 287,
+            "column": 17,
+            "position": 1973
+          },
+          "endLoc": {
+            "line": 299,
+            "column": 14,
+            "position": 2096
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radioregistry/RadioRegistryClient.kt",
+          "start": 145,
+          "end": 158,
+          "startLoc": {
+            "line": 145,
+            "column": 17,
+            "position": 1143
+          },
+          "endLoc": {
+            "line": 158,
+            "column": 24,
+            "position": 1267
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 22,
+        "tokens": 0,
+        "fragment": ")\n\n            val request = Request.Builder()\n                .url(FALLBACK_API_URL)\n                .header(\"User-Agent\", \"DeutsiaRadio/1.0\")\n                .get()\n                .build()\n\n            val response = client.newCall(request).execute()\n\n            if (response.isSuccessful) {\n                val body = response.body?.string()\n                response.close()\n\n                if ",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManager.kt",
+          "start": 392,
+          "end": 413,
+          "startLoc": {
+            "line": 392,
+            "column": 24,
+            "position": 2858
+          },
+          "endLoc": {
+            "line": 413,
+            "column": 64,
+            "position": 3074
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManager.kt",
+          "start": 303,
+          "end": 324,
+          "startLoc": {
+            "line": 303,
+            "column": 84,
+            "position": 2124
+          },
+          "endLoc": {
+            "line": 324,
+            "column": 72,
+            "position": 2340
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 18,
+        "tokens": 0,
+        "fragment": "RadioStation(\n                name = station.name,\n                streamUrl = station.getStreamUrl(),\n                genre = station.getPrimaryGenre(),\n                coverArtUri = station.favicon.takeIf { it.isNotEmpty() },\n                source = if (asUserStation) StationSource.USER.name else StationSource.RADIOBROWSER.name,\n                radioBrowserUuid = station.stationuuid,\n          ",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserRepository.kt",
+          "start": 288,
+          "end": 305,
+          "startLoc": {
+            "line": 288,
+            "column": 13,
+            "position": 2047
+          },
+          "endLoc": {
+            "line": 305,
+            "column": 24,
+            "position": 2249
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserRepository.kt",
+          "start": 248,
+          "end": 265,
+          "startLoc": {
+            "line": 248,
+            "column": 16,
+            "position": 1699
+          },
+          "endLoc": {
+            "line": 265,
+            "column": 82,
+            "position": 1901
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 8,
+        "tokens": 0,
+        "fragment": "package com.opensource.i2pradio.data.radiobrowser\n\nimport android.content.Context\nimport android.util.Log\nimport com.opensource.i2pradio.tor.TorManager\nimport com.opensource.i2pradio.ui.PreferencesHelper\nimport kotlinx.coroutines.Dispatchers\nimport kotlinx.coroutines.withContext",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt",
+          "start": 1,
+          "end": 8,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 8,
+            "column": 38,
+            "position": 67
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManager.kt",
+          "start": 1,
+          "end": 8,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 8,
+            "column": 31,
+            "position": 67
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 16,
+        "tokens": 0,
+        "fragment": "import kotlinx.coroutines.withContext\nimport okhttp3.Dns\nimport okhttp3.OkHttpClient\nimport okhttp3.Request\nimport org.json.JSONArray\nimport java.net.InetAddress\nimport java.net.InetSocketAddress\nimport java.net.Proxy\nimport java.util.concurrent.TimeUnit\n\n/**\n * Client for the RadioBrowser API (radio-browser.info)\n *\n * Supports proxy routing through Tor when Force Tor settings are enabled,\n * ens",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt",
+          "start": 8,
+          "end": 23,
+          "startLoc": {
+            "line": 8,
+            "column": 1,
+            "position": 61
+          },
+          "endLoc": {
+            "line": 23,
+            "column": 4,
+            "position": 130
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManager.kt",
+          "start": 10,
+          "end": 19,
+          "startLoc": {
+            "line": 10,
+            "column": 1,
+            "position": 81
+          },
+          "endLoc": {
+            "line": 19,
+            "column": 7,
+            "position": 149
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 7,
+        "tokens": 0,
+        "fragment": "else if (forceCustomProxy || forceCustomProxyExceptTorI2P) {\n            val proxyHost = PreferencesHelper.getCustomProxyHost(context)\n            val proxyPort = PreferencesHelper.getCustomProxyPort(context)\n            val proxyProtocol = PreferencesHelper.getCustomProxyProtocol(context)\n            val proxyUsername = PreferencesHelper.getCustomProxyUsername(context)\n            val proxyPasswo",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt",
+          "start": 108,
+          "end": 114,
+          "startLoc": {
+            "line": 108,
+            "column": 9,
+            "position": 743
+          },
+          "endLoc": {
+            "line": 114,
+            "column": 16,
+            "position": 828
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radioregistry/RadioRegistryClient.kt",
+          "start": 123,
+          "end": 130,
+          "startLoc": {
+            "line": 123,
+            "column": 9,
+            "position": 901
+          },
+          "endLoc": {
+            "line": 130,
+            "column": 15,
+            "position": 987
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": "(context)\n\n            if (proxyHost.isNotEmpty() && proxyPort > 0) {\n                val proxyType = when (proxyProtocol.uppercase()) {\n                    \"SOCKS4\", \"SOCKS5\", \"SOCKS\" -> Proxy.Type.SOCKS\n                    \"HTTP\", \"HTTPS\" -> Proxy.Type.HTTP\n                    else -> Proxy.Type.HTTP\n                }\n\n                Log.d(TAG, \"Routing RadioBrowser API through CUSTOM proxy (",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt",
+          "start": 114,
+          "end": 123,
+          "startLoc": {
+            "line": 114,
+            "column": 73,
+            "position": 837
+          },
+          "endLoc": {
+            "line": 123,
+            "column": 76,
+            "position": 936
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radioregistry/RadioRegistryClient.kt",
+          "start": 128,
+          "end": 137,
+          "startLoc": {
+            "line": 128,
+            "column": 73,
+            "position": 981
+          },
+          "endLoc": {
+            "line": 137,
+            "column": 78,
+            "position": 1080
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 15,
+        "tokens": 0,
+        "fragment": "$url\")\n\n                    val request = Request.Builder()\n                        .url(url)\n                        .header(\"User-Agent\", USER_AGENT)\n                        .header(\"Accept\", \"application/json\")\n                        .get()\n                        .build()\n\n                    val response = client.newCall(request).execute()\n\n                    if (!response.isSuccessful) {\n ",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt",
+          "start": 221,
+          "end": 235,
+          "startLoc": {
+            "line": 221,
+            "column": 71,
+            "position": 1609
+          },
+          "endLoc": {
+            "line": 235,
+            "column": 27,
+            "position": 1723
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radioregistry/RadioRegistryClient.kt",
+          "start": 196,
+          "end": 210,
+          "startLoc": {
+            "line": 196,
+            "column": 34,
+            "position": 1521
+          },
+          "endLoc": {
+            "line": 210,
+            "column": 19,
+            "position": 1635
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 11,
+        "tokens": 0,
+        "fragment": "val request = Request.Builder()\n                    .url(url)\n                    .header(\"User-Agent\", USER_AGENT)\n                    .header(\"Accept\", \"application/json\")\n                    .get()\n                    .build()\n\n                val response = client.newCall(request).execute()\n\n                if (!response.isSuccessful) {\n                    response",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt",
+          "start": 463,
+          "end": 473,
+          "startLoc": {
+            "line": 463,
+            "column": 17,
+            "position": 3482
+          },
+          "endLoc": {
+            "line": 473,
+            "column": 29,
+            "position": 3566
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radioregistry/RadioRegistryClient.kt",
+          "start": 198,
+          "end": 208,
+          "startLoc": {
+            "line": 198,
+            "column": 9,
+            "position": 1527
+          },
+          "endLoc": {
+            "line": 208,
+            "column": 16,
+            "position": 1611
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 22,
+        "tokens": 0,
+        "fragment": "val request = Request.Builder()\n                    .url(url)\n                    .header(\"User-Agent\", USER_AGENT)\n                    .header(\"Accept\", \"application/json\")\n                    .get()\n                    .build()\n\n                val response = client.newCall(request).execute()\n\n                if (!response.isSuccessful) {\n                    response.close()\n                    ",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt",
+          "start": 529,
+          "end": 550,
+          "startLoc": {
+            "line": 529,
+            "column": 17,
+            "position": 4012
+          },
+          "endLoc": {
+            "line": 550,
+            "column": 25,
+            "position": 4178
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radioregistry/RadioRegistryClient.kt",
+          "start": 198,
+          "end": 484,
+          "startLoc": {
+            "line": 198,
+            "column": 9,
+            "position": 1527
+          },
+          "endLoc": {
+            "line": 484,
+            "column": 30,
+            "position": 3648
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 24,
+        "tokens": 0,
+        "fragment": "$limit&hidebroken=true\"\n\n                val request = Request.Builder()\n                    .url(url)\n                    .header(\"User-Agent\", USER_AGENT)\n                    .header(\"Accept\", \"application/json\")\n                    .get()\n                    .build()\n\n                val response = client.newCall(request).execute()\n\n                if (!response.isSuccessful) {\n                ",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt",
+          "start": 595,
+          "end": 618,
+          "startLoc": {
+            "line": 595,
+            "column": 85,
+            "position": 4546
+          },
+          "endLoc": {
+            "line": 618,
+            "column": 30,
+            "position": 4717
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt",
+          "start": 527,
+          "end": 484,
+          "startLoc": {
+            "line": 527,
+            "column": 80,
+            "position": 4007
+          },
+          "endLoc": {
+            "line": 484,
+            "column": 30,
+            "position": 3648
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 7,
+        "tokens": 0,
+        "fragment": ">()\n                val jsonArray = JSONArray(body)\n                for (i in 0 until jsonArray.length()) {\n                    val obj = jsonArray.getJSONObject(i)\n                    val name = obj.optString(\"name\", \"\")\n                    if (name.isNotEmpty()) {\n                        languages",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt",
+          "start": 618,
+          "end": 624,
+          "startLoc": {
+            "line": 618,
+            "column": 59,
+            "position": 4724
+          },
+          "endLoc": {
+            "line": 624,
+            "column": 34,
+            "position": 4806
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt",
+          "start": 550,
+          "end": 556,
+          "startLoc": {
+            "line": 550,
+            "column": 49,
+            "position": 4185
+          },
+          "endLoc": {
+            "line": 556,
+            "column": 29,
+            "position": 4267
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 16,
+        "tokens": 0,
+        "fragment": "mockkStatic(Base64::class)\n        every { Base64.encodeToString(any(), any()) } answers {\n            java.util.Base64.getEncoder().encodeToString(firstArg<ByteArray>())\n        }\n        every { Base64.decode(any<String>(), any()) } answers {\n            java.util.Base64.getDecoder().decode(firstArg<String>())\n        }\n    }\n\n    @After\n    fun teardown() {\n        unmockkAll()\n    }\n\n    // ==",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/security/PasswordHashUtilTest.kt",
+          "start": 30,
+          "end": 45,
+          "startLoc": {
+            "line": 30,
+            "column": 9,
+            "position": 123
+          },
+          "endLoc": {
+            "line": 45,
+            "column": 29,
+            "position": 260
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/security/SecureObjectLifecycleTest.kt",
+          "start": 43,
+          "end": 58,
+          "startLoc": {
+            "line": 43,
+            "column": 9,
+            "position": 167
+          },
+          "endLoc": {
+            "line": 58,
+            "column": 49,
+            "position": 304
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "kotlin",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": "// Mock Android's Base64 class for JVM tests\n        mockkStatic(Base64::class)\n        every { Base64.encodeToString(any(), any()) } answers {\n            java.util.Base64.getEncoder().encodeToString(firstArg<ByteArray>())\n        }\n        every { Base64.decode(any<String>(), any()) } answers {\n            java.util.Base64.getDecoder().decode(firstArg<String>())\n        }\n\n        // Mock Shared",
+        "firstFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/security/PasswordEncryptionUtilTest.kt",
+          "start": 52,
+          "end": 61,
+          "startLoc": {
+            "line": 52,
+            "column": 9,
+            "position": 288
+          },
+          "endLoc": {
+            "line": 61,
+            "column": 34,
+            "position": 401
+          }
+        },
+        "secondFile": {
+          "name": "projects/deutsia-radio/app/src/test/java/com/opensource/i2pradio/security/PasswordHashUtilTest.kt",
+          "start": 29,
+          "end": 50,
+          "startLoc": {
+            "line": 29,
+            "column": 9,
+            "position": 120
+          },
+          "endLoc": {
+            "line": 50,
+            "column": 6,
+            "position": 276
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      }
+    ],
+    "totalFiles": 290
+  },
+  "severity": "Medium",
+  "severityClass": "badge-medium"
+}

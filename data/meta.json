@@ -1,0 +1,49 @@
+{
+  "generated": "2026-05-15",
+  "jscpdVersion": "4.2.1",
+  "totalProjects": 49,
+  "totalClones": 25612,
+  "totalLines": 7239111,
+  "totalDuplicatedLines": 746915,
+  "avgDuplication": 7.98,
+  "projectsWithClones": 45,
+  "cleanProjects": 4,
+  "worstProjects": [
+    {
+      "project": "frontend-slides",
+      "percentage": 42.33,
+      "clones": 16
+    },
+    {
+      "project": "agent-skills",
+      "percentage": 37.48,
+      "clones": 51
+    },
+    {
+      "project": "open-design",
+      "percentage": 28.8,
+      "clones": 3582
+    },
+    {
+      "project": "cofounder",
+      "percentage": 25.26,
+      "clones": 118
+    },
+    {
+      "project": "openv0",
+      "percentage": 22.35,
+      "clones": 110
+    }
+  ],
+  "topFormat": [
+    "typescript",
+    {
+      "count": 11253,
+      "lines": 173600
+    }
+  ],
+  "topType": [
+    "code",
+    24081
+  ]
+}

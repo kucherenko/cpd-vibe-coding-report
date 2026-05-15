@@ -1,0 +1,1036 @@
+{
+  "project": "lightning-vibe-coding",
+  "owner": "getAlby",
+  "totalClones": 5,
+  "totalLines": 5429,
+  "totalDuplicatedLines": 202,
+  "percentage": 3.72,
+  "formatStats": {
+    "javascript": {
+      "count": 1,
+      "lines": 6
+    },
+    "txt": {
+      "count": 1,
+      "lines": 37
+    },
+    "css": {
+      "count": 1,
+      "lines": 11
+    },
+    "markup": {
+      "count": 2,
+      "lines": 153
+    }
+  },
+  "cloneTypeCounts": {
+    "code": 5
+  },
+  "crossProjectClones": 0,
+  "jscpd": {
+    "statistics": {
+      "detectionDate": "2026-05-15T15:09:46.173Z",
+      "formats": {
+        "typescript": {
+          "sources": {
+            "projects/lightning-vibe-coding/express/coinflip/deepseek-chat-v3-0324:free/app/src/index.ts": {
+              "lines": 119,
+              "tokens": 1109,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 119,
+            "tokens": 1109,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "json": {
+          "sources": {
+            "projects/lightning-vibe-coding/node/nwc-cli/quasar-alpha/app/package.json": {
+              "lines": 14,
+              "tokens": 82,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/node/nwc-cli/quasar-alpha/app/package-lock.json": {
+              "lines": 355,
+              "tokens": 2061,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/express/coinflip/deepseek-chat-v3-0324:free/app/tsconfig.json": {
+              "lines": 13,
+              "tokens": 84,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/express/coinflip/deepseek-chat-v3-0324:free/app/package.json": {
+              "lines": 24,
+              "tokens": 148,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/CPD_SUMMARY.json": {
+              "lines": 29,
+              "tokens": 167,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 435,
+            "tokens": 2542,
+            "sources": 5,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "javascript": {
+          "sources": {
+            "projects/lightning-vibe-coding/node/nwc-cli/quasar-alpha/app/index.js": {
+              "lines": 411,
+              "tokens": 3708,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 10,
+              "duplicatedTokens": 178,
+              "percentage": 2.43,
+              "percentageTokens": 4.8,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/express/coinflip/deepseek-chat-v3-0324:free/app/index.html": {
+              "lines": 89,
+              "tokens": 564,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/paywall-confetti/gemini-2.5-pro-exp-03-025/index.html": {
+              "lines": 113,
+              "tokens": 726,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/paywall-confetti/deepseek-chat-v3-0324:free/index.html": {
+              "lines": 29,
+              "tokens": 217,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/endless-runner-game/gemini-2.5-pro-exp-03-025/index.html": {
+              "lines": 415,
+              "tokens": 2518,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/endless-runner-game/deepseek-chat-v3-0324:free/index.html": {
+              "lines": 629,
+              "tokens": 3721,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1686,
+            "tokens": 11454,
+            "sources": 6,
+            "clones": 1,
+            "duplicatedLines": 5,
+            "duplicatedTokens": 89,
+            "percentage": 0.3,
+            "percentageTokens": 0.78,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "css": {
+          "sources": {
+            "projects/lightning-vibe-coding/express/coinflip/deepseek-chat-v3-0324:free/app/index.html": {
+              "lines": 19,
+              "tokens": 97,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/paywall-confetti/gemini-2.5-pro-exp-03-025/index.html": {
+              "lines": 9,
+              "tokens": 38,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/paywall-confetti/deepseek-chat-v3-0324:free/index.html": {
+              "lines": 0,
+              "tokens": 24,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/endless-runner-game/gemini-2.5-pro-exp-03-025/index.html": {
+              "lines": 109,
+              "tokens": 628,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 10,
+              "duplicatedTokens": 55,
+              "percentage": 9.17,
+              "percentageTokens": 8.76,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/endless-runner-game/deepseek-chat-v3-0324:free/index.html": {
+              "lines": 136,
+              "tokens": 845,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 10,
+              "duplicatedTokens": 55,
+              "percentage": 7.35,
+              "percentageTokens": 6.51,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 273,
+            "tokens": 1632,
+            "sources": 5,
+            "clones": 1,
+            "duplicatedLines": 10,
+            "duplicatedTokens": 55,
+            "percentage": 3.66,
+            "percentageTokens": 3.37,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markup": {
+          "sources": {
+            "projects/lightning-vibe-coding/express/coinflip/deepseek-chat-v3-0324:free/app/index.html": {
+              "lines": 128,
+              "tokens": 867,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/paywall-confetti/gemini-2.5-pro-exp-03-025/index.html": {
+              "lines": 132,
+              "tokens": 862,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/paywall-confetti/deepseek-chat-v3-0324:free/index.html": {
+              "lines": 40,
+              "tokens": 318,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/endless-runner-game/gemini-2.5-pro-exp-03-025/index.html": {
+              "lines": 552,
+              "tokens": 3412,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 151,
+              "duplicatedTokens": 1009,
+              "percentage": 27.36,
+              "percentageTokens": 29.57,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/endless-runner-game/deepseek-chat-v3-0324:free/index.html": {
+              "lines": 791,
+              "tokens": 4816,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 151,
+              "duplicatedTokens": 1009,
+              "percentage": 19.09,
+              "percentageTokens": 20.95,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1643,
+            "tokens": 10275,
+            "sources": 5,
+            "clones": 2,
+            "duplicatedLines": 151,
+            "duplicatedTokens": 1009,
+            "percentage": 9.19,
+            "percentageTokens": 9.82,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "txt": {
+          "sources": {
+            "projects/lightning-vibe-coding/react/2048/replit/prompt.txt": {
+              "lines": 21,
+              "tokens": 208,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/node/nwc-cli/quasar-alpha/prompt.txt": {
+              "lines": 29,
+              "tokens": 638,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/snake-game/genspark.ai/prompt.txt": {
+              "lines": 8,
+              "tokens": 486,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/endless-runner-game/gemini-2.5-pro-exp-03-025/prompt.txt": {
+              "lines": 36,
+              "tokens": 834,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 36,
+              "duplicatedTokens": 834,
+              "percentage": 100,
+              "percentageTokens": 100,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/endless-runner-game/deepseek-chat-v3-0324:free/prompt.txt": {
+              "lines": 36,
+              "tokens": 834,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 36,
+              "duplicatedTokens": 834,
+              "percentage": 100,
+              "percentageTokens": 100,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/express/coinflip/deepseek-chat-v3-0324:free/prompt.txt": {
+              "lines": 44,
+              "tokens": 1006,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 174,
+            "tokens": 4006,
+            "sources": 6,
+            "clones": 1,
+            "duplicatedLines": 36,
+            "duplicatedTokens": 834,
+            "percentage": 20.69,
+            "percentageTokens": 20.82,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markdown": {
+          "sources": {
+            "projects/lightning-vibe-coding/react/2048/replit/README.md": {
+              "lines": 8,
+              "tokens": 67,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/node/nwc-cli/quasar-alpha/README.md": {
+              "lines": 27,
+              "tokens": 156,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/snake-game/genspark.ai/README.md": {
+              "lines": 8,
+              "tokens": 115,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/paywall-confetti/gemini-2.5-pro-exp-03-025/README.md": {
+              "lines": 6,
+              "tokens": 60,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/paywall-confetti/deepseek-chat-v3-0324:free/README.md": {
+              "lines": 6,
+              "tokens": 52,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/endless-runner-game/gemini-2.5-pro-exp-03-025/README.md": {
+              "lines": 8,
+              "tokens": 87,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/html/endless-runner-game/deepseek-chat-v3-0324:free/README.md": {
+              "lines": 8,
+              "tokens": 77,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/express/coinflip/deepseek-chat-v3-0324:free/README.md": {
+              "lines": 24,
+              "tokens": 205,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/README.md": {
+              "lines": 109,
+              "tokens": 1719,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/CPD_REPORT.md": {
+              "lines": 29,
+              "tokens": 200,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 233,
+            "tokens": 2738,
+            "sources": 10,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "bash": {
+          "sources": {
+            "projects/lightning-vibe-coding/node/nwc-cli/quasar-alpha/README.md": {
+              "lines": 6,
+              "tokens": 6,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/express/coinflip/deepseek-chat-v3-0324:free/README.md": {
+              "lines": 6,
+              "tokens": 10,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/.git/hooks/update.sample": {
+              "lines": 127,
+              "tokens": 726,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/.git/hooks/sendemail-validate.sample": {
+              "lines": 76,
+              "tokens": 338,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/.git/hooks/push-to-checkout.sample": {
+              "lines": 77,
+              "tokens": 253,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/.git/hooks/prepare-commit-msg.sample": {
+              "lines": 41,
+              "tokens": 93,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/.git/hooks/pre-receive.sample": {
+              "lines": 23,
+              "tokens": 113,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/.git/hooks/pre-rebase.sample": {
+              "lines": 168,
+              "tokens": 1323,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/.git/hooks/pre-push.sample": {
+              "lines": 52,
+              "tokens": 215,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/.git/hooks/pre-merge-commit.sample": {
+              "lines": 12,
+              "tokens": 38,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/.git/hooks/pre-commit.sample": {
+              "lines": 48,
+              "tokens": 272,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/.git/hooks/pre-applypatch.sample": {
+              "lines": 13,
+              "tokens": 56,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/.git/hooks/post-update.sample": {
+              "lines": 7,
+              "tokens": 17,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/.git/hooks/commit-msg.sample": {
+              "lines": 23,
+              "tokens": 89,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lightning-vibe-coding/.git/hooks/applypatch-msg.sample": {
+              "lines": 14,
+              "tokens": 58,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 693,
+            "tokens": 3607,
+            "sources": 15,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "perl": {
+          "sources": {
+            "projects/lightning-vibe-coding/.git/hooks/fsmonitor-watchman.sample": {
+              "lines": 173,
+              "tokens": 1013,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 173,
+            "tokens": 1013,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        }
+      },
+      "total": {
+        "lines": 5429,
+        "tokens": 38376,
+        "sources": 54,
+        "clones": 5,
+        "duplicatedLines": 202,
+        "duplicatedTokens": 1987,
+        "percentage": 3.72,
+        "percentageTokens": 5.18,
+        "newDuplicatedLines": 0,
+        "newClones": 0
+      }
+    },
+    "duplicates": [
+      {
+        "format": "javascript",
+        "lines": 6,
+        "tokens": 0,
+        "fragment": "opts) => {\n    if (!client) return console.log('Please login first.');\n    let amountMsat = opts.amount;\n    if (opts.amount_sat) amountMsat = parseInt(opts.amount_sat) * 1000;\n    if (!amountMsat) return console.log('Please provide --amount or --amount_sat');\n    const req = { pubkey",
+        "firstFile": {
+          "name": "projects/lightning-vibe-coding/node/nwc-cli/quasar-alpha/app/index.js",
+          "start": 258,
+          "end": 263,
+          "startLoc": {
+            "line": 258,
+            "column": 26,
+            "position": 2388
+          },
+          "endLoc": {
+            "line": 263,
+            "column": 25,
+            "position": 2477
+          }
+        },
+        "secondFile": {
+          "name": "projects/lightning-vibe-coding/node/nwc-cli/quasar-alpha/app/index.js",
+          "start": 139,
+          "end": 144,
+          "startLoc": {
+            "line": 139,
+            "column": 18,
+            "position": 1135
+          },
+          "endLoc": {
+            "line": 144,
+            "column": 25,
+            "position": 1224
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "txt",
+        "lines": 37,
+        "tokens": 0,
+        "fragment": "Make a mobile-friendly endless runner game inside a single HTML file called index.html.\n\nThere is only a single action (click/tap/press spacebar) to jump.\n\nThe player should have a score that starts at zero.\n\nEvery time they successfully pass an obstacle their level will increase by (their number of jumps + 1) and their number of jumps will reset.\n\nEach time their level is increased, they can do a",
+        "firstFile": {
+          "name": "projects/lightning-vibe-coding/html/endless-runner-game/deepseek-chat-v3-0324:free/prompt.txt",
+          "start": 1,
+          "end": 37,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 37,
+            "column": 91,
+            "position": 834
+          }
+        },
+        "secondFile": {
+          "name": "projects/lightning-vibe-coding/html/endless-runner-game/gemini-2.5-pro-exp-03-025/prompt.txt",
+          "start": 1,
+          "end": 37,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 37,
+            "column": 91,
+            "position": 834
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "css",
+        "lines": 11,
+        "tokens": 0,
+        "fragment": "\n        body {\n            margin: 0;\n            overflow: hidden;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            height: 100vh;\n            background-color: #f0f0f0;\n            font-family: 'Arial', sans-serif;\n            touch-action: manipulation; /* Prevent zooming/panning on mobile */",
+        "firstFile": {
+          "name": "projects/lightning-vibe-coding/html/endless-runner-game/deepseek-chat-v3-0324:free/index.html",
+          "start": 7,
+          "end": 17,
+          "startLoc": {
+            "line": 7,
+            "column": 12,
+            "position": 59
+          },
+          "endLoc": {
+            "line": 17,
+            "column": 80,
+            "position": 114
+          }
+        },
+        "secondFile": {
+          "name": "projects/lightning-vibe-coding/html/endless-runner-game/gemini-2.5-pro-exp-03-025/index.html",
+          "start": 7,
+          "end": 17,
+          "startLoc": {
+            "line": 7,
+            "column": 12,
+            "position": 59
+          },
+          "endLoc": {
+            "line": 17,
+            "column": 70,
+            "position": 114
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "markup",
+        "lines": 147,
+        "tokens": 0,
+        "fragment": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n    <title>Endless Runner</title>\n    <style>\n        body {\n            margin: 0;\n            overflow: hidden;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            height: 100vh;\n  ",
+        "firstFile": {
+          "name": "projects/lightning-vibe-coding/html/endless-runner-game/deepseek-chat-v3-0324:free/index.html",
+          "start": 1,
+          "end": 147,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 147,
+            "column": 24,
+            "position": 935
+          }
+        },
+        "secondFile": {
+          "name": "projects/lightning-vibe-coding/html/endless-runner-game/gemini-2.5-pro-exp-03-025/index.html",
+          "start": 1,
+          "end": 120,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 120,
+            "column": 29,
+            "position": 718
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "markup",
+        "lines": 6,
+        "tokens": 0,
+        "fragment": ">\n        <div id=\"score-board\">\n            Level: <span id=\"level\">1</span> | Jumps: <span id=\"jumps\">1</span>\n        </div>\n        <div id=\"player\"></div>\n        <div id=\"game-over-screen",
+        "firstFile": {
+          "name": "projects/lightning-vibe-coding/html/endless-runner-game/deepseek-chat-v3-0324:free/index.html",
+          "start": 147,
+          "end": 152,
+          "startLoc": {
+            "line": 147,
+            "column": 31,
+            "position": 940
+          },
+          "endLoc": {
+            "line": 152,
+            "column": 34,
+            "position": 1014
+          }
+        },
+        "secondFile": {
+          "name": "projects/lightning-vibe-coding/html/endless-runner-game/gemini-2.5-pro-exp-03-025/index.html",
+          "start": 119,
+          "end": 124,
+          "startLoc": {
+            "line": 119,
+            "column": 29,
+            "position": 709
+          },
+          "endLoc": {
+            "line": 124,
+            "column": 24,
+            "position": 783
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      }
+    ],
+    "totalFiles": 54
+  },
+  "severity": "Low",
+  "severityClass": "badge-low"
+}

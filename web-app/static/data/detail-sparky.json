@@ -1,0 +1,1308 @@
+{
+  "project": "sparky",
+  "owner": "januszgrze",
+  "totalClones": 13,
+  "totalLines": 5795,
+  "totalDuplicatedLines": 242,
+  "percentage": 4.18,
+  "formatStats": {
+    "tsx": {
+      "count": 8,
+      "lines": 179
+    },
+    "css": {
+      "count": 5,
+      "lines": 76
+    }
+  },
+  "cloneTypeCounts": {
+    "code": 13
+  },
+  "crossProjectClones": 0,
+  "jscpd": {
+    "statistics": {
+      "detectionDate": "2026-05-15T15:11:33.484Z",
+      "formats": {
+        "typescript": {
+          "sources": {
+            "projects/sparky/src/renderer/screens/index.ts": {
+              "lines": 6,
+              "tokens": 117,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/types/assets.d.ts": {
+              "lines": 23,
+              "tokens": 137,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/main/main.ts": {
+              "lines": 33,
+              "tokens": 261,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 62,
+            "tokens": 515,
+            "sources": 3,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "javascript": {
+          "sources": {
+            "projects/sparky/src/renderer/screens/TransfersScreen.tsx": {
+              "lines": 105,
+              "tokens": 687,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/screens/SettingsScreen.tsx": {
+              "lines": 29,
+              "tokens": 258,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/screens/SendScreen.tsx": {
+              "lines": 99,
+              "tokens": 726,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/screens/ReceiveScreen.tsx": {
+              "lines": 122,
+              "tokens": 868,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/screens/InitScreen.tsx": {
+              "lines": 385,
+              "tokens": 2413,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/screens/HomeScreen.tsx": {
+              "lines": 34,
+              "tokens": 335,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/screens/DepositScreen.tsx": {
+              "lines": 48,
+              "tokens": 373,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/index.html": {
+              "lines": 0,
+              "tokens": 0,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/App.tsx": {
+              "lines": 171,
+              "tokens": 1099,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/webpack.web.config.js": {
+              "lines": 81,
+              "tokens": 572,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/webpack.config.js": {
+              "lines": 78,
+              "tokens": 556,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1152,
+            "tokens": 7887,
+            "sources": 11,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "tsx": {
+          "sources": {
+            "projects/sparky/src/renderer/screens/TransfersScreen.tsx": {
+              "lines": 224,
+              "tokens": 1742,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/screens/SettingsScreen.tsx": {
+              "lines": 66,
+              "tokens": 524,
+              "sources": 1,
+              "clones": 5,
+              "duplicatedLines": 105,
+              "duplicatedTokens": 821,
+              "percentage": 159.09,
+              "percentageTokens": 156.68,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/screens/SendScreen.tsx": {
+              "lines": 157,
+              "tokens": 1180,
+              "sources": 1,
+              "clones": 4,
+              "duplicatedLines": 88,
+              "duplicatedTokens": 615,
+              "percentage": 56.05,
+              "percentageTokens": 52.12,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/screens/ReceiveScreen.tsx": {
+              "lines": 193,
+              "tokens": 1410,
+              "sources": 1,
+              "clones": 3,
+              "duplicatedLines": 61,
+              "duplicatedTokens": 473,
+              "percentage": 31.61,
+              "percentageTokens": 33.55,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/screens/InitScreen.tsx": {
+              "lines": 511,
+              "tokens": 3371,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/screens/HomeScreen.tsx": {
+              "lines": 73,
+              "tokens": 609,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 41,
+              "duplicatedTokens": 311,
+              "percentage": 56.16,
+              "percentageTokens": 51.07,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/screens/DepositScreen.tsx": {
+              "lines": 91,
+              "tokens": 681,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 47,
+              "duplicatedTokens": 358,
+              "percentage": 51.65,
+              "percentageTokens": 52.57,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/index.tsx": {
+              "lines": 32,
+              "tokens": 219,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/App.tsx": {
+              "lines": 809,
+              "tokens": 6572,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 2156,
+            "tokens": 16308,
+            "sources": 9,
+            "clones": 8,
+            "duplicatedLines": 171,
+            "duplicatedTokens": 1289,
+            "percentage": 7.93,
+            "percentageTokens": 7.9,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "json": {
+          "sources": {
+            "projects/sparky/src/web/manifest.json": {
+              "lines": 27,
+              "tokens": 167,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/public/manifest.json": {
+              "lines": 27,
+              "tokens": 167,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/vercel.json": {
+              "lines": 22,
+              "tokens": 109,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/tsconfig.json": {
+              "lines": 17,
+              "tokens": 117,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/package.json": {
+              "lines": 53,
+              "tokens": 351,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/CPD_SUMMARY.json": {
+              "lines": 21,
+              "tokens": 121,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 167,
+            "tokens": 1032,
+            "sources": 6,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "css": {
+          "sources": {
+            "projects/sparky/src/web/index.html": {
+              "lines": 58,
+              "tokens": 218,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/styles.css": {
+              "lines": 951,
+              "tokens": 5969,
+              "sources": 1,
+              "clones": 10,
+              "duplicatedLines": 142,
+              "duplicatedTokens": 1026,
+              "percentage": 14.93,
+              "percentageTokens": 17.19,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1009,
+            "tokens": 6187,
+            "sources": 2,
+            "clones": 5,
+            "duplicatedLines": 71,
+            "duplicatedTokens": 513,
+            "percentage": 7.04,
+            "percentageTokens": 8.29,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markup": {
+          "sources": {
+            "projects/sparky/src/web/index.html": {
+              "lines": 85,
+              "tokens": 524,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/src/renderer/index.html": {
+              "lines": 35,
+              "tokens": 344,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 120,
+            "tokens": 868,
+            "sources": 2,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "bash": {
+          "sources": {
+            "projects/sparky/.git/hooks/update.sample": {
+              "lines": 127,
+              "tokens": 726,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/.git/hooks/sendemail-validate.sample": {
+              "lines": 76,
+              "tokens": 338,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/.git/hooks/push-to-checkout.sample": {
+              "lines": 77,
+              "tokens": 253,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/.git/hooks/prepare-commit-msg.sample": {
+              "lines": 41,
+              "tokens": 93,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/.git/hooks/pre-receive.sample": {
+              "lines": 23,
+              "tokens": 113,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/.git/hooks/pre-rebase.sample": {
+              "lines": 168,
+              "tokens": 1323,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/.git/hooks/pre-push.sample": {
+              "lines": 52,
+              "tokens": 215,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/.git/hooks/pre-merge-commit.sample": {
+              "lines": 12,
+              "tokens": 38,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/.git/hooks/pre-commit.sample": {
+              "lines": 48,
+              "tokens": 272,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/.git/hooks/pre-applypatch.sample": {
+              "lines": 13,
+              "tokens": 56,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/.git/hooks/post-update.sample": {
+              "lines": 7,
+              "tokens": 17,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/.git/hooks/commit-msg.sample": {
+              "lines": 23,
+              "tokens": 89,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/.git/hooks/applypatch-msg.sample": {
+              "lines": 14,
+              "tokens": 58,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/WEB_DEPLOYMENT.md": {
+              "lines": 7,
+              "tokens": 9,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/README.md": {
+              "lines": 26,
+              "tokens": 73,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 714,
+            "tokens": 3673,
+            "sources": 15,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "perl": {
+          "sources": {
+            "projects/sparky/.git/hooks/fsmonitor-watchman.sample": {
+              "lines": 173,
+              "tokens": 1013,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 173,
+            "tokens": 1013,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markdown": {
+          "sources": {
+            "projects/sparky/WEB_DEPLOYMENT.md": {
+              "lines": 63,
+              "tokens": 695,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/README.md": {
+              "lines": 152,
+              "tokens": 871,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/sparky/CPD_REPORT.md": {
+              "lines": 27,
+              "tokens": 172,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 242,
+            "tokens": 1738,
+            "sources": 3,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        }
+      },
+      "total": {
+        "lines": 5795,
+        "tokens": 39221,
+        "sources": 52,
+        "clones": 13,
+        "duplicatedLines": 242,
+        "duplicatedTokens": 1802,
+        "percentage": 4.18,
+        "percentageTokens": 4.59,
+        "newDuplicatedLines": 0,
+        "newClones": 0
+      }
+    },
+    "duplicates": [
+      {
+        "format": "tsx",
+        "lines": 19,
+        "tokens": 0,
+        "fragment": ";\n\n  return (\n    <div className=\"home-screen-container\">\n      <div className=\"home-screen-background\">\n        {/* Sparky Logo */}\n        <div className=\"sparky-logo\">\n          <img src={sparkyImg} alt=\"Sparky\" className=\"sparky-image\" />\n        </div>\n\n        {/* Balance Amount */}\n        <div className=\"balance-container\">\n          <div className=\"balance-amount\">{formatted}</div>\n      ",
+        "firstFile": {
+          "name": "projects/sparky/src/renderer/screens/SendScreen.tsx",
+          "start": 43,
+          "end": 61,
+          "startLoc": {
+            "line": 43,
+            "column": 54,
+            "position": 364
+          },
+          "endLoc": {
+            "line": 61,
+            "column": 54,
+            "position": 521
+          }
+        },
+        "secondFile": {
+          "name": "projects/sparky/src/renderer/screens/SettingsScreen.tsx",
+          "start": 22,
+          "end": 40,
+          "startLoc": {
+            "line": 22,
+            "column": 82,
+            "position": 176
+          },
+          "endLoc": {
+            "line": 40,
+            "column": 58,
+            "position": 333
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "tsx",
+        "lines": 23,
+        "tokens": 0,
+        "fragment": "</div>\n\n        {/* Bottom Navigation */}\n        <div className=\"bottom-nav\">\n          <button className=\"nav-button wallet-button\" onClick={onWalletClick}>\n            WALLET\n          </button>\n          <button className=\"nav-button deposit-button\" onClick={onDepositClick}>\n            DEPOSIT\n          </button>\n          <button className=\"nav-button settings-button\" onClick={onSettingsClic",
+        "firstFile": {
+          "name": "projects/sparky/src/renderer/screens/SendScreen.tsx",
+          "start": 136,
+          "end": 158,
+          "startLoc": {
+            "line": 136,
+            "column": 9,
+            "position": 1031
+          },
+          "endLoc": {
+            "line": 158,
+            "column": 26,
+            "position": 1179
+          }
+        },
+        "secondFile": {
+          "name": "projects/sparky/src/renderer/screens/SettingsScreen.tsx",
+          "start": 45,
+          "end": 67,
+          "startLoc": {
+            "line": 45,
+            "column": 9,
+            "position": 375
+          },
+          "endLoc": {
+            "line": 67,
+            "column": 30,
+            "position": 523
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "tsx",
+        "lines": 19,
+        "tokens": 0,
+        "fragment": ";\n\n  return (\n    <div className=\"home-screen-container\">\n      <div className=\"home-screen-background\">\n        {/* Sparky Logo */}\n        <div className=\"sparky-logo\">\n          <img src={sparkyImg} alt=\"Sparky\" className=\"sparky-image\" />\n        </div>\n\n        {/* Balance Amount */}\n        <div className=\"balance-container\">\n          <div className=\"balance-amount\">{formatted}</div>\n      ",
+        "firstFile": {
+          "name": "projects/sparky/src/renderer/screens/ReceiveScreen.tsx",
+          "start": 56,
+          "end": 74,
+          "startLoc": {
+            "line": 56,
+            "column": 49,
+            "position": 452
+          },
+          "endLoc": {
+            "line": 74,
+            "column": 57,
+            "position": 609
+          }
+        },
+        "secondFile": {
+          "name": "projects/sparky/src/renderer/screens/SettingsScreen.tsx",
+          "start": 22,
+          "end": 40,
+          "startLoc": {
+            "line": 22,
+            "column": 82,
+            "position": 176
+          },
+          "endLoc": {
+            "line": 40,
+            "column": 58,
+            "position": 333
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "tsx",
+        "lines": 26,
+        "tokens": 0,
+        "fragment": "</div>\n          )}\n\n        </div>\n\n        {/* Bottom Navigation */}\n        <div className=\"bottom-nav\">\n          <button className=\"nav-button wallet-button\" onClick={onWalletClick}>\n            WALLET\n          </button>\n          <button className=\"nav-button deposit-button\" onClick={onDepositClick}>\n            DEPOSIT\n          </button>\n          <button className=\"nav-button settings-bu",
+        "firstFile": {
+          "name": "projects/sparky/src/renderer/screens/ReceiveScreen.tsx",
+          "start": 169,
+          "end": 194,
+          "startLoc": {
+            "line": 169,
+            "column": 13,
+            "position": 1251
+          },
+          "endLoc": {
+            "line": 194,
+            "column": 29,
+            "position": 1409
+          }
+        },
+        "secondFile": {
+          "name": "projects/sparky/src/renderer/screens/SendScreen.tsx",
+          "start": 133,
+          "end": 67,
+          "startLoc": {
+            "line": 133,
+            "column": 13,
+            "position": 1021
+          },
+          "endLoc": {
+            "line": 67,
+            "column": 30,
+            "position": 523
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "tsx",
+        "lines": 19,
+        "tokens": 0,
+        "fragment": ");\n\n  return (\n    <div className=\"home-screen-container\">\n      <div className=\"home-screen-background\">\n        {/* Sparky Logo */}\n        <div className=\"sparky-logo\">\n          <img src={sparkyImg} alt=\"Sparky\" className=\"sparky-image\" />\n        </div>\n\n        {/* Balance Amount */}\n        <div className=\"balance-container\">\n          <div className=\"balance-amount\">{formatted}</div>\n     ",
+        "firstFile": {
+          "name": "projects/sparky/src/renderer/screens/HomeScreen.tsx",
+          "start": 24,
+          "end": 42,
+          "startLoc": {
+            "line": 24,
+            "column": 65,
+            "position": 183
+          },
+          "endLoc": {
+            "line": 42,
+            "column": 40,
+            "position": 341
+          }
+        },
+        "secondFile": {
+          "name": "projects/sparky/src/renderer/screens/ReceiveScreen.tsx",
+          "start": 56,
+          "end": 40,
+          "startLoc": {
+            "line": 56,
+            "column": 48,
+            "position": 451
+          },
+          "endLoc": {
+            "line": 40,
+            "column": 58,
+            "position": 333
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "tsx",
+        "lines": 24,
+        "tokens": 0,
+        "fragment": "</button>\n        </div>\n\n        {/* Bottom Navigation */}\n        <div className=\"bottom-nav\">\n          <button className=\"nav-button wallet-button\" onClick={onWalletClick}>\n            WALLET\n          </button>\n          <button className=\"nav-button deposit-button\" onClick={onDepositClick}>\n            DEPOSIT\n          </button>\n          <button className=\"nav-button settings-button\" onCli",
+        "firstFile": {
+          "name": "projects/sparky/src/renderer/screens/HomeScreen.tsx",
+          "start": 51,
+          "end": 74,
+          "startLoc": {
+            "line": 51,
+            "column": 11,
+            "position": 455
+          },
+          "endLoc": {
+            "line": 74,
+            "column": 26,
+            "position": 608
+          }
+        },
+        "secondFile": {
+          "name": "projects/sparky/src/renderer/screens/SettingsScreen.tsx",
+          "start": 44,
+          "end": 67,
+          "startLoc": {
+            "line": 44,
+            "column": 11,
+            "position": 370
+          },
+          "endLoc": {
+            "line": 67,
+            "column": 30,
+            "position": 523
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "tsx",
+        "lines": 25,
+        "tokens": 0,
+        "fragment": ",\n  onWalletClick,\n  onDepositClick,\n  onSettingsClick,\n  onLogoutClick,\n}) => {\n  const formatted = balance ? balance.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',') : '0';\n\n  return (\n    <div className=\"home-screen-container\">\n      <div className=\"home-screen-background\">\n        {/* Sparky Logo */}\n        <div className=\"sparky-logo\">\n          <img src={sparkyImg} alt=\"Sparky\" className=\"sparky-image",
+        "firstFile": {
+          "name": "projects/sparky/src/renderer/screens/DepositScreen.tsx",
+          "start": 22,
+          "end": 46,
+          "startLoc": {
+            "line": 22,
+            "column": 16,
+            "position": 169
+          },
+          "endLoc": {
+            "line": 46,
+            "column": 63,
+            "position": 375
+          }
+        },
+        "secondFile": {
+          "name": "projects/sparky/src/renderer/screens/SettingsScreen.tsx",
+          "start": 16,
+          "end": 40,
+          "startLoc": {
+            "line": 16,
+            "column": 18,
+            "position": 127
+          },
+          "endLoc": {
+            "line": 40,
+            "column": 58,
+            "position": 333
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "tsx",
+        "lines": 24,
+        "tokens": 0,
+        "fragment": ")}\n        </div>\n\n        {/* Bottom Navigation */}\n        <div className=\"bottom-nav\">\n          <button className=\"nav-button wallet-button\" onClick={onWalletClick}>\n            WALLET\n          </button>\n          <button className=\"nav-button deposit-button\" onClick={onDepositClick}>\n            DEPOSIT\n          </button>\n          <button className=\"nav-button settings-button\" onClick={onS",
+        "firstFile": {
+          "name": "projects/sparky/src/renderer/screens/DepositScreen.tsx",
+          "start": 69,
+          "end": 92,
+          "startLoc": {
+            "line": 69,
+            "column": 11,
+            "position": 528
+          },
+          "endLoc": {
+            "line": 92,
+            "column": 29,
+            "position": 680
+          }
+        },
+        "secondFile": {
+          "name": "projects/sparky/src/renderer/screens/SendScreen.tsx",
+          "start": 134,
+          "end": 67,
+          "startLoc": {
+            "line": 134,
+            "column": 11,
+            "position": 1026
+          },
+          "endLoc": {
+            "line": 67,
+            "column": 30,
+            "position": 523
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "css",
+        "lines": 16,
+        "tokens": 0,
+        "fragment": " {\n    width: 80vw;\n    height: 8vh;\n    background: #2A2424;\n    color: #EDFF32;\n    border: none;\n    border-radius: 15px;\n    font-family: Arial, sans-serif;\n    font-size: 4vw;\n    font-weight: bold;\n    text-transform: uppercase;\n    letter-spacing: 1px;\n    cursor: pointer;\n  }\n\n  /* DESKTOP-SPECIFIC STYLES */",
+        "firstFile": {
+          "name": "projects/sparky/src/renderer/styles.css",
+          "start": 394,
+          "end": 409,
+          "startLoc": {
+            "line": 394,
+            "column": 34,
+            "position": 2381
+          },
+          "endLoc": {
+            "line": 409,
+            "column": 32,
+            "position": 2480
+          }
+        },
+        "secondFile": {
+          "name": "projects/sparky/src/renderer/styles.css",
+          "start": 344,
+          "end": 359,
+          "startLoc": {
+            "line": 344,
+            "column": 23,
+            "position": 2025
+          },
+          "endLoc": {
+            "line": 359,
+            "column": 19,
+            "position": 2124
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "css",
+        "lines": 15,
+        "tokens": 0,
+        "fragment": "vw;\n    height: 8vh;\n    background: #2A2424;\n    color: #EDFF32;\n    border: none;\n    border-radius: 15px;\n    font-family: Arial, sans-serif;\n    font-size: 4vw;\n    font-weight: bold;\n    text-transform: uppercase;\n    letter-spacing: 1px;\n    cursor: pointer;\n  }\n\n  .send-submit-button",
+        "firstFile": {
+          "name": "projects/sparky/src/renderer/styles.css",
+          "start": 619,
+          "end": 633,
+          "startLoc": {
+            "line": 619,
+            "column": 14,
+            "position": 3814
+          },
+          "endLoc": {
+            "line": 633,
+            "column": 22,
+            "position": 3905
+          }
+        },
+        "secondFile": {
+          "name": "projects/sparky/src/renderer/styles.css",
+          "start": 345,
+          "end": 359,
+          "startLoc": {
+            "line": 345,
+            "column": 14,
+            "position": 2033
+          },
+          "endLoc": {
+            "line": 359,
+            "column": 19,
+            "position": 2124
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "css",
+        "lines": 14,
+        "tokens": 0,
+        "fragment": " {\n    padding: 2vw 6vw;\n    background: rgba(42, 36, 36, 0.1);\n    border: 2px solid #2A2424;\n    border-radius: 12px;\n    color: #2A2424;\n    font-family: Arial, sans-serif;\n    font-size: 3.5vw;\n    font-weight: bold;\n    text-transform: uppercase;\n    cursor: pointer;\n  }\n\n  .receive-type-button.active",
+        "firstFile": {
+          "name": "projects/sparky/src/renderer/styles.css",
+          "start": 668,
+          "end": 681,
+          "startLoc": {
+            "line": 668,
+            "column": 23,
+            "position": 4139
+          },
+          "endLoc": {
+            "line": 681,
+            "column": 30,
+            "position": 4242
+          }
+        },
+        "secondFile": {
+          "name": "projects/sparky/src/renderer/styles.css",
+          "start": 564,
+          "end": 577,
+          "startLoc": {
+            "line": 564,
+            "column": 20,
+            "position": 3392
+          },
+          "endLoc": {
+            "line": 577,
+            "column": 27,
+            "position": 3495
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "css",
+        "lines": 15,
+        "tokens": 0,
+        "fragment": " {\n    width: 75vw;\n    height: 6vh;\n    padding: 2vw;\n    border: 2px solid #2A2424;\n    border-radius: 12px;\n    background: rgba(42, 36, 36, 0.05);\n    color: rgba(42, 36, 36, 0.8);\n    font-family: Arial, sans-serif;\n    font-size: 4vw;\n    text-align: center;\n    box-sizing: border-box;\n  }\n\n  .receive-address",
+        "firstFile": {
+          "name": "projects/sparky/src/renderer/styles.css",
+          "start": 694,
+          "end": 708,
+          "startLoc": {
+            "line": 694,
+            "column": 17,
+            "position": 4311
+          },
+          "endLoc": {
+            "line": 708,
+            "column": 19,
+            "position": 4432
+          }
+        },
+        "secondFile": {
+          "name": "projects/sparky/src/renderer/styles.css",
+          "start": 590,
+          "end": 604,
+          "startLoc": {
+            "line": 590,
+            "column": 14,
+            "position": 3564
+          },
+          "endLoc": {
+            "line": 604,
+            "column": 17,
+            "position": 3685
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "css",
+        "lines": 16,
+        "tokens": 0,
+        "fragment": " {\n    width: 75vw;\n    height: 8vh;\n    background: #2A2424;\n    color: #EDFF32;\n    border: none;\n    border-radius: 15px;\n    font-family: Arial, sans-serif;\n    font-size: 4vw;\n    font-weight: bold;\n    text-transform: uppercase;\n    letter-spacing: 1px;\n    cursor: pointer;\n  }\n\n  .receive-generate-button",
+        "firstFile": {
+          "name": "projects/sparky/src/renderer/styles.css",
+          "start": 726,
+          "end": 741,
+          "startLoc": {
+            "line": 726,
+            "column": 23,
+            "position": 4571
+          },
+          "endLoc": {
+            "line": 741,
+            "column": 27,
+            "position": 4670
+          }
+        },
+        "secondFile": {
+          "name": "projects/sparky/src/renderer/styles.css",
+          "start": 618,
+          "end": 359,
+          "startLoc": {
+            "line": 618,
+            "column": 22,
+            "position": 3806
+          },
+          "endLoc": {
+            "line": 359,
+            "column": 19,
+            "position": 2124
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      }
+    ],
+    "totalFiles": 52
+  },
+  "severity": "Low",
+  "severityClass": "badge-low"
+}

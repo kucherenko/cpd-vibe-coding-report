@@ -1,0 +1,2288 @@
+{
+  "project": "fastapi_mcp",
+  "owner": "tadata-org",
+  "totalClones": 31,
+  "totalLines": 8333,
+  "totalDuplicatedLines": 526,
+  "percentage": 6.31,
+  "formatStats": {
+    "python": {
+      "count": 30,
+      "lines": 537
+    },
+    "yaml": {
+      "count": 1,
+      "lines": 20
+    }
+  },
+  "cloneTypeCounts": {
+    "code": 31
+  },
+  "crossProjectClones": 0,
+  "jscpd": {
+    "statistics": {
+      "detectionDate": "2026-05-15T15:09:39.442Z",
+      "formats": {
+        "python": {
+          "sources": {
+            "projects/fastapi_mcp/examples/shared/apps/items.py": {
+              "lines": 124,
+              "tokens": 1075,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/fixtures/types.py": {
+              "lines": 159,
+              "tokens": 1352,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/fixtures/simple_app.py": {
+              "lines": 73,
+              "tokens": 843,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/fixtures/example_data.py": {
+              "lines": 130,
+              "tokens": 861,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/fixtures/conftest.py": {
+              "lines": 11,
+              "tokens": 121,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/fixtures/complex_app.py": {
+              "lines": 139,
+              "tokens": 1152,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/fastapi_mcp/transport/sse.py": {
+              "lines": 111,
+              "tokens": 787,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/fastapi_mcp/transport/http.py": {
+              "lines": 135,
+              "tokens": 911,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/fastapi_mcp/openapi/utils.py": {
+              "lines": 163,
+              "tokens": 1090,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/fastapi_mcp/openapi/convert.py": {
+              "lines": 266,
+              "tokens": 2096,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 38,
+              "duplicatedTokens": 342,
+              "percentage": 14.29,
+              "percentageTokens": 16.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/fastapi_mcp/auth/proxy.py": {
+              "lines": 265,
+              "tokens": 1419,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/examples/shared/setup.py": {
+              "lines": 37,
+              "tokens": 282,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/examples/shared/auth.py": {
+              "lines": 49,
+              "tokens": 322,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/test_types_validation.py": {
+              "lines": 110,
+              "tokens": 601,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/test_sse_real_transport.py": {
+              "lines": 201,
+              "tokens": 1519,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 121,
+              "duplicatedTokens": 837,
+              "percentage": 60.2,
+              "percentageTokens": 55.1,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/test_sse_mock_transport.py": {
+              "lines": 190,
+              "tokens": 1398,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/test_openapi_conversion.py": {
+              "lines": 423,
+              "tokens": 3921,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/test_mcp_simple_app.py": {
+              "lines": 442,
+              "tokens": 3857,
+              "sources": 1,
+              "clones": 16,
+              "duplicatedLines": 161,
+              "duplicatedTokens": 1540,
+              "percentage": 36.43,
+              "percentageTokens": 39.93,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/test_mcp_execute_api_tool.py": {
+              "lines": 191,
+              "tokens": 1302,
+              "sources": 1,
+              "clones": 6,
+              "duplicatedLines": 102,
+              "duplicatedTokens": 676,
+              "percentage": 53.4,
+              "percentageTokens": 51.92,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/test_mcp_complex_app.py": {
+              "lines": 217,
+              "tokens": 1964,
+              "sources": 1,
+              "clones": 8,
+              "duplicatedLines": 77,
+              "duplicatedTokens": 700,
+              "percentage": 35.48,
+              "percentageTokens": 35.64,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/test_http_real_transport.py": {
+              "lines": 477,
+              "tokens": 3443,
+              "sources": 1,
+              "clones": 10,
+              "duplicatedLines": 375,
+              "duplicatedTokens": 2653,
+              "percentage": 78.62,
+              "percentageTokens": 77.05,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/test_configuration.py": {
+              "lines": 582,
+              "tokens": 5220,
+              "sources": 1,
+              "clones": 16,
+              "duplicatedLines": 140,
+              "duplicatedTokens": 1586,
+              "percentage": 24.05,
+              "percentageTokens": 30.38,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/test_basic_functionality.py": {
+              "lines": 65,
+              "tokens": 467,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/tests/conftest.py": {
+              "lines": 38,
+              "tokens": 326,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/fastapi_mcp/types.py": {
+              "lines": 383,
+              "tokens": 2367,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/fastapi_mcp/server.py": {
+              "lines": 655,
+              "tokens": 4907,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/fastapi_mcp/__init__.py": {
+              "lines": 22,
+              "tokens": 89,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/examples/09_auth_example_auth0.py": {
+              "lines": 136,
+              "tokens": 873,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/examples/08_auth_example_token_passthrough.py": {
+              "lines": 60,
+              "tokens": 197,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/examples/07_configure_http_timeout_example.py": {
+              "lines": 22,
+              "tokens": 112,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/examples/06_custom_mcp_router_example.py": {
+              "lines": 25,
+              "tokens": 127,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/examples/05_reregister_tools_example.py": {
+              "lines": 28,
+              "tokens": 154,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/examples/04_separate_server_example.py": {
+              "lines": 33,
+              "tokens": 146,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/examples/03_custom_exposed_endpoints_example.py": {
+              "lines": 70,
+              "tokens": 331,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/examples/02_full_schema_description_example.py": {
+              "lines": 25,
+              "tokens": 128,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/examples/01_basic_usage_example.py": {
+              "lines": 17,
+              "tokens": 96,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/README_zh-CN.md": {
+              "lines": 183,
+              "tokens": 574,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/README.md": {
+              "lines": 8,
+              "tokens": 42,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 6265,
+            "tokens": 46472,
+            "sources": 38,
+            "clones": 30,
+            "duplicatedLines": 507,
+            "duplicatedTokens": 4167,
+            "percentage": 8.09,
+            "percentageTokens": 8.97,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "yaml": {
+          "sources": {
+            "projects/fastapi_mcp/.github/workflows/release.yml": {
+              "lines": 37,
+              "tokens": 188,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.github/workflows/ci.yml": {
+              "lines": 86,
+              "tokens": 593,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 38,
+              "duplicatedTokens": 258,
+              "percentage": 44.19,
+              "percentageTokens": 43.51,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.github/ISSUE_TEMPLATE/feature_request.md": {
+              "lines": 4,
+              "tokens": 35,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.github/ISSUE_TEMPLATE/documentation.md": {
+              "lines": 4,
+              "tokens": 39,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.github/ISSUE_TEMPLATE/bug_report.md": {
+              "lines": 4,
+              "tokens": 37,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.github/dependabot.yml": {
+              "lines": 18,
+              "tokens": 95,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.github/codecov.yml": {
+              "lines": 8,
+              "tokens": 43,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.pre-commit-config.yaml": {
+              "lines": 14,
+              "tokens": 124,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 175,
+            "tokens": 1154,
+            "sources": 8,
+            "clones": 1,
+            "duplicatedLines": 19,
+            "duplicatedTokens": 129,
+            "percentage": 10.86,
+            "percentageTokens": 11.18,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markdown": {
+          "sources": {
+            "projects/fastapi_mcp/.github/ISSUE_TEMPLATE/feature_request.md": {
+              "lines": 18,
+              "tokens": 133,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.github/ISSUE_TEMPLATE/documentation.md": {
+              "lines": 4,
+              "tokens": 8,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.github/ISSUE_TEMPLATE/bug_report.md": {
+              "lines": 15,
+              "tokens": 80,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/examples/README.md": {
+              "lines": 10,
+              "tokens": 189,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.github/pull_request_template.md": {
+              "lines": 9,
+              "tokens": 51,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/README_zh-CN.md": {
+              "lines": 300,
+              "tokens": 1058,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/README.md": {
+              "lines": 116,
+              "tokens": 1013,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/CPD_REPORT.md": {
+              "lines": 27,
+              "tokens": 172,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/CONTRIBUTING.md": {
+              "lines": 142,
+              "tokens": 939,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/CHANGELOG.md": {
+              "lines": 173,
+              "tokens": 1704,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 814,
+            "tokens": 5347,
+            "sources": 10,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "bash": {
+          "sources": {
+            "projects/fastapi_mcp/.git/hooks/update.sample": {
+              "lines": 127,
+              "tokens": 726,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.git/hooks/sendemail-validate.sample": {
+              "lines": 76,
+              "tokens": 338,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.git/hooks/push-to-checkout.sample": {
+              "lines": 77,
+              "tokens": 253,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.git/hooks/prepare-commit-msg.sample": {
+              "lines": 41,
+              "tokens": 93,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.git/hooks/pre-receive.sample": {
+              "lines": 23,
+              "tokens": 113,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.git/hooks/pre-rebase.sample": {
+              "lines": 168,
+              "tokens": 1323,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.git/hooks/pre-push.sample": {
+              "lines": 52,
+              "tokens": 215,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.git/hooks/pre-merge-commit.sample": {
+              "lines": 12,
+              "tokens": 38,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.git/hooks/pre-commit.sample": {
+              "lines": 48,
+              "tokens": 272,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.git/hooks/pre-applypatch.sample": {
+              "lines": 13,
+              "tokens": 56,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.git/hooks/post-update.sample": {
+              "lines": 7,
+              "tokens": 17,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.git/hooks/commit-msg.sample": {
+              "lines": 23,
+              "tokens": 89,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/.git/hooks/applypatch-msg.sample": {
+              "lines": 14,
+              "tokens": 58,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/README_zh-CN.md": {
+              "lines": 6,
+              "tokens": 9,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/README.md": {
+              "lines": 6,
+              "tokens": 9,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/CONTRIBUTING.md": {
+              "lines": 14,
+              "tokens": 22,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 707,
+            "tokens": 3631,
+            "sources": 16,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "perl": {
+          "sources": {
+            "projects/fastapi_mcp/.git/hooks/fsmonitor-watchman.sample": {
+              "lines": 173,
+              "tokens": 1013,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 173,
+            "tokens": 1013,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "json": {
+          "sources": {
+            "projects/fastapi_mcp/docs/docs.json": {
+              "lines": 83,
+              "tokens": 432,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/README_zh-CN.md": {
+              "lines": 18,
+              "tokens": 71,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/fastapi_mcp/CPD_SUMMARY.json": {
+              "lines": 21,
+              "tokens": 121,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 122,
+            "tokens": 624,
+            "sources": 3,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "ini": {
+          "sources": {
+            "projects/fastapi_mcp/pytest.ini": {
+              "lines": 5,
+              "tokens": 25,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 5,
+            "tokens": 25,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "toml": {
+          "sources": {
+            "projects/fastapi_mcp/pyproject.toml": {
+              "lines": 72,
+              "tokens": 371,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 72,
+            "tokens": 371,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        }
+      },
+      "total": {
+        "lines": 8333,
+        "tokens": 58637,
+        "sources": 78,
+        "clones": 31,
+        "duplicatedLines": 526,
+        "duplicatedTokens": 4296,
+        "percentage": 6.31,
+        "percentageTokens": 7.33,
+        "newDuplicatedLines": 0,
+        "newClones": 0
+      }
+    },
+    "duplicates": [
+      {
+        "format": "python",
+        "lines": 20,
+        "tokens": 0,
+        "fragment": ":\n                param_schema = param.get(\"schema\", {})\n                param_desc = param.get(\"description\", \"\")\n                param_required = param.get(\"required\", False)\n\n                properties[param_name] = param_schema.copy()\n                properties[param_name][\"title\"] = param_name\n                if param_desc:\n                    properties[param_name][\"description\"] = param_des",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/fastapi_mcp/openapi/convert.py",
+          "start": 237,
+          "end": 256,
+          "startLoc": {
+            "line": 237,
+            "column": 49,
+            "position": 1837
+          },
+          "endLoc": {
+            "line": 256,
+            "column": 56,
+            "position": 2008
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/fastapi_mcp/openapi/convert.py",
+          "start": 217,
+          "end": 236,
+          "startLoc": {
+            "line": 217,
+            "column": 50,
+            "position": 1653
+          },
+          "endLoc": {
+            "line": 236,
+            "column": 48,
+            "position": 1824
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "yaml",
+        "lines": 20,
+        "tokens": 0,
+        "fragment": "runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n\n      - name: Install uv\n        uses: astral-sh/setup-uv@v5\n        with:\n          version: \"0.6.12\"\n          enable-cache: true\n          cache-dependency-glob: \"uv.lock\"\n\n      - name: Set up Python\n        uses: actions/setup-python@v5\n        with:\n          python-version-file: \".python-version\"\n\n      - name: Install dep",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/.github/workflows/ci.yml",
+          "start": 36,
+          "end": 55,
+          "startLoc": {
+            "line": 36,
+            "column": 5,
+            "position": 209
+          },
+          "endLoc": {
+            "line": 55,
+            "column": 19,
+            "position": 338
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/.github/workflows/ci.yml",
+          "start": 12,
+          "end": 31,
+          "startLoc": {
+            "line": 12,
+            "column": 5,
+            "position": 48
+          },
+          "endLoc": {
+            "line": 31,
+            "column": 19,
+            "position": 177
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": "})\n\n        assert not response.isError\n        assert len(response.content) > 0\n\n        text_content = next(c for c in response.content if isinstance(c, types.TextContent))\n        result: dict = json.loads(text_content.text)\n        parsed_result = Item(**result)\n\n        assert parsed_result.id == 2",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 77,
+          "end": 86,
+          "startLoc": {
+            "line": 77,
+            "column": 76,
+            "position": 611
+          },
+          "endLoc": {
+            "line": 86,
+            "column": 37,
+            "position": 709
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 59,
+          "end": 68,
+          "startLoc": {
+            "line": 59,
+            "column": 76,
+            "position": 418
+          },
+          "endLoc": {
+            "line": 68,
+            "column": 37,
+            "position": 516
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 8,
+        "tokens": 0,
+        "fragment": "})\n\n        assert not response.isError\n        assert len(response.content) > 0\n\n        text_content = next(c for c in response.content if isinstance(c, types.TextContent))\n        results = json.loads(text_content.text)\n        assert len(results) == 1",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 164,
+          "end": 171,
+          "startLoc": {
+            "line": 164,
+            "column": 87,
+            "position": 1514
+          },
+          "endLoc": {
+            "line": 171,
+            "column": 33,
+            "position": 1598
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 146,
+          "end": 153,
+          "startLoc": {
+            "line": 146,
+            "column": 66,
+            "position": 1327
+          },
+          "endLoc": {
+            "line": 153,
+            "column": 33,
+            "position": 1411
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": ")\n\n        assert not response.isError\n        assert len(response.content) > 0\n\n        text_content = next(c for c in response.content if isinstance(c, types.TextContent))\n        result = json.loads(text_content.text)\n\n        assert result[\"id\"] == test_update",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 204,
+          "end": 212,
+          "startLoc": {
+            "line": 204,
+            "column": 77,
+            "position": 1886
+          },
+          "endLoc": {
+            "line": 212,
+            "column": 43,
+            "position": 1970
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 129,
+          "end": 137,
+          "startLoc": {
+            "line": 129,
+            "column": 75,
+            "position": 1142
+          },
+          "endLoc": {
+            "line": 137,
+            "column": 41,
+            "position": 1226
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 14,
+        "tokens": 0,
+        "fragment": "})\n\n        assert not response.isError\n        assert len(response.content) > 0\n\n        text_content = next(c for c in response.content if isinstance(c, types.TextContent))\n        result: dict = json.loads(text_content.text)\n        parsed_result = Item(**result)\n\n        assert parsed_result.id == 1\n        assert parsed_result.name == \"Item 1\"\n        assert parsed_result.price == 10.0\n      ",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 235,
+          "end": 248,
+          "startLoc": {
+            "line": 235,
+            "column": 101,
+            "position": 2248
+          },
+          "endLoc": {
+            "line": 248,
+            "column": 15,
+            "position": 2387
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 59,
+          "end": 74,
+          "startLoc": {
+            "line": 59,
+            "column": 76,
+            "position": 418
+          },
+          "endLoc": {
+            "line": 74,
+            "column": 8,
+            "position": 558
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 11,
+        "tokens": 0,
+        "fragment": "with patch.object(fastapi_mcp, \"_request\") as mock_request:\n        mock_response = MagicMock()\n        mock_response.status_code = 200\n        mock_response.text = '{\"result\": \"success\"}'\n        mock_response.json.return_value = {\"result\": \"success\"}\n        mock_request.return_value = mock_response\n\n        http_request_info = HTTPRequestInfo(\n            method=\"POST\",\n            path=\"/test\"",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 295,
+          "end": 305,
+          "startLoc": {
+            "line": 295,
+            "column": 5,
+            "position": 2708
+          },
+          "endLoc": {
+            "line": 305,
+            "column": 37,
+            "position": 2802
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 258,
+          "end": 268,
+          "startLoc": {
+            "line": 258,
+            "column": 5,
+            "position": 2451
+          },
+          "endLoc": {
+            "line": 268,
+            "column": 37,
+            "position": 2545
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 15,
+        "tokens": 0,
+        "fragment": "await fastapi_mcp._execute_api_tool(\n                client=fastapi_mcp._http_client,\n                tool_name=\"get_item\",\n                arguments={\"item_id\": 1},\n                operation_map=fastapi_mcp.operation_map,\n                http_request_info=http_request_info,\n            )\n        except Exception:\n            pass\n\n        assert mock_request.called, \"The _request method was not c",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 312,
+          "end": 326,
+          "startLoc": {
+            "line": 312,
+            "column": 13,
+            "position": 2838
+          },
+          "endLoc": {
+            "line": 326,
+            "column": 35,
+            "position": 2936
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 277,
+          "end": 291,
+          "startLoc": {
+            "line": 277,
+            "column": 13,
+            "position": 2587
+          },
+          "endLoc": {
+            "line": 291,
+            "column": 35,
+            "position": 2685
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 11,
+        "tokens": 0,
+        "fragment": ", \"_request\") as mock_request:\n        mock_response = MagicMock()\n        mock_response.status_code = 200\n        mock_response.text = '{\"result\": \"success\"}'\n        mock_response.json.return_value = {\"result\": \"success\"}\n        mock_request.return_value = mock_response\n\n        http_request_info = HTTPRequestInfo(\n            method=\"POST\",\n            path=\"/test\",\n            headers={\"X-Cus",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 336,
+          "end": 346,
+          "startLoc": {
+            "line": 336,
+            "column": 53,
+            "position": 3012
+          },
+          "endLoc": {
+            "line": 346,
+            "column": 39,
+            "position": 3099
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 258,
+          "end": 268,
+          "startLoc": {
+            "line": 258,
+            "column": 34,
+            "position": 2458
+          },
+          "endLoc": {
+            "line": 268,
+            "column": 37,
+            "position": 2545
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 16,
+        "tokens": 0,
+        "fragment": "}\n    \n    # Execute the tool\n    with patch.object(mcp, '_http_client', mock_client):\n        result = await mcp._execute_api_tool(\n            client=mock_client,\n            tool_name=tool_name,\n            arguments=arguments,\n            operation_map=mcp.operation_map\n        )\n    \n    # Verify the result\n    assert len(result) == 1\n    assert isinstance(result[0], TextContent)\n    \n    # V",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_execute_api_tool.py",
+          "start": 67,
+          "end": 82,
+          "startLoc": {
+            "line": 67,
+            "column": 39,
+            "position": 481
+          },
+          "endLoc": {
+            "line": 82,
+            "column": 62,
+            "position": 579
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_execute_api_tool.py",
+          "start": 26,
+          "end": 40,
+          "startLoc": {
+            "line": 26,
+            "column": 30,
+            "position": 182
+          },
+          "endLoc": {
+            "line": 40,
+            "column": 11,
+            "position": 278
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 16,
+        "tokens": 0,
+        "fragment": "}\n    \n    # Execute the tool\n    with patch.object(mcp, '_http_client', mock_client):\n        result = await mcp._execute_api_tool(\n            client=mock_client,\n            tool_name=tool_name,\n            arguments=arguments,\n            operation_map=mcp.operation_map\n        )\n    \n    # Verify the result\n    assert len(result) == 1\n    assert isinstance(result[0], TextContent)\n    \n    # V",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_execute_api_tool.py",
+          "start": 115,
+          "end": 130,
+          "startLoc": {
+            "line": 115,
+            "column": 5,
+            "position": 797
+          },
+          "endLoc": {
+            "line": 130,
+            "column": 62,
+            "position": 895
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_execute_api_tool.py",
+          "start": 26,
+          "end": 40,
+          "startLoc": {
+            "line": 26,
+            "column": 30,
+            "position": 182
+          },
+          "endLoc": {
+            "line": 40,
+            "column": 11,
+            "position": 278
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 22,
+        "tokens": 0,
+        "fragment": "# Mock the HTTP client\n    mock_client = AsyncMock()\n    mock_client.get.return_value = mock_response\n    \n    # Test parameters\n    tool_name = \"get_item\"\n    arguments = {\"item_id\": 1}\n    \n    # Execute the tool\n    with patch.object(mcp, '_http_client', mock_client):\n        result = await mcp._execute_api_tool(\n            client=mock_client,\n            tool_name=tool_name,\n            argum",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_execute_api_tool.py",
+          "start": 159,
+          "end": 180,
+          "startLoc": {
+            "line": 159,
+            "column": 5,
+            "position": 1071
+          },
+          "endLoc": {
+            "line": 180,
+            "column": 76,
+            "position": 1213
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_execute_api_tool.py",
+          "start": 20,
+          "end": 40,
+          "startLoc": {
+            "line": 20,
+            "column": 5,
+            "position": 138
+          },
+          "endLoc": {
+            "line": 40,
+            "column": 11,
+            "position": 278
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": ")\n\n        assert not response.isError\n        assert len(response.content) > 0\n\n        text_content = next(c for c in response.content if isinstance(c, types.TextContent))\n        result = json.loads(text_content.text)\n\n        assert \"items\" in result\n        assert result[\"page\"",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_complex_app.py",
+          "start": 66,
+          "end": 75,
+          "startLoc": {
+            "line": 66,
+            "column": 9,
+            "position": 551
+          },
+          "endLoc": {
+            "line": 75,
+            "column": 29,
+            "position": 639
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_complex_app.py",
+          "start": 46,
+          "end": 55,
+          "startLoc": {
+            "line": 46,
+            "column": 70,
+            "position": 343
+          },
+          "endLoc": {
+            "line": 55,
+            "column": 30,
+            "position": 431
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": ")\n\n        assert not response.isError\n        assert len(response.content) > 0\n\n        text_content = next(c for c in response.content if isinstance(c, types.TextContent))\n        result = json.loads(text_content.text)\n\n        assert result[\"id\"] == product_id",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_complex_app.py",
+          "start": 84,
+          "end": 92,
+          "startLoc": {
+            "line": 84,
+            "column": 92,
+            "position": 730
+          },
+          "endLoc": {
+            "line": 92,
+            "column": 42,
+            "position": 814
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 129,
+          "end": 137,
+          "startLoc": {
+            "line": 129,
+            "column": 75,
+            "position": 1142
+          },
+          "endLoc": {
+            "line": 137,
+            "column": 41,
+            "position": 1226
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 13,
+        "tokens": 0,
+        "fragment": "}\n        )\n\n        assert not response.isError\n        assert len(response.content) > 0\n\n        text_content = next(c for c in response.content if isinstance(c, types.TextContent))\n        result = json.loads(text_content.text)\n\n        assert result[\"id\"] == product_id\n\n\n@pytest",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_complex_app.py",
+          "start": 104,
+          "end": 116,
+          "startLoc": {
+            "line": 104,
+            "column": 82,
+            "position": 916
+          },
+          "endLoc": {
+            "line": 116,
+            "column": 8,
+            "position": 1007
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_complex_app.py",
+          "start": 84,
+          "end": 93,
+          "startLoc": {
+            "line": 84,
+            "column": 91,
+            "position": 729
+          },
+          "endLoc": {
+            "line": 93,
+            "column": 15,
+            "position": 817
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": "})\n\n        assert not response.isError\n        assert len(response.content) > 0\n\n        text_content = next(c for c in response.content if isinstance(c, types.TextContent))\n        result = json.loads(text_content.text)\n\n        assert result[\"id\"] == customer_id",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_complex_app.py",
+          "start": 170,
+          "end": 178,
+          "startLoc": {
+            "line": 170,
+            "column": 94,
+            "position": 1521
+          },
+          "endLoc": {
+            "line": 178,
+            "column": 43,
+            "position": 1606
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_complex_app.py",
+          "start": 84,
+          "end": 137,
+          "startLoc": {
+            "line": 84,
+            "column": 91,
+            "position": 729
+          },
+          "endLoc": {
+            "line": 137,
+            "column": 41,
+            "position": 1226
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 12,
+        "tokens": 0,
+        "fragment": ")\n\n        assert not response.isError\n        assert len(response.content) > 0\n\n        text_content = next(c for c in response.content if isinstance(c, types.TextContent))\n        result = json.loads(text_content.text)\n\n        assert result[\"id\"] == customer_id\n\n\n@pytest",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_complex_app.py",
+          "start": 196,
+          "end": 207,
+          "startLoc": {
+            "line": 196,
+            "column": 9,
+            "position": 1732
+          },
+          "endLoc": {
+            "line": 207,
+            "column": 8,
+            "position": 1820
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_mcp_simple_app.py",
+          "start": 129,
+          "end": 179,
+          "startLoc": {
+            "line": 129,
+            "column": 75,
+            "position": 1142
+          },
+          "endLoc": {
+            "line": 179,
+            "column": 15,
+            "position": 1609
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 45,
+        "tokens": 0,
+        "fragment": "HOST = \"127.0.0.1\"\nSERVER_NAME = \"Test MCP Server\"\n\n\ndef run_server(server_port: int, fastapi_app: FastAPI) -> None:\n    # Initialize coverage for subprocesses\n    cov = None\n    if \"COVERAGE_PROCESS_START\" in os.environ:\n        cov = coverage.Coverage(source=[\"fastapi_mcp\"])\n        cov.start()\n\n        # Create a function to save coverage data at exit\n        def cleanup():\n            if cov:\n",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_http_real_transport.py",
+          "start": 19,
+          "end": 63,
+          "startLoc": {
+            "line": 19,
+            "column": 1,
+            "position": 87
+          },
+          "endLoc": {
+            "line": 63,
+            "column": 19,
+            "position": 359
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_sse_real_transport.py",
+          "start": 23,
+          "end": 67,
+          "startLoc": {
+            "line": 23,
+            "column": 1,
+            "position": 129
+          },
+          "endLoc": {
+            "line": 67,
+            "column": 18,
+            "position": 401
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 78,
+        "tokens": 0,
+        "fragment": "()\n\n    # Start the server\n    server = uvicorn.Server(config=uvicorn.Config(app=fastapi_app, host=HOST, port=server_port, log_level=\"error\"))\n    server.run()\n\n    # Give server time to start\n    while not server.started:\n        time.sleep(0.5)\n\n    # Ensure coverage is saved if exiting the normal way\n    if cov:\n        cov.stop()\n        cov.save()\n\n\n@pytest.fixture(params=[\"simple_fastapi_app",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_http_real_transport.py",
+          "start": 63,
+          "end": 140,
+          "startLoc": {
+            "line": 63,
+            "column": 19,
+            "position": 360
+          },
+          "endLoc": {
+            "line": 140,
+            "column": 39,
+            "position": 925
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_sse_real_transport.py",
+          "start": 67,
+          "end": 144,
+          "startLoc": {
+            "line": 67,
+            "column": 18,
+            "position": 402
+          },
+          "endLoc": {
+            "line": 144,
+            "column": 34,
+            "position": 967
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 41,
+        "tokens": 0,
+        "fragment": "mcp_path = \"/mcp\"\n\n    init_response = await http_client.post(\n        mcp_path,\n        json={\n            \"jsonrpc\": \"2.0\",\n            \"method\": \"initialize\",\n            \"id\": 1,\n            \"params\": {\n                \"protocolVersion\": types.LATEST_PROTOCOL_VERSION,\n                \"capabilities\": {},\n                \"clientInfo\": {\"name\": \"test-client\", \"version\": \"1.0.0\"},\n            },\n ",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_http_real_transport.py",
+          "start": 242,
+          "end": 282,
+          "startLoc": {
+            "line": 242,
+            "column": 5,
+            "position": 1708
+          },
+          "endLoc": {
+            "line": 282,
+            "column": 35,
+            "position": 1986
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_http_real_transport.py",
+          "start": 175,
+          "end": 215,
+          "startLoc": {
+            "line": 175,
+            "column": 5,
+            "position": 1211
+          },
+          "endLoc": {
+            "line": 215,
+            "column": 35,
+            "position": 1489
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 41,
+        "tokens": 0,
+        "fragment": "mcp_path = \"/mcp\"\n\n    init_response = await http_client.post(\n        mcp_path,\n        json={\n            \"jsonrpc\": \"2.0\",\n            \"method\": \"initialize\",\n            \"id\": 1,\n            \"params\": {\n                \"protocolVersion\": types.LATEST_PROTOCOL_VERSION,\n                \"capabilities\": {},\n                \"clientInfo\": {\"name\": \"test-client\", \"version\": \"1.0.0\"},\n            },\n ",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_http_real_transport.py",
+          "start": 314,
+          "end": 354,
+          "startLoc": {
+            "line": 314,
+            "column": 5,
+            "position": 2247
+          },
+          "endLoc": {
+            "line": 354,
+            "column": 29,
+            "position": 2525
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_http_real_transport.py",
+          "start": 175,
+          "end": 215,
+          "startLoc": {
+            "line": 175,
+            "column": 5,
+            "position": 1211
+          },
+          "endLoc": {
+            "line": 215,
+            "column": 35,
+            "position": 1489
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 21,
+        "tokens": 0,
+        "fragment": "init_response = await http_client.post(\n        mcp_path,\n        json={\n            \"jsonrpc\": \"2.0\",\n            \"method\": \"initialize\",\n            \"id\": 1,\n            \"params\": {\n                \"protocolVersion\": types.LATEST_PROTOCOL_VERSION,\n                \"capabilities\": {},\n                \"clientInfo\": {\"name\": \"test-client\", \"version\": \"1.0.0\"},\n            },\n        },\n        heade",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_http_real_transport.py",
+          "start": 394,
+          "end": 414,
+          "startLoc": {
+            "line": 394,
+            "column": 5,
+            "position": 2814
+          },
+          "endLoc": {
+            "line": 414,
+            "column": 13,
+            "position": 2969
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_http_real_transport.py",
+          "start": 177,
+          "end": 197,
+          "startLoc": {
+            "line": 177,
+            "column": 5,
+            "position": 1219
+          },
+          "endLoc": {
+            "line": 197,
+            "column": 25,
+            "position": 1374
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 28,
+        "tokens": 0,
+        "fragment": "mcp_path = \"/mcp\"\n\n    # First initialize to get a session ID\n    init_response = await http_client.post(\n        mcp_path,\n        json={\n            \"jsonrpc\": \"2.0\",\n            \"method\": \"initialize\",\n            \"id\": 1,\n            \"params\": {\n                \"protocolVersion\": types.LATEST_PROTOCOL_VERSION,\n                \"capabilities\": {},\n                \"clientInfo\": {\"name\": \"test-cli",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_http_real_transport.py",
+          "start": 439,
+          "end": 466,
+          "startLoc": {
+            "line": 439,
+            "column": 5,
+            "position": 3159
+          },
+          "endLoc": {
+            "line": 466,
+            "column": 48,
+            "position": 3356
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_http_real_transport.py",
+          "start": 391,
+          "end": 418,
+          "startLoc": {
+            "line": 391,
+            "column": 5,
+            "position": 2803
+          },
+          "endLoc": {
+            "line": 418,
+            "column": 39,
+            "position": 3000
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": ".tools:\n        assert tool.description is not None\n        if tool.name == \"raise_error\":\n            pass\n        elif tool.name != \"delete_item\":\n            assert tool.description.count(\"**200**\") == 1, \"The description should contain a 200 status code\"\n            assert tool.description.count(\"**Example Response:**\") == 1, (\n                \"The description should only contain one example r",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 114,
+          "end": 123,
+          "startLoc": {
+            "line": 114,
+            "column": 41,
+            "position": 793
+          },
+          "endLoc": {
+            "line": 123,
+            "column": 69,
+            "position": 895
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 55,
+          "end": 64,
+          "startLoc": {
+            "line": 55,
+            "column": 28,
+            "position": 293
+          },
+          "endLoc": {
+            "line": 64,
+            "column": 69,
+            "position": 395
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 15,
+        "tokens": 0,
+        "fragment": ")\n        else:\n            # The delete endpoint in the Items API returns a 204 status code\n            assert tool.description.count(\"**200**\") == 0, \"The description should not contain a 200 status code\"\n            assert tool.description.count(\"**204**\") == 1, \"The description should contain a 204 status code\"\n            # The delete endpoint in the Items API returns a 204 status code and ha",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 125,
+          "end": 139,
+          "startLoc": {
+            "line": 125,
+            "column": 13,
+            "position": 904
+          },
+          "endLoc": {
+            "line": 139,
+            "column": 4,
+            "position": 1006
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 66,
+          "end": 79,
+          "startLoc": {
+            "line": 66,
+            "column": 13,
+            "position": 404
+          },
+          "endLoc": {
+            "line": 79,
+            "column": 8,
+            "position": 506
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 11,
+        "tokens": 0,
+        "fragment": ".tools:\n        assert tool.description is not None\n        if tool.name == \"raise_error\":\n            pass\n        elif tool.name != \"delete_item\":\n            assert tool.description.count(\"**200**\") == 1, \"The description should contain a 200 status code\"\n            assert tool.description.count(\"**422**\") == 1, \"The description should contain a 422 status code\"\n            assert tool.descrip",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 148,
+          "end": 158,
+          "startLoc": {
+            "line": 148,
+            "column": 59,
+            "position": 1057
+          },
+          "endLoc": {
+            "line": 158,
+            "column": 69,
+            "position": 1178
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 79,
+          "end": 89,
+          "startLoc": {
+            "line": 79,
+            "column": 34,
+            "position": 513
+          },
+          "endLoc": {
+            "line": 89,
+            "column": 69,
+            "position": 634
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 7,
+        "tokens": 0,
+        "fragment": "# Check create_order which has 201, 400, 404, and 422 responses defined\n        elif tool.name == \"create_order\":\n            assert tool.description.count(\"**201**\") == 1, \"The description should contain a 201 status code\"\n            assert tool.description.count(\"**400**\") == 0, \"The description should not contain a 400 status code\"\n            assert tool.description.count(\"**404**\") == 0, \"Th",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 267,
+          "end": 273,
+          "startLoc": {
+            "line": 267,
+            "column": 9,
+            "position": 2117
+          },
+          "endLoc": {
+            "line": 273,
+            "column": 65,
+            "position": 2208
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 199,
+          "end": 205,
+          "startLoc": {
+            "line": 199,
+            "column": 9,
+            "position": 1456
+          },
+          "endLoc": {
+            "line": 205,
+            "column": 92,
+            "position": 1547
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": ".tools:\n        assert tool.description is not None\n\n        # Check get_product which has a 200 response and 404 error response defined\n        if tool.name == \"get_product\":\n            assert tool.description.count(\"**200**\") == 1, \"The description should contain a 200 status code\"\n            assert tool.description.count(\"**404**\") == 1, \"The description should contain a 404 status code\"\n    ",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 300,
+          "end": 308,
+          "startLoc": {
+            "line": 300,
+            "column": 50,
+            "position": 2413
+          },
+          "endLoc": {
+            "line": 308,
+            "column": 74,
+            "position": 2504
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 221,
+          "end": 229,
+          "startLoc": {
+            "line": 221,
+            "column": 34,
+            "position": 1687
+          },
+          "endLoc": {
+            "line": 229,
+            "column": 98,
+            "position": 1778
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 7,
+        "tokens": 0,
+        "fragment": "# Check create_order which has 201, 400, 404, and 422 responses defined\n        elif tool.name == \"create_order\":\n            assert tool.description.count(\"**201**\") == 1, \"The description should contain a 201 status code\"\n            assert tool.description.count(\"**400**\") == 1, \"The description should contain a 400 status code\"\n            assert tool.description.count(\"**404**\") == 1, \"The de",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 317,
+          "end": 323,
+          "startLoc": {
+            "line": 317,
+            "column": 9,
+            "position": 2561
+          },
+          "endLoc": {
+            "line": 323,
+            "column": 63,
+            "position": 2652
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 231,
+          "end": 237,
+          "startLoc": {
+            "line": 231,
+            "column": 9,
+            "position": 1782
+          },
+          "endLoc": {
+            "line": 237,
+            "column": 98,
+            "position": 1873
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 7,
+        "tokens": 0,
+        "fragment": "# Check get_customer which has 200, 404, and 403 responses defined\n        elif tool.name == \"get_customer\":\n            assert tool.description.count(\"**200**\") == 1, \"The description should contain a 200 status code\"\n            assert tool.description.count(\"**404**\") == 1, \"The description should contain a 404 status code\"\n            assert tool.description.count(\"**403**\") == 1, \"The descrip",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 331,
+          "end": 337,
+          "startLoc": {
+            "line": 331,
+            "column": 9,
+            "position": 2706
+          },
+          "endLoc": {
+            "line": 337,
+            "column": 98,
+            "position": 2797
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 239,
+          "end": 245,
+          "startLoc": {
+            "line": 239,
+            "column": 9,
+            "position": 1877
+          },
+          "endLoc": {
+            "line": 245,
+            "column": 87,
+            "position": 1968
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 12,
+        "tokens": 0,
+        "fragment": "app = FastAPI()\n\n    # Define endpoints with different operation IDs and tags\n    @app.get(\"/items/\", operation_id=\"list_items\", tags=[\"items\"])\n    async def list_items():\n        return [{\"id\": 1}]\n\n    @app.get(\"/items/{item_id}\", operation_id=\"get_item\", tags=[\"items\", \"read\"])\n    async def get_item(item_id: int):\n        return {\"id\": item_id}\n\n    # Test with no filtering (default behavior)",
+        "firstFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 410,
+          "end": 421,
+          "startLoc": {
+            "line": 410,
+            "column": 5,
+            "position": 3564
+          },
+          "endLoc": {
+            "line": 421,
+            "column": 48,
+            "position": 3668
+          }
+        },
+        "secondFile": {
+          "name": "projects/fastapi_mcp/tests/test_configuration.py",
+          "start": 348,
+          "end": 359,
+          "startLoc": {
+            "line": 348,
+            "column": 5,
+            "position": 2862
+          },
+          "endLoc": {
+            "line": 359,
+            "column": 9,
+            "position": 2966
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      }
+    ],
+    "totalFiles": 78
+  },
+  "severity": "Medium",
+  "severityClass": "badge-medium"
+}

@@ -1,0 +1,4722 @@
+{
+  "project": "ubon",
+  "owner": "luisfer",
+  "totalClones": 59,
+  "totalLines": 22085,
+  "totalDuplicatedLines": 620,
+  "percentage": 2.81,
+  "formatStats": {
+    "typescript": {
+      "count": 56,
+      "lines": 661
+    },
+    "markup": {
+      "count": 3,
+      "lines": 18
+    }
+  },
+  "cloneTypeCounts": {
+    "code": 59
+  },
+  "crossProjectClones": 0,
+  "jscpd": {
+    "statistics": {
+      "detectionDate": "2026-05-15T15:11:41.388Z",
+      "formats": {
+        "typescript": {
+          "sources": {
+            "projects/ubon/examples/validation-fixtures/ai-streaming-route/app/api/chat/route.ts": {
+              "lines": 14,
+              "tokens": 118,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/validation-fixtures/next-server-action/app/actions/create-post.ts": {
+              "lines": 14,
+              "tokens": 134,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/ai-harness-demo/app/api/chat/route.ts": {
+              "lines": 11,
+              "tokens": 107,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/validation-fixtures/vibe-import/src/page.ts": {
+              "lines": 4,
+              "tokens": 36,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/nextjs-security-demo/pages/api/auth.ts": {
+              "lines": 21,
+              "tokens": 148,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/vite/index.ts": {
+              "lines": 9,
+              "tokens": 72,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/vite/VITE003.ts": {
+              "lines": 107,
+              "tokens": 948,
+              "sources": 1,
+              "clones": 4,
+              "duplicatedLines": 56,
+              "duplicatedTokens": 556,
+              "percentage": 52.34,
+              "percentageTokens": 58.65,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/vite/VITE002.ts": {
+              "lines": 83,
+              "tokens": 728,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 6,
+              "duplicatedTokens": 80,
+              "percentage": 7.23,
+              "percentageTokens": 10.99,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/vite/VITE001.ts": {
+              "lines": 65,
+              "tokens": 536,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/vibe/index.ts": {
+              "lines": 12,
+              "tokens": 86,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/vibe/VIBE004.ts": {
+              "lines": 22,
+              "tokens": 123,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/vibe/VIBE003.ts": {
+              "lines": 54,
+              "tokens": 326,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/vibe/VIBE002.ts": {
+              "lines": 22,
+              "tokens": 129,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/vibe/VIBE001.ts": {
+              "lines": 22,
+              "tokens": 123,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/index.ts": {
+              "lines": 178,
+              "tokens": 2897,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC017.ts": {
+              "lines": 27,
+              "tokens": 175,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC016.ts": {
+              "lines": 27,
+              "tokens": 175,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC015.ts": {
+              "lines": 27,
+              "tokens": 186,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC014.ts": {
+              "lines": 27,
+              "tokens": 184,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC013.ts": {
+              "lines": 26,
+              "tokens": 177,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC012.ts": {
+              "lines": 26,
+              "tokens": 177,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC011.ts": {
+              "lines": 26,
+              "tokens": 177,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC010.ts": {
+              "lines": 26,
+              "tokens": 177,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC009.ts": {
+              "lines": 26,
+              "tokens": 177,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC008.ts": {
+              "lines": 26,
+              "tokens": 168,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC007.ts": {
+              "lines": 26,
+              "tokens": 177,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC006.ts": {
+              "lines": 26,
+              "tokens": 177,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC005.ts": {
+              "lines": 26,
+              "tokens": 174,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC004.ts": {
+              "lines": 26,
+              "tokens": 174,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC003.ts": {
+              "lines": 26,
+              "tokens": 177,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC002.ts": {
+              "lines": 26,
+              "tokens": 177,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/security/SEC001.ts": {
+              "lines": 27,
+              "tokens": 184,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/react/index.ts": {
+              "lines": 129,
+              "tokens": 797,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/react/TAILWIND001.ts": {
+              "lines": 99,
+              "tokens": 911,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 10,
+              "duplicatedTokens": 196,
+              "percentage": 10.1,
+              "percentageTokens": 21.51,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/module/index.ts": {
+              "lines": 51,
+              "tokens": 333,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 5,
+              "duplicatedTokens": 82,
+              "percentage": 9.8,
+              "percentageTokens": 24.62,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/lovable/index.ts": {
+              "lines": 15,
+              "tokens": 111,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/lovable/LOVABLE006.ts": {
+              "lines": 53,
+              "tokens": 464,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/lovable/LOVABLE005.ts": {
+              "lines": 61,
+              "tokens": 556,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 17,
+              "duplicatedTokens": 196,
+              "percentage": 27.87,
+              "percentageTokens": 35.25,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/lovable/LOVABLE004.ts": {
+              "lines": 52,
+              "tokens": 474,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 9,
+              "duplicatedTokens": 108,
+              "percentage": 17.31,
+              "percentageTokens": 22.78,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/lovable/LOVABLE003.ts": {
+              "lines": 42,
+              "tokens": 332,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/lovable/LOVABLE002.ts": {
+              "lines": 59,
+              "tokens": 503,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 18,
+              "duplicatedTokens": 218,
+              "percentage": 30.51,
+              "percentageTokens": 43.34,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/lovable/LOVABLE001.ts": {
+              "lines": 49,
+              "tokens": 416,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/links/index.ts": {
+              "lines": 72,
+              "tokens": 519,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/frameworks/index.ts": {
+              "lines": 267,
+              "tokens": 1801,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 5,
+              "duplicatedTokens": 82,
+              "percentage": 1.87,
+              "percentageTokens": 4.55,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/development/index.ts": {
+              "lines": 13,
+              "tokens": 98,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/development/DEV005.ts": {
+              "lines": 35,
+              "tokens": 346,
+              "sources": 1,
+              "clones": 3,
+              "duplicatedLines": 15,
+              "duplicatedTokens": 232,
+              "percentage": 42.86,
+              "percentageTokens": 67.05,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/development/DEV004.ts": {
+              "lines": 27,
+              "tokens": 177,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/development/DEV003.ts": {
+              "lines": 27,
+              "tokens": 177,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/development/DEV002.ts": {
+              "lines": 35,
+              "tokens": 225,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/development/DEV001.ts": {
+              "lines": 27,
+              "tokens": 177,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/ai/index.ts": {
+              "lines": 26,
+              "tokens": 140,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/ai/AI008.ts": {
+              "lines": 26,
+              "tokens": 120,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/ai/AI007.ts": {
+              "lines": 25,
+              "tokens": 127,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/ai/AI006.ts": {
+              "lines": 30,
+              "tokens": 127,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/ai/AI005.ts": {
+              "lines": 28,
+              "tokens": 112,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/ai/AI004.ts": {
+              "lines": 51,
+              "tokens": 332,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/ai/AI003.ts": {
+              "lines": 27,
+              "tokens": 130,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/ai/AI002.ts": {
+              "lines": 28,
+              "tokens": 127,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/ai/AI001.ts": {
+              "lines": 81,
+              "tokens": 569,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/agent/index.ts": {
+              "lines": 123,
+              "tokens": 767,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/accessibility/index.ts": {
+              "lines": 176,
+              "tokens": 1182,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 5,
+              "duplicatedTokens": 80,
+              "percentage": 2.84,
+              "percentageTokens": 6.77,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/accessibility/A11Y002.ts": {
+              "lines": 38,
+              "tokens": 352,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 5,
+              "duplicatedTokens": 76,
+              "percentage": 13.16,
+              "percentageTokens": 21.59,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/accessibility/A11Y001.ts": {
+              "lines": 40,
+              "tokens": 352,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 5,
+              "duplicatedTokens": 76,
+              "percentage": 12.5,
+              "percentageTokens": 21.59,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/vscode-extension/src/extension.ts": {
+              "lines": 124,
+              "tokens": 1790,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/tsconfig-resolver.ts": {
+              "lines": 165,
+              "tokens": 1754,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/suppressions.ts": {
+              "lines": 135,
+              "tokens": 923,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/sarif.ts": {
+              "lines": 105,
+              "tokens": 1016,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/result-cache.ts": {
+              "lines": 64,
+              "tokens": 662,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/redact.ts": {
+              "lines": 44,
+              "tokens": 389,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/logger.ts": {
+              "lines": 77,
+              "tokens": 742,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/issue-context.ts": {
+              "lines": 28,
+              "tokens": 306,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/init.ts": {
+              "lines": 45,
+              "tokens": 651,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/hooks.ts": {
+              "lines": 49,
+              "tokens": 471,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/git.ts": {
+              "lines": 91,
+              "tokens": 1210,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/fix.ts": {
+              "lines": 174,
+              "tokens": 1788,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/file-source-cache.ts": {
+              "lines": 50,
+              "tokens": 378,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/entropy.ts": {
+              "lines": 25,
+              "tokens": 323,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/config.ts": {
+              "lines": 65,
+              "tokens": 706,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/colors.ts": {
+              "lines": 113,
+              "tokens": 1171,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/utils/cache.ts": {
+              "lines": 150,
+              "tokens": 1182,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/types/rules.ts": {
+              "lines": 149,
+              "tokens": 4951,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/types/index.ts": {
+              "lines": 103,
+              "tokens": 922,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/vite-scanner.ts": {
+              "lines": 112,
+              "tokens": 1114,
+              "sources": 1,
+              "clones": 4,
+              "duplicatedLines": 100,
+              "duplicatedTokens": 995,
+              "percentage": 89.29,
+              "percentageTokens": 89.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/vibe-scanner.ts": {
+              "lines": 353,
+              "tokens": 2012,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 20,
+              "duplicatedTokens": 189,
+              "percentage": 5.67,
+              "percentageTokens": 9.39,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/security-scanner.ts": {
+              "lines": 636,
+              "tokens": 2327,
+              "sources": 1,
+              "clones": 8,
+              "duplicatedLines": 56,
+              "duplicatedTokens": 782,
+              "percentage": 8.81,
+              "percentageTokens": 33.61,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/react-security-scanner.ts": {
+              "lines": 74,
+              "tokens": 750,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 46,
+              "duplicatedTokens": 454,
+              "percentage": 62.16,
+              "percentageTokens": 60.53,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/react-patterns-scanner.ts": {
+              "lines": 400,
+              "tokens": 4664,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 10,
+              "duplicatedTokens": 91,
+              "percentage": 2.5,
+              "percentageTokens": 1.95,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/osv-scanner.ts": {
+              "lines": 137,
+              "tokens": 1782,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/lovable-supabase-scanner.ts": {
+              "lines": 87,
+              "tokens": 915,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 54,
+              "duplicatedTokens": 541,
+              "percentage": 62.07,
+              "percentageTokens": 59.13,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/link-scanner.ts": {
+              "lines": 80,
+              "tokens": 1140,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/internal-crawler.ts": {
+              "lines": 96,
+              "tokens": 1194,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/iac-scanner.ts": {
+              "lines": 67,
+              "tokens": 793,
+              "sources": 1,
+              "clones": 4,
+              "duplicatedLines": 28,
+              "duplicatedTokens": 404,
+              "percentage": 41.79,
+              "percentageTokens": 50.95,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/git-history-scanner.ts": {
+              "lines": 75,
+              "tokens": 783,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/framework-scanner.ts": {
+              "lines": 878,
+              "tokens": 9448,
+              "sources": 1,
+              "clones": 17,
+              "duplicatedLines": 206,
+              "duplicatedTokens": 1865,
+              "percentage": 23.46,
+              "percentageTokens": 19.74,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/env-scanner.ts": {
+              "lines": 193,
+              "tokens": 1803,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/development-scanner.ts": {
+              "lines": 71,
+              "tokens": 915,
+              "sources": 1,
+              "clones": 4,
+              "duplicatedLines": 48,
+              "duplicatedTokens": 649,
+              "percentage": 67.61,
+              "percentageTokens": 70.93,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/base-scanner.ts": {
+              "lines": 114,
+              "tokens": 1242,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/ast-security-scanner.ts": {
+              "lines": 737,
+              "tokens": 11270,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 20,
+              "duplicatedTokens": 220,
+              "percentage": 2.71,
+              "percentageTokens": 1.95,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/ai-scanner.ts": {
+              "lines": 402,
+              "tokens": 3429,
+              "sources": 1,
+              "clones": 6,
+              "duplicatedLines": 66,
+              "duplicatedTokens": 543,
+              "percentage": 16.42,
+              "percentageTokens": 15.84,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/agent-settings-scanner.ts": {
+              "lines": 420,
+              "tokens": 4518,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/scanners/accessibility-scanner.ts": {
+              "lines": 69,
+              "tokens": 922,
+              "sources": 1,
+              "clones": 4,
+              "duplicatedLines": 48,
+              "duplicatedTokens": 649,
+              "percentage": 69.57,
+              "percentageTokens": 70.39,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/types.ts": {
+              "lines": 85,
+              "tokens": 485,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/rules/index.ts": {
+              "lines": 59,
+              "tokens": 512,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/reporters/InteractiveReporter.ts": {
+              "lines": 162,
+              "tokens": 2403,
+              "sources": 1,
+              "clones": 3,
+              "duplicatedLines": 30,
+              "duplicatedTokens": 389,
+              "percentage": 18.52,
+              "percentageTokens": 16.19,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/reporters/HumanReporter.ts": {
+              "lines": 308,
+              "tokens": 4886,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 18,
+              "duplicatedTokens": 211,
+              "percentage": 5.84,
+              "percentageTokens": 4.32,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/mcp/server.ts": {
+              "lines": 463,
+              "tokens": 4664,
+              "sources": 1,
+              "clones": 5,
+              "duplicatedLines": 45,
+              "duplicatedTokens": 677,
+              "percentage": 9.72,
+              "percentageTokens": 14.52,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/lsp/server.ts": {
+              "lines": 201,
+              "tokens": 1929,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/core/profiles.ts": {
+              "lines": 115,
+              "tokens": 1076,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/core/Posture.ts": {
+              "lines": 36,
+              "tokens": 350,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/cli/shared.ts": {
+              "lines": 510,
+              "tokens": 5999,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 15,
+              "duplicatedTokens": 195,
+              "percentage": 2.94,
+              "percentageTokens": 3.25,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/cli/hooks.ts": {
+              "lines": 320,
+              "tokens": 1416,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/cli/doctor.ts": {
+              "lines": 175,
+              "tokens": 1805,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/cli/completion.ts": {
+              "lines": 132,
+              "tokens": 547,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/cli/agent.ts": {
+              "lines": 150,
+              "tokens": 1252,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/vite-scanner.test.ts": {
+              "lines": 346,
+              "tokens": 2960,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/validation-harness.test.ts": {
+              "lines": 99,
+              "tokens": 1071,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/validation-contracts.test.ts": {
+              "lines": 105,
+              "tokens": 1508,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/suppressions.test.ts": {
+              "lines": 24,
+              "tokens": 415,
+              "sources": 1,
+              "clones": 5,
+              "duplicatedLines": 55,
+              "duplicatedTokens": 618,
+              "percentage": 229.17,
+              "percentageTokens": 148.92,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/security-rules.test.ts": {
+              "lines": 204,
+              "tokens": 2096,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/scanners.test.ts": {
+              "lines": 56,
+              "tokens": 661,
+              "sources": 1,
+              "clones": 4,
+              "duplicatedLines": 34,
+              "duplicatedTokens": 380,
+              "percentage": 60.71,
+              "percentageTokens": 57.49,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/rules-misc.test.ts": {
+              "lines": 43,
+              "tokens": 677,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/redos-bounds.test.ts": {
+              "lines": 31,
+              "tokens": 343,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/redact.test.ts": {
+              "lines": 41,
+              "tokens": 443,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/react-security-scanner.test.ts": {
+              "lines": 320,
+              "tokens": 2488,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 11,
+              "duplicatedTokens": 122,
+              "percentage": 3.44,
+              "percentageTokens": 4.9,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/quick-wins-3.0.2.test.ts": {
+              "lines": 238,
+              "tokens": 2871,
+              "sources": 1,
+              "clones": 6,
+              "duplicatedLines": 48,
+              "duplicatedTokens": 614,
+              "percentage": 20.17,
+              "percentageTokens": 21.39,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/posture.test.ts": {
+              "lines": 62,
+              "tokens": 667,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/next-secret-bleed.test.ts": {
+              "lines": 43,
+              "tokens": 452,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 10,
+              "duplicatedTokens": 174,
+              "percentage": 23.26,
+              "percentageTokens": 38.5,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/ndjson-schema.test.ts": {
+              "lines": 48,
+              "tokens": 679,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/lovable-scanner.test.ts": {
+              "lines": 389,
+              "tokens": 3024,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 11,
+              "duplicatedTokens": 124,
+              "percentage": 2.83,
+              "percentageTokens": 4.1,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/git-utils.test.ts": {
+              "lines": 72,
+              "tokens": 550,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/framework-scanner.test.ts": {
+              "lines": 60,
+              "tokens": 465,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 13,
+              "duplicatedTokens": 128,
+              "percentage": 21.67,
+              "percentageTokens": 27.53,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/framework-rules.test.ts": {
+              "lines": 40,
+              "tokens": 658,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/format-and-cache.test.ts": {
+              "lines": 76,
+              "tokens": 847,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/fixture-suite-3.1.test.ts": {
+              "lines": 321,
+              "tokens": 2737,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/determinism.test.ts": {
+              "lines": 22,
+              "tokens": 335,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/core.test.ts": {
+              "lines": 63,
+              "tokens": 1210,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 19,
+              "duplicatedTokens": 319,
+              "percentage": 30.16,
+              "percentageTokens": 26.36,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/config.test.ts": {
+              "lines": 33,
+              "tokens": 576,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/cli-smoke.test.ts": {
+              "lines": 48,
+              "tokens": 759,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/baseline.test.ts": {
+              "lines": 38,
+              "tokens": 605,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 19,
+              "duplicatedTokens": 319,
+              "percentage": 50,
+              "percentageTokens": 52.73,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/ast-scanner.test.ts": {
+              "lines": 37,
+              "tokens": 377,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 11,
+              "duplicatedTokens": 124,
+              "percentage": 29.73,
+              "percentageTokens": 32.89,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/ast-newrules.test.ts": {
+              "lines": 26,
+              "tokens": 423,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/ai-scanner.test.ts": {
+              "lines": 89,
+              "tokens": 684,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 13,
+              "duplicatedTokens": 130,
+              "percentage": 14.61,
+              "percentageTokens": 19.01,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/__tests__/ai-harness-demo.test.ts": {
+              "lines": 21,
+              "tokens": 265,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/index.ts": {
+              "lines": 289,
+              "tokens": 3663,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/src/cli.ts": {
+              "lines": 477,
+              "tokens": 5099,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/suppressions-demo.ts": {
+              "lines": 21,
+              "tokens": 76,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/CLI.md": {
+              "lines": 3,
+              "tokens": 12,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/ADVANCED.md": {
+              "lines": 10,
+              "tokens": 23,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/MIGRATION-v3.md": {
+              "lines": 0,
+              "tokens": 15,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/CONTRIBUTING.md": {
+              "lines": 16,
+              "tokens": 142,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 16181,
+            "tokens": 161934,
+            "sources": 150,
+            "clones": 56,
+            "duplicatedLines": 605,
+            "duplicatedTokens": 6944,
+            "percentage": 3.74,
+            "percentageTokens": 4.29,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markdown": {
+          "sources": {
+            "projects/ubon/examples/validation-fixtures/agent-command/.cursor/commands/release.md": {
+              "lines": 5,
+              "tokens": 15,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/ai-harness-demo/.cursor/commands/deploy.md": {
+              "lines": 5,
+              "tokens": 13,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/vscode-extension/README.md": {
+              "lines": 21,
+              "tokens": 222,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/ISSUES_NEXT.md": {
+              "lines": 12,
+              "tokens": 117,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/VALIDATION.md": {
+              "lines": 70,
+              "tokens": 633,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/START-HERE.md": {
+              "lines": 34,
+              "tokens": 246,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/SECURITY.md": {
+              "lines": 7,
+              "tokens": 114,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/RULES.md": {
+              "lines": 211,
+              "tokens": 4102,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/RELEASE.md": {
+              "lines": 36,
+              "tokens": 239,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/README.md": {
+              "lines": 23,
+              "tokens": 370,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/PROGRAMMATIC.md": {
+              "lines": 61,
+              "tokens": 390,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/MCP.md": {
+              "lines": 92,
+              "tokens": 812,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/INTEGRATIONS.md": {
+              "lines": 104,
+              "tokens": 1610,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/CONFIG.md": {
+              "lines": 96,
+              "tokens": 399,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/CLI.md": {
+              "lines": 368,
+              "tokens": 1678,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/AGENT-SEMANTICS.md": {
+              "lines": 53,
+              "tokens": 622,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/AGENT-HARNESS.md": {
+              "lines": 70,
+              "tokens": 398,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/ADVANCED.md": {
+              "lines": 148,
+              "tokens": 1489,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/README.md": {
+              "lines": 199,
+              "tokens": 1972,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/MIGRATION-v3.md": {
+              "lines": 118,
+              "tokens": 1343,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/CPD_REPORT.md": {
+              "lines": 28,
+              "tokens": 186,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/CONTRIBUTING.md": {
+              "lines": 173,
+              "tokens": 1232,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/CHANGELOG.md": {
+              "lines": 852,
+              "tokens": 10338,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 2786,
+            "tokens": 28540,
+            "sources": 23,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "bash": {
+          "sources": {
+            "projects/ubon/examples/validation-fixtures/agent-command/.cursor/commands/release.md": {
+              "lines": 0,
+              "tokens": 8,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/ai-harness-demo/.cursor/commands/deploy.md": {
+              "lines": 0,
+              "tokens": 6,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.git/hooks/update.sample": {
+              "lines": 127,
+              "tokens": 726,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.git/hooks/sendemail-validate.sample": {
+              "lines": 76,
+              "tokens": 338,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.git/hooks/push-to-checkout.sample": {
+              "lines": 77,
+              "tokens": 253,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.git/hooks/prepare-commit-msg.sample": {
+              "lines": 41,
+              "tokens": 93,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.git/hooks/pre-receive.sample": {
+              "lines": 23,
+              "tokens": 113,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.git/hooks/pre-rebase.sample": {
+              "lines": 168,
+              "tokens": 1323,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.git/hooks/pre-push.sample": {
+              "lines": 52,
+              "tokens": 215,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.git/hooks/pre-merge-commit.sample": {
+              "lines": 12,
+              "tokens": 38,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.git/hooks/pre-commit.sample": {
+              "lines": 48,
+              "tokens": 272,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.git/hooks/pre-applypatch.sample": {
+              "lines": 13,
+              "tokens": 56,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.git/hooks/post-update.sample": {
+              "lines": 7,
+              "tokens": 17,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.git/hooks/commit-msg.sample": {
+              "lines": 23,
+              "tokens": 89,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.git/hooks/applypatch-msg.sample": {
+              "lines": 14,
+              "tokens": 58,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/scripts/run-fixture-suite.sh": {
+              "lines": 38,
+              "tokens": 259,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/VALIDATION.md": {
+              "lines": 2,
+              "tokens": 16,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/START-HERE.md": {
+              "lines": 14,
+              "tokens": 45,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/RELEASE.md": {
+              "lines": 26,
+              "tokens": 47,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/PROGRAMMATIC.md": {
+              "lines": 5,
+              "tokens": 50,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/MCP.md": {
+              "lines": 6,
+              "tokens": 35,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/INTEGRATIONS.md": {
+              "lines": 49,
+              "tokens": 213,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/CONFIG.md": {
+              "lines": 2,
+              "tokens": 14,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/CLI.md": {
+              "lines": 274,
+              "tokens": 599,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/AGENT-SEMANTICS.md": {
+              "lines": 12,
+              "tokens": 18,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/AGENT-HARNESS.md": {
+              "lines": 59,
+              "tokens": 98,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/ADVANCED.md": {
+              "lines": 1,
+              "tokens": 22,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/README.md": {
+              "lines": 122,
+              "tokens": 123,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/MIGRATION-v3.md": {
+              "lines": 14,
+              "tokens": 47,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/CONTRIBUTING.md": {
+              "lines": 20,
+              "tokens": 66,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1325,
+            "tokens": 5257,
+            "sources": 30,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "json": {
+          "sources": {
+            "projects/ubon/examples/validation-fixtures/mcp-agent-config/.cursor/settings.json": {
+              "lines": 3,
+              "tokens": 15,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/validation-fixtures/mcp-agent-config/.cursor/mcp.json": {
+              "lines": 10,
+              "tokens": 51,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/validation-fixtures/vibe-import/package.json": {
+              "lines": 6,
+              "tokens": 31,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/validation-fixtures/next-server-action/package.json": {
+              "lines": 8,
+              "tokens": 45,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/validation-fixtures/ai-streaming-route/package.json": {
+              "lines": 7,
+              "tokens": 38,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/ai-harness-demo/.cursor/hooks.json": {
+              "lines": 9,
+              "tokens": 39,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/validation-fixtures/manifest.json": {
+              "lines": 138,
+              "tokens": 773,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/next-minimal/package.json": {
+              "lines": 13,
+              "tokens": 75,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/cache-test/package.json": {
+              "lines": 10,
+              "tokens": 54,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/ai-harness-demo/package.json": {
+              "lines": 8,
+              "tokens": 45,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/ai-harness-demo/expected-rule-ids.json": {
+              "lines": 5,
+              "tokens": 17,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/schema/ubon-finding.schema.json": {
+              "lines": 111,
+              "tokens": 1098,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/vscode-extension/tsconfig.json": {
+              "lines": 12,
+              "tokens": 77,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/vscode-extension/package.json": {
+              "lines": 64,
+              "tokens": 391,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/MCP.md": {
+              "lines": 22,
+              "tokens": 83,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/CONFIG.md": {
+              "lines": 35,
+              "tokens": 129,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/AGENT-HARNESS.md": {
+              "lines": 7,
+              "tokens": 41,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/ubon.config.json": {
+              "lines": 13,
+              "tokens": 60,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/tsconfig.json": {
+              "lines": 27,
+              "tokens": 158,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/package.json": {
+              "lines": 118,
+              "tokens": 630,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/CPD_SUMMARY.json": {
+              "lines": 21,
+              "tokens": 121,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 647,
+            "tokens": 3971,
+            "sources": 21,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "javascript": {
+          "sources": {
+            "projects/ubon/examples/next-minimal/src/pages/index.tsx": {
+              "lines": 0,
+              "tokens": 11,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/nextjs-security-demo/pages/dashboard.tsx": {
+              "lines": 0,
+              "tokens": 3,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/scripts/verify-package.js": {
+              "lines": 47,
+              "tokens": 352,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/scripts/generate-rules-md.js": {
+              "lines": 88,
+              "tokens": 1238,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/scripts/eval-agent.js": {
+              "lines": 84,
+              "tokens": 748,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/scripts/check-rules-sync.js": {
+              "lines": 274,
+              "tokens": 2378,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/scripts/check-changelog.js": {
+              "lines": 19,
+              "tokens": 200,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/PROGRAMMATIC.md": {
+              "lines": 17,
+              "tokens": 156,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/jest.config.js": {
+              "lines": 32,
+              "tokens": 231,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/eslint.config.js": {
+              "lines": 94,
+              "tokens": 545,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 655,
+            "tokens": 5862,
+            "sources": 10,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "tsx": {
+          "sources": {
+            "projects/ubon/examples/next-minimal/src/pages/index.tsx": {
+              "lines": 22,
+              "tokens": 199,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/nextjs-security-demo/pages/dashboard.tsx": {
+              "lines": 16,
+              "tokens": 112,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/nextjs-security-demo/pages/_error.tsx": {
+              "lines": 2,
+              "tokens": 28,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/examples/nextjs-security-demo/components/Profile.tsx": {
+              "lines": 14,
+              "tokens": 111,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 54,
+            "tokens": 450,
+            "sources": 4,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "ruby": {
+          "sources": {
+            "projects/ubon/scripts/homebrew/ubon.rb": {
+              "lines": 28,
+              "tokens": 134,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 28,
+            "tokens": 134,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "yaml": {
+          "sources": {
+            "projects/ubon/.github/workflows/release.yml": {
+              "lines": 54,
+              "tokens": 228,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.github/workflows/ci.yml": {
+              "lines": 58,
+              "tokens": 491,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/docs/CLI.md": {
+              "lines": 33,
+              "tokens": 188,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/ubon/.github/dependabot.yml": {
+              "lines": 38,
+              "tokens": 181,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 183,
+            "tokens": 1088,
+            "sources": 4,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "perl": {
+          "sources": {
+            "projects/ubon/.git/hooks/fsmonitor-watchman.sample": {
+              "lines": 173,
+              "tokens": 1013,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 173,
+            "tokens": 1013,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "css": {
+          "sources": {
+            "projects/ubon/branding/lovable.svg": {
+              "lines": 0,
+              "tokens": 6,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 0,
+            "tokens": 6,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markup": {
+          "sources": {
+            "projects/ubon/branding/lovable.svg": {
+              "lines": 52,
+              "tokens": 961,
+              "sources": 1,
+              "clones": 6,
+              "duplicatedLines": 30,
+              "duplicatedTokens": 512,
+              "percentage": 57.69,
+              "percentageTokens": 53.28,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 52,
+            "tokens": 961,
+            "sources": 1,
+            "clones": 3,
+            "duplicatedLines": 15,
+            "duplicatedTokens": 256,
+            "percentage": 28.85,
+            "percentageTokens": 26.64,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "diff": {
+          "sources": {
+            "projects/ubon/MIGRATION-v3.md": {
+              "lines": 1,
+              "tokens": 2,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1,
+            "tokens": 2,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        }
+      },
+      "total": {
+        "lines": 22085,
+        "tokens": 209218,
+        "sources": 247,
+        "clones": 59,
+        "duplicatedLines": 620,
+        "duplicatedTokens": 7200,
+        "percentage": 2.81,
+        "percentageTokens": 3.44,
+        "newDuplicatedLines": 0,
+        "newClones": 0
+      }
+    },
+    "duplicates": [
+      {
+        "format": "typescript",
+        "lines": 22,
+        "tokens": 0,
+        "fragment": ".exec(content)) !== null) {\n        const beforeMatch = content.substring(0, match.index);\n        const lineNumber = beforeMatch.split('\\n').length;\n\n        // Check if there's validation nearby (within 3 lines before)\n        const startCheck = Math.max(0, lineNumber - 4);\n        const contextLines = lines.slice(startCheck, lineNumber);\n        const hasValidation = contextLines.some(l =>\n    ",
+        "firstFile": {
+          "name": "projects/ubon/src/rules/vite/VITE003.ts",
+          "start": 45,
+          "end": 66,
+          "startLoc": {
+            "line": 45,
+            "column": 42,
+            "position": 386
+          },
+          "endLoc": {
+            "line": 66,
+            "column": 51,
+            "position": 580
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/rules/vite/VITE003.ts",
+          "start": 21,
+          "end": 42,
+          "startLoc": {
+            "line": 21,
+            "column": 43,
+            "position": 170
+          },
+          "endLoc": {
+            "line": 42,
+            "column": 53,
+            "position": 364
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 7,
+        "tokens": 0,
+        "fragment": ".exec(content)) !== null) {\n        const beforeMatch = content.substring(0, match.index);\n        const lineNumber = beforeMatch.split('\\n').length;\n\n        results.push({\n          line: lineNumber,\n          match: match[0].slice(0, 80",
+        "firstFile": {
+          "name": "projects/ubon/src/rules/vite/VITE002.ts",
+          "start": 49,
+          "end": 55,
+          "startLoc": {
+            "line": 49,
+            "column": 37,
+            "position": 403
+          },
+          "endLoc": {
+            "line": 55,
+            "column": 38,
+            "position": 483
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/rules/vite/VITE003.ts",
+          "start": 69,
+          "end": 75,
+          "startLoc": {
+            "line": 69,
+            "column": 34,
+            "position": 602
+          },
+          "endLoc": {
+            "line": 75,
+            "column": 39,
+            "position": 682
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 6,
+        "tokens": 0,
+        "fragment": "const startCheck = Math.max(0, index - 5);\n          const contextLines = lines.slice(startCheck, index + 1);\n          const hasValidation = contextLines.some(l =>\n            /whitelist|allowed|includes\\(|switch\\s*\\(/i.test(l) ||\n            /^(const|let|var)\\s+\\w+\\s*=\\s*\\[['\"`]/.test(l) || // Array of allowed values\n            /clsx\\(|classnames\\(|cn\\(/i.test(l) // Using class utility with con",
+        "firstFile": {
+          "name": "projects/ubon/src/rules/react/TAILWIND001.ts",
+          "start": 59,
+          "end": 64,
+          "startLoc": {
+            "line": 59,
+            "column": 11,
+            "position": 570
+          },
+          "endLoc": {
+            "line": 64,
+            "column": 87,
+            "position": 668
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/rules/react/TAILWIND001.ts",
+          "start": 32,
+          "end": 37,
+          "startLoc": {
+            "line": 32,
+            "column": 11,
+            "position": 301
+          },
+          "endLoc": {
+            "line": 37,
+            "column": 50,
+            "position": 399
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": ".exec(content)) !== null) {\n          const beforeMatch = content.substring(0, match.index);\n          const lineNumber = beforeMatch.split('\\n').length;\n\n          results.push({\n            line: lineNumber,\n            match: match[0].slice(0, 100),\n            confidence\n          }",
+        "firstFile": {
+          "name": "projects/ubon/src/rules/lovable/LOVABLE005.ts",
+          "start": 44,
+          "end": 52,
+          "startLoc": {
+            "line": 44,
+            "column": 32,
+            "position": 415
+          },
+          "endLoc": {
+            "line": 52,
+            "column": 12,
+            "position": 503
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/rules/vite/VITE003.ts",
+          "start": 69,
+          "end": 76,
+          "startLoc": {
+            "line": 69,
+            "column": 34,
+            "position": 602
+          },
+          "endLoc": {
+            "line": 76,
+            "column": 22,
+            "position": 688
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": ") {\n        let match;\n        while ((match = pattern.exec(content)) !== null) {\n          const beforeMatch = content.substring(0, match.index);\n          const lineNumber = beforeMatch.split('\\n').length;\n\n          results.push({\n            line: lineNumber,\n            match: match[0].slice(0, 100),\n            confidence: 0.88",
+        "firstFile": {
+          "name": "projects/ubon/src/rules/lovable/LOVABLE004.ts",
+          "start": 33,
+          "end": 42,
+          "startLoc": {
+            "line": 33,
+            "column": 49,
+            "position": 313
+          },
+          "endLoc": {
+            "line": 42,
+            "column": 29,
+            "position": 421
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/rules/lovable/LOVABLE005.ts",
+          "start": 42,
+          "end": 76,
+          "startLoc": {
+            "line": 42,
+            "column": 63,
+            "position": 395
+          },
+          "endLoc": {
+            "line": 76,
+            "column": 27,
+            "position": 690
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": ".exec(content)) !== null) {\n        const beforeMatch = content.substring(0, match.index);\n        const lineNumber = beforeMatch.split('\\n').length;\n        const line = lines[lineNumber - 1];\n\n        // Check if it's in an env var access (that's OK)\n        if (!/import\\.meta\\.env|process\\.env|Deno\\.env/i.test(line)) {\n          results.push({\n            line: lineNumber,\n            match: ma",
+        "firstFile": {
+          "name": "projects/ubon/src/rules/lovable/LOVABLE002.ts",
+          "start": 39,
+          "end": 48,
+          "startLoc": {
+            "line": 39,
+            "column": 33,
+            "position": 323
+          },
+          "endLoc": {
+            "line": 48,
+            "column": 29,
+            "position": 432
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/rules/lovable/LOVABLE002.ts",
+          "start": 21,
+          "end": 30,
+          "startLoc": {
+            "line": 21,
+            "column": 33,
+            "position": 170
+          },
+          "endLoc": {
+            "line": 30,
+            "column": 29,
+            "position": 279
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 6,
+        "tokens": 0,
+        "fragment": "import { Rule, RuleMeta } from '../types';\n\nconst make = (meta: RuleMeta, fileTypes?: string[]): Rule => ({\n  meta,\n  impl: {\n    fileTypes: fileTypes || ['js', 'jsx', 'ts', 'tsx', 'mjs', 'cjs',",
+        "firstFile": {
+          "name": "projects/ubon/src/rules/frameworks/index.ts",
+          "start": 1,
+          "end": 6,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 6,
+            "column": 69,
+            "position": 82
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/rules/module/index.ts",
+          "start": 1,
+          "end": 6,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 6,
+            "column": 69,
+            "position": 82
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 6,
+        "tokens": 0,
+        "fragment": "},\n  impl: {\n    detect: (content: string, file: string, lines: string[]) => {\n      const results: import('../types').DetectionResult[] = [];\n      lines.forEach((line, index) => {\n        if (!/<div[^>]*(onClick|@click|v-on:click)/i",
+        "firstFile": {
+          "name": "projects/ubon/src/rules/accessibility/index.ts",
+          "start": 41,
+          "end": 46,
+          "startLoc": {
+            "line": 41,
+            "column": 3,
+            "position": 267
+          },
+          "endLoc": {
+            "line": 46,
+            "column": 53,
+            "position": 347
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/rules/development/DEV005.ts",
+          "start": 12,
+          "end": 17,
+          "startLoc": {
+            "line": 12,
+            "column": 3,
+            "position": 93
+          },
+          "endLoc": {
+            "line": 17,
+            "column": 31,
+            "position": 173
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 6,
+        "tokens": 0,
+        "fragment": "},\n  impl: {\n    detect: (content: string, file: string, lines: string[]) => {\n      const results: import('../types').DetectionResult[] = [];\n      lines.forEach((line, index) => {\n        // Match <input> tags without label or aria-label",
+        "firstFile": {
+          "name": "projects/ubon/src/rules/accessibility/A11Y002.ts",
+          "start": 12,
+          "end": 17,
+          "startLoc": {
+            "line": 12,
+            "column": 3,
+            "position": 80
+          },
+          "endLoc": {
+            "line": 17,
+            "column": 58,
+            "position": 156
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/rules/development/DEV005.ts",
+          "start": 12,
+          "end": 17,
+          "startLoc": {
+            "line": 12,
+            "column": 3,
+            "position": 93
+          },
+          "endLoc": {
+            "line": 17,
+            "column": 11,
+            "position": 169
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 6,
+        "tokens": 0,
+        "fragment": "},\n  impl: {\n    detect: (content: string, file: string, lines: string[]) => {\n      const results: import('../types').DetectionResult[] = [];\n      lines.forEach((line, index) => {\n        // Match <img> tags without alt attribute",
+        "firstFile": {
+          "name": "projects/ubon/src/rules/accessibility/A11Y001.ts",
+          "start": 12,
+          "end": 17,
+          "startLoc": {
+            "line": 12,
+            "column": 3,
+            "position": 80
+          },
+          "endLoc": {
+            "line": 17,
+            "column": 50,
+            "position": 156
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/rules/development/DEV005.ts",
+          "start": 12,
+          "end": 17,
+          "startLoc": {
+            "line": 12,
+            "column": 3,
+            "position": 93
+          },
+          "endLoc": {
+            "line": 17,
+            "column": 11,
+            "position": 169
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": ",\n                category: meta.category,\n                message: meta.message,\n                file,\n                line: index + 1,\n                range: { startLine: index + 1, startColumn: 1, endLine: index + 1, endColumn: Math.max(1, line.length) },\n                severity: meta.severity,\n                ruleId: meta.id,\n                confidence: 0.8",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/security-scanner.ts",
+          "start": 523,
+          "end": 531,
+          "startLoc": {
+            "line": 523,
+            "column": 30,
+            "position": 919
+          },
+          "endLoc": {
+            "line": 531,
+            "column": 32,
+            "position": 1026
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/security-scanner.ts",
+          "start": 506,
+          "end": 514,
+          "startLoc": {
+            "line": 506,
+            "column": 32,
+            "position": 702
+          },
+          "endLoc": {
+            "line": 514,
+            "column": 32,
+            "position": 809
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 6,
+        "tokens": 0,
+        "fragment": ") {\n              const meta = RULES.NEXT209;\n              results.push({ type: 'warning', category: meta.category, message: meta.message, file, severity: meta.severity, ruleId: meta.id, confidence: 0.6, fix: meta.fix });\n            }\n          }\n          // Unauthenticated API access heuristic: returns user/secrets without typical auth artifacts",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/security-scanner.ts",
+          "start": 568,
+          "end": 573,
+          "startLoc": {
+            "line": 568,
+            "column": 34,
+            "position": 1418
+          },
+          "endLoc": {
+            "line": 573,
+            "column": 103,
+            "position": 1506
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/security-scanner.ts",
+          "start": 561,
+          "end": 555,
+          "startLoc": {
+            "line": 561,
+            "column": 40,
+            "position": 1301
+          },
+          "endLoc": {
+            "line": 555,
+            "column": 118,
+            "position": 1212
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 6,
+        "tokens": 0,
+        "fragment": ";\n            results.push({ type: 'warning', category: meta.category, message: meta.message, file, severity: meta.severity, ruleId: meta.id, confidence: 0.6, fix: meta.fix });\n          }\n        }\n\n        // Navigation: router.push with external URL (NEXT208)",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/security-scanner.ts",
+          "start": 577,
+          "end": 582,
+          "startLoc": {
+            "line": 577,
+            "column": 39,
+            "position": 1562
+          },
+          "endLoc": {
+            "line": 582,
+            "column": 63,
+            "position": 1637
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/security-scanner.ts",
+          "start": 541,
+          "end": 555,
+          "startLoc": {
+            "line": 541,
+            "column": 39,
+            "position": 1128
+          },
+          "endLoc": {
+            "line": 555,
+            "column": 118,
+            "position": 1212
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 11,
+        "tokens": 0,
+        "fragment": ";\n            results.push({\n              type: 'error',\n              category: meta.category,\n              message: meta.message,\n              file,\n              line: index + 1,\n              range: { startLine: index + 1, startColumn: 1, endLine: index + 1, endColumn: Math.max(1, line.length) },\n              severity: meta.severity,\n              ruleId: meta.id,\n              confidence:",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/security-scanner.ts",
+          "start": 608,
+          "end": 618,
+          "startLoc": {
+            "line": 608,
+            "column": 15,
+            "position": 2068
+          },
+          "endLoc": {
+            "line": 618,
+            "column": 30,
+            "position": 2189
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/security-scanner.ts",
+          "start": 521,
+          "end": 514,
+          "startLoc": {
+            "line": 521,
+            "column": 41,
+            "position": 905
+          },
+          "endLoc": {
+            "line": 514,
+            "column": 32,
+            "position": 809
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 32,
+        "tokens": 0,
+        "fragment": ") {\n          const rule = getRule(ruleId);\n          if (!rule || !rule.impl.detect) continue;\n\n          // Check file type restrictions\n          if (rule.impl.fileTypes) {\n            const fileExt = file.split('.').pop() || '';\n            if (!rule.impl.fileTypes.includes(fileExt)) continue;\n          }\n\n          // Run detection\n          const detections = rule.impl.detect(content, file, ",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/react-security-scanner.ts",
+          "start": 29,
+          "end": 60,
+          "startLoc": {
+            "line": 29,
+            "column": 42,
+            "position": 295
+          },
+          "endLoc": {
+            "line": 60,
+            "column": 55,
+            "position": 636
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/vite-scanner.ts",
+          "start": 67,
+          "end": 98,
+          "startLoc": {
+            "line": 67,
+            "column": 41,
+            "position": 659
+          },
+          "endLoc": {
+            "line": 98,
+            "column": 55,
+            "position": 1000
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 16,
+        "tokens": 0,
+        "fragment": ",\n              match: detection.match,\n              fix: rule.meta.fix,\n              helpUri: rule.meta.helpUri,\n              ...(detection.fixEdits ? { fixEdits: detection.fixEdits } : {})\n            });\n          }\n        }\n      } catch (error) {\n        // Skip files that can't be read\n      }\n    }\n\n    return results;\n  }\n}",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/react-security-scanner.ts",
+          "start": 60,
+          "end": 75,
+          "startLoc": {
+            "line": 60,
+            "column": 55,
+            "position": 637
+          },
+          "endLoc": {
+            "line": 75,
+            "column": 2,
+            "position": 750
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/vite-scanner.ts",
+          "start": 98,
+          "end": 113,
+          "startLoc": {
+            "line": 98,
+            "column": 55,
+            "position": 1001
+          },
+          "endLoc": {
+            "line": 113,
+            "column": 2,
+            "position": 1114
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 11,
+        "tokens": 0,
+        "fragment": "]\n    )) {\n      if (this.hasFileSuppression(ctx.lines)) continue;\n      const cached = this.getCached(ctx.file, ctx.contentHash);\n      if (cached) {\n        results.push(...cached);\n        continue;\n      }\n\n      const fileResults: ScanResult[] = [];\n      fileResults",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/react-patterns-scanner.ts",
+          "start": 27,
+          "end": 37,
+          "startLoc": {
+            "line": 27,
+            "column": 75,
+            "position": 169
+          },
+          "endLoc": {
+            "line": 37,
+            "column": 18,
+            "position": 260
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/vibe-scanner.ts",
+          "start": 41,
+          "end": 52,
+          "startLoc": {
+            "line": 41,
+            "column": 146,
+            "position": 360
+          },
+          "endLoc": {
+            "line": 52,
+            "column": 39,
+            "position": 451
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": "];\n\n    for (const file of files) {\n      try {\n        const filePath = `${options.directory}/${file}`;\n        const content = readFileSync(filePath, 'utf-8');\n        const lines = content.split('\\n');\n\n        // Check if file contains",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/lovable-supabase-scanner.ts",
+          "start": 25,
+          "end": 33,
+          "startLoc": {
+            "line": 25,
+            "column": 5,
+            "position": 259
+          },
+          "endLoc": {
+            "line": 33,
+            "column": 34,
+            "position": 345
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/vite-scanner.ts",
+          "start": 45,
+          "end": 53,
+          "startLoc": {
+            "line": 45,
+            "column": 5,
+            "position": 435
+          },
+          "endLoc": {
+            "line": 53,
+            "column": 30,
+            "position": 521
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 47,
+        "tokens": 0,
+        "fragment": ") {\n          const rule = getRule(ruleId);\n          if (!rule || !rule.impl.detect) continue;\n\n          // Check file type restrictions\n          if (rule.impl.fileTypes) {\n            const fileExt = file.split('.').pop() || '';\n            if (!rule.impl.fileTypes.includes(fileExt)) continue;\n          }\n\n          // Run detection\n          const detections = rule.impl.detect(content, file, ",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/lovable-supabase-scanner.ts",
+          "start": 42,
+          "end": 88,
+          "startLoc": {
+            "line": 42,
+            "column": 44,
+            "position": 460
+          },
+          "endLoc": {
+            "line": 88,
+            "column": 2,
+            "position": 915
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/vite-scanner.ts",
+          "start": 67,
+          "end": 113,
+          "startLoc": {
+            "line": 67,
+            "column": 41,
+            "position": 659
+          },
+          "endLoc": {
+            "line": 113,
+            "column": 2,
+            "position": 1114
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 7,
+        "tokens": 0,
+        "fragment": ") {\n      try {\n        const content = readFileSync(`${options.directory}/${file}`, 'utf-8');\n        const lines = content.split('\\n');\n        for (let i = 0; i < lines.length; i++) {\n          const line = lines[i];\n          if (/\\becho\\s+\\$\\{\\{\\s*secrets\\.[^}]+\\}\\}/i",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/iac-scanner.ts",
+          "start": 41,
+          "end": 47,
+          "startLoc": {
+            "line": 41,
+            "column": 32,
+            "position": 514
+          },
+          "endLoc": {
+            "line": 47,
+            "column": 54,
+            "position": 609
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/iac-scanner.ts",
+          "start": 14,
+          "end": 20,
+          "startLoc": {
+            "line": 14,
+            "column": 35,
+            "position": 176
+          },
+          "endLoc": {
+            "line": 20,
+            "column": 53,
+            "position": 271
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": ",\n              category: meta.category,\n              message: meta.message,\n              file,\n              line: i + 1,\n              range: { startLine: i + 1, startColumn: 1, endLine: i + 1, endColumn: Math.max(1, line.length) },\n              severity: meta.severity,\n              ruleId: meta.id,\n              confidence: 0.9",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/iac-scanner.ts",
+          "start": 50,
+          "end": 58,
+          "startLoc": {
+            "line": 50,
+            "column": 28,
+            "position": 643
+          },
+          "endLoc": {
+            "line": 58,
+            "column": 30,
+            "position": 750
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/iac-scanner.ts",
+          "start": 23,
+          "end": 31,
+          "startLoc": {
+            "line": 23,
+            "column": 30,
+            "position": 315
+          },
+          "endLoc": {
+            "line": 31,
+            "column": 30,
+            "position": 422
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 11,
+        "tokens": 0,
+        "fragment": "]\n    )) {\n      if (this.hasFileSuppression(ctx.lines)) continue;\n      const cached = this.getCached(ctx.file, ctx.contentHash);\n      if (cached) {\n        results.push(...cached);\n        continue;\n      }\n\n      const fileResults: ScanResult[] = [];\n      fileResults.push(...this.detectNextServerActions",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 37,
+          "end": 47,
+          "startLoc": {
+            "line": 37,
+            "column": 90,
+            "position": 266
+          },
+          "endLoc": {
+            "line": 47,
+            "column": 55,
+            "position": 364
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/vibe-scanner.ts",
+          "start": 41,
+          "end": 37,
+          "startLoc": {
+            "line": 41,
+            "column": 146,
+            "position": 360
+          },
+          "endLoc": {
+            "line": 37,
+            "column": 48,
+            "position": 267
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": ",\n            category: 'security',\n            severity: meta.severity,\n            ruleId: meta.id,\n            message: meta.message,\n            fix: meta.fix,\n            file,\n            line: lineIndex + 1,\n            match: redact((lines[lineIndex] ?? '').trim().slice(0, 200)),\n            confidence: 0.5",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 217,
+          "end": 226,
+          "startLoc": {
+            "line": 217,
+            "column": 28,
+            "position": 2298
+          },
+          "endLoc": {
+            "line": 226,
+            "column": 28,
+            "position": 2394
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 174,
+          "end": 183,
+          "startLoc": {
+            "line": 174,
+            "column": 26,
+            "position": 1840
+          },
+          "endLoc": {
+            "line": 183,
+            "column": 28,
+            "position": 1936
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 15,
+        "tokens": 0,
+        "fragment": ")?.meta;\n      if (!meta) continue;\n      out.push(\n        this.createResult(\n          {\n            type: 'error',\n            category: 'security',\n            severity: meta.severity,\n            ruleId: meta.id,\n            message: meta.message,\n            fix: meta.fix,\n            file,\n            line: lineIndex + 1,\n            match: redact((lines[lineIndex] ?? '').trim().slice(0, 20",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 250,
+          "end": 264,
+          "startLoc": {
+            "line": 250,
+            "column": 37,
+            "position": 2619
+          },
+          "endLoc": {
+            "line": 264,
+            "column": 29,
+            "position": 2752
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 169,
+          "end": 183,
+          "startLoc": {
+            "line": 169,
+            "column": 37,
+            "position": 1803
+          },
+          "endLoc": {
+            "line": 183,
+            "column": 28,
+            "position": 1936
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 16,
+        "tokens": 0,
+        "fragment": ") continue;\n      out.push(\n        this.createResult(\n          {\n            type: 'warning',\n            category: 'security',\n            severity: meta.severity,\n            ruleId: meta.id,\n            message: meta.message,\n            fix: meta.fix,\n            file,\n            line: lineIndex + 1,\n            match: redact((lines[lineIndex] ?? '').trim().slice(0, 200)),\n            confi",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 278,
+          "end": 293,
+          "startLoc": {
+            "line": 278,
+            "column": 16,
+            "position": 2889
+          },
+          "endLoc": {
+            "line": 293,
+            "column": 105,
+            "position": 3018
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 213,
+          "end": 185,
+          "startLoc": {
+            "line": 213,
+            "column": 57,
+            "position": 2273
+          },
+          "endLoc": {
+            "line": 185,
+            "column": 105,
+            "position": 1944
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": ",\n          category: 'security',\n          severity: meta.severity,\n          ruleId: meta.id,\n          message: meta.message,\n          fix: meta.fix,\n          file,\n          line: idx + 1,\n          match: redact((lines[idx] ?? '').trim().slice(0, 200)),\n          confidence: 0.55",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 421,
+          "end": 430,
+          "startLoc": {
+            "line": 421,
+            "column": 24,
+            "position": 4352
+          },
+          "endLoc": {
+            "line": 430,
+            "column": 27,
+            "position": 4448
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 311,
+          "end": 320,
+          "startLoc": {
+            "line": 311,
+            "column": 32,
+            "position": 3208
+          },
+          "endLoc": {
+            "line": 320,
+            "column": 32,
+            "position": 3304
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 16,
+        "tokens": 0,
+        "fragment": ")) return out;\n    out.push(\n      this.createResult(\n        {\n          type: 'error',\n          category: 'security',\n          severity: meta.severity,\n          ruleId: meta.id,\n          message: meta.message,\n          fix: meta.fix,\n          file,\n          line: idx + 1,\n          match: redact((lines[idx] ?? '').trim().slice(0, 200)),\n          confidence: 0.6,\n          confidenceReaso",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 452,
+          "end": 467,
+          "startLoc": {
+            "line": 452,
+            "column": 60,
+            "position": 4733
+          },
+          "endLoc": {
+            "line": 467,
+            "column": 106,
+            "position": 4865
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 417,
+          "end": 322,
+          "startLoc": {
+            "line": 417,
+            "column": 49,
+            "position": 4324
+          },
+          "endLoc": {
+            "line": 322,
+            "column": 109,
+            "position": 3312
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 13,
+        "tokens": 0,
+        "fragment": "out.push(\n        this.createResult(\n          {\n            type: 'warning',\n            category: 'security',\n            severity: meta.severity,\n            ruleId: meta.id,\n            message: meta.message,\n            fix: meta.fix,\n            file,\n            line: idx + 1,\n            match: redact((lines[idx] ?? '').trim().slice(0, 200)),\n            confidence: 0.65",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 489,
+          "end": 501,
+          "startLoc": {
+            "line": 489,
+            "column": 7,
+            "position": 5107
+          },
+          "endLoc": {
+            "line": 501,
+            "column": 29,
+            "position": 5222
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 308,
+          "end": 320,
+          "startLoc": {
+            "line": 308,
+            "column": 11,
+            "position": 3189
+          },
+          "endLoc": {
+            "line": 320,
+            "column": 32,
+            "position": 3304
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 11,
+        "tokens": 0,
+        "fragment": ".text === 'createHash') {\n            const arg0 = node.arguments[0];\n            if (arg0 && tsReal.isStringLiteralLike(arg0)) {\n              const algo = arg0.text.toLowerCase();\n              if (algo === 'md5' || algo === 'sha1') {\n                if (credentialContextNearby(node)) add('SEC023', node);\n              }\n            }\n          }\n\n          /",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/ast-security-scanner.ts",
+          "start": 388,
+          "end": 398,
+          "startLoc": {
+            "line": 388,
+            "column": 101,
+            "position": 5789
+          },
+          "endLoc": {
+            "line": 398,
+            "column": 12,
+            "position": 5899
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/ast-security-scanner.ts",
+          "start": 379,
+          "end": 388,
+          "startLoc": {
+            "line": 379,
+            "column": 48,
+            "position": 5654
+          },
+          "endLoc": {
+            "line": 388,
+            "column": 13,
+            "position": 5763
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 14,
+        "tokens": 0,
+        "fragment": ",\n      ['node_modules/**', 'dist/**', 'build/**', '.next/**', 'coverage/**', 'examples/**']\n    )) {\n      if (this.hasFileSuppression(ctx.lines)) continue;\n\n      const cached = this.getCached(ctx.file, ctx.contentHash);\n      if (cached) {\n        results.push(...cached);\n        continue;\n      }\n\n      const fileResults: ScanResult[] = [];\n\n      if",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/ai-scanner.ts",
+          "start": 56,
+          "end": 69,
+          "startLoc": {
+            "line": 56,
+            "column": 42,
+            "position": 246
+          },
+          "endLoc": {
+            "line": 69,
+            "column": 9,
+            "position": 359
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 36,
+          "end": 52,
+          "startLoc": {
+            "line": 36,
+            "column": 50,
+            "position": 246
+          },
+          "endLoc": {
+            "line": 52,
+            "column": 39,
+            "position": 451
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 12,
+        "tokens": 0,
+        "fragment": "(ctx.file, ctx.content, ctx.lines));\n      }\n\n      this.setCached(ctx.file, ctx.contentHash, fileResults);\n      results.push(...fileResults);\n    }\n\n    this.saveCache();\n    return results;\n  }\n\n  // ---- AI002 -------------------------------------------------------------",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/ai-scanner.ts",
+          "start": 76,
+          "end": 87,
+          "startLoc": {
+            "line": 76,
+            "column": 54,
+            "position": 525
+          },
+          "endLoc": {
+            "line": 87,
+            "column": 78,
+            "position": 599
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 59,
+          "end": 70,
+          "startLoc": {
+            "line": 59,
+            "column": 63,
+            "position": 673
+          },
+          "endLoc": {
+            "line": 70,
+            "column": 10,
+            "position": 747
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 13,
+        "tokens": 0,
+        "fragment": ";\n      out.push(\n        this.createResult(\n          {\n            type: 'error',\n            category: 'security',\n            severity: meta.severity,\n            ruleId: meta.id,\n            message: meta.message,\n            fix: meta.fix,\n            file,\n            line: lineIndex + 1,\n            match: redact(lineText",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/ai-scanner.ts",
+          "start": 111,
+          "end": 123,
+          "startLoc": {
+            "line": 111,
+            "column": 46,
+            "position": 865
+          },
+          "endLoc": {
+            "line": 123,
+            "column": 35,
+            "position": 953
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 170,
+          "end": 182,
+          "startLoc": {
+            "line": 170,
+            "column": 26,
+            "position": 1818
+          },
+          "endLoc": {
+            "line": 182,
+            "column": 28,
+            "position": 1906
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 13,
+        "tokens": 0,
+        "fragment": ") {\n        out.push(\n          this.createResult(\n            {\n              type: 'warning',\n              category: 'security',\n              severity: meta.severity,\n              ruleId: meta.id,\n              message: meta.message,\n              fix: meta.fix,\n              file,\n              line: idx + 1,\n              match: redact(lines",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/ai-scanner.ts",
+          "start": 177,
+          "end": 189,
+          "startLoc": {
+            "line": 177,
+            "column": 62,
+            "position": 1381
+          },
+          "endLoc": {
+            "line": 189,
+            "column": 34,
+            "position": 1471
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/framework-scanner.ts",
+          "start": 307,
+          "end": 319,
+          "startLoc": {
+            "line": 307,
+            "column": 17,
+            "position": 3184
+          },
+          "endLoc": {
+            "line": 319,
+            "column": 32,
+            "position": 3274
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": ",\n          category: 'security',\n          severity: meta.severity,\n          ruleId: meta.id,\n          message: meta.message,\n          fix: meta.fix,\n          file,\n          line: idx + 1,\n          match: redact(lines[idx].trim().slice(0, 200)),\n          confidence: 0.6",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/ai-scanner.ts",
+          "start": 297,
+          "end": 306,
+          "startLoc": {
+            "line": 297,
+            "column": 24,
+            "position": 2422
+          },
+          "endLoc": {
+            "line": 306,
+            "column": 26,
+            "position": 2511
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/ai-scanner.ts",
+          "start": 181,
+          "end": 190,
+          "startLoc": {
+            "line": 181,
+            "column": 30,
+            "position": 1405
+          },
+          "endLoc": {
+            "line": 190,
+            "column": 30,
+            "position": 1494
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 7,
+        "tokens": 0,
+        "fragment": "];\n\n  async scan(options: ScanOptions): Promise<ScanResult[]> {\n    const results: ScanResult[] = [];\n    const rules = this.ruleIds.map((id) => getRule(id)).filter(Boolean);\n\n    for await (const ctx of this.iterateFiles(options, '**/*.{js,jsx,ts,tsx,svelte,astro,html}'",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/accessibility-scanner.ts",
+          "start": 7,
+          "end": 13,
+          "startLoc": {
+            "line": 7,
+            "column": 139,
+            "position": 101
+          },
+          "endLoc": {
+            "line": 13,
+            "column": 96,
+            "position": 193
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/development-scanner.ts",
+          "start": 7,
+          "end": 13,
+          "startLoc": {
+            "line": 7,
+            "column": 79,
+            "position": 86
+          },
+          "endLoc": {
+            "line": 13,
+            "column": 91,
+            "position": 178
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 10,
+        "tokens": 0,
+        "fragment": "])) {\n      const fileExt = ctx.file.split('.').pop()?.toLowerCase();\n      if (this.hasFileSuppression(ctx.lines)) continue;\n\n      for (const rule of rules) {\n        if (!rule) continue;\n        if (rule.impl.fileTypes && !rule.impl.fileTypes.includes(fileExt || '')) continue;\n\n        if (rule.impl.detect) {\n          const",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/accessibility-scanner.ts",
+          "start": 13,
+          "end": 22,
+          "startLoc": {
+            "line": 13,
+            "column": 166,
+            "position": 210
+          },
+          "endLoc": {
+            "line": 22,
+            "column": 16,
+            "position": 333
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/development-scanner.ts",
+          "start": 13,
+          "end": 22,
+          "startLoc": {
+            "line": 13,
+            "column": 146,
+            "position": 192
+          },
+          "endLoc": {
+            "line": 22,
+            "column": 14,
+            "position": 315
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 14,
+        "tokens": 0,
+        "fragment": "{\n          const detectionResults = rule.impl.detect(ctx.content, ctx.file, ctx.lines);\n          for (const detection of detectionResults) {\n            if (this.isSuppressed(ctx.lines, detection.line - 1, rule.meta.id)) continue;\n            results.push(this.createResult({\n              type: rule.meta.severity === 'high' ? 'error' : 'warning',\n              category: rule.meta.category,\n     ",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/accessibility-scanner.ts",
+          "start": 21,
+          "end": 34,
+          "startLoc": {
+            "line": 21,
+            "column": 31,
+            "position": 330
+          },
+          "endLoc": {
+            "line": 34,
+            "column": 31,
+            "position": 519
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/development-scanner.ts",
+          "start": 22,
+          "end": 35,
+          "startLoc": {
+            "line": 22,
+            "column": 15,
+            "position": 317
+          },
+          "endLoc": {
+            "line": 35,
+            "column": 20,
+            "position": 506
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 21,
+        "tokens": 0,
+        "fragment": ");\n          }\n        }\n\n        if (rule.impl.patterns) {\n          for (const pattern of rule.impl.patterns) {\n            ctx.lines.forEach((line, index) => {\n              if (line.trim().startsWith('//') || line.trim().startsWith('*')) return;\n              if (this.isSuppressed(ctx.lines, index, pattern.ruleId)) return;\n              const match = line.match(pattern.pattern);\n              ",
+        "firstFile": {
+          "name": "projects/ubon/src/scanners/accessibility-scanner.ts",
+          "start": 38,
+          "end": 58,
+          "startLoc": {
+            "line": 38,
+            "column": 46,
+            "position": 602
+          },
+          "endLoc": {
+            "line": 58,
+            "column": 33,
+            "position": 847
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/scanners/development-scanner.ts",
+          "start": 41,
+          "end": 61,
+          "startLoc": {
+            "line": 41,
+            "column": 85,
+            "position": 608
+          },
+          "endLoc": {
+            "line": 61,
+            "column": 20,
+            "position": 853
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 7,
+        "tokens": 0,
+        "fragment": ", 63).forEach((line) => {\n        console.log(`\u2502 ${line} ${' '.repeat(Math.max(0, 65 - (line.length + 1)))}\u2502`);\n      });\n      console.log(`\u251c${'\u2500'.repeat(65)}\u2524`);\n    }\n\n    if (result.file",
+        "firstFile": {
+          "name": "projects/ubon/src/reporters/InteractiveReporter.ts",
+          "start": 83,
+          "end": 89,
+          "startLoc": {
+            "line": 83,
+            "column": 31,
+            "position": 1240
+          },
+          "endLoc": {
+            "line": 89,
+            "column": 20,
+            "position": 1329
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/reporters/InteractiveReporter.ts",
+          "start": 76,
+          "end": 81,
+          "startLoc": {
+            "line": 76,
+            "column": 32,
+            "position": 1101
+          },
+          "endLoc": {
+            "line": 81,
+            "column": 19,
+            "position": 1189
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 19,
+        "tokens": 0,
+        "fragment": "colorMode: 'auto' | 'always' | 'never' = 'auto') {\n    this.useColor = this.shouldUseColor(colorMode);\n  }\n\n  private shouldUseColor(mode: 'auto' | 'always' | 'never'): boolean {\n    if (mode === 'always') return true;\n    if (mode === 'never') return false;\n    return Boolean(process.stdout.isTTY) && !process.env.NO_COLOR;\n  }\n\n  private colorize(fn: Styler, text: string): string {\n    return thi",
+        "firstFile": {
+          "name": "projects/ubon/src/reporters/HumanReporter.ts",
+          "start": 22,
+          "end": 40,
+          "startLoc": {
+            "line": 22,
+            "column": 39,
+            "position": 155
+          },
+          "endLoc": {
+            "line": 40,
+            "column": 10,
+            "position": 366
+          }
+        },
+        "secondFile": {
+          "name": "projects/ubon/src/reporters/InteractiveReporter.ts",
+          "start": 16,
+          "end": 34,
+          "startLoc": {
+            "line": 16,
+            "column": 15,
+            "position": 90
+          },
+          "endLoc": {
+            "line": 34,
+            "column": 8,
+            "position": 301
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      }
+    ],
+    "totalFiles": 247
+  },
+  "severity": "Low",
+  "severityClass": "badge-low"
+}

@@ -1,0 +1,1066 @@
+{
+  "project": "deepseek_ocr_app",
+  "owner": "rdumasia303",
+  "totalClones": 4,
+  "totalLines": 5535,
+  "totalDuplicatedLines": 69,
+  "percentage": 1.25,
+  "formatStats": {
+    "javascript": {
+      "count": 1,
+      "lines": 34
+    },
+    "python": {
+      "count": 3,
+      "lines": 39
+    }
+  },
+  "cloneTypeCounts": {
+    "code": 4
+  },
+  "crossProjectClones": 0,
+  "jscpd": {
+    "statistics": {
+      "detectionDate": "2026-05-15T15:09:33.808Z",
+      "formats": {
+        "javascript": {
+          "sources": {
+            "projects/deepseek_ocr_app/frontend/src/components/ResultPanel.jsx": {
+              "lines": 182,
+              "tokens": 1576,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/src/components/PDFProcessor.jsx": {
+              "lines": 110,
+              "tokens": 987,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 66,
+              "duplicatedTokens": 624,
+              "percentage": 60,
+              "percentageTokens": 63.22,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/src/components/ModeSelector.jsx": {
+              "lines": 66,
+              "tokens": 481,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/src/components/AdvancedSettings.jsx": {
+              "lines": 61,
+              "tokens": 585,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/src/App.tsx": {
+              "lines": 8,
+              "tokens": 123,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/src/App.jsx": {
+              "lines": 200,
+              "tokens": 1461,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/vite.config.js": {
+              "lines": 19,
+              "tokens": 119,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/tailwind.config.js": {
+              "lines": 47,
+              "tokens": 273,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/postcss.config.js": {
+              "lines": 5,
+              "tokens": 32,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/index.html": {
+              "lines": 0,
+              "tokens": 0,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/eslint.config.js": {
+              "lines": 22,
+              "tokens": 159,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/README.md": {
+              "lines": 53,
+              "tokens": 354,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 773,
+            "tokens": 6150,
+            "sources": 12,
+            "clones": 1,
+            "duplicatedLines": 33,
+            "duplicatedTokens": 312,
+            "percentage": 4.27,
+            "percentageTokens": 5.07,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "jsx": {
+          "sources": {
+            "projects/deepseek_ocr_app/frontend/src/components/ResultPanel.jsx": {
+              "lines": 357,
+              "tokens": 3271,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/src/components/PDFProcessor.jsx": {
+              "lines": 232,
+              "tokens": 2214,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/src/components/ModeSelector.jsx": {
+              "lines": 104,
+              "tokens": 885,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/src/components/ImageUpload.jsx": {
+              "lines": 165,
+              "tokens": 1338,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/src/components/AdvancedSettings.jsx": {
+              "lines": 82,
+              "tokens": 737,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/src/main.jsx": {
+              "lines": 9,
+              "tokens": 61,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/src/App.jsx": {
+              "lines": 362,
+              "tokens": 2932,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1311,
+            "tokens": 11438,
+            "sources": 7,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "tsx": {
+          "sources": {
+            "projects/deepseek_ocr_app/frontend/src/main.tsx": {
+              "lines": 9,
+              "tokens": 68,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/src/App.tsx": {
+              "lines": 34,
+              "tokens": 327,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 43,
+            "tokens": 395,
+            "sources": 2,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "css": {
+          "sources": {
+            "projects/deepseek_ocr_app/frontend/src/index.css": {
+              "lines": 49,
+              "tokens": 235,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/src/App.css": {
+              "lines": 41,
+              "tokens": 235,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 90,
+            "tokens": 470,
+            "sources": 2,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "bash": {
+          "sources": {
+            "projects/deepseek_ocr_app/.git/hooks/update.sample": {
+              "lines": 127,
+              "tokens": 726,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/.git/hooks/sendemail-validate.sample": {
+              "lines": 76,
+              "tokens": 338,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/.git/hooks/push-to-checkout.sample": {
+              "lines": 77,
+              "tokens": 253,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/.git/hooks/prepare-commit-msg.sample": {
+              "lines": 41,
+              "tokens": 93,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/.git/hooks/pre-receive.sample": {
+              "lines": 23,
+              "tokens": 113,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/.git/hooks/pre-rebase.sample": {
+              "lines": 168,
+              "tokens": 1323,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/.git/hooks/pre-push.sample": {
+              "lines": 52,
+              "tokens": 215,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/.git/hooks/pre-merge-commit.sample": {
+              "lines": 12,
+              "tokens": 38,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/.git/hooks/pre-commit.sample": {
+              "lines": 48,
+              "tokens": 272,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/.git/hooks/pre-applypatch.sample": {
+              "lines": 13,
+              "tokens": 56,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/.git/hooks/post-update.sample": {
+              "lines": 7,
+              "tokens": 17,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/.git/hooks/commit-msg.sample": {
+              "lines": 23,
+              "tokens": 89,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/.git/hooks/applypatch-msg.sample": {
+              "lines": 14,
+              "tokens": 58,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/README.md": {
+              "lines": 337,
+              "tokens": 372,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1018,
+            "tokens": 3963,
+            "sources": 14,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "perl": {
+          "sources": {
+            "projects/deepseek_ocr_app/.git/hooks/fsmonitor-watchman.sample": {
+              "lines": 173,
+              "tokens": 1013,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 173,
+            "tokens": 1013,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "typescript": {
+          "sources": {
+            "projects/deepseek_ocr_app/frontend/vite.config.ts": {
+              "lines": 6,
+              "tokens": 43,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 6,
+            "tokens": 43,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "json": {
+          "sources": {
+            "projects/deepseek_ocr_app/frontend/tsconfig.node.json": {
+              "lines": 25,
+              "tokens": 160,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/tsconfig.json": {
+              "lines": 6,
+              "tokens": 40,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/tsconfig.app.json": {
+              "lines": 27,
+              "tokens": 180,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/frontend/package.json": {
+              "lines": 29,
+              "tokens": 182,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/README.md": {
+              "lines": 62,
+              "tokens": 255,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/CPD_SUMMARY.json": {
+              "lines": 21,
+              "tokens": 121,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 170,
+            "tokens": 938,
+            "sources": 6,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markup": {
+          "sources": {
+            "projects/deepseek_ocr_app/frontend/index.html": {
+              "lines": 15,
+              "tokens": 197,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 15,
+            "tokens": 197,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markdown": {
+          "sources": {
+            "projects/deepseek_ocr_app/frontend/README.md": {
+              "lines": 69,
+              "tokens": 306,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/README.md": {
+              "lines": 510,
+              "tokens": 4552,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/CPD_REPORT.md": {
+              "lines": 28,
+              "tokens": 186,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 607,
+            "tokens": 5044,
+            "sources": 3,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "python": {
+          "sources": {
+            "projects/deepseek_ocr_app/backend/test_security.py": {
+              "lines": 149,
+              "tokens": 933,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 16,
+              "duplicatedTokens": 146,
+              "percentage": 10.74,
+              "percentageTokens": 15.65,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/backend/pdf_utils.py": {
+              "lines": 214,
+              "tokens": 1275,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 16,
+              "duplicatedTokens": 146,
+              "percentage": 7.48,
+              "percentageTokens": 11.45,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/backend/main.py": {
+              "lines": 586,
+              "tokens": 4478,
+              "sources": 1,
+              "clones": 4,
+              "duplicatedLines": 40,
+              "duplicatedTokens": 426,
+              "percentage": 6.83,
+              "percentageTokens": 9.51,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/deepseek_ocr_app/backend/format_converter.py": {
+              "lines": 325,
+              "tokens": 1822,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1274,
+            "tokens": 8508,
+            "sources": 4,
+            "clones": 3,
+            "duplicatedLines": 36,
+            "duplicatedTokens": 359,
+            "percentage": 2.83,
+            "percentageTokens": 4.22,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "txt": {
+          "sources": {
+            "projects/deepseek_ocr_app/backend/requirements.txt": {
+              "lines": 16,
+              "tokens": 32,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 16,
+            "tokens": 32,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "yaml": {
+          "sources": {
+            "projects/deepseek_ocr_app/docker-compose.yml": {
+              "lines": 39,
+              "tokens": 235,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 39,
+            "tokens": 235,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        }
+      },
+      "total": {
+        "lines": 5535,
+        "tokens": 38426,
+        "sources": 55,
+        "clones": 4,
+        "duplicatedLines": 69,
+        "duplicatedTokens": 671,
+        "percentage": 1.25,
+        "percentageTokens": 1.75,
+        "newDuplicatedLines": 0,
+        "newClones": 0
+      }
+    },
+    "duplicates": [
+      {
+        "format": "javascript",
+        "lines": 34,
+        "tokens": 0,
+        "fragment": " }}\n            className=\"glass p-4 rounded-2xl border-red-500/50 bg-red-500/10 flex items-start gap-3\"\n          >\n            <AlertCircle className=\"w-5 h-5 text-red-400 flex-shrink-0 mt-0.5\" />\n            <div>\n              <p className=\"text-sm font-medium text-red-400\">Processing Failed</p>\n              <p className=\"text-xs text-red-300 mt-1\">{error}</p>\n            </div>\n          </m",
+        "firstFile": {
+          "name": "projects/deepseek_ocr_app/frontend/src/components/PDFProcessor.jsx",
+          "start": 181,
+          "end": 214,
+          "startLoc": {
+            "line": 181,
+            "column": 39,
+            "position": 1797
+          },
+          "endLoc": {
+            "line": 214,
+            "column": 50,
+            "position": 2109
+          }
+        },
+        "secondFile": {
+          "name": "projects/deepseek_ocr_app/frontend/src/components/PDFProcessor.jsx",
+          "start": 156,
+          "end": 197,
+          "startLoc": {
+            "line": 156,
+            "column": 42,
+            "position": 1572
+          },
+          "endLoc": {
+            "line": 197,
+            "column": 23,
+            "position": 1910
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 17,
+        "tokens": 0,
+        "fragment": "scaled_boxes = []\n        for points in cor_list:\n            x1, y1, x2, y2 = points\n            scaled_box = [\n                int(x1 / 999 * image_width),\n                int(y1 / 999 * image_height),\n                int(x2 / 999 * image_width),\n                int(y2 / 999 * image_height)\n            ]\n            scaled_boxes.append(scaled_box)\n\n        return {\n            'label': label_typ",
+        "firstFile": {
+          "name": "projects/deepseek_ocr_app/backend/pdf_utils.py",
+          "start": 137,
+          "end": 153,
+          "startLoc": {
+            "line": 137,
+            "column": 9,
+            "position": 769
+          },
+          "endLoc": {
+            "line": 153,
+            "column": 48,
+            "position": 915
+          }
+        },
+        "secondFile": {
+          "name": "projects/deepseek_ocr_app/backend/test_security.py",
+          "start": 25,
+          "end": 41,
+          "startLoc": {
+            "line": 25,
+            "column": 9,
+            "position": 57
+          },
+          "endLoc": {
+            "line": 41,
+            "column": 53,
+            "position": 203
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 15,
+        "tokens": 0,
+        "fragment": ",\n                    eval_mode=True,\n                )\n\n                # Normalize response\n                if isinstance(res, str):\n                    text = res.strip()\n                elif isinstance(res, dict) and \"text\" in res:\n                    text = str(res[\"text\"]).strip()\n                elif isinstance(res, (list, tuple)):\n                    text = \"\\n\".join(map(str, res)).strip()",
+        "firstFile": {
+          "name": "projects/deepseek_ocr_app/backend/main.py",
+          "start": 475,
+          "end": 489,
+          "startLoc": {
+            "line": 475,
+            "column": 40,
+            "position": 3464
+          },
+          "endLoc": {
+            "line": 489,
+            "column": 19,
+            "position": 3591
+          }
+        },
+        "secondFile": {
+          "name": "projects/deepseek_ocr_app/backend/main.py",
+          "start": 330,
+          "end": 344,
+          "startLoc": {
+            "line": 330,
+            "column": 40,
+            "position": 2336
+          },
+          "endLoc": {
+            "line": 344,
+            "column": 38,
+            "position": 2465
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "python",
+        "lines": 7,
+        "tokens": 0,
+        "fragment": "if not text:\n                    mmd = os.path.join(out_dir, \"result.mmd\")\n                    if os.path.exists(mmd):\n                        with open(mmd, \"r\", encoding=\"utf-8\") as fh:\n                            text = fh.read().strip()\n                if not text:\n                    text = f",
+        "firstFile": {
+          "name": "projects/deepseek_ocr_app/backend/main.py",
+          "start": 489,
+          "end": 495,
+          "startLoc": {
+            "line": 489,
+            "column": 17,
+            "position": 3591
+          },
+          "endLoc": {
+            "line": 495,
+            "column": 29,
+            "position": 3677
+          }
+        },
+        "secondFile": {
+          "name": "projects/deepseek_ocr_app/backend/main.py",
+          "start": 345,
+          "end": 351,
+          "startLoc": {
+            "line": 345,
+            "column": 9,
+            "position": 2468
+          },
+          "endLoc": {
+            "line": 351,
+            "column": 48,
+            "position": 2554
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      }
+    ],
+    "totalFiles": 55
+  },
+  "severity": "Low",
+  "severityClass": "badge-low"
+}

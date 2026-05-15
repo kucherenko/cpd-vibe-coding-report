@@ -1,0 +1,766 @@
+{
+  "project": "codebase-to-course",
+  "owner": "zarazhangrui",
+  "totalClones": 4,
+  "totalLines": 6275,
+  "totalDuplicatedLines": 31,
+  "percentage": 0.49,
+  "formatStats": {
+    "javascript": {
+      "count": 4,
+      "lines": 35
+    }
+  },
+  "cloneTypeCounts": {
+    "code": 4
+  },
+  "crossProjectClones": 0,
+  "jscpd": {
+    "statistics": {
+      "detectionDate": "2026-05-15T15:09:30.052Z",
+      "formats": {
+        "bash": {
+          "sources": {
+            "projects/codebase-to-course/.git/hooks/update.sample": {
+              "lines": 127,
+              "tokens": 726,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/.git/hooks/sendemail-validate.sample": {
+              "lines": 76,
+              "tokens": 338,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/.git/hooks/push-to-checkout.sample": {
+              "lines": 77,
+              "tokens": 253,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/.git/hooks/prepare-commit-msg.sample": {
+              "lines": 41,
+              "tokens": 93,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/.git/hooks/pre-receive.sample": {
+              "lines": 23,
+              "tokens": 113,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/.git/hooks/pre-rebase.sample": {
+              "lines": 168,
+              "tokens": 1323,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/.git/hooks/pre-push.sample": {
+              "lines": 52,
+              "tokens": 215,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/.git/hooks/pre-merge-commit.sample": {
+              "lines": 12,
+              "tokens": 38,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/.git/hooks/pre-commit.sample": {
+              "lines": 48,
+              "tokens": 272,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/.git/hooks/pre-applypatch.sample": {
+              "lines": 13,
+              "tokens": 56,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/.git/hooks/post-update.sample": {
+              "lines": 7,
+              "tokens": 17,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/.git/hooks/commit-msg.sample": {
+              "lines": 23,
+              "tokens": 89,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/.git/hooks/applypatch-msg.sample": {
+              "lines": 14,
+              "tokens": 58,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/references/build.sh": {
+              "lines": 5,
+              "tokens": 24,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/SKILL.md": {
+              "lines": 0,
+              "tokens": 8,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 686,
+            "tokens": 3623,
+            "sources": 15,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "perl": {
+          "sources": {
+            "projects/codebase-to-course/.git/hooks/fsmonitor-watchman.sample": {
+              "lines": 173,
+              "tokens": 1013,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 173,
+            "tokens": 1013,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markdown": {
+          "sources": {
+            "projects/codebase-to-course/references/module-brief-template.md": {
+              "lines": 48,
+              "tokens": 750,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/references/interactive-elements.md": {
+              "lines": 943,
+              "tokens": 3230,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/references/gotchas.md": {
+              "lines": 31,
+              "tokens": 904,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/references/design-system.md": {
+              "lines": 401,
+              "tokens": 1232,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/references/content-philosophy.md": {
+              "lines": 88,
+              "tokens": 2752,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/SKILL.md": {
+              "lines": 219,
+              "tokens": 4705,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/README.md": {
+              "lines": 91,
+              "tokens": 1139,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/CPD_REPORT.md": {
+              "lines": 27,
+              "tokens": 172,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1848,
+            "tokens": 14884,
+            "sources": 8,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "javascript": {
+          "sources": {
+            "projects/codebase-to-course/references/main.js": {
+              "lines": 497,
+              "tokens": 5863,
+              "sources": 1,
+              "clones": 4,
+              "duplicatedLines": 31,
+              "duplicatedTokens": 344,
+              "percentage": 6.24,
+              "percentageTokens": 5.87,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/references/interactive-elements.md": {
+              "lines": 569,
+              "tokens": 4790,
+              "sources": 1,
+              "clones": 4,
+              "duplicatedLines": 31,
+              "duplicatedTokens": 344,
+              "percentage": 5.45,
+              "percentageTokens": 7.18,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/references/design-system.md": {
+              "lines": 64,
+              "tokens": 536,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/references/_base.html": {
+              "lines": 0,
+              "tokens": 0,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1130,
+            "tokens": 11189,
+            "sources": 4,
+            "clones": 4,
+            "duplicatedLines": 31,
+            "duplicatedTokens": 344,
+            "percentage": 2.74,
+            "percentageTokens": 3.07,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "css": {
+          "sources": {
+            "projects/codebase-to-course/references/interactive-elements.md": {
+              "lines": 886,
+              "tokens": 7630,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/references/design-system.md": {
+              "lines": 381,
+              "tokens": 2296,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/references/_base.html": {
+              "lines": 7,
+              "tokens": 26,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1274,
+            "tokens": 9952,
+            "sources": 3,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markup": {
+          "sources": {
+            "projects/codebase-to-course/references/interactive-elements.md": {
+              "lines": 889,
+              "tokens": 7790,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/references/design-system.md": {
+              "lines": 200,
+              "tokens": 1357,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/references/_footer.html": {
+              "lines": 3,
+              "tokens": 11,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/codebase-to-course/references/_base.html": {
+              "lines": 54,
+              "tokens": 338,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1146,
+            "tokens": 9496,
+            "sources": 4,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "yaml": {
+          "sources": {
+            "projects/codebase-to-course/SKILL.md": {
+              "lines": 1,
+              "tokens": 12,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1,
+            "tokens": 12,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "json": {
+          "sources": {
+            "projects/codebase-to-course/CPD_SUMMARY.json": {
+              "lines": 17,
+              "tokens": 98,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 17,
+            "tokens": 98,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        }
+      },
+      "total": {
+        "lines": 6275,
+        "tokens": 50267,
+        "sources": 37,
+        "clones": 4,
+        "duplicatedLines": 31,
+        "duplicatedTokens": 344,
+        "percentage": 0.49,
+        "percentageTokens": 0.68,
+        "newDuplicatedLines": 0,
+        "newClones": 0
+      }
+    },
+    "duplicates": [
+      {
+        "format": "javascript",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": "pe used in courses. Pick the elements that best serve each module's teaching goal.\n\n> **Architecture note:** All CSS and JavaScript for these elements live in `references/styles.css` and `references/main.js`, which are copied verbatim in",
+        "firstFile": {
+          "name": "projects/codebase-to-course/references/interactive-elements.md",
+          "start": 216,
+          "end": 224,
+          "startLoc": {
+            "line": 216,
+            "column": 42,
+            "position": 1794
+          },
+          "endLoc": {
+            "line": 224,
+            "column": 22,
+            "position": 1878
+          }
+        },
+        "secondFile": {
+          "name": "projects/codebase-to-course/references/main.js",
+          "start": 223,
+          "end": 231,
+          "startLoc": {
+            "line": 223,
+            "column": 44,
+            "position": 2454
+          },
+          "endLoc": {
+            "line": 231,
+            "column": 23,
+            "position": 2540
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "javascript",
+        "lines": 8,
+        "tokens": 0,
+        "fragment": "-cards)\n\n---\n\n## Code \u2194 English Translation Blocks\n\nThe most important teaching element. Shows real code from the project on the left and a plain English translation on the right, line by line.\n\n**HTML:**\n```html\n<div class=\"translation-block ",
+        "firstFile": {
+          "name": "projects/codebase-to-course/references/interactive-elements.md",
+          "start": 252,
+          "end": 259,
+          "startLoc": {
+            "line": 252,
+            "column": 42,
+            "position": 2233
+          },
+          "endLoc": {
+            "line": 259,
+            "column": 35,
+            "position": 2327
+          }
+        },
+        "secondFile": {
+          "name": "projects/codebase-to-course/references/main.js",
+          "start": 260,
+          "end": 267,
+          "startLoc": {
+            "line": 260,
+            "column": 44,
+            "position": 2914
+          },
+          "endLoc": {
+            "line": 267,
+            "column": 14,
+            "position": 3008
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "javascript",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": "ble of Contents\n1. [Code \u2194 English Translation Blocks](#code--english-translation-blocks)\n2. [Multiple-Choice Quizzes](#multiple-choice-quizzes)\n3. [Drag-and-Drop Matching](#drag-and-drop-",
+        "firstFile": {
+          "name": "projects/codebase-to-course/references/interactive-elements.md",
+          "start": 727,
+          "end": 735,
+          "startLoc": {
+            "line": 727,
+            "column": 5,
+            "position": 6018
+          },
+          "endLoc": {
+            "line": 735,
+            "column": 9,
+            "position": 6104
+          }
+        },
+        "secondFile": {
+          "name": "projects/codebase-to-course/references/main.js",
+          "start": 126,
+          "end": 134,
+          "startLoc": {
+            "line": 126,
+            "column": 7,
+            "position": 1337
+          },
+          "endLoc": {
+            "line": 134,
+            "column": 11,
+            "position": 1425
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "javascript",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": "toggle-demo)\n8. [\"Spot the Bug\" Challenge](#spot-the-bug-challenge)\n9. [Scenario Quiz](#scenario-quiz)\n10. [Callout Boxes](#callout-boxes)\n11. [Pattern/Feature Cards](#patternfeature-cards)\n12. [Flow Diagrams](#flow-diagrams)\n13. [Permission/Config Badges](#per",
+        "firstFile": {
+          "name": "projects/codebase-to-course/references/interactive-elements.md",
+          "start": 741,
+          "end": 749,
+          "startLoc": {
+            "line": 741,
+            "column": 45,
+            "position": 6175
+          },
+          "endLoc": {
+            "line": 749,
+            "column": 5,
+            "position": 6255
+          }
+        },
+        "secondFile": {
+          "name": "projects/codebase-to-course/references/main.js",
+          "start": 134,
+          "end": 144,
+          "startLoc": {
+            "line": 134,
+            "column": 35,
+            "position": 1435
+          },
+          "endLoc": {
+            "line": 144,
+            "column": 11,
+            "position": 1518
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      }
+    ],
+    "totalFiles": 37
+  },
+  "severity": "Low",
+  "severityClass": "badge-low"
+}

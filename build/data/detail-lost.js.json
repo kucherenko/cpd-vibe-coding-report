@@ -1,0 +1,994 @@
+{
+  "project": "lost.js",
+  "owner": "grothkopp",
+  "totalClones": 8,
+  "totalLines": 6812,
+  "totalDuplicatedLines": 84,
+  "percentage": 1.23,
+  "formatStats": {
+    "javascript": {
+      "count": 6,
+      "lines": 72
+    },
+    "css": {
+      "count": 1,
+      "lines": 13
+    },
+    "markup": {
+      "count": 1,
+      "lines": 7
+    }
+  },
+  "cloneTypeCounts": {
+    "code": 8
+  },
+  "crossProjectClones": 0,
+  "jscpd": {
+    "statistics": {
+      "detectionDate": "2026-05-15T15:09:46.969Z",
+      "formats": {
+        "bash": {
+          "sources": {
+            "projects/lost.js/.git/hooks/update.sample": {
+              "lines": 127,
+              "tokens": 726,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/.git/hooks/sendemail-validate.sample": {
+              "lines": 76,
+              "tokens": 338,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/.git/hooks/push-to-checkout.sample": {
+              "lines": 77,
+              "tokens": 253,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/.git/hooks/prepare-commit-msg.sample": {
+              "lines": 41,
+              "tokens": 93,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/.git/hooks/pre-receive.sample": {
+              "lines": 23,
+              "tokens": 113,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/.git/hooks/pre-rebase.sample": {
+              "lines": 168,
+              "tokens": 1323,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/.git/hooks/pre-push.sample": {
+              "lines": 52,
+              "tokens": 215,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/.git/hooks/pre-merge-commit.sample": {
+              "lines": 12,
+              "tokens": 38,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/.git/hooks/pre-commit.sample": {
+              "lines": 48,
+              "tokens": 272,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/.git/hooks/pre-applypatch.sample": {
+              "lines": 13,
+              "tokens": 56,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/.git/hooks/post-update.sample": {
+              "lines": 7,
+              "tokens": 17,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/.git/hooks/commit-msg.sample": {
+              "lines": 23,
+              "tokens": 89,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/.git/hooks/applypatch-msg.sample": {
+              "lines": 14,
+              "tokens": 58,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 681,
+            "tokens": 3591,
+            "sources": 13,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "perl": {
+          "sources": {
+            "projects/lost.js/.git/hooks/fsmonitor-watchman.sample": {
+              "lines": 173,
+              "tokens": 1013,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 173,
+            "tokens": 1013,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "javascript": {
+          "sources": {
+            "projects/lost.js/tests/wheel.test.js": {
+              "lines": 365,
+              "tokens": 3888,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/tests/test-runner.js": {
+              "lines": 205,
+              "tokens": 1565,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/tests/test-frame.html": {
+              "lines": 58,
+              "tokens": 329,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/tests/lost.test.js": {
+              "lines": 377,
+              "tokens": 4185,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 8,
+              "duplicatedTokens": 112,
+              "percentage": 2.12,
+              "percentageTokens": 2.68,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/tests/lost-ui.test.js": {
+              "lines": 485,
+              "tokens": 4895,
+              "sources": 1,
+              "clones": 11,
+              "duplicatedLines": 124,
+              "duplicatedTokens": 1296,
+              "percentage": 25.57,
+              "percentageTokens": 26.48,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/tests/index.html": {
+              "lines": 115,
+              "tokens": 654,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/tests/ainotebook.test.js": {
+              "lines": 557,
+              "tokens": 5372,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/flashcards/flashcards.html": {
+              "lines": 2,
+              "tokens": 42,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/flashcards/app_flashcards.js": {
+              "lines": 383,
+              "tokens": 3755,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/sw.js": {
+              "lines": 76,
+              "tokens": 743,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/lost.js": {
+              "lines": 571,
+              "tokens": 4698,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/README.md": {
+              "lines": 26,
+              "tokens": 171,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/LOST.md": {
+              "lines": 141,
+              "tokens": 417,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/AGENTS.md": {
+              "lines": 190,
+              "tokens": 1200,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 3551,
+            "tokens": 31914,
+            "sources": 14,
+            "clones": 6,
+            "duplicatedLines": 66,
+            "duplicatedTokens": 704,
+            "percentage": 1.86,
+            "percentageTokens": 2.21,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "css": {
+          "sources": {
+            "projects/lost.js/tests/test-frame.html": {
+              "lines": 3,
+              "tokens": 19,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/tests/index.html": {
+              "lines": 183,
+              "tokens": 1128,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/flashcards/app_flashcards.css": {
+              "lines": 247,
+              "tokens": 1560,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/lost.css": {
+              "lines": 465,
+              "tokens": 2859,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 24,
+              "duplicatedTokens": 182,
+              "percentage": 5.16,
+              "percentageTokens": 6.37,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 898,
+            "tokens": 5566,
+            "sources": 4,
+            "clones": 1,
+            "duplicatedLines": 12,
+            "duplicatedTokens": 91,
+            "percentage": 1.34,
+            "percentageTokens": 1.63,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markup": {
+          "sources": {
+            "projects/lost.js/tests/test-frame.html": {
+              "lines": 71,
+              "tokens": 424,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/tests/index.html": {
+              "lines": 308,
+              "tokens": 1865,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/flashcards/flashcards.html": {
+              "lines": 88,
+              "tokens": 931,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 6,
+              "duplicatedTokens": 65,
+              "percentage": 6.82,
+              "percentageTokens": 6.98,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/README.md": {
+              "lines": 36,
+              "tokens": 261,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/AGENTS.md": {
+              "lines": 217,
+              "tokens": 1354,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 6,
+              "duplicatedTokens": 65,
+              "percentage": 2.76,
+              "percentageTokens": 4.8,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 720,
+            "tokens": 4835,
+            "sources": 5,
+            "clones": 1,
+            "duplicatedLines": 6,
+            "duplicatedTokens": 65,
+            "percentage": 0.83,
+            "percentageTokens": 1.34,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markdown": {
+          "sources": {
+            "projects/lost.js/flashcards/Create Flashcards LOST App.md": {
+              "lines": 184,
+              "tokens": 2136,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/README.md": {
+              "lines": 98,
+              "tokens": 934,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/LOST.md": {
+              "lines": 159,
+              "tokens": 1389,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/CPD_REPORT.md": {
+              "lines": 29,
+              "tokens": 200,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/AGENTS.md": {
+              "lines": 280,
+              "tokens": 1024,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 750,
+            "tokens": 5683,
+            "sources": 5,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "json": {
+          "sources": {
+            "projects/lost.js/CPD_SUMMARY.json": {
+              "lines": 25,
+              "tokens": 144,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/lost.js/AGENTS.md": {
+              "lines": 14,
+              "tokens": 79,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 39,
+            "tokens": 223,
+            "sources": 2,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        }
+      },
+      "total": {
+        "lines": 6812,
+        "tokens": 52825,
+        "sources": 44,
+        "clones": 8,
+        "duplicatedLines": 84,
+        "duplicatedTokens": 860,
+        "percentage": 1.23,
+        "percentageTokens": 1.63,
+        "newDuplicatedLines": 0,
+        "newClones": 0
+      }
+    },
+    "duplicates": [
+      {
+        "format": "javascript",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": "const mockStorage = {\n  _data: {},\n  getItem(key) { return this._data[key] ?? null; },\n  setItem(key, val) { this._data[key] = val; },\n  removeItem(key) { delete this._data[key]; },\n  clear() { this._data = {}; }\n};\n\nconst",
+        "firstFile": {
+          "name": "projects/lost.js/tests/lost-ui.test.js",
+          "start": 9,
+          "end": 17,
+          "startLoc": {
+            "line": 9,
+            "column": 1,
+            "position": 56
+          },
+          "endLoc": {
+            "line": 17,
+            "column": 6,
+            "position": 168
+          }
+        },
+        "secondFile": {
+          "name": "projects/lost.js/tests/lost.test.js",
+          "start": 8,
+          "end": 16,
+          "startLoc": {
+            "line": 8,
+            "column": 1,
+            "position": 43
+          },
+          "endLoc": {
+            "line": 16,
+            "column": 41,
+            "position": 155
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "javascript",
+        "lines": 12,
+        "tokens": 0,
+        "fragment": ", () => {\n  let container, lost, ui;\n\n  beforeEach(() => {\n    mockStorage.clear();\n    Object.defineProperty(window, 'localStorage', { value: mockStorage, writable: true });\n    \n    container = document.createElement('div');\n    container.style.cssText = 'position:absolute;left:-9999px;visibility:hidden;';\n    document.body.appendChild(container);\n    \n    lost = new Lost({ storageKey: 'test-the",
+        "firstFile": {
+          "name": "projects/lost.js/tests/lost-ui.test.js",
+          "start": 257,
+          "end": 268,
+          "startLoc": {
+            "line": 257,
+            "column": 37,
+            "position": 2603
+          },
+          "endLoc": {
+            "line": 268,
+            "column": 48,
+            "position": 2725
+          }
+        },
+        "secondFile": {
+          "name": "projects/lost.js/tests/lost-ui.test.js",
+          "start": 183,
+          "end": 195,
+          "startLoc": {
+            "line": 183,
+            "column": 39,
+            "position": 1819
+          },
+          "endLoc": {
+            "line": 195,
+            "column": 34,
+            "position": 1942
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "javascript",
+        "lines": 12,
+        "tokens": 0,
+        "fragment": ", () => {\n  let container, lost, ui;\n\n  beforeEach(() => {\n    mockStorage.clear();\n    Object.defineProperty(window, 'localStorage', { value: mockStorage, writable: true });\n    \n    container = document.createElement('div');\n    container.style.cssText = 'position:absolute;left:-9999px;visibility:hidden;';\n    document.body.appendChild(container);\n    \n    lost = new Lost({ storageKey: 'test-sha",
+        "firstFile": {
+          "name": "projects/lost.js/tests/lost-ui.test.js",
+          "start": 334,
+          "end": 345,
+          "startLoc": {
+            "line": 334,
+            "column": 30,
+            "position": 3343
+          },
+          "endLoc": {
+            "line": 345,
+            "column": 48,
+            "position": 3465
+          }
+        },
+        "secondFile": {
+          "name": "projects/lost.js/tests/lost-ui.test.js",
+          "start": 183,
+          "end": 195,
+          "startLoc": {
+            "line": 183,
+            "column": 39,
+            "position": 1819
+          },
+          "endLoc": {
+            "line": 195,
+            "column": 34,
+            "position": 1942
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "javascript",
+        "lines": 13,
+        "tokens": 0,
+        "fragment": ", () => {\n  let container, lost, ui;\n\n  beforeEach(() => {\n    mockStorage.clear();\n    Object.defineProperty(window, 'localStorage', { value: mockStorage, writable: true });\n    \n    container = document.createElement('div');\n    container.style.cssText = 'position:absolute;left:-9999px;visibility:hidden;';\n    document.body.appendChild(container);\n    \n    lost = new Lost({\n      storageKey: 'te",
+        "firstFile": {
+          "name": "projects/lost.js/tests/lost-ui.test.js",
+          "start": 404,
+          "end": 416,
+          "startLoc": {
+            "line": 404,
+            "column": 35,
+            "position": 4057
+          },
+          "endLoc": {
+            "line": 416,
+            "column": 33,
+            "position": 4180
+          }
+        },
+        "secondFile": {
+          "name": "projects/lost.js/tests/lost-ui.test.js",
+          "start": 183,
+          "end": 195,
+          "startLoc": {
+            "line": 183,
+            "column": 39,
+            "position": 1819
+          },
+          "endLoc": {
+            "line": 195,
+            "column": 34,
+            "position": 1942
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "javascript",
+        "lines": 14,
+        "tokens": 0,
+        "fragment": "});\n    \n    ui = new LostUI(lost, {\n      container,\n      sidebar: { visible: true }\n    });\n  });\n\n  afterEach(() => {\n    container.remove();\n    Object.defineProperty(window, 'localStorage', { value: originalLocalStorage, writable: true });\n  });\n\n  it('responds to lost update event'",
+        "firstFile": {
+          "name": "projects/lost.js/tests/lost-ui.test.js",
+          "start": 420,
+          "end": 433,
+          "startLoc": {
+            "line": 420,
+            "column": 39,
+            "position": 4232
+          },
+          "endLoc": {
+            "line": 433,
+            "column": 37,
+            "position": 4335
+          }
+        },
+        "secondFile": {
+          "name": "projects/lost.js/tests/lost-ui.test.js",
+          "start": 200,
+          "end": 213,
+          "startLoc": {
+            "line": 200,
+            "column": 35,
+            "position": 2010
+          },
+          "endLoc": {
+            "line": 213,
+            "column": 35,
+            "position": 2113
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "javascript",
+        "lines": 12,
+        "tokens": 0,
+        "fragment": ", () => {\n  let container, lost, ui;\n\n  beforeEach(() => {\n    mockStorage.clear();\n    Object.defineProperty(window, 'localStorage', { value: mockStorage, writable: true });\n    \n    container = document.createElement('div');\n    container.style.cssText = 'position:absolute;left:-9999px;visibility:hidden;';\n    document.body.appendChild(container);\n    \n    lost = new Lost({ storageKey: 'test-uti",
+        "firstFile": {
+          "name": "projects/lost.js/tests/lost-ui.test.js",
+          "start": 449,
+          "end": 460,
+          "startLoc": {
+            "line": 449,
+            "column": 36,
+            "position": 4493
+          },
+          "endLoc": {
+            "line": 460,
+            "column": 47,
+            "position": 4615
+          }
+        },
+        "secondFile": {
+          "name": "projects/lost.js/tests/lost-ui.test.js",
+          "start": 183,
+          "end": 195,
+          "startLoc": {
+            "line": 183,
+            "column": 39,
+            "position": 1819
+          },
+          "endLoc": {
+            "line": 195,
+            "column": 34,
+            "position": 1942
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "css",
+        "lines": 13,
+        "tokens": 0,
+        "fragment": " {\n  flex: 1;\n  border: 1px solid var(--ring);\n  background: var(--bg);\n  color: var(--text);\n  border-radius: 8px;\n  padding: 10px 12px;\n  font-family: ui-monospace, monospace;\n  font-size: 13px;\n  outline: none;\n}\n\n.share-box-copy-btn",
+        "firstFile": {
+          "name": "projects/lost.js/lost.css",
+          "start": 390,
+          "end": 402,
+          "startLoc": {
+            "line": 390,
+            "column": 17,
+            "position": 2350
+          },
+          "endLoc": {
+            "line": 402,
+            "column": 20,
+            "position": 2441
+          }
+        },
+        "secondFile": {
+          "name": "projects/lost.js/lost.css",
+          "start": 317,
+          "end": 329,
+          "startLoc": {
+            "line": 317,
+            "column": 17,
+            "position": 1900
+          },
+          "endLoc": {
+            "line": 329,
+            "column": 10,
+            "position": 1991
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "markup",
+        "lines": 7,
+        "tokens": 0,
+        "fragment": "# Instructions for AI Agents: Creating a LOST App\n\nWhen asked to create a new application using the LOST Framework (Local, Offline, Shareable Tools), follow these guidelines to ensure consistency, performance, and full fea",
+        "firstFile": {
+          "name": "projects/lost.js/AGENTS.md",
+          "start": 38,
+          "end": 44,
+          "startLoc": {
+            "line": 38,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 44,
+            "column": 15,
+            "position": 65
+          }
+        },
+        "secondFile": {
+          "name": "projects/lost.js/flashcards/flashcards.html",
+          "start": 1,
+          "end": 7,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 7,
+            "column": 22,
+            "position": 65
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      }
+    ],
+    "totalFiles": 44
+  },
+  "severity": "Low",
+  "severityClass": "badge-low"
+}

@@ -1,0 +1,2866 @@
+{
+  "project": "voice-typing-vibecoding",
+  "owner": "lucasjiang-aoi",
+  "totalClones": 43,
+  "totalLines": 9362,
+  "totalDuplicatedLines": 627,
+  "percentage": 6.7,
+  "formatStats": {
+    "typescript": {
+      "count": 37,
+      "lines": 573
+    },
+    "javascript": {
+      "count": 4,
+      "lines": 68
+    },
+    "tsx": {
+      "count": 2,
+      "lines": 29
+    }
+  },
+  "cloneTypeCounts": {
+    "code": 43
+  },
+  "crossProjectClones": 0,
+  "jscpd": {
+    "statistics": {
+      "detectionDate": "2026-05-15T15:13:31.357Z",
+      "formats": {
+        "typescript": {
+          "sources": {
+            "projects/voice-typing-vibecoding/app/api/transcribe/openai/route.ts": {
+              "lines": 55,
+              "tokens": 594,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/app/api/transcribe/openai/route.test.ts": {
+              "lines": 50,
+              "tokens": 546,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/app/api/elevenlabs/token/route.ts": {
+              "lines": 39,
+              "tokens": 314,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 26,
+              "duplicatedTokens": 218,
+              "percentage": 66.67,
+              "percentageTokens": 69.43,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/app/api/assemblyai/token/route.ts": {
+              "lines": 40,
+              "tokens": 351,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 26,
+              "duplicatedTokens": 218,
+              "percentage": 65,
+              "percentageTokens": 62.11,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/app/api/validate-key/route.ts": {
+              "lines": 131,
+              "tokens": 1050,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/app/api/validate-key/route.test.ts": {
+              "lines": 108,
+              "tokens": 1289,
+              "sources": 1,
+              "clones": 4,
+              "duplicatedLines": 20,
+              "duplicatedTokens": 334,
+              "percentage": 18.52,
+              "percentageTokens": 25.91,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/providers/types.ts": {
+              "lines": 27,
+              "tokens": 252,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/providers/sarvam.ts": {
+              "lines": 229,
+              "tokens": 2171,
+              "sources": 1,
+              "clones": 21,
+              "duplicatedLines": 369,
+              "duplicatedTokens": 3586,
+              "percentage": 161.14,
+              "percentageTokens": 165.18,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/providers/openai.ts": {
+              "lines": 121,
+              "tokens": 1136,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 11,
+              "duplicatedTokens": 91,
+              "percentage": 9.09,
+              "percentageTokens": 8.01,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/providers/elevenlabs.ts": {
+              "lines": 268,
+              "tokens": 2310,
+              "sources": 1,
+              "clones": 9,
+              "duplicatedLines": 175,
+              "duplicatedTokens": 1630,
+              "percentage": 65.3,
+              "percentageTokens": 70.56,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/providers/deepgram.ts": {
+              "lines": 114,
+              "tokens": 1217,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 12,
+              "duplicatedTokens": 114,
+              "percentage": 10.53,
+              "percentageTokens": 9.37,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/providers/azure.ts": {
+              "lines": 132,
+              "tokens": 1028,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 12,
+              "duplicatedTokens": 103,
+              "percentage": 9.09,
+              "percentageTokens": 10.02,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/providers/aws-transcribe.ts": {
+              "lines": 228,
+              "tokens": 2234,
+              "sources": 1,
+              "clones": 5,
+              "duplicatedLines": 53,
+              "duplicatedTokens": 626,
+              "percentage": 23.25,
+              "percentageTokens": 28.02,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/providers/assemblyai.ts": {
+              "lines": 205,
+              "tokens": 1987,
+              "sources": 1,
+              "clones": 8,
+              "duplicatedLines": 150,
+              "duplicatedTokens": 1436,
+              "percentage": 73.17,
+              "percentageTokens": 72.27,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/utils.ts": {
+              "lines": 22,
+              "tokens": 304,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/utils.test.ts": {
+              "lines": 126,
+              "tokens": 1186,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/models.ts": {
+              "lines": 425,
+              "tokens": 4212,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 14,
+              "duplicatedTokens": 264,
+              "percentage": 3.29,
+              "percentageTokens": 6.27,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/models.test.ts": {
+              "lines": 162,
+              "tokens": 1633,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/languages.ts": {
+              "lines": 164,
+              "tokens": 2603,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/languages.test.ts": {
+              "lines": 77,
+              "tokens": 812,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/app-state.ts": {
+              "lines": 132,
+              "tokens": 1250,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/lib/app-state.test.ts": {
+              "lines": 209,
+              "tokens": 2153,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/hooks/useTranscription.ts": {
+              "lines": 140,
+              "tokens": 1333,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts": {
+              "lines": 182,
+              "tokens": 1795,
+              "sources": 1,
+              "clones": 16,
+              "duplicatedLines": 166,
+              "duplicatedTokens": 1674,
+              "percentage": 91.21,
+              "percentageTokens": 93.26,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/hooks/useTheme.ts": {
+              "lines": 41,
+              "tokens": 376,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/hooks/useAudioRecorder.ts": {
+              "lines": 137,
+              "tokens": 1308,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/hooks/useAudioRecorder.test.ts": {
+              "lines": 127,
+              "tokens": 1404,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/vitest.setup.ts": {
+              "lines": 48,
+              "tokens": 539,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 38,
+              "duplicatedTokens": 438,
+              "percentage": 79.17,
+              "percentageTokens": 81.26,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/vitest.config.ts": {
+              "lines": 33,
+              "tokens": 214,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/next.config.ts": {
+              "lines": 6,
+              "tokens": 39,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 3778,
+            "tokens": 37640,
+            "sources": 30,
+            "clones": 37,
+            "duplicatedLines": 536,
+            "duplicatedTokens": 5366,
+            "percentage": 14.19,
+            "percentageTokens": 14.26,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "bash": {
+          "sources": {
+            "projects/voice-typing-vibecoding/.git/hooks/update.sample": {
+              "lines": 127,
+              "tokens": 726,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.git/hooks/sendemail-validate.sample": {
+              "lines": 76,
+              "tokens": 338,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.git/hooks/push-to-checkout.sample": {
+              "lines": 77,
+              "tokens": 253,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.git/hooks/prepare-commit-msg.sample": {
+              "lines": 41,
+              "tokens": 93,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.git/hooks/pre-receive.sample": {
+              "lines": 23,
+              "tokens": 113,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.git/hooks/pre-rebase.sample": {
+              "lines": 168,
+              "tokens": 1323,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.git/hooks/pre-push.sample": {
+              "lines": 52,
+              "tokens": 215,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.git/hooks/pre-merge-commit.sample": {
+              "lines": 12,
+              "tokens": 38,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.git/hooks/pre-commit.sample": {
+              "lines": 48,
+              "tokens": 272,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.git/hooks/pre-applypatch.sample": {
+              "lines": 13,
+              "tokens": 56,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.git/hooks/post-update.sample": {
+              "lines": 7,
+              "tokens": 17,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.git/hooks/commit-msg.sample": {
+              "lines": 23,
+              "tokens": 89,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.git/hooks/applypatch-msg.sample": {
+              "lines": 14,
+              "tokens": 58,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/TEST_REPORT.md": {
+              "lines": 7,
+              "tokens": 22,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/README.md": {
+              "lines": 1,
+              "tokens": 8,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 689,
+            "tokens": 3621,
+            "sources": 15,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "perl": {
+          "sources": {
+            "projects/voice-typing-vibecoding/.git/hooks/fsmonitor-watchman.sample": {
+              "lines": 173,
+              "tokens": 1013,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 173,
+            "tokens": 1013,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "tsx": {
+          "sources": {
+            "projects/voice-typing-vibecoding/hooks/useTheme.test.tsx": {
+              "lines": 69,
+              "tokens": 803,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/TranscriptionOutput.tsx": {
+              "lines": 137,
+              "tokens": 971,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/TranscriptionOutput.test.tsx": {
+              "lines": 138,
+              "tokens": 1144,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/TopBar.tsx": {
+              "lines": 80,
+              "tokens": 780,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 5,
+              "duplicatedTokens": 75,
+              "percentage": 6.25,
+              "percentageTokens": 9.62,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/Toast.tsx": {
+              "lines": 63,
+              "tokens": 676,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/Toast.test.tsx": {
+              "lines": 38,
+              "tokens": 461,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/StatusBar.tsx": {
+              "lines": 49,
+              "tokens": 389,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/StatusBar.test.tsx": {
+              "lines": 65,
+              "tokens": 440,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/SettingsPanel.tsx": {
+              "lines": 358,
+              "tokens": 2603,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/RequestBodyPanel.tsx": {
+              "lines": 167,
+              "tokens": 1564,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/RecordButton.tsx": {
+              "lines": 73,
+              "tokens": 564,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 5,
+              "duplicatedTokens": 75,
+              "percentage": 6.85,
+              "percentageTokens": 13.3,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/RecordButton.test.tsx": {
+              "lines": 94,
+              "tokens": 686,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/ModelSelector.tsx": {
+              "lines": 202,
+              "tokens": 1446,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 22,
+              "duplicatedTokens": 105,
+              "percentage": 10.89,
+              "percentageTokens": 7.26,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/MicPermissionPrompt.tsx": {
+              "lines": 74,
+              "tokens": 724,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/LanguageSelector.tsx": {
+              "lines": 163,
+              "tokens": 1038,
+              "sources": 1,
+              "clones": 1,
+              "duplicatedLines": 22,
+              "duplicatedTokens": 105,
+              "percentage": 13.5,
+              "percentageTokens": 10.12,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/AudioVisualizer.tsx": {
+              "lines": 37,
+              "tokens": 327,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/ApiKeyPanel.tsx": {
+              "lines": 286,
+              "tokens": 2083,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/app/page.tsx": {
+              "lines": 342,
+              "tokens": 2577,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/app/layout.tsx": {
+              "lines": 50,
+              "tokens": 271,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 2485,
+            "tokens": 19547,
+            "sources": 19,
+            "clones": 2,
+            "duplicatedLines": 27,
+            "duplicatedTokens": 180,
+            "percentage": 1.09,
+            "percentageTokens": 0.92,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "javascript": {
+          "sources": {
+            "projects/voice-typing-vibecoding/components/TranscriptionOutput.tsx": {
+              "lines": 79,
+              "tokens": 487,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/TranscriptionOutput.test.tsx": {
+              "lines": 113,
+              "tokens": 924,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 36,
+              "duplicatedTokens": 346,
+              "percentage": 31.86,
+              "percentageTokens": 37.45,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/TopBar.tsx": {
+              "lines": 56,
+              "tokens": 561,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/Toast.tsx": {
+              "lines": 11,
+              "tokens": 125,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/StatusBar.tsx": {
+              "lines": 23,
+              "tokens": 185,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/StatusBar.test.tsx": {
+              "lines": 50,
+              "tokens": 314,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/SettingsPanel.tsx": {
+              "lines": 311,
+              "tokens": 2287,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 42,
+              "duplicatedTokens": 378,
+              "percentage": 13.5,
+              "percentageTokens": 16.53,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/RequestBodyPanel.tsx": {
+              "lines": 115,
+              "tokens": 1108,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/RecordButton.tsx": {
+              "lines": 37,
+              "tokens": 344,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/RecordButton.test.tsx": {
+              "lines": 78,
+              "tokens": 528,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/ModelSelector.tsx": {
+              "lines": 126,
+              "tokens": 783,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/MicPermissionPrompt.tsx": {
+              "lines": 53,
+              "tokens": 598,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 28,
+              "duplicatedTokens": 482,
+              "percentage": 52.83,
+              "percentageTokens": 80.6,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/LanguageSelector.tsx": {
+              "lines": 104,
+              "tokens": 551,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/components/ApiKeyPanel.tsx": {
+              "lines": 175,
+              "tokens": 1129,
+              "sources": 1,
+              "clones": 2,
+              "duplicatedLines": 22,
+              "duplicatedTokens": 132,
+              "percentage": 12.57,
+              "percentageTokens": 11.69,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/app/page.tsx": {
+              "lines": 138,
+              "tokens": 907,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/app/layout.tsx": {
+              "lines": 0,
+              "tokens": 15,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/server.js": {
+              "lines": 110,
+              "tokens": 1245,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/postcss.config.mjs": {
+              "lines": 6,
+              "tokens": 35,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/eslint.config.mjs": {
+              "lines": 17,
+              "tokens": 97,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 1602,
+            "tokens": 12223,
+            "sources": 19,
+            "clones": 4,
+            "duplicatedLines": 64,
+            "duplicatedTokens": 669,
+            "percentage": 4,
+            "percentageTokens": 5.47,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "css": {
+          "sources": {
+            "projects/voice-typing-vibecoding/app/globals.css": {
+              "lines": 111,
+              "tokens": 648,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 111,
+            "tokens": 648,
+            "sources": 1,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "log": {
+          "sources": {
+            "projects/voice-typing-vibecoding/.cursor/debug-ec198c.log": {
+              "lines": 17,
+              "tokens": 778,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.cursor/debug-692b78.log": {
+              "lines": 3,
+              "tokens": 158,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.cursor/debug-446e3d.log": {
+              "lines": 32,
+              "tokens": 1197,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.cursor/debug-17fce8.log": {
+              "lines": 59,
+              "tokens": 2006,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/.cursor/debug-14202f.log": {
+              "lines": 77,
+              "tokens": 3718,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 188,
+            "tokens": 7857,
+            "sources": 5,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "json": {
+          "sources": {
+            "projects/voice-typing-vibecoding/tsconfig.json": {
+              "lines": 33,
+              "tokens": 191,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/package.json": {
+              "lines": 39,
+              "tokens": 252,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/CPD_SUMMARY.json": {
+              "lines": 25,
+              "tokens": 144,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 97,
+            "tokens": 587,
+            "sources": 3,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        },
+        "markdown": {
+          "sources": {
+            "projects/voice-typing-vibecoding/TEST_REPORT.md": {
+              "lines": 86,
+              "tokens": 735,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/README.md": {
+              "lines": 125,
+              "tokens": 2277,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            },
+            "projects/voice-typing-vibecoding/CPD_REPORT.md": {
+              "lines": 28,
+              "tokens": 186,
+              "sources": 1,
+              "clones": 0,
+              "duplicatedLines": 0,
+              "duplicatedTokens": 0,
+              "percentage": 0,
+              "percentageTokens": 0,
+              "newDuplicatedLines": 0,
+              "newClones": 0
+            }
+          },
+          "total": {
+            "lines": 239,
+            "tokens": 3198,
+            "sources": 3,
+            "clones": 0,
+            "duplicatedLines": 0,
+            "duplicatedTokens": 0,
+            "percentage": 0,
+            "percentageTokens": 0,
+            "newDuplicatedLines": 0,
+            "newClones": 0
+          }
+        }
+      },
+      "total": {
+        "lines": 9362,
+        "tokens": 86334,
+        "sources": 96,
+        "clones": 43,
+        "duplicatedLines": 627,
+        "duplicatedTokens": 6215,
+        "percentage": 6.7,
+        "percentageTokens": 7.2,
+        "newDuplicatedLines": 0,
+        "newClones": 0
+      }
+    },
+    "duplicates": [
+      {
+        "format": "typescript",
+        "lines": 14,
+        "tokens": 0,
+        "fragment": "import { NextRequest, NextResponse } from \"next/server\";\n\nexport async function POST(req: NextRequest) {\n  try {\n    const { apiKey } = await req.json();\n\n    if (!apiKey) {\n      return NextResponse.json(\n        { error: \"API key is required\" },\n        { status: 400 }\n      );\n    }\n\n    const tokenUrl",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/app/api/assemblyai/token/route.ts",
+          "start": 1,
+          "end": 14,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 14,
+            "column": 19,
+            "position": 109
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/app/api/elevenlabs/token/route.ts",
+          "start": 1,
+          "end": 14,
+          "startLoc": {
+            "line": 1,
+            "column": 1,
+            "position": 0
+          },
+          "endLoc": {
+            "line": 14,
+            "column": 14,
+            "position": 109
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 14,
+        "tokens": 0,
+        "fragment": "},\n        { status: res.status }\n      );\n    }\n\n    const data = await res.json();\n    return NextResponse.json({ token: data.token });\n  } catch (err) {\n    return NextResponse.json(\n      { error: String(err) },\n      { status: 500 }\n    );\n  }\n}",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/app/api/assemblyai/token/route.ts",
+          "start": 28,
+          "end": 41,
+          "startLoc": {
+            "line": 28,
+            "column": 53,
+            "position": 242
+          },
+          "endLoc": {
+            "line": 41,
+            "column": 2,
+            "position": 351
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/app/api/elevenlabs/token/route.ts",
+          "start": 27,
+          "end": 40,
+          "startLoc": {
+            "line": 27,
+            "column": 64,
+            "position": 205
+          },
+          "endLoc": {
+            "line": 40,
+            "column": 2,
+            "position": 314
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 6,
+        "tokens": 0,
+        "fragment": ", apiKey: \"key\" }),\n    });\n    const res = await POST(req as never);\n    const data = await res.json();\n    expect(data.valid).toBe(false);\n    expect(data.error).toBe(\"AWS region required\"",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/app/api/validate-key/route.test.ts",
+          "start": 68,
+          "end": 73,
+          "startLoc": {
+            "line": 68,
+            "column": 56,
+            "position": 831
+          },
+          "endLoc": {
+            "line": 73,
+            "column": 50,
+            "position": 906
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/app/api/validate-key/route.test.ts",
+          "start": 56,
+          "end": 61,
+          "startLoc": {
+            "line": 56,
+            "column": 47,
+            "position": 680
+          },
+          "endLoc": {
+            "line": 61,
+            "column": 52,
+            "position": 755
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 6,
+        "tokens": 0,
+        "fragment": ", async () => {\n    (globalThis.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({ ok: true });\n    const req = new Request(\"http://localhost/api/validate-key\", {\n      method: \"POST\",\n      headers: { \"Content-Type\": \"application/json\" },\n      body: JSON.stringify({ provider: \"deepgram\"",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/app/api/validate-key/route.test.ts",
+          "start": 92,
+          "end": 97,
+          "startLoc": {
+            "line": 92,
+            "column": 30,
+            "position": 1082
+          },
+          "endLoc": {
+            "line": 97,
+            "column": 50,
+            "position": 1174
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/app/api/validate-key/route.test.ts",
+          "start": 21,
+          "end": 26,
+          "startLoc": {
+            "line": 21,
+            "column": 28,
+            "position": 226
+          },
+          "endLoc": {
+            "line": 26,
+            "column": 48,
+            "position": 318
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 12,
+        "tokens": 0,
+        "fragment": ";\n\n  onTranscript(cb: (r: TranscriptResult) => void) {\n    this.transcriptCb = cb;\n  }\n\n  onError(cb: (e: Error) => void) {\n    this.errorCb = cb;\n  }\n\n  async connect(config: TranscriptionConfig): Promise<void> {\n    this",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/openai.ts",
+          "start": 20,
+          "end": 31,
+          "startLoc": {
+            "line": 20,
+            "column": 24,
+            "position": 183
+          },
+          "endLoc": {
+            "line": 31,
+            "column": 9,
+            "position": 274
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 15,
+          "end": 26,
+          "startLoc": {
+            "line": 15,
+            "column": 30,
+            "position": 178
+          },
+          "endLoc": {
+            "line": 26,
+            "column": 10,
+            "position": 269
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 20,
+        "tokens": 0,
+        "fragment": "implements TranscriptionProvider {\n  private ws: WebSocket | null = null;\n  private transcriptCb: ((r: TranscriptResult) => void) | null = null;\n  private errorCb: ((e: Error) => void) | null = null;\n  private mediaStream: MediaStream | null = null;\n  private audioContext: AudioContext | null = null;\n  private processor: ScriptProcessorNode | null = null;\n  private active = false;\n  readonly isStr",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/elevenlabs.ts",
+          "start": 7,
+          "end": 26,
+          "startLoc": {
+            "line": 7,
+            "column": 33,
+            "position": 30
+          },
+          "endLoc": {
+            "line": 26,
+            "column": 16,
+            "position": 271
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 7,
+          "end": 26,
+          "startLoc": {
+            "line": 7,
+            "column": 29,
+            "position": 30
+          },
+          "endLoc": {
+            "line": 26,
+            "column": 17,
+            "position": 271
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 17,
+        "tokens": 0,
+        "fragment": "${params.toString()}`;\n\n    this.mediaStream = await navigator.mediaDevices.getUserMedia({\n      audio: true,\n    });\n\n    this.audioContext = new AudioContext();\n    const source = this.audioContext.createMediaStreamSource(this.mediaStream);\n    const nativeSampleRate = this.audioContext.sampleRate;\n    const targetSampleRate = 16000;\n\n    this.active = true;\n\n    return new Promise((resolve, rej",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/elevenlabs.ts",
+          "start": 39,
+          "end": 55,
+          "startLoc": {
+            "line": 39,
+            "column": 69,
+            "position": 378
+          },
+          "endLoc": {
+            "line": 55,
+            "column": 34,
+            "position": 528
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 51,
+          "end": 67,
+          "startLoc": {
+            "line": 51,
+            "column": 58,
+            "position": 589
+          },
+          "endLoc": {
+            "line": 67,
+            "column": 39,
+            "position": 738
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 13,
+        "tokens": 0,
+        "fragment": ");\n        this.errorCb?.(err);\n        if (!settled) {\n          settled = true;\n          this.cleanup();\n          reject(err);\n        }\n      };\n\n      this.ws.onclose = (ev) => {\n        if (ev.code !== 1000 && ev.code !== 1001 && ev.code !== 1005 && this.active) {\n          const closeErr = new Error(\n            `ElevenLabs connection closed: ",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/elevenlabs.ts",
+          "start": 62,
+          "end": 74,
+          "startLoc": {
+            "line": 62,
+            "column": 71,
+            "position": 585
+          },
+          "endLoc": {
+            "line": 74,
+            "column": 44,
+            "position": 711
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 74,
+          "end": 91,
+          "startLoc": {
+            "line": 74,
+            "column": 67,
+            "position": 818
+          },
+          "endLoc": {
+            "line": 91,
+            "column": 40,
+            "position": 951
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 14,
+        "tokens": 0,
+        "fragment": "${ev.reason || ev.code}`\n          );\n          this.errorCb?.(closeErr);\n          if (!settled) {\n            settled = true;\n            this.cleanup();\n            reject(closeErr);\n          }\n        }\n      };\n\n      this.ws.onmessage = (event) => {\n        try {\n          const data",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/elevenlabs.ts",
+          "start": 74,
+          "end": 87,
+          "startLoc": {
+            "line": 74,
+            "column": 44,
+            "position": 712
+          },
+          "endLoc": {
+            "line": 87,
+            "column": 21,
+            "position": 807
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 91,
+          "end": 104,
+          "startLoc": {
+            "line": 91,
+            "column": 40,
+            "position": 952
+          },
+          "endLoc": {
+            "line": 104,
+            "column": 20,
+            "position": 1047
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 27,
+        "tokens": 0,
+        "fragment": ";\n          }\n        } catch {\n          // ignore malformed messages\n        }\n      };\n    });\n  }\n\n  private startAudioCapture(\n    source: MediaStreamAudioSourceNode,\n    nativeSampleRate: number,\n    targetSampleRate: number\n  ) {\n    this.processor = this.audioContext!.createScriptProcessor(4096, 1, 1);\n\n    this.processor.onaudioprocess = (e) => {\n      if (!this.active || !this.ws || this",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/elevenlabs.ts",
+          "start": 144,
+          "end": 170,
+          "startLoc": {
+            "line": 144,
+            "column": 20,
+            "position": 1204
+          },
+          "endLoc": {
+            "line": 170,
+            "column": 23,
+            "position": 1412
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 130,
+          "end": 156,
+          "startLoc": {
+            "line": 130,
+            "column": 14,
+            "position": 1292
+          },
+          "endLoc": {
+            "line": 156,
+            "column": 16,
+            "position": 1500
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 15,
+        "tokens": 0,
+        "fragment": ";\n  }\n\n  sendAudio(_chunk: Blob) {\n    // Audio capture is managed internally via Web Audio API (PCM16 at 16kHz)\n  }\n\n  disconnect() {\n    this.active = false;\n\n    if (this.ws && this.ws.readyState === WebSocket.OPEN) {\n      try {\n        this.ws.send(\n          JSON.stringify({\n            message_type",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/elevenlabs.ts",
+          "start": 198,
+          "end": 212,
+          "startLoc": {
+            "line": 198,
+            "column": 22,
+            "position": 1679
+          },
+          "endLoc": {
+            "line": 212,
+            "column": 25,
+            "position": 1767
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 166,
+          "end": 178,
+          "startLoc": {
+            "line": 166,
+            "column": 59,
+            "position": 1568
+          },
+          "endLoc": {
+            "line": 178,
+            "column": 43,
+            "position": 1653
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 54,
+        "tokens": 0,
+        "fragment": "})\n        );\n      } catch {\n        // ignore send errors during disconnect\n      }\n    }\n\n    setTimeout(() => {\n      if (this.ws) {\n        this.ws.close();\n        this.ws = null;\n      }\n      this.cleanup();\n    }, 500);\n  }\n\n  private cleanup() {\n    if (this.processor) {\n      this.processor.disconnect();\n      this.processor = null;\n    }\n    if (this.audioContext && this.audioContext.s",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/elevenlabs.ts",
+          "start": 216,
+          "end": 269,
+          "startLoc": {
+            "line": 216,
+            "column": 11,
+            "position": 1795
+          },
+          "endLoc": {
+            "line": 269,
+            "column": 2,
+            "position": 2310
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 178,
+          "end": 230,
+          "startLoc": {
+            "line": 178,
+            "column": 53,
+            "position": 1658
+          },
+          "endLoc": {
+            "line": 230,
+            "column": 2,
+            "position": 2171
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 13,
+        "tokens": 0,
+        "fragment": "= false;\n  readonly isStreaming = true;\n\n  onTranscript(cb: (r: TranscriptResult) => void) {\n    this.transcriptCb = cb;\n  }\n\n  onError(cb: (e: Error) => void) {\n    this.errorCb = cb;\n  }\n\n  async connect(config: TranscriptionConfig): Promise<void> {\n    const params = new URLSearchParams({",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/deepgram.ts",
+          "start": 11,
+          "end": 23,
+          "startLoc": {
+            "line": 11,
+            "column": 32,
+            "position": 114
+          },
+          "endLoc": {
+            "line": 23,
+            "column": 41,
+            "position": 228
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 14,
+          "end": 26,
+          "startLoc": {
+            "line": 14,
+            "column": 18,
+            "position": 165
+          },
+          "endLoc": {
+            "line": 26,
+            "column": 41,
+            "position": 279
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 13,
+        "tokens": 0,
+        "fragment": ";\n  readonly isStreaming = true;\n\n  onTranscript(cb: (r: TranscriptResult) => void) {\n    this.transcriptCb = cb;\n  }\n\n  onError(cb: (e: Error) => void) {\n    this.errorCb = cb;\n  }\n\n  async connect(config: TranscriptionConfig): Promise<void> {\n    const sdk",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/azure.ts",
+          "start": 21,
+          "end": 33,
+          "startLoc": {
+            "line": 21,
+            "column": 54,
+            "position": 194
+          },
+          "endLoc": {
+            "line": 33,
+            "column": 14,
+            "position": 297
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 14,
+          "end": 26,
+          "startLoc": {
+            "line": 14,
+            "column": 25,
+            "position": 168
+          },
+          "endLoc": {
+            "line": 26,
+            "column": 17,
+            "position": 271
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 6,
+        "tokens": 0,
+        "fragment": "private transcriptCb: ((r: TranscriptResult) => void) | null = null;\n  private errorCb: ((e: Error) => void) | null = null;\n  private mediaStream: MediaStream | null = null;\n  private audioContext: AudioContext | null = null;\n  private processor: ScriptProcessorNode | null = null;\n  private audioQueue",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/aws-transcribe.ts",
+          "start": 49,
+          "end": 54,
+          "startLoc": {
+            "line": 49,
+            "column": 3,
+            "position": 381
+          },
+          "endLoc": {
+            "line": 54,
+            "column": 21,
+            "position": 490
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 9,
+          "end": 14,
+          "startLoc": {
+            "line": 9,
+            "column": 3,
+            "position": 54
+          },
+          "endLoc": {
+            "line": 14,
+            "column": 17,
+            "position": 163
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 14,
+        "tokens": 0,
+        "fragment": "| null = null;\n  private active = false;\n  readonly isStreaming = true;\n\n  onTranscript(cb: (r: TranscriptResult) => void) {\n    this.transcriptCb = cb;\n  }\n\n  onError(cb: (e: Error) => void) {\n    this.errorCb = cb;\n  }\n\n  async connect(config: TranscriptionConfig): Promise<void> {\n    if",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/aws-transcribe.ts",
+          "start": 54,
+          "end": 67,
+          "startLoc": {
+            "line": 54,
+            "column": 39,
+            "position": 495
+          },
+          "endLoc": {
+            "line": 67,
+            "column": 7,
+            "position": 613
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 13,
+          "end": 26,
+          "startLoc": {
+            "line": 13,
+            "column": 42,
+            "position": 151
+          },
+          "endLoc": {
+            "line": 26,
+            "column": 10,
+            "position": 269
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 12,
+        "tokens": 0,
+        "fragment": ";\n\n    this.mediaStream = await navigator.mediaDevices.getUserMedia({\n      audio: true,\n    });\n\n    this.audioContext = new AudioContext();\n    const source = this.audioContext.createMediaStreamSource(this.mediaStream);\n    const nativeSampleRate = this.audioContext.sampleRate;\n    const targetSampleRate = 16000;\n\n    this.audioQueue",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/aws-transcribe.ts",
+          "start": 80,
+          "end": 91,
+          "startLoc": {
+            "line": 80,
+            "column": 7,
+            "position": 718
+          },
+          "endLoc": {
+            "line": 91,
+            "column": 20,
+            "position": 812
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 51,
+          "end": 62,
+          "startLoc": {
+            "line": 51,
+            "column": 79,
+            "position": 597
+          },
+          "endLoc": {
+            "line": 62,
+            "column": 16,
+            "position": 690
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 15,
+        "tokens": 0,
+        "fragment": ");\n  }\n\n  private cleanup() {\n    if (this.processor) {\n      this.processor.disconnect();\n      this.processor = null;\n    }\n    if (this.audioContext && this.audioContext.state !== \"closed\") {\n      this.audioContext.close();\n    }\n    this.audioContext = null;\n    this.mediaStream?.getTracks().forEach((t) => t.stop());\n    this.mediaStream = null;\n    this",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/aws-transcribe.ts",
+          "start": 192,
+          "end": 206,
+          "startLoc": {
+            "line": 192,
+            "column": 18,
+            "position": 1853
+          },
+          "endLoc": {
+            "line": 206,
+            "column": 9,
+            "position": 1986
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 190,
+          "end": 204,
+          "startLoc": {
+            "line": 190,
+            "column": 11,
+            "position": 1737
+          },
+          "endLoc": {
+            "line": 204,
+            "column": 4,
+            "position": 1870
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 11,
+        "tokens": 0,
+        "fragment": "): Int16Array {\n  const ratio = fromRate / toRate;\n  const length = Math.floor(float32.length / ratio);\n  const result = new Int16Array(length);\n  for (let i = 0; i < length; i++) {\n    const srcIdx = Math.floor(i * ratio);\n    const s = Math.max(-1, Math.min(1, float32[srcIdx]));\n    result[i] = s < 0 ? s * 0x8000 : s * 0x7fff;\n  }\n  return result;\n}",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/aws-transcribe.ts",
+          "start": 219,
+          "end": 229,
+          "startLoc": {
+            "line": 219,
+            "column": 1,
+            "position": 2062
+          },
+          "endLoc": {
+            "line": 229,
+            "column": 2,
+            "position": 2234
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 211,
+          "end": 221,
+          "startLoc": {
+            "line": 211,
+            "column": 1,
+            "position": 1900
+          },
+          "endLoc": {
+            "line": 221,
+            "column": 2,
+            "position": 2072
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 20,
+        "tokens": 0,
+        "fragment": "implements TranscriptionProvider {\n  private ws: WebSocket | null = null;\n  private transcriptCb: ((r: TranscriptResult) => void) | null = null;\n  private errorCb: ((e: Error) => void) | null = null;\n  private mediaStream: MediaStream | null = null;\n  private audioContext: AudioContext | null = null;\n  private processor: ScriptProcessorNode | null = null;\n  private active = false;\n  readonly isStr",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/assemblyai.ts",
+          "start": 7,
+          "end": 26,
+          "startLoc": {
+            "line": 7,
+            "column": 33,
+            "position": 30
+          },
+          "endLoc": {
+            "line": 26,
+            "column": 20,
+            "position": 271
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 7,
+          "end": 26,
+          "startLoc": {
+            "line": 7,
+            "column": 29,
+            "position": 30
+          },
+          "endLoc": {
+            "line": 26,
+            "column": 17,
+            "position": 271
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 19,
+        "tokens": 0,
+        "fragment": "${params.toString()}`;\n\n    this.mediaStream = await navigator.mediaDevices.getUserMedia({\n      audio: true,\n    });\n\n    this.audioContext = new AudioContext();\n    const source = this.audioContext.createMediaStreamSource(this.mediaStream);\n    const nativeSampleRate = this.audioContext.sampleRate;\n    const targetSampleRate = 16000;\n\n    this.active = true;\n\n    return new Promise((resolve, rej",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/assemblyai.ts",
+          "start": 43,
+          "end": 61,
+          "startLoc": {
+            "line": 43,
+            "column": 55,
+            "position": 469
+          },
+          "endLoc": {
+            "line": 61,
+            "column": 25,
+            "position": 629
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 51,
+          "end": 57,
+          "startLoc": {
+            "line": 51,
+            "column": 58,
+            "position": 589
+          },
+          "endLoc": {
+            "line": 57,
+            "column": 21,
+            "position": 538
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 13,
+        "tokens": 0,
+        "fragment": ");\n        this.errorCb?.(err);\n        if (!settled) {\n          settled = true;\n          this.cleanup();\n          reject(err);\n        }\n      };\n\n      this.ws.onclose = (ev) => {\n        if (ev.code !== 1000 && ev.code !== 1001 && ev.code !== 1005 && this.active) {\n          const closeErr = new Error(\n            `AssemblyAI connection closed: ",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/assemblyai.ts",
+          "start": 70,
+          "end": 82,
+          "startLoc": {
+            "line": 70,
+            "column": 71,
+            "position": 715
+          },
+          "endLoc": {
+            "line": 82,
+            "column": 44,
+            "position": 841
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 74,
+          "end": 91,
+          "startLoc": {
+            "line": 74,
+            "column": 67,
+            "position": 818
+          },
+          "endLoc": {
+            "line": 91,
+            "column": 40,
+            "position": 951
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 16,
+        "tokens": 0,
+        "fragment": "${ev.reason || ev.code}`\n          );\n          this.errorCb?.(closeErr);\n          if (!settled) {\n            settled = true;\n            this.cleanup();\n            reject(closeErr);\n          }\n        }\n      };\n\n      this.ws.onmessage = (event) => {\n        try {\n          const data = JSON.parse(event.data);\n\n          if",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/assemblyai.ts",
+          "start": 82,
+          "end": 97,
+          "startLoc": {
+            "line": 82,
+            "column": 44,
+            "position": 842
+          },
+          "endLoc": {
+            "line": 97,
+            "column": 13,
+            "position": 953
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 91,
+          "end": 89,
+          "startLoc": {
+            "line": 91,
+            "column": 40,
+            "position": 952
+          },
+          "endLoc": {
+            "line": 89,
+            "column": 17,
+            "position": 823
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 22,
+        "tokens": 0,
+        "fragment": ");\n          }\n        } catch {\n          // ignore malformed messages\n        }\n      };\n    });\n  }\n\n  private startAudioCapture(\n    source: MediaStreamAudioSourceNode,\n    nativeSampleRate: number,\n    targetSampleRate: number\n  ) {\n    this.processor = this.audioContext!.createScriptProcessor(4096, 1, 1);\n\n    this.processor.onaudioprocess = (e) => {\n      if (!this.active || !this.ws || thi",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/assemblyai.ts",
+          "start": 107,
+          "end": 128,
+          "startLoc": {
+            "line": 107,
+            "column": 26,
+            "position": 1062
+          },
+          "endLoc": {
+            "line": 128,
+            "column": 11,
+            "position": 1239
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 130,
+          "end": 152,
+          "startLoc": {
+            "line": 130,
+            "column": 13,
+            "position": 1291
+          },
+          "endLoc": {
+            "line": 152,
+            "column": 12,
+            "position": 1469
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 9,
+        "tokens": 0,
+        "fragment": ", {\n      method: \"POST\",\n      headers: { \"Content-Type\": \"application/json\" },\n      body: JSON.stringify({ apiKey }),\n    });\n\n    if (!res.ok) {\n      const data = await res.json().catch(() => ({ error: \"Token request failed\" }));\n      throw new Error(data.error || \"Failed to get AssemblyAI temporary token\"",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/assemblyai.ts",
+          "start": 136,
+          "end": 144,
+          "startLoc": {
+            "line": 136,
+            "column": 52,
+            "position": 1320
+          },
+          "endLoc": {
+            "line": 144,
+            "column": 79,
+            "position": 1427
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/elevenlabs.ts",
+          "start": 183,
+          "end": 191,
+          "startLoc": {
+            "line": 183,
+            "column": 52,
+            "position": 1516
+          },
+          "endLoc": {
+            "line": 191,
+            "column": 80,
+            "position": 1623
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 15,
+        "tokens": 0,
+        "fragment": ");\n    }\n    return data.token;\n  }\n\n  sendAudio(_chunk: Blob) {\n    // Audio capture is managed internally via Web Audio API (PCM16 at 16kHz)\n  }\n\n  disconnect() {\n    this.active = false;\n\n    if (this.ws && this.ws.readyState === WebSocket.OPEN) {\n      try {\n        this.ws.send(JSON.stringify({ type: \"Terminate\"",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/assemblyai.ts",
+          "start": 149,
+          "end": 163,
+          "startLoc": {
+            "line": 149,
+            "column": 58,
+            "position": 1471
+          },
+          "endLoc": {
+            "line": 163,
+            "column": 56,
+            "position": 1571
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/elevenlabs.ts",
+          "start": 196,
+          "end": 178,
+          "startLoc": {
+            "line": 196,
+            "column": 58,
+            "position": 1667
+          },
+          "endLoc": {
+            "line": 178,
+            "column": 52,
+            "position": 1656
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 44,
+        "tokens": 0,
+        "fragment": "}));\n      } catch {\n        // ignore send errors during disconnect\n      }\n    }\n\n    setTimeout(() => {\n      if (this.ws) {\n        this.ws.close();\n        this.ws = null;\n      }\n      this.cleanup();\n    }, 500);\n  }\n\n  private cleanup() {\n    if (this.processor) {\n      this.processor.disconnect();\n      this.processor = null;\n    }\n    if (this.audioContext && this.audioContext.state !== ",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/assemblyai.ts",
+          "start": 163,
+          "end": 206,
+          "startLoc": {
+            "line": 163,
+            "column": 57,
+            "position": 1573
+          },
+          "endLoc": {
+            "line": 206,
+            "column": 2,
+            "position": 1987
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/providers/sarvam.ts",
+          "start": 178,
+          "end": 221,
+          "startLoc": {
+            "line": 178,
+            "column": 53,
+            "position": 1658
+          },
+          "endLoc": {
+            "line": 221,
+            "column": 2,
+            "position": 2072
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 8,
+        "tokens": 0,
+        "fragment": "= [\n  \"af\",\"ar\",\"hy\",\"az\",\"be\",\"bs\",\"bg\",\"ca\",\"zh\",\"hr\",\"cs\",\"da\",\"nl\",\"en\",\"et\",\n  \"fi\",\"fr\",\"gl\",\"de\",\"el\",\"he\",\"hi\",\"hu\",\"is\",\"id\",\"it\",\"ja\",\"kn\",\"kk\",\"ko\",\n  \"lv\",\"lt\",\"mk\",\"ms\",\"mr\",\"mi\",\"ne\",\"no\",\"fa\",\"pl\",\"pt\",\"ro\",\"ru\",\"sk\",\"sl\",\n  \"sr\",\"es\",\"sw\",\"sv\",\"tl\",\"ta\",\"th\",\"tr\",\"uk\",\"ur\",\"vi\",\"cy\",\n];\n\nconst ELEVENLABS_SCRIBE_LANGS",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/lib/models.ts",
+          "start": 328,
+          "end": 335,
+          "startLoc": {
+            "line": 328,
+            "column": 35,
+            "position": 3227
+          },
+          "endLoc": {
+            "line": 335,
+            "column": 30,
+            "position": 3359
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/lib/models.ts",
+          "start": 280,
+          "end": 287,
+          "startLoc": {
+            "line": 280,
+            "column": 21,
+            "position": 2461
+          },
+          "endLoc": {
+            "line": 287,
+            "column": 18,
+            "position": 2593
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 7,
+        "tokens": 0,
+        "fragment": ": vi.fn().mockImplementation(() => ({\n    connect: vi.fn().mockResolvedValue(undefined),\n    sendAudio: vi.fn(),\n    disconnect: vi.fn(),\n    onTranscript: vi.fn(),\n    onError: vi.fn(),\n    isStreaming: false",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 36,
+          "end": 42,
+          "startLoc": {
+            "line": 36,
+            "column": 17,
+            "position": 350
+          },
+          "endLoc": {
+            "line": 42,
+            "column": 23,
+            "position": 432
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 25,
+          "end": 31,
+          "startLoc": {
+            "line": 25,
+            "column": 16,
+            "position": 236
+          },
+          "endLoc": {
+            "line": 31,
+            "column": 22,
+            "position": 318
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 11,
+        "tokens": 0,
+        "fragment": ": vi.fn().mockImplementation(() => ({\n    connect: vi.fn().mockResolvedValue(undefined),\n    sendAudio: vi.fn(),\n    disconnect: vi.fn(),\n    onTranscript: vi.fn(),\n    onError: vi.fn(),\n    isStreaming: true,\n  })),\n}));\n\nvi.mock(\"@/lib/providers/assemblyai\"",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 47,
+          "end": 57,
+          "startLoc": {
+            "line": 47,
+            "column": 24,
+            "position": 464
+          },
+          "endLoc": {
+            "line": 57,
+            "column": 37,
+            "position": 565
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 25,
+          "end": 35,
+          "startLoc": {
+            "line": 25,
+            "column": 16,
+            "position": 236
+          },
+          "endLoc": {
+            "line": 35,
+            "column": 33,
+            "position": 337
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 11,
+        "tokens": 0,
+        "fragment": ": vi.fn().mockImplementation(() => ({\n    connect: vi.fn().mockResolvedValue(undefined),\n    sendAudio: vi.fn(),\n    disconnect: vi.fn(),\n    onTranscript: vi.fn(),\n    onError: vi.fn(),\n    isStreaming: true,\n  })),\n}));\n\nvi.mock(\"@/lib/providers/elevenlabs\"",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 58,
+          "end": 68,
+          "startLoc": {
+            "line": 58,
+            "column": 21,
+            "position": 578
+          },
+          "endLoc": {
+            "line": 68,
+            "column": 37,
+            "position": 679
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 25,
+          "end": 35,
+          "startLoc": {
+            "line": 25,
+            "column": 16,
+            "position": 236
+          },
+          "endLoc": {
+            "line": 35,
+            "column": 33,
+            "position": 337
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 11,
+        "tokens": 0,
+        "fragment": ": vi.fn().mockImplementation(() => ({\n    connect: vi.fn().mockResolvedValue(undefined),\n    sendAudio: vi.fn(),\n    disconnect: vi.fn(),\n    onTranscript: vi.fn(),\n    onError: vi.fn(),\n    isStreaming: true,\n  })),\n}));\n\nvi.mock(\"@/lib/providers/sarvam\"",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 69,
+          "end": 79,
+          "startLoc": {
+            "line": 69,
+            "column": 21,
+            "position": 692
+          },
+          "endLoc": {
+            "line": 79,
+            "column": 33,
+            "position": 793
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 25,
+          "end": 35,
+          "startLoc": {
+            "line": 25,
+            "column": 16,
+            "position": 236
+          },
+          "endLoc": {
+            "line": 35,
+            "column": 33,
+            "position": 337
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 11,
+        "tokens": 0,
+        "fragment": ": vi.fn().mockImplementation(() => ({\n    connect: vi.fn().mockResolvedValue(undefined),\n    sendAudio: vi.fn(),\n    disconnect: vi.fn(),\n    onTranscript: vi.fn(),\n    onError: vi.fn(),\n    isStreaming: true,\n  })),\n}));\n\ndescribe",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 80,
+          "end": 90,
+          "startLoc": {
+            "line": 80,
+            "column": 17,
+            "position": 806
+          },
+          "endLoc": {
+            "line": 90,
+            "column": 9,
+            "position": 903
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 25,
+          "end": 35,
+          "startLoc": {
+            "line": 25,
+            "column": 16,
+            "position": 236
+          },
+          "endLoc": {
+            "line": 35,
+            "column": 3,
+            "position": 333
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 13,
+        "tokens": 0,
+        "fragment": ", async () => {\n    const { result } = renderHook(() => useTranscription());\n    await act(async () => {\n      await result.current.connect({\n        provider: \"deepgram\",\n        apiKey: \"test-key\",\n        model: \"nova-3\",\n        language: \"en\",\n        punctuate: true,\n        profanityFilter: false,\n      });\n    });\n    const blob",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 119,
+          "end": 131,
+          "startLoc": {
+            "line": 119,
+            "column": 52,
+            "position": 1197
+          },
+          "endLoc": {
+            "line": 131,
+            "column": 15,
+            "position": 1312
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 102,
+          "end": 114,
+          "startLoc": {
+            "line": 102,
+            "column": 45,
+            "position": 1034
+          },
+          "endLoc": {
+            "line": 114,
+            "column": 12,
+            "position": 1149
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 13,
+        "tokens": 0,
+        "fragment": ", async () => {\n    const { result } = renderHook(() => useTranscription());\n    await act(async () => {\n      await result.current.connect({\n        provider: \"deepgram\",\n        apiKey: \"test-key\",\n        model: \"nova-3\",\n        language: \"en\",\n        punctuate: true,\n        profanityFilter: false,\n      });\n    });\n    act",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 138,
+          "end": 150,
+          "startLoc": {
+            "line": 138,
+            "column": 34,
+            "position": 1384
+          },
+          "endLoc": {
+            "line": 150,
+            "column": 8,
+            "position": 1497
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 102,
+          "end": 114,
+          "startLoc": {
+            "line": 102,
+            "column": 45,
+            "position": 1034
+          },
+          "endLoc": {
+            "line": 114,
+            "column": 10,
+            "position": 1147
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "typescript",
+        "lines": 14,
+        "tokens": 0,
+        "fragment": ", async () => {\n    const { result } = renderHook(() => useTranscription());\n    await act(async () => {\n      await result.current.connect({\n        provider: \"deepgram\",\n        apiKey: \"test-key\",\n        model: \"nova-3\",\n        language: \"en\",\n        punctuate: true,\n        profanityFilter: false,\n      });\n    });\n    act(() => {\n      result.current.clear",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 164,
+          "end": 177,
+          "startLoc": {
+            "line": 164,
+            "column": 41,
+            "position": 1618
+          },
+          "endLoc": {
+            "line": 177,
+            "column": 27,
+            "position": 1745
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/hooks/useTranscription.test.ts",
+          "start": 102,
+          "end": 151,
+          "startLoc": {
+            "line": 102,
+            "column": 45,
+            "position": 1034
+          },
+          "endLoc": {
+            "line": 151,
+            "column": 31,
+            "position": 1511
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "javascript",
+        "lines": 19,
+        "tokens": 0,
+        "fragment": ", isFinal: true }]}\n        fullText=\"Hello\"\n        onClear={() => {}}\n      />\n    );\n    fireEvent.click(screen.getByText(\"Copy\"));\n    expect(writeText).toHaveBeenCalledWith(\"Hello\");\n  });\n\n  it(\"shows Copied! after copy\", async () => {\n    vi.stubGlobal(\"navigator\", {\n      clipboard: { writeText: vi.fn().mockResolvedValue(undefined) },\n    });\n    render(\n      <TranscriptionOutput\n        ",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/components/TranscriptionOutput.test.tsx",
+          "start": 113,
+          "end": 131,
+          "startLoc": {
+            "line": 113,
+            "column": 42,
+            "position": 909
+          },
+          "endLoc": {
+            "line": 131,
+            "column": 27,
+            "position": 1082
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/components/TranscriptionOutput.test.tsx",
+          "start": 42,
+          "end": 56,
+          "startLoc": {
+            "line": 42,
+            "column": 48,
+            "position": 329
+          },
+          "endLoc": {
+            "line": 56,
+            "column": 27,
+            "position": 452
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "javascript",
+        "lines": 22,
+        "tokens": 0,
+        "fragment": "}>{o.label}</option>\n          ))}\n        </select>\n        <p className={classNames(\"text-xs mt-1\", dark ? \"text-[#71717a]\" : \"text-[#a1a1aa]\")}>\n          {param.description}\n        </p>\n      </div>\n    );\n  }\n\n  // string type\n  const strVal = typeof value === \"string\" ? value : String(param.default ?? \"\");\n  return (\n    <div>\n      <label className={classNames(\"block text-sm font-medium mb",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/components/SettingsPanel.tsx",
+          "start": 142,
+          "end": 163,
+          "startLoc": {
+            "line": 142,
+            "column": 49,
+            "position": 1088
+          },
+          "endLoc": {
+            "line": 163,
+            "column": 27,
+            "position": 1277
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/components/SettingsPanel.tsx",
+          "start": 115,
+          "end": 134,
+          "startLoc": {
+            "line": 115,
+            "column": 12,
+            "position": 861
+          },
+          "endLoc": {
+            "line": 134,
+            "column": 32,
+            "position": 1034
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "tsx",
+        "lines": 6,
+        "tokens": 0,
+        "fragment": "\" strokeLinecap=\"round\" strokeLinejoin=\"round\">\n              <path d=\"M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z\" />\n              <path d=\"M19 10v2a7 7 0 0 1-14 0v-2\" />\n              <line x1=\"12\" x2=\"12\" y1=\"19\" y2=\"22\" />\n            </svg>\n          )",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/components/RecordButton.tsx",
+          "start": 49,
+          "end": 54,
+          "startLoc": {
+            "line": 49,
+            "column": 102,
+            "position": 378
+          },
+          "endLoc": {
+            "line": 54,
+            "column": 12,
+            "position": 453
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/components/TopBar.tsx",
+          "start": 23,
+          "end": 28,
+          "startLoc": {
+            "line": 23,
+            "column": 102,
+            "position": 181
+          },
+          "endLoc": {
+            "line": 28,
+            "column": 11,
+            "position": 256
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      },
+      {
+        "format": "javascript",
+        "lines": 15,
+        "tokens": 0,
+        "fragment": "}>Chrome / Edge:</strong>{\" \"}\n            Click the lock icon in the address bar, find &quot;Microphone&quot;, and set to &quot;Allow&quot;.\n          </p>\n          <p className={theme === \"dark\" ? \"text-[#a1a1aa]\" : \"text-[#71717a]\"}>\n            <strong className={theme === \"dark\" ? \"text-white\" : \"text-[#09090b]\"}>Firefox:</strong>{\" \"}\n            Click the permissions icon (left of address ",
+        "firstFile": {
+          "name": "projects/voice-typing-vibecoding/components/MicPermissionPrompt.tsx",
+          "start": 53,
+          "end": 67,
+          "startLoc": {
+            "line": 53,
+            "column": 82,
+            "position": 448
+          },
+          "endLoc": {
+            "line": 67,
+            "column": 29,
+            "position": 689
+          }
+        },
+        "secondFile": {
+          "name": "projects/voice-typing-vibecoding/components/MicPermissionPrompt.tsx",
+          "start": 50,
+          "end": 60,
+          "startLoc": {
+            "line": 50,
+            "column": 12,
+            "position": 403
+          },
+          "endLoc": {
+            "line": 60,
+            "column": 31,
+            "position": 596
+          }
+        },
+        "firstFileStart": {},
+        "secondFileStart": {}
+      }
+    ],
+    "totalFiles": 96
+  },
+  "severity": "Medium",
+  "severityClass": "badge-medium"
+}
