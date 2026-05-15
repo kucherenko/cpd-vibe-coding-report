@@ -1,6 +1,7 @@
 [
   {
     "project": "DVVCA",
+    "owner": "DragonJAR",
     "totalClones": 9,
     "totalLines": 4340,
     "totalDuplicatedLines": 100,
@@ -21,10 +22,12 @@
     },
     "cloneTypeCounts": {
       "code": 9
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "Jellyfish",
+    "owner": "Forget-C",
     "totalClones": 280,
     "totalLines": 83566,
     "totalDuplicatedLines": 5054,
@@ -62,19 +65,12 @@
     "cloneTypeCounts": {
       "code": 271,
       "documentation": 9
-    }
-  },
-  {
-    "project": "SC2SmoothBrainifier",
-    "totalClones": 0,
-    "totalLines": 1309,
-    "totalDuplicatedLines": 0,
-    "percentage": 0,
-    "formatStats": {},
-    "cloneTypeCounts": {}
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "Vibe-Trading",
+    "owner": "HKUDS",
     "totalClones": 149,
     "totalLines": 104461,
     "totalDuplicatedLines": 4865,
@@ -108,10 +104,12 @@
     "cloneTypeCounts": {
       "code": 75,
       "documentation": 74
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "VibeVoice",
+    "owner": "Microsoft",
     "totalClones": 45,
     "totalLines": 13196,
     "totalDuplicatedLines": 1051,
@@ -133,10 +131,12 @@
     "cloneTypeCounts": {
       "code": 42,
       "documentation": 3
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "adversarial-dev",
+    "owner": "coleam00",
     "totalClones": 15,
     "totalLines": 2755,
     "totalDuplicatedLines": 346,
@@ -149,10 +149,59 @@
     },
     "cloneTypeCounts": {
       "code": 15
-    }
+    },
+    "crossProjectClones": 0
+  },
+  {
+    "project": "agent-skills",
+    "owner": "addyosmani",
+    "totalClones": 51,
+    "totalLines": 22372,
+    "totalDuplicatedLines": 8415,
+    "percentage": 37.61,
+    "formatStats": {
+      "typescript": {
+        "count": 11,
+        "lines": 1353
+      },
+      "markdown": {
+        "count": 26,
+        "lines": 5463
+      },
+      "tsx": {
+        "count": 3,
+        "lines": 292
+      },
+      "markup": {
+        "count": 1,
+        "lines": 60
+      },
+      "bash": {
+        "count": 6,
+        "lines": 506
+      },
+      "javascript": {
+        "count": 1,
+        "lines": 220
+      },
+      "yaml": {
+        "count": 2,
+        "lines": 542
+      },
+      "python": {
+        "count": 1,
+        "lines": 30
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 25,
+      "documentation": 26
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "agent-teams",
+    "owner": "danfmaia",
     "totalClones": 19,
     "totalLines": 6943,
     "totalDuplicatedLines": 477,
@@ -169,10 +218,12 @@
     },
     "cloneTypeCounts": {
       "code": 19
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "ai-job-agent",
+    "owner": "AkbarDevop",
     "totalClones": 25,
     "totalLines": 14350,
     "totalDuplicatedLines": 254,
@@ -185,10 +236,12 @@
     },
     "cloneTypeCounts": {
       "code": 25
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "airpsx-frontend",
+    "owner": "barisyild",
     "totalClones": 14,
     "totalLines": 14914,
     "totalDuplicatedLines": 190,
@@ -213,10 +266,12 @@
     },
     "cloneTypeCounts": {
       "code": 14
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "banana-slides",
+    "owner": "Anionex",
     "totalClones": 156,
     "totalLines": 68245,
     "totalDuplicatedLines": 2135,
@@ -254,10 +309,12 @@
     "cloneTypeCounts": {
       "code": 151,
       "documentation": 5
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "billmanager",
+    "owner": "brdweb",
     "totalClones": 165,
     "totalLines": 48223,
     "totalDuplicatedLines": 3285,
@@ -282,22 +339,24 @@
     },
     "cloneTypeCounts": {
       "code": 165
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "cherry-studio",
-    "totalClones": 921,
-    "totalLines": 396534,
-    "totalDuplicatedLines": 24747,
-    "percentage": 6.24,
+    "owner": "CherryHQ",
+    "totalClones": 924,
+    "totalLines": 396344,
+    "totalDuplicatedLines": 24776,
+    "percentage": 6.25,
     "formatStats": {
       "tsx": {
         "count": 314,
         "lines": 6261
       },
       "typescript": {
-        "count": 384,
-        "lines": 6158
+        "count": 387,
+        "lines": 6190
       },
       "javascript": {
         "count": 80,
@@ -341,12 +400,14 @@
       }
     },
     "cloneTypeCounts": {
-      "code": 852,
+      "code": 855,
       "documentation": 69
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "claude-task-master",
+    "owner": "eyaltoledano",
     "totalClones": 697,
     "totalLines": 217086,
     "totalDuplicatedLines": 13163,
@@ -388,10 +449,55 @@
     "cloneTypeCounts": {
       "code": 658,
       "documentation": 39
-    }
+    },
+    "crossProjectClones": 0
+  },
+  {
+    "project": "claude-world-studio",
+    "owner": "claude-world",
+    "totalClones": 31,
+    "totalLines": 23982,
+    "totalDuplicatedLines": 463,
+    "percentage": 1.93,
+    "formatStats": {
+      "typescript": {
+        "count": 11,
+        "lines": 119
+      },
+      "tsx": {
+        "count": 11,
+        "lines": 123
+      },
+      "python": {
+        "count": 1,
+        "lines": 12
+      },
+      "markdown": {
+        "count": 4,
+        "lines": 165
+      },
+      "javascript": {
+        "count": 2,
+        "lines": 38
+      },
+      "json": {
+        "count": 1,
+        "lines": 19
+      },
+      "bash": {
+        "count": 1,
+        "lines": 18
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 27,
+      "documentation": 4
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "claude_code_agent",
+    "owner": "kcenon",
     "totalClones": 1377,
     "totalLines": 432251,
     "totalDuplicatedLines": 64620,
@@ -429,10 +535,12 @@
     "cloneTypeCounts": {
       "code": 955,
       "documentation": 422
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "cockpit-tools",
+    "owner": "jlcodes99",
     "totalClones": 620,
     "totalLines": 115863,
     "totalDuplicatedLines": 23815,
@@ -473,10 +581,12 @@
     },
     "cloneTypeCounts": {
       "code": 620
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "codebase-to-course",
+    "owner": "zarazhangrui",
     "totalClones": 4,
     "totalLines": 6231,
     "totalDuplicatedLines": 31,
@@ -489,10 +599,12 @@
     },
     "cloneTypeCounts": {
       "code": 4
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "cofounder",
+    "owner": "nraiden",
     "totalClones": 118,
     "totalLines": 29658,
     "totalDuplicatedLines": 7509,
@@ -521,10 +633,12 @@
     },
     "cloneTypeCounts": {
       "code": 118
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "context-engineering-intro",
+    "owner": "coleam00",
     "totalClones": 98,
     "totalLines": 57743,
     "totalDuplicatedLines": 11939,
@@ -558,10 +672,12 @@
     "cloneTypeCounts": {
       "code": 64,
       "documentation": 34
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "deepseek_ocr_app",
+    "owner": "rdumasia303",
     "totalClones": 4,
     "totalLines": 5486,
     "totalDuplicatedLines": 69,
@@ -578,10 +694,12 @@
     },
     "cloneTypeCounts": {
       "code": 4
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "deutsia-radio",
+    "owner": "deutsia",
     "totalClones": 286,
     "totalLines": 47826,
     "totalDuplicatedLines": 4030,
@@ -602,10 +720,30 @@
     },
     "cloneTypeCounts": {
       "code": 286
-    }
+    },
+    "crossProjectClones": 0
+  },
+  {
+    "project": "devin.cursorrules",
+    "owner": "grapeot",
+    "totalClones": 1,
+    "totalLines": 2599,
+    "totalDuplicatedLines": 5,
+    "percentage": 0.19,
+    "formatStats": {
+      "markdown": {
+        "count": 1,
+        "lines": 6
+      }
+    },
+    "cloneTypeCounts": {
+      "documentation": 1
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "fastapi_mcp",
+    "owner": "tadata-org",
     "totalClones": 31,
     "totalLines": 8285,
     "totalDuplicatedLines": 526,
@@ -622,10 +760,12 @@
     },
     "cloneTypeCounts": {
       "code": 31
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "frontend-slides",
+    "owner": "zarazhangrui",
     "totalClones": 16,
     "totalLines": 8026,
     "totalDuplicatedLines": 3428,
@@ -659,42 +799,23 @@
     "cloneTypeCounts": {
       "code": 12,
       "documentation": 4
-    }
+    },
+    "crossProjectClones": 0
   },
   {
-    "project": "hapi",
-    "totalClones": 413,
-    "totalLines": 135085,
-    "totalDuplicatedLines": 6631,
-    "percentage": 4.91,
-    "formatStats": {
-      "json": {
-        "count": 5,
-        "lines": 98
-      },
-      "javascript": {
-        "count": 12,
-        "lines": 1194
-      },
-      "tsx": {
-        "count": 96,
-        "lines": 1631
-      },
-      "typescript": {
-        "count": 298,
-        "lines": 4086
-      },
-      "yaml": {
-        "count": 2,
-        "lines": 35
-      }
-    },
-    "cloneTypeCounts": {
-      "code": 413
-    }
+    "project": "jarvis-voice-assistant",
+    "owner": "Julian-Ivanov",
+    "totalClones": 0,
+    "totalLines": 2348,
+    "totalDuplicatedLines": 0,
+    "percentage": 0,
+    "formatStats": {},
+    "cloneTypeCounts": {},
+    "crossProjectClones": 0
   },
   {
     "project": "lightning-vibe-coding",
+    "owner": "getAlby",
     "totalClones": 5,
     "totalLines": 5371,
     "totalDuplicatedLines": 202,
@@ -719,10 +840,12 @@
     },
     "cloneTypeCounts": {
       "code": 5
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "lk_locator",
+    "owner": "nuuuwan",
     "totalClones": 2,
     "totalLines": 2654,
     "totalDuplicatedLines": 21,
@@ -735,10 +858,12 @@
     },
     "cloneTypeCounts": {
       "code": 2
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "lost.js",
+    "owner": "grothkopp",
     "totalClones": 8,
     "totalLines": 6758,
     "totalDuplicatedLines": 84,
@@ -759,10 +884,12 @@
     },
     "cloneTypeCounts": {
       "code": 8
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "medkit-app",
+    "owner": "bedriyan",
     "totalClones": 19,
     "totalLines": 21129,
     "totalDuplicatedLines": 338,
@@ -783,10 +910,12 @@
     },
     "cloneTypeCounts": {
       "code": 19
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "n8n-mcp",
+    "owner": "czlonkowski",
     "totalClones": 988,
     "totalLines": 228130,
     "totalDuplicatedLines": 20497,
@@ -828,19 +957,23 @@
     "cloneTypeCounts": {
       "code": 981,
       "documentation": 7
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "n8n-workflows-noz",
+    "owner": "MrNozz",
     "totalClones": 0,
     "totalLines": 1202,
     "totalDuplicatedLines": 0,
     "percentage": 0,
     "formatStats": {},
-    "cloneTypeCounts": {}
+    "cloneTypeCounts": {},
+    "crossProjectClones": 0
   },
   {
     "project": "oh-my-claudecode",
+    "owner": "Yeachan-Heo",
     "totalClones": 2247,
     "totalLines": 530991,
     "totalDuplicatedLines": 32431,
@@ -870,14 +1003,16 @@
     "cloneTypeCounts": {
       "code": 2238,
       "documentation": 9
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "onlook",
+    "owner": "onlook-dev",
     "totalClones": 426,
-    "totalLines": 151648,
+    "totalLines": 151448,
     "totalDuplicatedLines": 13502,
-    "percentage": 8.9,
+    "percentage": 8.92,
     "formatStats": {
       "javascript": {
         "count": 41,
@@ -919,10 +1054,12 @@
     "cloneTypeCounts": {
       "code": 425,
       "documentation": 1
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "openv0",
+    "owner": "nraiden",
     "totalClones": 110,
     "totalLines": 23370,
     "totalDuplicatedLines": 5240,
@@ -960,10 +1097,12 @@
     "cloneTypeCounts": {
       "code": 108,
       "documentation": 2
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "paycan",
+    "owner": "paycan-app",
     "totalClones": 76,
     "totalLines": 24716,
     "totalDuplicatedLines": 1512,
@@ -989,10 +1128,12 @@
     "cloneTypeCounts": {
       "code": 75,
       "documentation": 1
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "prodlint",
+    "owner": "prodlint",
     "totalClones": 45,
     "totalLines": 14847,
     "totalDuplicatedLines": 407,
@@ -1005,10 +1146,12 @@
     },
     "cloneTypeCounts": {
       "code": 45
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "refly",
+    "owner": "refly-ai",
     "totalClones": 774,
     "totalLines": 310831,
     "totalDuplicatedLines": 13728,
@@ -1062,19 +1205,12 @@
     "cloneTypeCounts": {
       "code": 752,
       "documentation": 22
-    }
-  },
-  {
-    "project": "safe-vibe-coding",
-    "totalClones": 0,
-    "totalLines": 854,
-    "totalDuplicatedLines": 0,
-    "percentage": 0,
-    "formatStats": {},
-    "cloneTypeCounts": {}
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "serena",
+    "owner": "oraios",
     "totalClones": 299,
     "totalLines": 89473,
     "totalDuplicatedLines": 4220,
@@ -1108,10 +1244,12 @@
     "cloneTypeCounts": {
       "code": 297,
       "documentation": 2
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "sparky",
+    "owner": "januszgrze",
     "totalClones": 13,
     "totalLines": 5747,
     "totalDuplicatedLines": 242,
@@ -1128,12 +1266,14 @@
     },
     "cloneTypeCounts": {
       "code": 13
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "stagewise",
+    "owner": "stagewise-io",
     "totalClones": 462,
-    "totalLines": 217067,
+    "totalLines": 217047,
     "totalDuplicatedLines": 18444,
     "percentage": 8.5,
     "formatStats": {
@@ -1173,30 +1313,12 @@
     "cloneTypeCounts": {
       "code": 457,
       "documentation": 5
-    }
-  },
-  {
-    "project": "the-new-snap-game",
-    "totalClones": 2,
-    "totalLines": 2719,
-    "totalDuplicatedLines": 32,
-    "percentage": 1.18,
-    "formatStats": {
-      "javascript": {
-        "count": 1,
-        "lines": 17
-      },
-      "typescript": {
-        "count": 1,
-        "lines": 17
-      }
     },
-    "cloneTypeCounts": {
-      "code": 2
-    }
+    "crossProjectClones": 0
   },
   {
     "project": "ubon",
+    "owner": "luisfer",
     "totalClones": 59,
     "totalLines": 22036,
     "totalDuplicatedLines": 620,
@@ -1213,44 +1335,34 @@
     },
     "cloneTypeCounts": {
       "code": 59
-    }
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "vibe-check",
+    "owner": "benavlabs",
     "totalClones": 0,
     "totalLines": 1615,
     "totalDuplicatedLines": 0,
     "percentage": 0,
     "formatStats": {},
-    "cloneTypeCounts": {}
+    "cloneTypeCounts": {},
+    "crossProjectClones": 0
   },
   {
     "project": "vibe-security-skill",
+    "owner": "raroque",
     "totalClones": 0,
     "totalLines": 2090,
     "totalDuplicatedLines": 0,
     "percentage": 0,
     "formatStats": {},
-    "cloneTypeCounts": {}
-  },
-  {
-    "project": "vibecoins-mcp",
-    "totalClones": 4,
-    "totalLines": 2500,
-    "totalDuplicatedLines": 64,
-    "percentage": 2.56,
-    "formatStats": {
-      "javascript": {
-        "count": 4,
-        "lines": 68
-      }
-    },
-    "cloneTypeCounts": {
-      "code": 4
-    }
+    "cloneTypeCounts": {},
+    "crossProjectClones": 0
   },
   {
     "project": "voice-typing-vibecoding",
+    "owner": "lucasjiang-aoi",
     "totalClones": 43,
     "totalLines": 9309,
     "totalDuplicatedLines": 627,
@@ -1271,10 +1383,74 @@
     },
     "cloneTypeCounts": {
       "code": 43
-    }
+    },
+    "crossProjectClones": 0
+  },
+  {
+    "project": "void",
+    "owner": "voideditor",
+    "totalClones": 5312,
+    "totalLines": 1285040,
+    "totalDuplicatedLines": 84822,
+    "percentage": 6.6,
+    "formatStats": {
+      "typescript": {
+        "count": 4337,
+        "lines": 60733
+      },
+      "css": {
+        "count": 30,
+        "lines": 801
+      },
+      "javascript": {
+        "count": 134,
+        "lines": 3346
+      },
+      "tsx": {
+        "count": 3,
+        "lines": 39
+      },
+      "markup": {
+        "count": 49,
+        "lines": 1183
+      },
+      "json": {
+        "count": 646,
+        "lines": 22069
+      },
+      "txt": {
+        "count": 39,
+        "lines": 702
+      },
+      "bash": {
+        "count": 12,
+        "lines": 144
+      },
+      "objectivec": {
+        "count": 1,
+        "lines": 52
+      },
+      "handlebars": {
+        "count": 1,
+        "lines": 8
+      },
+      "rust": {
+        "count": 21,
+        "lines": 235
+      },
+      "yaml": {
+        "count": 39,
+        "lines": 822
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 5312
+    },
+    "crossProjectClones": 0
   },
   {
     "project": "yyz-agentics-june",
+    "owner": "ruvnet",
     "totalClones": 35,
     "totalLines": 16638,
     "totalDuplicatedLines": 426,
@@ -1287,6 +1463,7 @@
     },
     "cloneTypeCounts": {
       "code": 35
-    }
+    },
+    "crossProjectClones": 0
   }
 ]

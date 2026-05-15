@@ -1,0 +1,130 @@
+Found 49 cloned projects
+
+[1/49] Quick scan: DVVCA (owner: DragonJAR)
+  -> 4 340 lines, 9 clones, 2.30%
+[2/49] Quick scan: Jellyfish (owner: Forget-C)
+  -> 83 566 lines, 280 clones, 6.05%
+[3/49] Quick scan: Vibe-Trading (owner: HKUDS)
+  -> 104 461 lines, 149 clones, 4.66%
+[4/49] Quick scan: VibeVoice (owner: Microsoft)
+  -> 13 196 lines, 45 clones, 7.96%
+[5/49] Quick scan: adversarial-dev (owner: coleam00)
+  -> 2 755 lines, 15 clones, 12.56%
+[6/49] Quick scan: agent-skills (owner: addyosmani)
+  -> 22 372 lines, 51 clones, 37.61%
+[7/49] Quick scan: agent-teams (owner: danfmaia)
+  -> 6 943 lines, 19 clones, 6.87%
+[8/49] Quick scan: ai-job-agent (owner: AkbarDevop)
+  -> 14 350 lines, 25 clones, 1.77%
+[9/49] Quick scan: airpsx-frontend (owner: barisyild)
+  -> 14 914 lines, 14 clones, 1.27%
+[10/49] Quick scan: banana-slides (owner: Anionex)
+  -> 68 245 lines, 156 clones, 3.13%
+[11/49] Quick scan: billmanager (owner: brdweb)
+  -> 48 223 lines, 165 clones, 6.81%
+[12/49] Quick scan: cherry-studio (owner: CherryHQ)
+  -> 396 344 lines, 924 clones, 6.25%
+[13/49] Quick scan: claude-task-master (owner: eyaltoledano)
+  -> 217 086 lines, 697 clones, 6.06%
+[14/49] Quick scan: claude-world-studio (owner: claude-world)
+  -> 23 982 lines, 31 clones, 1.93%
+[15/49] Quick scan: claude_code_agent (owner: kcenon)
+  -> 432 251 lines, 1377 clones, 14.95%
+[16/49] Quick scan: cockpit-tools (owner: jlcodes99)
+  -> 115 863 lines, 620 clones, 20.55%
+[17/49] Quick scan: codebase-to-course (owner: zarazhangrui)
+  -> 6 231 lines, 4 clones, 0.50%
+[18/49] Quick scan: cofounder (owner: nraiden)
+  -> 29 658 lines, 118 clones, 25.32%
+[19/49] Quick scan: context-engineering-intro (owner: coleam00)
+  -> 57 743 lines, 98 clones, 20.68%
+[20/49] Quick scan: deepseek_ocr_app (owner: rdumasia303)
+  -> 5 486 lines, 4 clones, 1.26%
+[21/49] Quick scan: deutsia-radio (owner: deutsia)
+  -> 47 826 lines, 286 clones, 8.43%
+[22/49] Quick scan: devin.cursorrules (owner: grapeot)
+  -> 2 599 lines, 1 clones, 0.19%
+[23/49] Quick scan: fastapi_mcp (owner: tadata-org)
+  -> 8 285 lines, 31 clones, 6.35%
+[24/49] Quick scan: frontend-slides (owner: zarazhangrui)
+  -> 8 026 lines, 16 clones, 42.71%
+[25/49] Quick scan: hapi (owner: tiann)
+  -> 854 lines, 0 clones, 0.00%
+[26/49] Quick scan: jarvis-voice-assistant (owner: Julian-Ivanov)
+  -> 2 348 lines, 0 clones, 0.00%
+[27/49] Quick scan: lightning-vibe-coding (owner: getAlby)
+  -> 5 371 lines, 5 clones, 3.76%
+[28/49] Quick scan: lk_locator (owner: nuuuwan)
+  -> 2 654 lines, 2 clones, 0.79%
+[29/49] Quick scan: lost.js (owner: grothkopp)
+  -> 6 758 lines, 8 clones, 1.24%
+[30/49] Quick scan: medkit-app (owner: bedriyan)
+  -> 21 129 lines, 19 clones, 1.60%
+[31/49] Quick scan: n8n-mcp (owner: czlonkowski)
+  -> 228 130 lines, 988 clones, 8.98%
+[32/49] Quick scan: n8n-workflows-noz (owner: MrNozz)
+  -> 1 202 lines, 0 clones, 0.00%
+[33/49] Quick scan: oh-my-claudecode (owner: Yeachan-Heo)
+  -> 530 991 lines, 2247 clones, 6.11%
+[34/49] Quick scan: onlook (owner: onlook-dev)
+  -> 151 448 lines, 426 clones, 8.92%
+[35/49] Quick scan: open-design (owner: nexu-io)
+  -> 854 lines, 0 clones, 0.00%
+[36/49] Quick scan: openv0 (owner: nraiden)
+  -> 23 370 lines, 110 clones, 22.42%
+[37/49] Quick scan: paycan (owner: paycan-app)
+  -> 24 716 lines, 76 clones, 6.12%
+[38/49] Quick scan: prodlint (owner: prodlint)
+  -> 14 847 lines, 45 clones, 2.74%
+[39/49] Quick scan: refly (owner: refly-ai)
+  -> 310 831 lines, 774 clones, 4.42%
+[40/49] Quick scan: serena (owner: oraios)
+  -> 89 473 lines, 299 clones, 4.72%
+[41/49] Quick scan: sparky (owner: januszgrze)
+  -> 5 747 lines, 13 clones, 4.21%
+[42/49] Quick scan: stagewise (owner: stagewise-io)
+  -> 217 047 lines, 462 clones, 8.50%
+[43/49] Quick scan: ubon (owner: luisfer)
+  -> 22 036 lines, 59 clones, 2.81%
+[44/49] Quick scan: vibe-check (owner: benavlabs)
+  -> 1 615 lines, 0 clones, 0.00%
+[45/49] Quick scan: vibe-security-skill (owner: raroque)
+  -> 2 090 lines, 0 clones, 0.00%
+[46/49] Quick scan: vibra-code (owner: sa4hnd)
+  -> 854 lines, 0 clones, 0.00%
+[47/49] Quick scan: voice-typing-vibecoding (owner: lucasjiang-aoi)
+  -> 9 309 lines, 43 clones, 6.74%
+[48/49] Quick scan: void (owner: voideditor)
+  -> 1 285 040 lines, 5312 clones, 6.60%
+[49/49] Quick scan: yyz-agentics-june (owner: ruvnet)
+  -> 16 638 lines, 35 clones, 2.56%
+
+--- PHASE 2: FILTER ---
+Valid (>=1000 lines): 46
+Skipped (<1000 lines): 3 -> hapi, open-design, vibra-code
+
+--- PHASE 3: CROSS-PROJECT ANALYSIS (may take minutes) ---
+Cross-project clones detected: 0
+
+--- PHASE 4: GENERATE REPORTS ---
+
+============================================================
+ANALYSIS COMPLETE
+============================================================
+Projects analyzed: 46
+Projects skipped (<1000 lines): 3
+Total cross-project clones: 0
+
+Worst by duplication %:
+  - frontend-slides (zarazhangrui): 42.71% (16 intra + 0 cross)
+  - agent-skills (addyosmani): 37.61% (51 intra + 0 cross)
+  - cofounder (nraiden): 25.32% (118 intra + 0 cross)
+  - openv0 (nraiden): 22.42% (110 intra + 0 cross)
+  - context-engineering-intro (coleam00): 20.68% (98 intra + 0 cross)
+  - cockpit-tools (jlcodes99): 20.55% (620 intra + 0 cross)
+  - claude_code_agent (kcenon): 14.95% (1377 intra + 0 cross)
+  - adversarial-dev (coleam00): 12.56% (15 intra + 0 cross)
+  - n8n-mcp (czlonkowski): 8.98% (988 intra + 0 cross)
+  - onlook (onlook-dev): 8.92% (426 intra + 0 cross)
+
+Data saved to reports/all-summaries.json
