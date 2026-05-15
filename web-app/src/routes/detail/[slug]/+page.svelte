@@ -1,5 +1,6 @@
 <script>
 	let { data } = $props();
+	import { base } from '$app/paths';
 	import { readableNumber, severityClass, severityLabel, colorForPct } from '$lib/utils.js';
 
 	function formatName(fmt) {
@@ -12,7 +13,7 @@
 {#if detail}
 <header>
 	<div class="header-inner">
-		<a href="/" class="back-btn">← Back to Leaderboard</a>
+		<a href="{base}/" class="back-btn">← Back to Leaderboard</a>
 		<div class="header-title">
 			<h1>{detail.project}</h1>
 			<div class="subtitle">
