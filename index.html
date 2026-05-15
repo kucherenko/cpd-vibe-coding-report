@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copy/Paste Detection Report — Vibe-Coded Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #03060e;
+      --bg-base: #0b0f1a;
+      --bg-elevated: #111827;
+      --bg-card: #151d2e;
+      --bg-hover: #1a2335;
+      --border: #1e293b;
+      --border-light: #334155;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-tertiary: #64748b;
+      --accent-blue: #3b82f6;
+      --accent-blue-dim: rgba(59, 130, 246, 0.15);
+      --accent-red: #ef4444;
+      --accent-amber: #f59e0b;
+      --accent-green: #10b981;
+      --accent-purple: #8b5cf6;
+      --accent-cyan: #06b6d4;
+      --gradient-hero: linear-gradient(135deg, #0b0f1a 0%, #0f172a 50%, #1e1b4b 100%);
+      --gradient-card: linear-gradient(145deg, #151d2e 0%, #0f172a 100%);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.4);
+      --shadow-glow: 0 0 30px rgba(59,130,246,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg-base);
+      color: var(--text-secondary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: rgba(59,130,246,0.3);
+      color: var(--text-primary);
+    }
+
+    /* ===== NAVIGATION ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(11,15,26,0.85);
+      backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+    }
+    nav .nav-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+    .nav-logo span.icon {
+      width: 28px; height: 28px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-cyan));
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent-blue);
+      transform: scaleX(0);
+      transform-origin: center;
+      transition: transform 0.25s ease;
+      border-radius: 1px;
+    }
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 2rem 60px;
+      position: relative;
+      overflow: hidden;
+      background: var(--gradient-hero);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(59,130,246,0.12), transparent),
+        radial-gradient(ellipse 60% 40% at 80% 100%, rgba(139,92,246,0.08), transparent);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.25);
+      border-radius: 100px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s ease 0.1s both;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      max-width: 900px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent-blue);
+    }
+    .hero p.subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300;
+      max-width: 640px;
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-blue), #2563eb);
+      color: white;
+      box-shadow: 0 4px 20px rgba(59,130,246,0.3);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 8px 30px rgba(59,130,246,0.4);
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border-light);
+    }
+    .btn-ghost:hover {
+      border-color: var(--text-secondary);
+      background: rgba(255,255,255,0.03);
+    }
+
+    /* ===== METRICS BAR ===== */
+    .metrics-bar {
+      background: var(--bg-elevated);
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem 2rem;
+      position: relative;
+      margin-top: -60px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      z-index: 10;
+    }
+    .metrics-bar::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 80px; height: 4px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan));
+      border-radius: 2px;
+      margin-top: -2px;
+    }
+    .metrics-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .metric-card {
+      background: var(--gradient-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+    }
+    .metric-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-glow);
+      border-color: var(--border-light);
+    }
+    .metric-card:nth-child(1)::before { background: linear-gradient(90deg, var(--accent-blue), var(--accent-cyan)); }
+    .metric-card:nth-child(2)::before { background: linear-gradient(90deg, var(--accent-amber), #f97316); }
+    .metric-card:nth-child(3)::before { background: linear-gradient(90deg, var(--accent-green), #34d399); }
+    .metric-card:nth-child(4)::before { background: linear-gradient(90deg, var(--accent-purple), #a78bfa); }
+    .metric-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-tertiary);
+      margin-bottom: 0.75rem;
+    }
+    .metric-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .metric-value .suffix {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-left: 4px;
+    }
+    .metric-desc {
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+    }
+
+    /* ===== SECTION STYLES ===== */
+    section {
+      padding: 5rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .section-header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 3rem;
+      max-width: 600px;
+    }
+    .section-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-blue);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-tag::before {
+      content: '';
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--accent-blue);
+      border-radius: 1px;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .section-header p {
+      color: var(--text-tertiary);
+      font-size: 1rem;
+      max-width: 500px;
+    }
+
+    /* ===== CHART GRID ===== */
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .chart-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: all 0.35s ease;
+    }
+    .chart-card:hover {
+      border-color: var(--border-light);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .chart-card.full-width {
+      grid-column: span 2;
+    }
+    .chart-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .chart-card .chart-caption {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .chart-card .chart-caption h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+    .chart-card .chart-caption p {
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      line-height: 1.5;
+    }
+
+    /* ===== INSIGHT BOX ===== */
+    .insight-box {
+      background: linear-gradient(135deg, rgba(59,130,246,0.06), rgba(139,92,246,0.06));
+      border: 1px solid rgba(59,130,246,0.15);
+      border-radius: var(--radius-md);
+      padding: 2rem;
+      margin-bottom: 3rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    .insight-box .icon {
+      flex-shrink: 0;
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--accent-blue-dim);
+      border-radius: var(--radius-sm);
+      color: var(--accent-blue);
+      font-size: 1.25rem;
+    }
+    .insight-box .content h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .insight-box .content p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .insight-box .content strong {
+      color: var(--text-primary);
+    }
+
+    /* ===== LEADERBOARD TABLE ===== */
+    .data-table-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .table-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .table-search {
+      position: relative;
+      flex: 1;
+      max-width: 300px;
+    }
+    .table-search input {
+      width: 100%;
+      padding: 10px 14px 10px 40px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.875rem;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .table-search input:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.1);
+    }
+    .table-search .search-icon {
+      position: absolute;
+      left: 14px; top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-tertiary);
+      font-size: 0.9rem;
+    }
+    .table-sort {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .table-sort label {
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+      font-weight: 500;
+    }
+    .table-sort select {
+      padding: 8px 12px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      cursor: pointer;
+      outline: none;
+    }
+    .table-sort select:focus {
+      border-color: var(--accent-blue);
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .data-table thead th {
+      padding: 1rem 1.25rem;
+      text-align: left;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-tertiary);
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .data-table thead th:hover {
+      color: var(--text-primary);
+    }
+    .data-table thead th.sortable::after {
+      content: '↕';
+      margin-left: 6px;
+      opacity: 0.3;
+      font-weight: 400;
+    }
+    .data-table thead th.asc::after { content: '↑'; opacity: 1; color: var(--accent-blue); }
+    .data-table thead th.desc::after { content: '↓'; opacity: 1; color: var(--accent-blue); }
+    .data-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .data-table tbody tr:last-child { border-bottom: none; }
+    .data-table tbody tr:hover {
+      background: var(--bg-hover);
+    }
+    .data-table tbody td {
+      padding: 0.875rem 1.25rem;
+      font-size: 0.875rem;
+    }
+    .data-table .cell-name {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .data-table .cell-name .icon {
+      width: 28px; height: 28px;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .data-table .cell-name .icon.rank-1 { background: linear-gradient(135deg, #fbbf24, #f59e0b); color: #1e293b; }
+    .data-table .cell-name .icon.rank-2 { background: linear-gradient(135deg, #94a3b8, #64748b); color: #0f172a; }
+    .data-table .cell-name .icon.rank-3 { background: linear-gradient(135deg, #b45309, #92400e); color: #fef3c7; }
+    .data-table .cell-name .icon.rank-other { background: var(--bg-hover); color: var(--text-tertiary); }
+    .data-table .cell-num { font-family: 'JetBrains Mono', monospace; color: var(--text-primary); text-align: right; }
+    .data-table .cell-pct {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      text-align: right;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .data-table .bar-track {
+      flex: 1;
+      max-width: 80px;
+      height: 6px;
+      background: var(--bg-elevated);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .data-table .bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.6s ease;
+    }
+    .badge-severity {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    .badge-high { background: rgba(239,68,68,0.12); color: var(--accent-red); border: 1px solid rgba(239,68,68,0.2); }
+    .badge-medium { background: rgba(245,158,11,0.12); color: var(--accent-amber); border: 1px solid rgba(245,158,11,0.2); }
+    .badge-low { background: rgba(16,185,129,0.12); color: var(--accent-green); border: 1px solid rgba(16,185,129,0.2); }
+    .badge-none { background: var(--bg-elevated); color: var(--text-tertiary); border: 1px solid var(--border); }
+
+    /* ===== RECOMMENDATIONS GRID ===== */
+    .rec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .rec-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.75rem;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .rec-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--border-light);
+      box-shadow: var(--shadow-md);
+    }
+    .rec-card .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: rgba(59,130,246,0.15);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .rec-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+    .rec-card p {
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+      line-height: 1.7;
+    }
+
+    /* ===== DIVIDER ===== */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 0 2rem;
+      max-width: 1400px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 4rem 2rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      background: var(--bg-deep);
+    }
+    footer p {
+      font-size: 0.8rem;
+      color: var(--text-tertiary);
+    }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    footer .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    footer .footer-links a:hover {
+      color: var(--accent-blue);
+    }
+
+    /* ===== SKELETON ===== */
+    .skeleton {
+      background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-hover) 50%, var(--bg-card) 75%);
+      background-size: 200% 100%;
+      animation: skeleton-loading 1.5s ease-in-out infinite;
+      border-radius: var(--radius-sm);
+    }
+    @keyframes skeleton-loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+    .skeleton-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+    .skeleton-title {
+      width: 60%;
+      height: 18px;
+      margin-top: 12px;
+    }
+    .skeleton-line {
+      width: 100%;
+      height: 12px;
+      margin-top: 8px;
+    }
+
+    /* ===== GLASS CARD ===== */
+    .glass-card {
+      background: rgba(21, 29, 46, 0.6);
+      backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(59, 130, 246, 0.08);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: all 0.4s ease;
+    }
+    .glass-card:hover {
+      background: rgba(21, 29, 46, 0.8);
+      border-color: rgba(59, 130, 246, 0.2);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3), 0 0 40px rgba(59,130,246,0.06);
+      transform: translateY(-2px);
+    }
+
+    /* ===== SPOTLIGHT HOVER ===== */
+    .spotlight {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+    .spotlight::before {
+      content: '';
+      position: absolute;
+      top: var(--y, 50%);
+      left: var(--x, 50%);
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 65%);
+      border-radius: 50%;
+      opacity: 0;
+      transition: all 0.5s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .spotlight:hover::before {
+      width: 400px;
+      height: 400px;
+      opacity: 1;
+    }
+    .spotlight > *:not(.spotlight::before) {
+      position: relative;
+      z-index: 2;
+    }
+    .spotlight:hover {
+      border-color: rgba(59,130,246,0.3);
+    }
+
+    /* ===== RIPPLE ===== */
+    .ripple {
+      position: relative;
+      overflow: hidden;
+    }
+    .ripple::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 0; height: 0;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.5s ease;
+    }
+    .ripple:active::after {
+      width: 300px; height: 300px;
+      opacity: 0;
+      transition: 0s;
+    }
+
+    /* ===== GLOW BORDER ===== */
+    .glow-border::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(59,130,246,0), rgba(59,130,246,0.5), rgba(139,92,246,0.5), rgba(59,130,246,0));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .glow-border:hover::after {
+      opacity: 1;
+    }
+
+    /* ===== COUNTER ANIMATION ===== */
+    .counter {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ===== TOOLTIP ===== */
+    .tooltip {
+      position: relative;
+    }
+    .tooltip::after {
+      content: attr(data-tip);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 12px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s ease;
+      z-index: 100;
+    }
+    .tooltip:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-4px);
+    }
+
+    /* ===== PARALLAX LAYERS ===== */
+    .parallax-container {
+      position: relative;
+      overflow: hidden;
+    }
+    .parallax-layer {
+      position: absolute;
+      will-change: transform;
+    }
+
+    /* ===== TILT 3D ===== */
+    .tilt {
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+    .tilt-inner {
+      transition: transform 0.1s ease-out;
+      transform-style: preserve-3d;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .anim-fade {
+      animation: fadeInUp 0.6s ease both;
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+      .chart-grid { grid-template-columns: 1fr; }
+      .chart-card.full-width { grid-column: span 1; }
+    }
+    @media (max-width: 640px) {
+      .metrics-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero { padding-top: 100px; }
+      .data-table thead th:nth-child(5),
+      .data-table tbody td:nth-child(5) { display: none; }
+      .rec-grid { grid-template-columns: 1fr; }
+      .table-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .table-search { max-width: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <span class="icon">CPD</span>
+      <span>vibe-cpd-report</span>
+    </a>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#charts">Charts</a>
+      <a href="#leaderboard">Leaderboard</a>
+      <a href="#insights">Insights</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="overview">
+  <div class="hero-grid"></div>
+  <div class="hero-badge">
+    <span class="dot"></span>
+    jscpd v4.0.9 Analysis
+  </div>
+  <h1>
+    Code Duplication Report for<br>
+    <em>Vibe-Coded</em> Projects
+  </h1>
+  <p class="subtitle">
+    An interactive analysis of 46 trending AI-assisted open-source projects, measuring code duplication patterns and refactoring opportunities.
+  </p>
+  <div class="hero-cta">
+    <a href="#charts" class="btn btn-primary">
+      View Charts ↓
+    </a>
+    <a href="CPD_FINAL_REPORT.md" class="btn btn-ghost" target="_blank">
+      Read Markdown Report
+    </a>
+  </div>
+</header>
+
+<div class="metrics-bar">
+  <div class="metrics-grid">
+    <div class="metric-card anim-fade delay-1">
+      <div class="metric-label">Projects Analyzed</div>
+      <div class="metric-value">46</div>
+      <div class="metric-desc">Popular vibe-coded repos on GitHub</div>
+    </div>
+    <div class="metric-card anim-fade delay-2">
+      <div class="metric-label">Total Clones Found</div>
+      <div class="metric-value">11,079</div>
+      <div class="metric-desc">Duplicate code blocks detected</div>
+    </div>
+    <div class="metric-card anim-fade delay-3">
+      <div class="metric-label">Avg. Duplication</div>
+      <div class="metric-value">6.78<span class="suffix">%</span></div>
+      <div class="metric-desc">Across 3,514,071 lines of code</div>
+    </div>
+    <div class="metric-card anim-fade delay-4">
+      <div class="metric-label">Projects with Clones</div>
+      <div class="metric-value">41<span class="suffix">/46</span></div>
+      <div class="metric-desc">89.1% have duplication</div>
+    </div>
+  </div>
+</div>
+
+<section id="charts">
+  <div class="section-header">
+    <span class="section-tag">Visualizations</span>
+    <h2>Code Duplication Patterns</h2>
+    <p>Eight charts derived from jscpd analysis, revealing how clone density distributes across formats, types, and project sizes.</p>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-card">
+      <img src="charts/01-top-duplication-pct.png" alt="Top projects by duplication percentage" loading="lazy">
+      <div class="chart-caption">
+        <h4>01. Top Projects by Duplication %</h4>
+        <p>Five projects exceed 15% duplication — the threshold for significant refactoring. frontend-slides leads at 42.71%.</p>
+      </div>
+    </div>
+    <div class="chart-card">
+      <img src="charts/02-top-clone-count.png" alt="Top projects by total clone count" loading="lazy">
+      <div class="chart-caption">
+        <h4>02. Top Projects by Clone Count</h4>
+        <p>oh-my-claudecode contains 2,247 clones across 159K lines — the largest absolute duplication found.</p>
+      </div>
+    </div>
+    <div class="chart-card full-width">
+      <img src="charts/07-scatter-size-vs-dup.png" alt="Project size vs duplication scatter plot" loading="lazy">
+      <div class="chart-caption">
+        <h4>03. Project Size vs. Duplication Rate</h4>
+        <p>Scatter plot reveals that project size alone does not predict duplication. Small projects like frontend-slides and openv0 show extreme rates, while large codebases like cherry-studio maintain ~6%.</p>
+      </div>
+    </div>
+    <div class="chart-card">
+      <img src="charts/03-format-distribution.png" alt="Clone distribution by format" loading="lazy">
+      <div class="chart-caption">
+        <h4>04. Clone Distribution by Format</h4>
+        <p>TypeScript dominates at 43.7% of all clones, followed by TSX (16.4%) and JavaScript (13.4%).</p>
+      </div>
+    </div>
+    <div class="chart-card">
+      <img src="charts/04-type-distribution.png" alt="Clone distribution by type" loading="lazy">
+      <div class="chart-caption">
+        <h4>05. Clone Distribution by Type</h4>
+        <p>93.6% of clones are in actual source code — notably higher than config/docs, which differs from human-written codebases.</p>
+      </div>
+    </div>
+    <div class="chart-card">
+      <img src="charts/05-duplication-histogram.png" alt="Duplication percentage histogram" loading="lazy">
+      <div class="chart-caption">
+        <h4>06. Duplication Rate Distribution</h4>
+        <p>Most projects (16) cluster in the 5-10% range. Only 5 fall below 1%, and 6 exceed 10%.</p>
+      </div>
+    </div>
+    <div class="chart-card">
+      <img src="charts/06-format-lines.png" alt="Duplicated lines by format" loading="lazy">
+      <div class="chart-caption">
+        <h4>07. Duplicated Lines by Format</h4>
+        <p>The TypeScript ecosystem generates the most duplicated lines (82.4K), but Markdown is surprisingly second at 32.9K lines.</p>
+      </div>
+    </div>
+    <div class="chart-card">
+      <img src="charts/08-stacked-types.png" alt="Clone type breakdown stacked bar" loading="lazy">
+      <div class="chart-caption">
+        <h4>08. Clone Type Breakdown</h4>
+        <p>Top 15 projects show code duplication overwhelming other types. Config and documentation duplication appear in larger projects only.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="leaderboard">
+  <div class="section-header">
+    <span class="section-tag">Data Table</span>
+    <h2>Project Leaderboard</h2>
+    <p>Sortable table of all 46 analyzed projects. Search by name or sort by duplication rate, clone count, or total lines.</p>
+  </div>
+
+  <div class="data-table-container">
+    <div class="table-toolbar">
+      <div class="table-search">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search projects...">
+      </div>
+      <div class="table-sort">
+        <label for="sortSelect">Sort by:</label>
+        <select id="sortSelect">
+          <option value="percentage" selected>Duplication %</option>
+          <option value="totalClones">Clone Count</option>
+          <option value="totalLines">Total Lines</option>
+          <option value="totalDuplicatedLines">Dup. Lines</option>
+          <option value="project">Name (A-Z)</option>
+        </select>
+      </div>
+    </div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Project</th>
+          <th>Clones</th>
+          <th>Lines</th>
+          <th>Dup. Lines</th>
+          <th>Duplication %</th>
+          <th>Severity</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <!-- Populated by JS -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="insights">
+  <div class="section-header">
+    <span class="section-tag">Analysis</span>
+    <h2>Key Insights</h2>
+    <p>What the data tells us about AI-assisted code quality and duplication patterns.</p>
+  </div>
+
+  <div class="insight-box">
+    <div class="icon">💡</div>
+    <div class="content">
+      <h3>AI tools are not inherently duplicative</h3>
+      <p>Five projects achieved <strong>0% duplication</strong> despite being vibe-coded, proving quality depends on developer review practices, not just the tool. The cleanest projects include n8n-workflows-noz (2,556 lines), SC2SmoothBrainifier (1,309 lines), safe-vibe-coding (1,202 lines), vibe-check (1,008 lines), and vibe-security-skill (890 lines).</p>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <div class="icon">📄</div>
+    <div class="content">
+      <h3>Documentation duplication is an AI artifact</h3>
+      <p>Markdown clones account for <strong>11.1%</strong> of all duplication — far above typical human codebases. AI assistants frequently generate identical boilerplate in AGENTS.md, CLAUDE.md, and README templates across projects.</p>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <div class="icon">⚡</div>
+    <div class="content">
+      <h3>TypeScript dominates the clone landscape</h3>
+      <p>With <strong>43.7%</strong> of all clones in TypeScript files, the modern AI web stack (React + TypeScript) is the primary duplication vector. The boilerplate nature of type-heavy code contributes to this concentration.</p>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <div class="icon">📏</div>
+    <div class="content">
+      <h3>Large projects can manage duplication</h3>
+      <p>cherry-studio (396K lines, 6.24%) and oh-my-claudecode (159K lines, 6.11%) demonstrate that project scale does not dictate duplication rate. Architecture and review discipline matter more than size.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section id="recommendations">
+  <div class="section-header">
+    <span class="section-tag">Actionable</span>
+    <h2>Refactoring Recommendations</h2>
+    <p>Specific strategies to reduce duplication in AI-assisted codebases.</p>
+  </div>
+
+  <div class="rec-grid">
+    <div class="rec-card">
+      <div class="num">01</div>
+      <h4>Extract Shared Logic</h4>
+      <p>Projects with >5% duplication should prioritize extracting repeated utility functions, hooks, and services into shared modules. This is the #1 improvement opportunity across all 46 projects.</p>
+    </div>
+    <div class="rec-card">
+      <div class="num">02</div>
+      <h4>Centralize Configuration</h4>
+      <p>Many projects duplicate JSON, YAML, and CI configs. Use shared config packages (e.g., @company/eslint-config) or monorepo tooling to eliminate repeated configuration.</p>
+    </div>
+    <div class="rec-card">
+      <div class="num">03</div>
+      <h4>Build Component Libraries</h4>
+      <p>UI-heavy projects show significant TSX/JSX duplication. A shared component library with prop-driven variants eliminates near-identical components generated by AI prompts.</p>
+    </div>
+    <div class="rec-card">
+      <div class="num">04</div>
+      <h4>Documentation Templates</h4>
+      <p>Markdown duplication in AI projects is high. Use documentation generators (Docusaurus, VitePress) with template inheritance rather than copy-pasting README/AGENTS.md boilerplate.</p>
+    </div>
+    <div class="rec-card">
+      <div class="num">05</div>
+      <h4>CI Duplication Gates</h4>
+      <p>Integrate jscpd into CI with a threshold (e.g., 5%). Block PRs exceeding the threshold. Pre-commit hooks catch issues before CI, preventing debt accumulation.</p>
+    </div>
+    <div class="rec-card">
+      <div class="num">06</div>
+      <h4>Code Review Focus</h4>
+      <p>In vibe-coded projects, AI generates boilerplate with minor prompt variations. Reviews must specifically scan for near-duplicate blocks that can be unified into shared utilities.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="cpd-comprehensive-report.html">Raw HTML Report</a>
+    <a href="CPD_FINAL_REPORT.md">Markdown Report</a>
+    <a href="https://github.com/kucherenko/cpd-vibe-coding" target="_blank">GitHub Repo</a>
+  </div>
+  <p>
+    Report generated on 2026-05-15 by the CPD Analyzer Framework &middot;
+    46 projects analyzed &middot; 3,514,071 lines surveyed
+  </p>
+</footer>
+
+<script>
+const PROJECT_DATA = [
+  {"p":"frontend-slides","c":16,"l":38,"d":16,"pct":42.71},
+  {"p":"cofounder","c":118,"l":15482,"d":3920,"pct":25.32},
+  {"p":"openv0","c":110,"l":2737,"d":614,"pct":22.42},
+  {"p":"context-engineering-intro","c":98,"l":2120,"d":438,"pct":20.68},
+  {"p":"cockpit-tools","c":620,"l":12530,"d":2575,"pct":20.55},
+  {"p":"claude_code_agent","c":1377,"l":38675,"d":5781,"pct":14.95},
+  {"p":"adversarial-dev","c":15,"l":2675,"d":336,"pct":12.56},
+  {"p":"onlook","c":426,"l":23558,"d":2096,"pct":8.90},
+  {"p":"n8n-mcp","c":988,"l":40093,"d":3599,"pct":8.98},
+  {"p":"stagewise","c":462,"l":24038,"d":2043,"pct":8.50},
+  {"p":"deutsia-radio","c":286,"l":22001,"d":1855,"pct":8.43},
+  {"p":"VibeVoice","c":45,"l":23307,"d":1855,"pct":7.96},
+  {"p":"voice-typing-vibecoding","c":43,"l":2551,"d":172,"pct":6.74},
+  {"p":"agent-teams","c":19,"l":1364,"d":94,"pct":6.87},
+  {"p":"billmanager","c":165,"l":12870,"d":876,"pct":6.81},
+  {"p":"cherry-studio","c":921,"l":396534,"d":24747,"pct":6.24},
+  {"p":"Jellyfish","c":280,"l":83566,"d":5054,"pct":6.05},
+  {"p":"claude-task-master","c":697,"l":52478,"d":3184,"pct":6.06},
+  {"p":"oh-my-claudecode","c":2247,"l":159808,"d":9761,"pct":6.11},
+  {"p":"serena","c":299,"l":38050,"d":1796,"pct":4.72},
+  {"p":"Vibe-Trading","c":149,"l":104461,"d":4865,"pct":4.66},
+  {"p":"refly","c":774,"l":138038,"d":6097,"pct":4.42},
+  {"p":"hapi","c":413,"l":55013,"d":2701,"pct":4.91},
+  {"p":"yyz-agentics-june","c":35,"l":5488,"d":140,"pct":2.56},
+  {"p":"vibecoins-mcp","c":4,"l":1757,"d":45,"pct":2.56},
+  {"p":"n8n-workflows-noz","c":0,"l":2556,"d":0,"pct":0.00},
+  {"p":"SC2SmoothBrainifier","c":0,"l":1309,"d":0,"pct":0.00},
+  {"p":"safe-vibe-coding","c":0,"l":1202,"d":0,"pct":0.00},
+  {"p":"vibe-check","c":0,"l":1008,"d":0,"pct":0.00},
+  {"p":"vibe-security-skill","c":0,"l":890,"d":0,"pct":0.00},
+  {"p":"banana-slides","c":156,"l":24912,"d":780,"pct":3.13},
+  {"p":"paycan","c":76,"l":5560,"d":340,"pct":6.12},
+  {"p":"fastapi_mcp","c":31,"l":2456,"d":156,"pct":6.35},
+  {"p":"lost.js","c":8,"l":2419,"d":30,"pct":1.24},
+  {"p":"deepseek_ocr_app","c":4,"l":1109,"d":14,"pct":1.26},
+  {"p":"ai-job-agent","c":25,"l":4736,"d":84,"pct":1.77},
+  {"p":"medkit-app","c":19,"l":4744,"d":76,"pct":1.60},
+  {"p":"airpsx-frontend","c":14,"l":3307,"d":42,"pct":1.27},
+  {"p":"DVVCA","c":9,"l":4340,"d":100,"pct":2.30},
+  {"p":"prodlint","c":45,"l":6147,"d":168,"pct":2.74},
+  {"p":"ubon","c":59,"l":7456,"d":209,"pct":2.81},
+  {"p":"the-new-snap-game","c":2,"l":1359,"d":16,"pct":1.18},
+  {"p":"sparky","c":13,"l":1330,"d":56,"pct":4.21},
+  {"p":"lk_locator","c":2,"l":1773,"d":14,"pct":0.79},
+  {"p":"codebase-to-course","c":4,"l":799,"d":4,"pct":0.50},
+  {"p":"lightning-vibe-coding","c":5,"l":1490,"d":56,"pct":3.76}
+];
+
+let currentSort = 'percentage';
+let currentDir = -1; // -1 = desc
+let filtered = [...PROJECT_DATA];
+
+function getSeverity(pct) {
+  if (pct === 0) return {cls:'badge-none',text:'Clean'};
+  if (pct > 15) return {cls:'badge-high',text:'High'};
+  if (pct > 5) return {cls:'badge-medium',text:'Medium'};
+  return {cls:'badge-low',text:'Low'};
+}
+
+function formatNum(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return (n/1000).toFixed(1) + 'K';
+  return n.toLocaleString();
+}
+
+function renderTable() {
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = '';
+  filtered.sort((a,b) => (a[currentSort]-b[currentSort])*currentDir);
+
+  filtered.forEach((row, idx) => {
+    const sev = getSeverity(row.pct);
+    const rankClass = idx === 0 ? 'rank-1' : (idx === 1 ? 'rank-2' : (idx === 2 ? 'rank-3' : 'rank-other'));
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><span class="cell-num">${idx+1}</span></td>
+      <td>
+        <div class="cell-name">
+          <span class="icon ${rankClass}">${idx < 3 ? idx+1 : (idx+1).toString().padStart(2,'0')}</span>
+          ${row.p}
+        </div>
+      </td>
+      <td class="cell-num">${row.c.toLocaleString()}</td>
+      <td class="cell-num">${formatNum(row.l)}</td>
+      <td class="cell-num">${formatNum(row.d)}</td>
+      <td>
+        <div class="cell-pct" style="gap:12px;width:100%">
+          <div class="bar-track">
+            <div class="bar-fill" style="width:${Math.min(row.pct/50*100, 100)}%;background:${row.pct > 15 ? 'var(--accent-red)' : (row.pct > 5 ? 'var(--accent-amber)' : 'var(--accent-green)')}"></div>
+          </div>
+          <span style="min-width:50px;text-align:right">${row.pct.toFixed(2)}%</span>
+        </div>
+      </td>
+      <td><span class="badge-severity ${sev.cls}">${sev.text}</span></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function filterAndSort() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  filtered = q ? PROJECT_DATA.filter(p => p.p.toLowerCase().includes(q)) : [...PROJECT_DATA];
+  renderTable();
+}
+
+document.getElementById('searchInput').addEventListener('input', filterAndSort);
+
+document.getElementById('sortSelect').addEventListener('change', (e) => {
+  currentSort = e.target.value;
+  renderTable();
+});
+
+renderTable();
+</script>
+
+</body>
+</html>

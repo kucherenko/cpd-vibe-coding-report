@@ -1,0 +1,5 @@
+projects/
+reports/project-reports/
+analysis-scripts/
+.agents/
+clone_batch*.sh

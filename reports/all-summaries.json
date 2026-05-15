@@ -1,0 +1,1292 @@
+[
+  {
+    "project": "DVVCA",
+    "totalClones": 9,
+    "totalLines": 4340,
+    "totalDuplicatedLines": 100,
+    "percentage": 2.3,
+    "formatStats": {
+      "markup": {
+        "count": 6,
+        "lines": 76
+      },
+      "javascript": {
+        "count": 1,
+        "lines": 11
+      },
+      "python": {
+        "count": 2,
+        "lines": 22
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 9
+    }
+  },
+  {
+    "project": "Jellyfish",
+    "totalClones": 280,
+    "totalLines": 83566,
+    "totalDuplicatedLines": 5054,
+    "percentage": 6.05,
+    "formatStats": {
+      "javascript": {
+        "count": 12,
+        "lines": 468
+      },
+      "tsx": {
+        "count": 31,
+        "lines": 538
+      },
+      "typescript": {
+        "count": 15,
+        "lines": 319
+      },
+      "python": {
+        "count": 206,
+        "lines": 2736
+      },
+      "markdown": {
+        "count": 9,
+        "lines": 1084
+      },
+      "markup": {
+        "count": 4,
+        "lines": 144
+      },
+      "yaml": {
+        "count": 3,
+        "lines": 45
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 271,
+      "documentation": 9
+    }
+  },
+  {
+    "project": "SC2SmoothBrainifier",
+    "totalClones": 0,
+    "totalLines": 1309,
+    "totalDuplicatedLines": 0,
+    "percentage": 0,
+    "formatStats": {},
+    "cloneTypeCounts": {}
+  },
+  {
+    "project": "Vibe-Trading",
+    "totalClones": 149,
+    "totalLines": 104461,
+    "totalDuplicatedLines": 4865,
+    "percentage": 4.66,
+    "formatStats": {
+      "markdown": {
+        "count": 74,
+        "lines": 1927
+      },
+      "python": {
+        "count": 47,
+        "lines": 709
+      },
+      "tsx": {
+        "count": 7,
+        "lines": 81
+      },
+      "markup": {
+        "count": 10,
+        "lines": 178
+      },
+      "javascript": {
+        "count": 7,
+        "lines": 155
+      },
+      "bash": {
+        "count": 4,
+        "lines": 1964
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 75,
+      "documentation": 74
+    }
+  },
+  {
+    "project": "VibeVoice",
+    "totalClones": 45,
+    "totalLines": 13196,
+    "totalDuplicatedLines": 1051,
+    "percentage": 7.96,
+    "formatStats": {
+      "python": {
+        "count": 40,
+        "lines": 944
+      },
+      "json": {
+        "count": 2,
+        "lines": 86
+      },
+      "markdown": {
+        "count": 3,
+        "lines": 66
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 42,
+      "documentation": 3
+    }
+  },
+  {
+    "project": "adversarial-dev",
+    "totalClones": 15,
+    "totalLines": 2755,
+    "totalDuplicatedLines": 346,
+    "percentage": 12.56,
+    "formatStats": {
+      "typescript": {
+        "count": 15,
+        "lines": 361
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 15
+    }
+  },
+  {
+    "project": "agent-teams",
+    "totalClones": 19,
+    "totalLines": 6943,
+    "totalDuplicatedLines": 477,
+    "percentage": 6.87,
+    "formatStats": {
+      "python": {
+        "count": 5,
+        "lines": 156
+      },
+      "txt": {
+        "count": 14,
+        "lines": 340
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 19
+    }
+  },
+  {
+    "project": "ai-job-agent",
+    "totalClones": 25,
+    "totalLines": 14350,
+    "totalDuplicatedLines": 254,
+    "percentage": 1.77,
+    "formatStats": {
+      "javascript": {
+        "count": 25,
+        "lines": 279
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 25
+    }
+  },
+  {
+    "project": "airpsx-frontend",
+    "totalClones": 14,
+    "totalLines": 14914,
+    "totalDuplicatedLines": 190,
+    "percentage": 1.27,
+    "formatStats": {
+      "css": {
+        "count": 5,
+        "lines": 80
+      },
+      "javascript": {
+        "count": 1,
+        "lines": 27
+      },
+      "tsx": {
+        "count": 5,
+        "lines": 62
+      },
+      "typescript": {
+        "count": 3,
+        "lines": 35
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 14
+    }
+  },
+  {
+    "project": "banana-slides",
+    "totalClones": 156,
+    "totalLines": 68245,
+    "totalDuplicatedLines": 2135,
+    "percentage": 3.13,
+    "formatStats": {
+      "javascript": {
+        "count": 2,
+        "lines": 118
+      },
+      "tsx": {
+        "count": 13,
+        "lines": 140
+      },
+      "python": {
+        "count": 51,
+        "lines": 708
+      },
+      "typescript": {
+        "count": 81,
+        "lines": 1124
+      },
+      "yaml": {
+        "count": 3,
+        "lines": 83
+      },
+      "log": {
+        "count": 1,
+        "lines": 41
+      },
+      "markdown": {
+        "count": 5,
+        "lines": 77
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 151,
+      "documentation": 5
+    }
+  },
+  {
+    "project": "billmanager",
+    "totalClones": 165,
+    "totalLines": 48223,
+    "totalDuplicatedLines": 3285,
+    "percentage": 6.81,
+    "formatStats": {
+      "tsx": {
+        "count": 106,
+        "lines": 2067
+      },
+      "typescript": {
+        "count": 23,
+        "lines": 300
+      },
+      "javascript": {
+        "count": 29,
+        "lines": 1015
+      },
+      "python": {
+        "count": 7,
+        "lines": 68
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 165
+    }
+  },
+  {
+    "project": "cherry-studio",
+    "totalClones": 921,
+    "totalLines": 396534,
+    "totalDuplicatedLines": 24747,
+    "percentage": 6.24,
+    "formatStats": {
+      "tsx": {
+        "count": 314,
+        "lines": 6261
+      },
+      "typescript": {
+        "count": 384,
+        "lines": 6158
+      },
+      "javascript": {
+        "count": 80,
+        "lines": 2619
+      },
+      "markup": {
+        "count": 6,
+        "lines": 65
+      },
+      "python": {
+        "count": 5,
+        "lines": 46
+      },
+      "json": {
+        "count": 28,
+        "lines": 4395
+      },
+      "markdown": {
+        "count": 69,
+        "lines": 5198
+      },
+      "bash": {
+        "count": 1,
+        "lines": 128
+      },
+      "sql": {
+        "count": 1,
+        "lines": 17
+      },
+      "yaml": {
+        "count": 22,
+        "lines": 492
+      },
+      "css": {
+        "count": 3,
+        "lines": 128
+      },
+      "diff": {
+        "count": 8,
+        "lines": 161
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 852,
+      "documentation": 69
+    }
+  },
+  {
+    "project": "claude-task-master",
+    "totalClones": 697,
+    "totalLines": 217086,
+    "totalDuplicatedLines": 13163,
+    "percentage": 6.06,
+    "formatStats": {
+      "typescript": {
+        "count": 215,
+        "lines": 3557
+      },
+      "javascript": {
+        "count": 407,
+        "lines": 6804
+      },
+      "tsx": {
+        "count": 3,
+        "lines": 34
+      },
+      "markdown": {
+        "count": 39,
+        "lines": 1402
+      },
+      "bash": {
+        "count": 5,
+        "lines": 552
+      },
+      "json": {
+        "count": 15,
+        "lines": 723
+      },
+      "txt": {
+        "count": 4,
+        "lines": 614
+      },
+      "yaml": {
+        "count": 9,
+        "lines": 174
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 658,
+      "documentation": 39
+    }
+  },
+  {
+    "project": "claude_code_agent",
+    "totalClones": 1377,
+    "totalLines": 432251,
+    "totalDuplicatedLines": 64620,
+    "percentage": 14.95,
+    "formatStats": {
+      "markdown": {
+        "count": 422,
+        "lines": 43504
+      },
+      "typescript": {
+        "count": 698,
+        "lines": 9428
+      },
+      "yaml": {
+        "count": 15,
+        "lines": 1529
+      },
+      "javascript": {
+        "count": 203,
+        "lines": 7511
+      },
+      "python": {
+        "count": 24,
+        "lines": 722
+      },
+      "json": {
+        "count": 11,
+        "lines": 1629
+      },
+      "bash": {
+        "count": 4,
+        "lines": 1674
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 955,
+      "documentation": 422
+    }
+  },
+  {
+    "project": "cockpit-tools",
+    "totalClones": 620,
+    "totalLines": 115863,
+    "totalDuplicatedLines": 23815,
+    "percentage": 20.55,
+    "formatStats": {
+      "rust": {
+        "count": 475,
+        "lines": 20976
+      },
+      "css": {
+        "count": 7,
+        "lines": 79
+      },
+      "javascript": {
+        "count": 19,
+        "lines": 1184
+      },
+      "tsx": {
+        "count": 73,
+        "lines": 1534
+      },
+      "markup": {
+        "count": 2,
+        "lines": 22
+      },
+      "typescript": {
+        "count": 42,
+        "lines": 587
+      },
+      "yaml": {
+        "count": 1,
+        "lines": 29
+      },
+      "json": {
+        "count": 1,
+        "lines": 24
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 620
+    }
+  },
+  {
+    "project": "codebase-to-course",
+    "totalClones": 4,
+    "totalLines": 6231,
+    "totalDuplicatedLines": 31,
+    "percentage": 0.5,
+    "formatStats": {
+      "javascript": {
+        "count": 4,
+        "lines": 35
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 4
+    }
+  },
+  {
+    "project": "cofounder",
+    "totalClones": 118,
+    "totalLines": 29658,
+    "totalDuplicatedLines": 7509,
+    "percentage": 25.32,
+    "formatStats": {
+      "javascript": {
+        "count": 58,
+        "lines": 3143
+      },
+      "tsx": {
+        "count": 51,
+        "lines": 4134
+      },
+      "typescript": {
+        "count": 2,
+        "lines": 213
+      },
+      "markup": {
+        "count": 3,
+        "lines": 31
+      },
+      "json": {
+        "count": 4,
+        "lines": 106
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 118
+    }
+  },
+  {
+    "project": "context-engineering-intro",
+    "totalClones": 98,
+    "totalLines": 57743,
+    "totalDuplicatedLines": 11939,
+    "percentage": 20.68,
+    "formatStats": {
+      "typescript": {
+        "count": 21,
+        "lines": 296
+      },
+      "python": {
+        "count": 36,
+        "lines": 4816
+      },
+      "sql": {
+        "count": 2,
+        "lines": 168
+      },
+      "markdown": {
+        "count": 34,
+        "lines": 5758
+      },
+      "bash": {
+        "count": 2,
+        "lines": 367
+      },
+      "yaml": {
+        "count": 3,
+        "lines": 632
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 64,
+      "documentation": 34
+    }
+  },
+  {
+    "project": "deepseek_ocr_app",
+    "totalClones": 4,
+    "totalLines": 5486,
+    "totalDuplicatedLines": 69,
+    "percentage": 1.26,
+    "formatStats": {
+      "javascript": {
+        "count": 1,
+        "lines": 34
+      },
+      "python": {
+        "count": 3,
+        "lines": 39
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 4
+    }
+  },
+  {
+    "project": "deutsia-radio",
+    "totalClones": 286,
+    "totalLines": 47826,
+    "totalDuplicatedLines": 4030,
+    "percentage": 8.43,
+    "formatStats": {
+      "kotlin": {
+        "count": 94,
+        "lines": 1277
+      },
+      "markup": {
+        "count": 188,
+        "lines": 2016
+      },
+      "css": {
+        "count": 4,
+        "lines": 1023
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 286
+    }
+  },
+  {
+    "project": "fastapi_mcp",
+    "totalClones": 31,
+    "totalLines": 8285,
+    "totalDuplicatedLines": 526,
+    "percentage": 6.35,
+    "formatStats": {
+      "python": {
+        "count": 30,
+        "lines": 537
+      },
+      "yaml": {
+        "count": 1,
+        "lines": 20
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 31
+    }
+  },
+  {
+    "project": "frontend-slides",
+    "totalClones": 16,
+    "totalLines": 8026,
+    "totalDuplicatedLines": 3428,
+    "percentage": 42.71,
+    "formatStats": {
+      "bash": {
+        "count": 3,
+        "lines": 652
+      },
+      "python": {
+        "count": 2,
+        "lines": 115
+      },
+      "css": {
+        "count": 4,
+        "lines": 899
+      },
+      "markdown": {
+        "count": 4,
+        "lines": 1195
+      },
+      "javascript": {
+        "count": 2,
+        "lines": 222
+      },
+      "markup": {
+        "count": 1,
+        "lines": 361
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 12,
+      "documentation": 4
+    }
+  },
+  {
+    "project": "hapi",
+    "totalClones": 413,
+    "totalLines": 135085,
+    "totalDuplicatedLines": 6631,
+    "percentage": 4.91,
+    "formatStats": {
+      "json": {
+        "count": 5,
+        "lines": 98
+      },
+      "javascript": {
+        "count": 12,
+        "lines": 1194
+      },
+      "tsx": {
+        "count": 96,
+        "lines": 1631
+      },
+      "typescript": {
+        "count": 298,
+        "lines": 4086
+      },
+      "yaml": {
+        "count": 2,
+        "lines": 35
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 413
+    }
+  },
+  {
+    "project": "lightning-vibe-coding",
+    "totalClones": 5,
+    "totalLines": 5371,
+    "totalDuplicatedLines": 202,
+    "percentage": 3.76,
+    "formatStats": {
+      "javascript": {
+        "count": 1,
+        "lines": 6
+      },
+      "txt": {
+        "count": 1,
+        "lines": 37
+      },
+      "css": {
+        "count": 1,
+        "lines": 11
+      },
+      "markup": {
+        "count": 2,
+        "lines": 153
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 5
+    }
+  },
+  {
+    "project": "lk_locator",
+    "totalClones": 2,
+    "totalLines": 2654,
+    "totalDuplicatedLines": 21,
+    "percentage": 0.79,
+    "formatStats": {
+      "javascript": {
+        "count": 2,
+        "lines": 23
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 2
+    }
+  },
+  {
+    "project": "lost.js",
+    "totalClones": 8,
+    "totalLines": 6758,
+    "totalDuplicatedLines": 84,
+    "percentage": 1.24,
+    "formatStats": {
+      "javascript": {
+        "count": 6,
+        "lines": 72
+      },
+      "css": {
+        "count": 1,
+        "lines": 13
+      },
+      "markup": {
+        "count": 1,
+        "lines": 7
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 8
+    }
+  },
+  {
+    "project": "medkit-app",
+    "totalClones": 19,
+    "totalLines": 21129,
+    "totalDuplicatedLines": 338,
+    "percentage": 1.6,
+    "formatStats": {
+      "javascript": {
+        "count": 12,
+        "lines": 234
+      },
+      "typescript": {
+        "count": 4,
+        "lines": 42
+      },
+      "tsx": {
+        "count": 3,
+        "lines": 81
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 19
+    }
+  },
+  {
+    "project": "n8n-mcp",
+    "totalClones": 988,
+    "totalLines": 228130,
+    "totalDuplicatedLines": 20497,
+    "percentage": 8.98,
+    "formatStats": {
+      "javascript": {
+        "count": 113,
+        "lines": 1902
+      },
+      "tsx": {
+        "count": 3,
+        "lines": 57
+      },
+      "typescript": {
+        "count": 845,
+        "lines": 12840
+      },
+      "markdown": {
+        "count": 7,
+        "lines": 145
+      },
+      "json": {
+        "count": 9,
+        "lines": 6268
+      },
+      "sql": {
+        "count": 2,
+        "lines": 38
+      },
+      "yaml": {
+        "count": 7,
+        "lines": 191
+      },
+      "bash": {
+        "count": 2,
+        "lines": 44
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 981,
+      "documentation": 7
+    }
+  },
+  {
+    "project": "n8n-workflows-noz",
+    "totalClones": 0,
+    "totalLines": 1202,
+    "totalDuplicatedLines": 0,
+    "percentage": 0,
+    "formatStats": {},
+    "cloneTypeCounts": {}
+  },
+  {
+    "project": "oh-my-claudecode",
+    "totalClones": 2247,
+    "totalLines": 530991,
+    "totalDuplicatedLines": 32431,
+    "percentage": 6.11,
+    "formatStats": {
+      "typescript": {
+        "count": 1253,
+        "lines": 20375
+      },
+      "javascript": {
+        "count": 962,
+        "lines": 11105
+      },
+      "bash": {
+        "count": 12,
+        "lines": 479
+      },
+      "markdown": {
+        "count": 9,
+        "lines": 286
+      },
+      "json": {
+        "count": 11,
+        "lines": 2433
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 2238,
+      "documentation": 9
+    }
+  },
+  {
+    "project": "onlook",
+    "totalClones": 426,
+    "totalLines": 151648,
+    "totalDuplicatedLines": 13502,
+    "percentage": 8.9,
+    "formatStats": {
+      "javascript": {
+        "count": 41,
+        "lines": 1811
+      },
+      "tsx": {
+        "count": 190,
+        "lines": 3919
+      },
+      "typescript": {
+        "count": 139,
+        "lines": 1666
+      },
+      "json": {
+        "count": 50,
+        "lines": 6255
+      },
+      "txt": {
+        "count": 1,
+        "lines": 29
+      },
+      "sql": {
+        "count": 2,
+        "lines": 20
+      },
+      "css": {
+        "count": 1,
+        "lines": 62
+      },
+      "yaml": {
+        "count": 1,
+        "lines": 20
+      },
+      "markdown": {
+        "count": 1,
+        "lines": 146
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 425,
+      "documentation": 1
+    }
+  },
+  {
+    "project": "openv0",
+    "totalClones": 110,
+    "totalLines": 23370,
+    "totalDuplicatedLines": 5240,
+    "percentage": 22.42,
+    "formatStats": {
+      "markup": {
+        "count": 15,
+        "lines": 783
+      },
+      "typescript": {
+        "count": 1,
+        "lines": 9
+      },
+      "javascript": {
+        "count": 65,
+        "lines": 2831
+      },
+      "tsx": {
+        "count": 23,
+        "lines": 1572
+      },
+      "css": {
+        "count": 2,
+        "lines": 47
+      },
+      "markdown": {
+        "count": 2,
+        "lines": 65
+      },
+      "json": {
+        "count": 2,
+        "lines": 43
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 108,
+      "documentation": 2
+    }
+  },
+  {
+    "project": "paycan",
+    "totalClones": 76,
+    "totalLines": 24716,
+    "totalDuplicatedLines": 1512,
+    "percentage": 6.12,
+    "formatStats": {
+      "php": {
+        "count": 46,
+        "lines": 649
+      },
+      "typescript": {
+        "count": 26,
+        "lines": 514
+      },
+      "markup": {
+        "count": 3,
+        "lines": 59
+      },
+      "markdown": {
+        "count": 1,
+        "lines": 366
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 75,
+      "documentation": 1
+    }
+  },
+  {
+    "project": "prodlint",
+    "totalClones": 45,
+    "totalLines": 14847,
+    "totalDuplicatedLines": 407,
+    "percentage": 2.74,
+    "formatStats": {
+      "typescript": {
+        "count": 45,
+        "lines": 452
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 45
+    }
+  },
+  {
+    "project": "refly",
+    "totalClones": 774,
+    "totalLines": 310831,
+    "totalDuplicatedLines": 13728,
+    "percentage": 4.42,
+    "formatStats": {
+      "typescript": {
+        "count": 436,
+        "lines": 6759
+      },
+      "tsx": {
+        "count": 189,
+        "lines": 3224
+      },
+      "javascript": {
+        "count": 36,
+        "lines": 1181
+      },
+      "scss": {
+        "count": 8,
+        "lines": 212
+      },
+      "json": {
+        "count": 60,
+        "lines": 2323
+      },
+      "css": {
+        "count": 1,
+        "lines": 12
+      },
+      "python": {
+        "count": 2,
+        "lines": 26
+      },
+      "markdown": {
+        "count": 22,
+        "lines": 323
+      },
+      "yaml": {
+        "count": 15,
+        "lines": 356
+      },
+      "markup": {
+        "count": 3,
+        "lines": 26
+      },
+      "bash": {
+        "count": 2,
+        "lines": 60
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 752,
+      "documentation": 22
+    }
+  },
+  {
+    "project": "safe-vibe-coding",
+    "totalClones": 0,
+    "totalLines": 854,
+    "totalDuplicatedLines": 0,
+    "percentage": 0,
+    "formatStats": {},
+    "cloneTypeCounts": {}
+  },
+  {
+    "project": "serena",
+    "totalClones": 299,
+    "totalLines": 89473,
+    "totalDuplicatedLines": 4220,
+    "percentage": 4.72,
+    "formatStats": {
+      "markup": {
+        "count": 1,
+        "lines": 14
+      },
+      "python": {
+        "count": 285,
+        "lines": 4097
+      },
+      "yaml": {
+        "count": 8,
+        "lines": 129
+      },
+      "json": {
+        "count": 2,
+        "lines": 144
+      },
+      "css": {
+        "count": 1,
+        "lines": 119
+      },
+      "markdown": {
+        "count": 2,
+        "lines": 16
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 297,
+      "documentation": 2
+    }
+  },
+  {
+    "project": "sparky",
+    "totalClones": 13,
+    "totalLines": 5747,
+    "totalDuplicatedLines": 242,
+    "percentage": 4.21,
+    "formatStats": {
+      "tsx": {
+        "count": 8,
+        "lines": 179
+      },
+      "css": {
+        "count": 5,
+        "lines": 76
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 13
+    }
+  },
+  {
+    "project": "stagewise",
+    "totalClones": 462,
+    "totalLines": 217067,
+    "totalDuplicatedLines": 18444,
+    "percentage": 8.5,
+    "formatStats": {
+      "tsx": {
+        "count": 165,
+        "lines": 3687
+      },
+      "javascript": {
+        "count": 16,
+        "lines": 1076
+      },
+      "typescript": {
+        "count": 202,
+        "lines": 2918
+      },
+      "markup": {
+        "count": 47,
+        "lines": 5321
+      },
+      "css": {
+        "count": 19,
+        "lines": 5526
+      },
+      "json": {
+        "count": 2,
+        "lines": 58
+      },
+      "yaml": {
+        "count": 6,
+        "lines": 130
+      },
+      "markdown": {
+        "count": 5,
+        "lines": 190
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 457,
+      "documentation": 5
+    }
+  },
+  {
+    "project": "the-new-snap-game",
+    "totalClones": 2,
+    "totalLines": 2719,
+    "totalDuplicatedLines": 32,
+    "percentage": 1.18,
+    "formatStats": {
+      "javascript": {
+        "count": 1,
+        "lines": 17
+      },
+      "typescript": {
+        "count": 1,
+        "lines": 17
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 2
+    }
+  },
+  {
+    "project": "ubon",
+    "totalClones": 59,
+    "totalLines": 22036,
+    "totalDuplicatedLines": 620,
+    "percentage": 2.81,
+    "formatStats": {
+      "typescript": {
+        "count": 56,
+        "lines": 661
+      },
+      "markup": {
+        "count": 3,
+        "lines": 18
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 59
+    }
+  },
+  {
+    "project": "vibe-check",
+    "totalClones": 0,
+    "totalLines": 1615,
+    "totalDuplicatedLines": 0,
+    "percentage": 0,
+    "formatStats": {},
+    "cloneTypeCounts": {}
+  },
+  {
+    "project": "vibe-security-skill",
+    "totalClones": 0,
+    "totalLines": 2090,
+    "totalDuplicatedLines": 0,
+    "percentage": 0,
+    "formatStats": {},
+    "cloneTypeCounts": {}
+  },
+  {
+    "project": "vibecoins-mcp",
+    "totalClones": 4,
+    "totalLines": 2500,
+    "totalDuplicatedLines": 64,
+    "percentage": 2.56,
+    "formatStats": {
+      "javascript": {
+        "count": 4,
+        "lines": 68
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 4
+    }
+  },
+  {
+    "project": "voice-typing-vibecoding",
+    "totalClones": 43,
+    "totalLines": 9309,
+    "totalDuplicatedLines": 627,
+    "percentage": 6.74,
+    "formatStats": {
+      "typescript": {
+        "count": 37,
+        "lines": 573
+      },
+      "javascript": {
+        "count": 4,
+        "lines": 68
+      },
+      "tsx": {
+        "count": 2,
+        "lines": 29
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 43
+    }
+  },
+  {
+    "project": "yyz-agentics-june",
+    "totalClones": 35,
+    "totalLines": 16638,
+    "totalDuplicatedLines": 426,
+    "percentage": 2.56,
+    "formatStats": {
+      "python": {
+        "count": 35,
+        "lines": 461
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 35
+    }
+  }
+]
