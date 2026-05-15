@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: frontend-slides — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>frontend-slides</h1>
+      <div class="subtitle">
+        Owner: zarazhangrui &middot; 8,098 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-high" style="margin-left:12px">High — 42.33%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">16</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">3,428</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#ef4444">42.33%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">8,098</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">bash</span>
+            <span class="dup-size">418 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/export-pdf.sh</span>
+              <span class="dup-loc">L1–L418</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/scripts/export-pdf.sh</span>
+              <span class="dup-loc">L1–L418</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>#!/usr/bin/env bash
+# export-pdf.sh — Export an HTML presentation to PDF
+#
+# Usage:
+#   bash scripts/export-pdf.sh <path-to-html> [output.pdf]
+#
+# Examples:
+#   bash scripts/export-pdf.sh ./my-deck/index.html
+#   bash scripts/export-pdf.sh ./presentation.html ./presentation.pdf
+#
+# What this does:
+#   1. Starts a local server to serve the HTML (fonts and assets need HTTP)
+#   2. Uses Playwright to
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">418 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>html-template.md</span>
+              <span class="dup-loc">L1–L418</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/html-template.md</span>
+              <span class="dup-loc">L1–L418</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># HTML Presentation Template
+
+Reference architecture for generating slide presentations. Every presentation follows this structure.
+
+## Base HTML Structure
+
+```html
+<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+  <head>
+    <meta charset=&quot;UTF-8&quot; />
+    <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; />
+    <title>Presentation Title</title>
+
+    <!-- Fonts: use Fontshare or Google Fonts — 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">368 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>html-template.md</span>
+              <span class="dup-loc">L18–L385</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/html-template.md</span>
+              <span class="dup-loc">L18–L385</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot; />
+    <title>Presentation Title</titl</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">361 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>html-template.md</span>
+              <span class="dup-loc">L8–L368</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/html-template.md</span>
+              <span class="dup-loc">L8–L368</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># HTML Presentation Template
+
+Reference architecture for generating slide presentations. Every presentation follows this structure.
+
+## Base HTML Structure
+
+```h</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">346 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>STYLE_PRESETS.md</span>
+              <span class="dup-loc">L1–L346</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/STYLE_PRESETS.md</span>
+              <span class="dup-loc">L1–L346</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Style Presets Reference
+
+Curated visual styles for Frontend Slides. Each preset is inspired by real design references — no generic &quot;AI slop&quot; aesthetics. **Abstract shapes only — no illustrations.**
+
+**Viewport CSS:** For mandatory base styles, see [viewport-base.css](viewport-base.css). Include in every presentation.
+
+---
+
+## Dark Themes
+
+### 1. Bold Signal
+
+**Vibe:** Confident, bold, modern, hi
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">321 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>STYLE_PRESETS.md</span>
+              <span class="dup-loc">L23–L343</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/STYLE_PRESETS.md</span>
+              <span class="dup-loc">L23–L343</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Style Presets Reference
+
+Curated visual styles for Frontend Slides. Each preset is inspired by real design refer</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">321 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>SKILL.md</span>
+              <span class="dup-loc">L2–L322</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/SKILL.md</span>
+              <span class="dup-loc">L2–L322</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>name: frontend-slides
+description: Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a talk/pitch. Helps non-designers discover their aesthetic through visual exploration rather than abstract choices.
+---
+
+# Frontend Slides
+
+Create zero-dependency, anima
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">bash</span>
+            <span class="dup-size">218 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/deploy.sh</span>
+              <span class="dup-loc">L1–L218</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/scripts/deploy.sh</span>
+              <span class="dup-loc">L1–L218</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>#!/usr/bin/env bash
+# deploy.sh — Deploy a slide deck to Vercel for instant sharing
+#
+# Usage:
+#   bash scripts/deploy.sh <path-to-slide-folder-or-html>
+#
+# Examples:
+#   bash scripts/deploy.sh ./my-pitch-deck/
+#   bash scripts/deploy.sh ./presentation.html
+#
+# What this does:
+#   1. Checks if Vercel CLI is installed (installs if not)
+#   2. Checks if user is logged in (guides through login if not
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">203 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>html-template.md</span>
+              <span class="dup-loc">L115–L317</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/html-template.md</span>
+              <span class="dup-loc">L115–L317</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>ze: clamp(2rem, 6vw, 5rem);
+        --subtitle-size: clamp(0.875rem, 2vw, 1.25rem);
+        --body-size: clamp(0.75rem, 1.2vw, 1rem);
+
+        /* Spacing — MUST use clamp() */
+        --slide-padding: clamp(1.5rem, 4vw, 4rem);
+        --content-gap: clamp(1rem, 2vw, 2rem);
+
+        /* Animation */
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        --duration-normal: 0.6s;
+      }
+
+   
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">153 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>viewport-base.css</span>
+              <span class="dup-loc">L1–L153</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/viewport-base.css</span>
+              <span class="dup-loc">L1–L153</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/* ===========================================
+   VIEWPORT FITTING: MANDATORY BASE STYLES
+   Include this ENTIRE file in every presentation.
+   These styles ensure slides fit exactly in the viewport.
+   =========================================== */
+
+/* 1. Lock html/body to viewport */
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-snap-type: y mandatory;
+    scroll-be
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">110 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>animation-patterns.md</span>
+              <span class="dup-loc">L1–L110</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/animation-patterns.md</span>
+              <span class="dup-loc">L1–L110</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Animation Patterns Reference
+
+Use this reference when generating presentations. Match animations to the intended feeling.
+
+## Effect-to-Feeling Guide
+
+| Feeling | Animations | Visual Cues |
+|---------|-----------|-------------|
+| **Dramatic / Cinematic** | Slow fade-ins (1-1.5s), large scale transitions (0.9 to 1), parallax scrolling | Dark backgrounds, spotlight effects, full-bleed images |
+| *
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">96 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/extract-pptx.py</span>
+              <span class="dup-loc">L1–L96</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/scripts/extract-pptx.py</span>
+              <span class="dup-loc">L1–L96</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>#!/usr/bin/env python3
+&quot;&quot;&quot;
+Extract all content from a PowerPoint file (.pptx).
+Returns a JSON structure with slides, text, and images.
+
+Usage:
+    python extract-pptx.py <input.pptx> [output_dir]
+
+Requires: pip install python-pptx
+&quot;&quot;&quot;
+
+import json
+import os
+import sys
+from pptx import Presentation
+
+
+def extract_pptx(file_path, output_dir=&quot;.&quot;):
+    &quot;&quot;&quot;
+    Extract all content from a PowerPoint file
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">57 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>animation-patterns.md</span>
+              <span class="dup-loc">L19–L75</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/animation-patterns.md</span>
+              <span class="dup-loc">L19–L75</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Animation Patterns Reference
+
+Use this reference when generating presentations. Match animations to the intended feeling.
+
+## Effect-to-Feeling Guide
+
+| Feeling | Animations | Visual Cues |
+|---------|-----------|-------------|
+| **Dramatic / Cinematic** | Slow fade-ins (1-1.5s), large scale transitions (0.9 to 1), parallax scrolling | Dark backgrounds, spotlight effects, full-bleed images |
+| *
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">19 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>html-template.md</span>
+              <span class="dup-loc">L329–L347</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/html-template.md</span>
+              <span class="dup-loc">L329–L347</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># HTML Presentation Template
+
+Reference architecture for generating slide presentations. Every presentation follows this structure.
+
+## Base HTML Structure
+
+```html
+<!DOCTYPE html>
+<html lang=&quot;en&quot;>
+  <head>
+    <meta charset=&quot;UTF-8&quot; />
+    <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; />
+    <title>Presentation Title</title>
+
+    <!-- Fonts: use Fontshare or Google Fonts — 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">19 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>animation-patterns.md</span>
+              <span class="dup-loc">L81–L99</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/animation-patterns.md</span>
+              <span class="dup-loc">L81–L99</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Animation Patterns Reference
+
+Use this reference when generating presentations. Match animations to the intended feeling.
+
+## Effect-to-Feeling Guide
+
+| Feeling | Animations | Visual Cues |
+|---------|-----------|-------------|
+| **Dramatic / Cinematic** | Slow fade-ins (1-1.5s), large scale transitions (0.9 to 1), parallax scrolling | Dark backgrounds, spotlight effects, full-bleed images |
+| *
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">bash</span>
+            <span class="dup-size">16 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/scripts/deploy.sh</span>
+              <span class="dup-loc">L19–L34</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/frontend-slides/skills/frontend-slides/scripts/export-pdf.sh</span>
+              <span class="dup-loc">L19–L34</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>set -euo pipefail
+
+# ─── Colors ────────────────────────────────────────────────
+RED=&#x27;\033[0;31m&#x27;
+GREEN=&#x27;\033[0;32m&#x27;
+CYAN=&#x27;\033[0;36m&#x27;
+YELLOW=&#x27;\033[1;33m&#x27;
+BOLD=&#x27;\033[1m&#x27;
+NC=&#x27;\033[0m&#x27;
+
+info()  { echo -e &quot;${CYAN}ℹ${NC} $*&quot;; }
+ok()    { echo -e &quot;${GREEN}✓${NC} $*&quot;; }
+warn()  { echo -e &quot;${YELLOW}⚠${NC} $*&quot;; }
+err()   { echo -e &quot;${RED}✗${NC} $*&quot; >&amp;2; }
+
+# ─── Input validation ──────────────────────────
+... (truncated)</code></pre></div>
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Css</td><td class='cell-num'>4</td><td class='cell-num'>899</td></tr>
+    <tr><td>Markdown</td><td class='cell-num'>4</td><td class='cell-num'>1,195</td></tr>
+    <tr><td>Bash</td><td class='cell-num'>3</td><td class='cell-num'>652</td></tr>
+    <tr><td>Python</td><td class='cell-num'>2</td><td class='cell-num'>115</td></tr>
+    <tr><td>Javascript</td><td class='cell-num'>2</td><td class='cell-num'>222</td></tr>
+    <tr><td>Markup</td><td class='cell-num'>1</td><td class='cell-num'>361</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>12</td><td class='cell-num'>75.0%</td></tr>
+    <tr><td>Documentation</td><td class='cell-num'>4</td><td class='cell-num'>25.0%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

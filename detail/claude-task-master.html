@@ -1,0 +1,2037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: claude-task-master — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>claude-task-master</h1>
+      <div class="subtitle">
+        Owner: eyaltoledano &middot; 217,167 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-medium" style="margin-left:12px">Medium — 6.06%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">697</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">13,163</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#f59e0b">6.06%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">217,167</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">511 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>assets/example_prd_rpg.txt</span>
+              <span class="dup-loc">L1–L511</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.taskmaster/templates/example_prd_rpg.txt</span>
+              <span class="dup-loc">L1–L511</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><rpg-method>
+# Repository Planning Graph (RPG) Method - PRD Template
+
+This template teaches you (AI or human) how to create structured, dependency-aware PRDs using the RPG methodology from Microsoft Research. The key insight: separate WHAT (functional) from HOW (structural), then connect them with explicit dependencies.
+
+## Core Principles
+
+1. **Dual-Semantics**: Think functional (capabilities) AN
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">260 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.taskmaster/CLAUDE.md</span>
+              <span class="dup-loc">L128–L387</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>assets/AGENTS.md</span>
+              <span class="dup-loc">L123–L382</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>### Essential MCP Tools
+
+```javascript
+help; // = shows available taskmaster commands
+// Project setup
+initialize_project; // = task-master init
+parse_prd; // = task-master parse-prd
+
+// Daily workflow
+get_tasks; // = task-master list
+next_task; // = task-master next
+get_task; // = task-master show <id>
+set_task_status; // = task-master set-status
+
+// Task management
+add_task; // = task-master add
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">bash</span>
+            <span class="dup-size">227 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.taskmaster/CLAUDE.md</span>
+              <span class="dup-loc">L161–L387</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>assets/AGENTS.md</span>
+              <span class="dup-loc">L156–L382</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Task Master AI - Agen</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">220 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.taskmaster/CLAUDE.md</span>
+              <span class="dup-loc">L88–L307</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>assets/AGENTS.md</span>
+              <span class="dup-loc">L89–L302</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Task Master AI - Agent Integration Guide
+
+## Essential Commands
+
+### Core Workflow Commands
+
+```bash
+# Project Setup
+task-master init                                    # Initialize Task Master in current project
+task-master parse-prd .taskmaster/docs/prd.md       # Generate tasks from PRD document
+task-master models --setup               </code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">bash</span>
+            <span class="dup-size">154 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.taskmaster/CLAUDE.md</span>
+              <span class="dup-loc">L8–L161</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>assets/AGENTS.md</span>
+              <span class="dup-loc">L8–L35</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Task Master AI - Agent</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">147 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/TM_COMMANDS_GUIDE.md</span>
+              <span class="dup-loc">L1–L147</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>assets/claude/TM_COMMANDS_GUIDE.md</span>
+              <span class="dup-loc">L1–L147</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Task Master Commands for Claude Code
+
+Complete guide to using Task Master through Claude Code&#x27;s slash commands.
+
+## Overview
+
+All Task Master functionality is available through the `/project:tm/` namespace with natural language support and intelligent features.
+
+## Quick Start
+
+```bash
+# Install Task Master
+/project:tm/setup/quick-install
+
+# Initialize project
+/project:tm/init/quick
+
+# Parse req
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">142 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/extension/package.json</span>
+              <span class="dup-loc">L85–L226</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/extension/package.publish.json</span>
+              <span class="dup-loc">L108–L250</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>},
+				&quot;taskmaster.mcp.timeout&quot;: {
+					&quot;type&quot;: &quot;number&quot;,
+					&quot;default&quot;: 30000,
+					&quot;minimum&quot;: 1000,
+					&quot;maximum&quot;: 300000,
+					&quot;description&quot;: &quot;Connection timeout in milliseconds&quot;
+				},
+				&quot;taskmaster.mcp.maxReconnectAttempts&quot;: {
+					&quot;type&quot;: &quot;number&quot;,
+					&quot;default&quot;: 5,
+					&quot;minimum&quot;: 1,
+					&quot;maximum&quot;: 20,
+					&quot;description&quot;: &quot;Maximum number of reconnection attempts&quot;
+				},
+				&quot;taskmaste
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">bash</span>
+            <span class="dup-size">102 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>README-task-master.md</span>
+              <span class="dup-loc">L385–L486</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>docs/command-reference.md</span>
+              <span class="dup-loc">L109–L210</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Task Master
+
+### by [@e</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">101 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>README-task-master.md</span>
+              <span class="dup-loc">L498–L598</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>docs/task-structure.md</span>
+              <span class="dup-loc">L41–L141</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>### Analyzing Task Complexity
+
+The `analyze-complexity` command:
+
+- Analyzes each task using AI to assess its complexity on a scale of 1-10
+- Recommends optimal number of subtasks based on configured DEFAULT_SUBTASKS
+- Generates tailored prompts for expanding each task
+- Creates a comprehensive JSON report with ready-to-use commands
+- Saves the report to scripts/task-complexity-report.json by defa
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">98 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/ai-providers/mcp-components.test.js</span>
+              <span class="dup-loc">L6–L103</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/mcp-providers/mcp-components.test.js</span>
+              <span class="dup-loc">L6–L103</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import { jest } from &#x27;@jest/globals&#x27;;
+
+describe(&#x27;MCP Custom SDK Components&#x27;, () => {
+	describe(&#x27;Message Converter&#x27;, () => {
+		let messageConverter;
+
+		beforeAll(async () => {
+			const module = await import(
+				&#x27;../../../mcp-server/src/custom-sdk/message-converter.js&#x27;
+			);
+			messageConverter = module;
+		});
+
+		describe(&#x27;convertToMCPFormat&#x27;, () => {
+			it(&#x27;should convert AI SDK messages to MCP fo
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">76 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.taskmaster/CLAUDE.md</span>
+              <span class="dup-loc">L37–L112</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>assets/AGENTS.md</span>
+              <span class="dup-loc">L38–L113</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>## Key Files &amp; Project Structure
+
+### Core Files
+
+- `.taskmaster/tasks/tasks.json` - Main task data file (auto-managed)
+- `.taskmaster/config.json` - AI model configuration (use `task-master models` to modify)
+- `.taskmaster/docs/prd.md` - Product Requirements Document for parsing (`.md` extension recommended for better editor support)
+- `.taskmaster/tasks/*.txt` - Individual task files (auto-gene
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">71 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/modules/task-manager/scope-adjustment.js</span>
+              <span class="dup-loc">L823–L893</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/modules/task-manager/scope-adjustment.js</span>
+              <span class="dup-loc">L672–L742</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+			strength,
+			originalComplexity
+		);
+
+		// Log subtask regeneration info if in text mode
+		if (outputFormat === &#x27;text&#x27; &amp;&amp; subtaskResult.regenerated) {
+			log(
+				&#x27;info&#x27;,
+				`Regenerated ${subtaskResult.generated} pending subtasks (preserved ${subtaskResult.preserved} completed)`
+			);
+		}
+
+		// Update task in data
+		const taskIndex = data.tasks.findIndex((t) => t.id === taskId);
+		if (taskI
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">71 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>context/chats/max-min-tokens.txt.md</span>
+              <span class="dup-loc">L297–L367</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>context/chats/max-min-tokens.txt.md</span>
+              <span class="dup-loc">L198–L297</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>a</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">69 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mcp/CHANGELOG.md</span>
+              <span class="dup-loc">L3–L71</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/tm-bridge/CHANGELOG.md</span>
+              <span class="dup-loc">L3–L43</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">63 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/cli/src/commands/auth.command.ts</span>
+              <span class="dup-loc">L573–L635</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/cli/src/commands/auth.command.ts</span>
+              <span class="dup-loc">L431–L495</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>console.log(
+				chalk.gray(`  Logged in as: ${credentials.email || credentials.userId}`)
+			);
+
+			// Post-auth: Set up workspace context (skip if --yes flag is used)
+			if (!yes) {
+				console.log(); // Add spacing
+				try {
+					const contextCommand = new ContextCommand();
+					const contextResult = await contextCommand.setupContextInteractive();
+					if (contextResult.success) {
+						if (cont
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">55 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/tm-core/src/testing/task-fixtures.ts</span>
+              <span class="dup-loc">L141–L195</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/tm-core/src/testing/task-fixtures.ts</span>
+              <span class="dup-loc">L65–L121</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+		// Spread any additional optional fields
+		...(overrides.createdAt &amp;&amp; { createdAt: overrides.createdAt }),
+		...(overrides.updatedAt &amp;&amp; { updatedAt: overrides.updatedAt }),
+		...(overrides.effort &amp;&amp; { effort: overrides.effort }),
+		...(overrides.actualEffort &amp;&amp; { actualEffort: overrides.actualEffort }),
+		...(overrides.tags &amp;&amp; { tags: overrides.tags }),
+		...(overrides.assignee &amp;&amp; { assignee: 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">54 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mcp/tests/integration/tools/generate.tool.test.ts</span>
+              <span class="dup-loc">L24–L77</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mcp/tests/integration/tools/get-tasks.tool.test.ts</span>
+              <span class="dup-loc">L24–L75</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>));
+		process.chdir(testDir);
+
+		cliPath = path.resolve(__dirname, &#x27;../../../../../dist/task-master.js&#x27;);
+		mcpServerPath = path.resolve(
+			__dirname,
+			&#x27;../../../../../dist/mcp-server.js&#x27;
+		);
+
+		// Initialize Task Master in test directory
+		execSync(`node &quot;${cliPath}&quot; init --yes`, {
+			stdio: &#x27;pipe&#x27;,
+			env: { ...process.env, TASKMASTER_SKIP_AUTO_UPDATE: &#x27;1&#x27; }
+		});
+
+		tasksPath = path.join(te
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">52 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/scripts/modules/task-manager/set-task-status.test.js</span>
+              <span class="dup-loc">L97–L148</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/scripts/modules/task-manager/setup.js</span>
+              <span class="dup-loc">L9–L59</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>tasks: [
+			{
+				id: 1,
+				title: &#x27;Task 1&#x27;,
+				description: &#x27;First task description&#x27;,
+				status: &#x27;pending&#x27;,
+				dependencies: [],
+				priority: &#x27;high&#x27;,
+				details: &#x27;Detailed information for task 1&#x27;,
+				testStrategy: &#x27;Test strategy for task 1&#x27;
+			},
+			{
+				id: 2,
+				title: &#x27;Task 2&#x27;,
+				description: &#x27;Second task description&#x27;,
+				status: &#x27;pending&#x27;,
+				dependencies: [1],
+				priority: &#x27;med
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">48 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/tm-bridge/CHANGELOG.md</span>
+              <span class="dup-loc">L10–L57</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/tm-bridge/CHANGELOG.md</span>
+              <span class="dup-loc">L3–L43</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #20</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">48 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.taskmaster/ascii-art (6).txt</span>
+              <span class="dup-loc">L2–L49</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>assets/hamster-art.txt</span>
+              <span class="dup-loc">L2–L49</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▒▒▓▓▒▓▓▓▓▓▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 
+ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▒▒▒▒▓▒▓▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 
+ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▒▒▒▒▒▒▒▒▒▒▓▓▓▒▒▓▒▒▓▓▓▓▓▓▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 
+ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓▒▒▒▒▒▒▒▒▒▒▒▒▓▒▓▓▒▓▒▓▓▒▒▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 
+ ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▓████▓▓▓▓▓▓▓▒▒▒▓▓
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #21</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">47 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/cli/CHANGELOG.md</span>
+              <span class="dup-loc">L3–L49</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/tm-bridge/CHANGELOG.md</span>
+              <span class="dup-loc">L3–L42</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tm/core@null
+
+## null
+
+### Patch Changes
+
+- 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #22</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">47 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>assets/example_prd.txt</span>
+              <span class="dup-loc">L1–L47</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.taskmaster/templates/example_prd.txt</span>
+              <span class="dup-loc">L1–L47</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><context>
+# Overview  
+[Provide a high-level overview of your product here. Explain what problem it solves, who it&#x27;s for, and why it&#x27;s valuable.]
+
+# Core Features  
+[List and describe the main features of your product. For each feature, include:
+- What it does
+- Why it&#x27;s important
+- How it works at a high level]
+
+# User Experience  
+[Describe the user journey and experience. Include:
+- User person
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #23</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">44 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>mcp-server/src/core/direct-functions/add-dependency.js</span>
+              <span class="dup-loc">L32–L75</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>mcp-server/src/core/direct-functions/remove-dependency.js</span>
+              <span class="dup-loc">L30–L73</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+			return {
+				success: false,
+				error: {
+					code: &#x27;MISSING_ARGUMENT&#x27;,
+					message: &#x27;tasksJsonPath is required&#x27;
+				}
+			};
+		}
+
+		// Validate required parameters
+		if (!id) {
+			return {
+				success: false,
+				error: {
+					code: &#x27;INPUT_VALIDATION_ERROR&#x27;,
+					message: &#x27;Task ID (id) is required&#x27;
+				}
+			};
+		}
+
+		if (!dependsOn) {
+			return {
+				success: false,
+				error: {
+					code:
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #24</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">42 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/scripts/modules/task-manager/update-task-by-id.test.js</span>
+              <span class="dup-loc">L714–L755</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/scripts/modules/task-manager/update-task-by-id.test.js</span>
+              <span class="dup-loc">L507–L548</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+
+		fs.existsSync.mockReturnValue(true);
+		readJSON.mockReturnValue({
+			tag: &#x27;master&#x27;,
+			tasks: [
+				{
+					id: 1,
+					title: &#x27;Task&#x27;,
+					description: &#x27;Description&#x27;,
+					status: &#x27;pending&#x27;,
+					dependencies: [],
+					priority: &#x27;medium&#x27;,
+					details: &#x27;Details&#x27;,
+					testStrategy: &#x27;Test strategy&#x27;,
+					subtasks: []
+				}
+			]
+		});
+
+		generateObjectService.mockResolvedValue({
+			mainResult:
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #25</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">42 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/extension/CHANGELOG.md</span>
+              <span class="dup-loc">L223–L264</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/extension/CHANGELOG.md</span>
+              <span class="dup-loc">L180–L221</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>### Minor Changes
+
+- [#1064](https://github.com/eyaltoledano/claude-task-master/pull/1064) [`b82d858`](https://github.com/eyaltoledano/claude-task-master/commit/b82d858f81a1e702ad59d84d5ae8a2ca84359a83) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - 🎉 **Introducing TaskMaster Extension!**
+
+  We&#x27;re thrilled to launch the first version of our Code extension, bringing the power of
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #26</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">bash</span>
+            <span class="dup-size">42 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>README-task-master.md</span>
+              <span class="dup-loc">L323–L364</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>docs/command-reference.md</span>
+              <span class="dup-loc">L8–L49</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Task Master
+
+### by [@eyaltoledano](https://x.com/eyaltoledano)
+
+A task management system for AI-driven development with Claude, designed to</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #27</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">41 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/profiles/rule-transformer-trae.test.js</span>
+              <span class="dup-loc">L16–L56</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/profiles/rule-transformer-zed.test.js</span>
+              <span class="dup-loc">L16–L56</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, () => {
+	// Set up spies on the mocked modules
+	const mockReadFileSync = jest.spyOn(fs, &#x27;readFileSync&#x27;);
+	const mockWriteFileSync = jest.spyOn(fs, &#x27;writeFileSync&#x27;);
+	const mockExistsSync = jest.spyOn(fs, &#x27;existsSync&#x27;);
+	const mockMkdirSync = jest.spyOn(fs, &#x27;mkdirSync&#x27;);
+	const mockConsoleError = jest
+		.spyOn(console, &#x27;error&#x27;)
+		.mockImplementation(() => {});
+
+	beforeEach(() => {
+		jest.clearAll
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #28</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">41 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/profiles/rule-transformer-roo.test.js</span>
+              <span class="dup-loc">L16–L56</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/profiles/rule-transformer-zed.test.js</span>
+              <span class="dup-loc">L16–L56</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, () => {
+	// Set up spies on the mocked modules
+	const mockReadFileSync = jest.spyOn(fs, &#x27;readFileSync&#x27;);
+	const mockWriteFileSync = jest.spyOn(fs, &#x27;writeFileSync&#x27;);
+	const mockExistsSync = jest.spyOn(fs, &#x27;existsSync&#x27;);
+	const mockMkdirSync = jest.spyOn(fs, &#x27;mkdirSync&#x27;);
+	const mockConsoleError = jest
+		.spyOn(console, &#x27;error&#x27;)
+		.mockImplementation(() => {});
+
+	beforeEach(() => {
+		jest.clearAll
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #29</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">41 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/profiles/rule-transformer-kilo.test.js</span>
+              <span class="dup-loc">L16–L56</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/profiles/rule-transformer-zed.test.js</span>
+              <span class="dup-loc">L16–L56</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, () => {
+	// Set up spies on the mocked modules
+	const mockReadFileSync = jest.spyOn(fs, &#x27;readFileSync&#x27;);
+	const mockWriteFileSync = jest.spyOn(fs, &#x27;writeFileSync&#x27;);
+	const mockExistsSync = jest.spyOn(fs, &#x27;existsSync&#x27;);
+	const mockMkdirSync = jest.spyOn(fs, &#x27;mkdirSync&#x27;);
+	const mockConsoleError = jest
+		.spyOn(console, &#x27;error&#x27;)
+		.mockImplementation(() => {});
+
+	beforeEach(() => {
+		jest.clearAll
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #30</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">41 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/profiles/rule-transformer-cline.test.js</span>
+              <span class="dup-loc">L16–L56</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/profiles/rule-transformer-zed.test.js</span>
+              <span class="dup-loc">L16–L56</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, () => {
+	// Set up spies on the mocked modules
+	const mockReadFileSync = jest.spyOn(fs, &#x27;readFileSync&#x27;);
+	const mockWriteFileSync = jest.spyOn(fs, &#x27;writeFileSync&#x27;);
+	const mockExistsSync = jest.spyOn(fs, &#x27;existsSync&#x27;);
+	const mockMkdirSync = jest.spyOn(fs, &#x27;mkdirSync&#x27;);
+	const mockConsoleError = jest
+		.spyOn(console, &#x27;error&#x27;)
+		.mockImplementation(() => {});
+
+	beforeEach(() => {
+		jest.clearAll
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #31</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">41 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/modules/task-manager/scope-adjustment.js</span>
+              <span class="dup-loc">L761–L801</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/modules/task-manager/scope-adjustment.js</span>
+              <span class="dup-loc">L610–L650</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(
+	tasksPath,
+	taskIds,
+	strength = &#x27;regular&#x27;,
+	customPrompt = null,
+	context = {},
+	outputFormat = &#x27;text&#x27;
+) {
+	// Validate inputs
+	if (!validateStrength(strength)) {
+		throw new Error(
+			`Invalid strength level: ${strength}. Must be one of: ${VALID_STRENGTHS.join(&#x27;, &#x27;)}`
+		);
+	}
+
+	const { projectRoot = &#x27;.&#x27;, tag = &#x27;master&#x27; } = context;
+
+	// Read tasks data
+	const data = readJSON(tasksPath, projec
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #32</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">40 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/scripts/modules/task-manager/update-task-by-id.test.js</span>
+              <span class="dup-loc">L637–L676</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/scripts/modules/task-manager/update-task-by-id.test.js</span>
+              <span class="dup-loc">L509–L548</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>fs.existsSync.mockReturnValue(true);
+		readJSON.mockReturnValue({
+			tag: &#x27;master&#x27;,
+			tasks: [
+				{
+					id: 1,
+					title: &#x27;Task&#x27;,
+					description: &#x27;Description&#x27;,
+					status: &#x27;pending&#x27;,
+					dependencies: [],
+					priority: &#x27;medium&#x27;,
+					details: &#x27;Details&#x27;,
+					testStrategy: &#x27;Test strategy&#x27;,
+					subtasks: []
+				}
+			]
+		});
+
+		generateObjectService.mockResolvedValue({
+			mainResult: {
+			
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #33</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">40 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/profiles/rule-transformer-cursor.test.js</span>
+              <span class="dup-loc">L16–L55</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/profiles/rule-transformer-zed.test.js</span>
+              <span class="dup-loc">L16–L55</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, () => {
+	// Set up spies on the mocked modules
+	const mockReadFileSync = jest.spyOn(fs, &#x27;readFileSync&#x27;);
+	const mockWriteFileSync = jest.spyOn(fs, &#x27;writeFileSync&#x27;);
+	const mockExistsSync = jest.spyOn(fs, &#x27;existsSync&#x27;);
+	const mockMkdirSync = jest.spyOn(fs, &#x27;mkdirSync&#x27;);
+	const mockConsoleError = jest
+		.spyOn(console, &#x27;error&#x27;)
+		.mockImplementation(() => {});
+
+	beforeEach(() => {
+		jest.clearAll
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #34</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">39 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/cli/tests/integration/commands/next.command.test.ts</span>
+              <span class="dup-loc">L26–L64</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/cli/tests/integration/commands/show.command.test.ts</span>
+              <span class="dup-loc">L26–L64</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>));
+		process.chdir(testDir);
+		process.env.TASKMASTER_SKIP_AUTO_UPDATE = &#x27;1&#x27;;
+
+		binPath = getCliBinPath();
+
+		execSync(`node &quot;${binPath}&quot; init --yes`, {
+			stdio: &#x27;pipe&#x27;,
+			env: { ...process.env, TASKMASTER_SKIP_AUTO_UPDATE: &#x27;1&#x27; }
+		});
+
+		tasksPath = path.join(testDir, &#x27;.taskmaster&#x27;, &#x27;tasks&#x27;, &#x27;tasks.json&#x27;);
+
+		// Use fixture to create initial empty tasks file
+		const initialTasks = createTasks
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #35</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">39 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/cli/tests/integration/commands/list.command.test.ts</span>
+              <span class="dup-loc">L26–L64</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/cli/tests/integration/commands/show.command.test.ts</span>
+              <span class="dup-loc">L26–L64</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>));
+		process.chdir(testDir);
+		process.env.TASKMASTER_SKIP_AUTO_UPDATE = &#x27;1&#x27;;
+
+		binPath = getCliBinPath();
+
+		execSync(`node &quot;${binPath}&quot; init --yes`, {
+			stdio: &#x27;pipe&#x27;,
+			env: { ...process.env, TASKMASTER_SKIP_AUTO_UPDATE: &#x27;1&#x27; }
+		});
+
+		tasksPath = path.join(testDir, &#x27;.taskmaster&#x27;, &#x27;tasks&#x27;, &#x27;tasks.json&#x27;);
+
+		// Use fixture to create initial empty tasks file
+		const initialTasks = createTasks
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #36</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">39 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/cli/tests/integration/commands/generate.command.test.ts</span>
+              <span class="dup-loc">L27–L65</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/cli/tests/integration/commands/show.command.test.ts</span>
+              <span class="dup-loc">L26–L64</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>));
+		process.chdir(testDir);
+		process.env.TASKMASTER_SKIP_AUTO_UPDATE = &#x27;1&#x27;;
+
+		binPath = getCliBinPath();
+
+		execSync(`node &quot;${binPath}&quot; init --yes`, {
+			stdio: &#x27;pipe&#x27;,
+			env: { ...process.env, TASKMASTER_SKIP_AUTO_UPDATE: &#x27;1&#x27; }
+		});
+
+		tasksPath = path.join(testDir, &#x27;.taskmaster&#x27;, &#x27;tasks&#x27;, &#x27;tasks.json&#x27;);
+
+		// Use fixture to create initial empty tasks file
+		const initialTasks = createTasks
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #37</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">38 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/scripts/modules/task-manager/update-task-by-id.test.js</span>
+              <span class="dup-loc">L563–L600</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/scripts/modules/task-manager/update-task-by-id.test.js</span>
+              <span class="dup-loc">L507–L544</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+
+		fs.existsSync.mockReturnValue(true);
+		readJSON.mockReturnValue({
+			tag: &#x27;master&#x27;,
+			tasks: [
+				{
+					id: 1,
+					title: &#x27;Task&#x27;,
+					description: &#x27;Description&#x27;,
+					status: &#x27;pending&#x27;,
+					dependencies: [],
+					priority: &#x27;medium&#x27;,
+					details: &#x27;Details&#x27;,
+					testStrategy: &#x27;Test strategy&#x27;,
+					subtasks: []
+				}
+			]
+		});
+
+		generateObjectService.mockResolvedValue({
+			mainResult:
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #38</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">38 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/scripts/modules/task-manager/update-subtask-by-id.test.js</span>
+              <span class="dup-loc">L15–L52</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/scripts/modules/task-manager/update-task-by-id.test.js</span>
+              <span class="dup-loc">L13–L50</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>jest.unstable_mockModule(&#x27;../../../../../scripts/modules/utils.js&#x27;, () => ({
+	readJSON: jest.fn(),
+	writeJSON: jest.fn(),
+	log: jest.fn(),
+	isSilentMode: jest.fn(() => false),
+	findProjectRoot: jest.fn(() => &#x27;/project&#x27;),
+	flattenTasksWithSubtasks: jest.fn(() => []),
+	truncate: jest.fn((t) => t),
+	isEmpty: jest.fn(() => false),
+	resolveEnvVariable: jest.fn(),
+	findTaskById: jest.fn(),
+	getCurrentTa
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #39</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">38 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/modules/task-manager/update-task-by-id.js</span>
+              <span class="dup-loc">L252–L289</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/modules/task-manager/update-tasks.js</span>
+              <span class="dup-loc">L144–L180</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>), {
+					padding: 1,
+					borderColor: &#x27;blue&#x27;,
+					borderStyle: &#x27;round&#x27;,
+					margin: { top: 1, bottom: 0 }
+				})
+			);
+
+			console.log(table.toString());
+
+			// Display a message about how completed subtasks are handled
+			console.log(
+				boxen(
+					chalk.cyan.bold(&#x27;How Completed Subtasks Are Handled:&#x27;) +
+						&#x27;\n\n&#x27; +
+						chalk.white(
+							&#x27;• Subtasks marked as &quot;done&quot; or &quot;completed&quot; wi
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #40</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">38 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/extension/CHANGELOG.md</span>
+              <span class="dup-loc">L268–L305</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/extension/CHANGELOG.md</span>
+              <span class="dup-loc">L182–L219</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>! - 🎉 **Introducing TaskMaster Extension!**
+
+  We&#x27;re thrilled to launch the first version of our Code extension, bringing the power of TaskMaster directly into your favorite code editor. While this is our initial release and we&#x27;ve kept things focused, it already packs powerful features to supercharge your development workflow.
+
+  ## ✨ Key Features
+
+  ### 📋 Visual Task Management
+  - **Kanban Board
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #41</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">37 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/profiles/rule-transformer-windsurf.test.js</span>
+              <span class="dup-loc">L16–L52</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/profiles/rule-transformer-zed.test.js</span>
+              <span class="dup-loc">L16–L52</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, () => {
+	// Set up spies on the mocked modules
+	const mockReadFileSync = jest.spyOn(fs, &#x27;readFileSync&#x27;);
+	const mockWriteFileSync = jest.spyOn(fs, &#x27;writeFileSync&#x27;);
+	const mockExistsSync = jest.spyOn(fs, &#x27;existsSync&#x27;);
+	const mockMkdirSync = jest.spyOn(fs, &#x27;mkdirSync&#x27;);
+	const mockConsoleError = jest
+		.spyOn(console, &#x27;error&#x27;)
+		.mockImplementation(() => {});
+
+	beforeEach(() => {
+		jest.clearAll
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #42</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/tm-profiles/tests/integration/opencode-profile.integration.test.ts</span>
+              <span class="dup-loc">L578–L613</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/tm-profiles/tests/integration/roo-profile.integration.test.ts</span>
+              <span class="dup-loc">L568–L603</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+			expect(fs.existsSync(path.join(commandsDir, &#x27;tm-test-cmd-123.md&#x27;))).toBe(
+				true
+			);
+			expect(
+				fs.existsSync(path.join(commandsDir, &#x27;tm-test_underscore.md&#x27;))
+			).toBe(true);
+		});
+
+		it(&#x27;should preserve exact formatting in complex content with frontmatter&#x27;, () => {
+			// Arrange
+			const complexContent = `# Search Command
+
+## Input
+User provided: $ARGUMENTS
+
+## Steps
+1. Parse the i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #43</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/profiles/rule-transformer-kiro.test.js</span>
+              <span class="dup-loc">L33–L68</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/profiles/rule-transformer-zed.test.js</span>
+              <span class="dup-loc">L23–L59</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>).mockImplementation(() => {});
+
+	beforeEach(() => {
+		jest.clearAllMocks();
+		// Setup default mocks
+		mockReadFileSync.mockReturnValue(&#x27;&#x27;);
+		mockWriteFileSync.mockImplementation(() => {});
+		mockExistsSync.mockReturnValue(true);
+		mockMkdirSync.mockImplementation(() => {});
+	});
+
+	afterAll(() => {
+		jest.restoreAllMocks();
+	});
+
+	it(&#x27;should correctly convert basic terms&#x27;, () => {
+		const testCo
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #44</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mcp/tsconfig.json</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/tm-profiles/tsconfig.json</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>{
+	&quot;compilerOptions&quot;: {
+		&quot;target&quot;: &quot;ES2022&quot;,
+		&quot;module&quot;: &quot;NodeNext&quot;,
+		&quot;lib&quot;: [&quot;ES2022&quot;],
+		&quot;declaration&quot;: true,
+		&quot;declarationMap&quot;: true,
+		&quot;sourceMap&quot;: true,
+		&quot;outDir&quot;: &quot;./dist&quot;,
+		&quot;baseUrl&quot;: &quot;.&quot;,
+		&quot;rootDir&quot;: &quot;.&quot;,
+		&quot;strict&quot;: true,
+		&quot;noImplicitAny&quot;: true,
+		&quot;strictNullChecks&quot;: true,
+		&quot;strictFunctionTypes&quot;: true,
+		&quot;strictBindCallApply&quot;: true,
+		&quot;strictPropertyInitialization&quot;: true,
+		&quot;noImp
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #45</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/cli/tsconfig.json</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/tm-profiles/tsconfig.json</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>{
+	&quot;compilerOptions&quot;: {
+		&quot;target&quot;: &quot;ES2022&quot;,
+		&quot;module&quot;: &quot;NodeNext&quot;,
+		&quot;lib&quot;: [&quot;ES2022&quot;],
+		&quot;declaration&quot;: true,
+		&quot;declarationMap&quot;: true,
+		&quot;sourceMap&quot;: true,
+		&quot;outDir&quot;: &quot;./dist&quot;,
+		&quot;baseUrl&quot;: &quot;.&quot;,
+		&quot;rootDir&quot;: &quot;.&quot;,
+		&quot;strict&quot;: true,
+		&quot;noImplicitAny&quot;: true,
+		&quot;strictNullChecks&quot;: true,
+		&quot;strictFunctionTypes&quot;: true,
+		&quot;strictBindCallApply&quot;: true,
+		&quot;strictPropertyInitialization&quot;: true,
+		&quot;noImp
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #46</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">35 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/cli/tests/integration/commands/set-status.command.test.ts</span>
+              <span class="dup-loc">L27–L61</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/cli/tests/integration/commands/show.command.test.ts</span>
+              <span class="dup-loc">L26–L60</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>));
+		process.chdir(testDir);
+		process.env.TASKMASTER_SKIP_AUTO_UPDATE = &#x27;1&#x27;;
+
+		binPath = getCliBinPath();
+
+		execSync(`node &quot;${binPath}&quot; init --yes`, {
+			stdio: &#x27;pipe&#x27;,
+			env: { ...process.env, TASKMASTER_SKIP_AUTO_UPDATE: &#x27;1&#x27; }
+		});
+
+		tasksPath = path.join(testDir, &#x27;.taskmaster&#x27;, &#x27;tasks&#x27;, &#x27;tasks.json&#x27;);
+
+		// Use fixture to create initial empty tasks file
+		const initialTasks = createTasks
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #47</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">35 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/modules/task-manager/remove-subtask.js</span>
+              <span class="dup-loc">L35–L69</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/scripts/modules/task-manager/remove-subtask.test.js</span>
+              <span class="dup-loc">L34–L68</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+		}
+
+		const [parentIdStr, subtaskIdStr] = subtaskId.split(&#x27;.&#x27;);
+		const parentId = parseInt(parentIdStr, 10);
+		const subtaskIdNum = parseInt(subtaskIdStr, 10);
+
+		// Find the parent task
+		const parentTask = data.tasks.find((t) => t.id === parentId);
+		if (!parentTask) {
+			throw new Error(`Parent task with ID ${parentId} not found`);
+		}
+
+		// Check if parent has subtasks
+		if (!parentTask.s
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #48</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">35 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/profiles/amp.js</span>
+              <span class="dup-loc">L101–L135</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/profiles/claude.js</span>
+              <span class="dup-loc">L150–L185</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, &#x27;utf8&#x27;);
+			const lines = content.split(&#x27;\n&#x27;);
+			const filteredLines = [];
+			let skipNextLines = 0;
+
+			// Remove the Task Master section
+			for (let i = 0; i < lines.length; i++) {
+				if (skipNextLines > 0) {
+					skipNextLines--;
+					continue;
+				}
+
+				// Check if this is the start of our Task Master section
+				if (lines[i].includes(&#x27;## Task Master AI Instructions&#x27;)) {
+					// Skip this
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #49</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">35 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/tm-bridge/tsconfig.json</span>
+              <span class="dup-loc">L3–L37</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/tm-profiles/tsconfig.json</span>
+              <span class="dup-loc">L2–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;compilerOptions&quot;: {
+		&quot;target&quot;: &quot;ES2022&quot;,
+		&quot;module&quot;: &quot;NodeNext&quot;,
+		&quot;lib&quot;: [&quot;ES2022&quot;],
+		&quot;declaration&quot;: true,
+		&quot;declarationMap&quot;: true,
+		&quot;sourceMap&quot;: true,
+		&quot;outDir&quot;: &quot;./dist&quot;,
+		&quot;baseUrl&quot;: &quot;.&quot;,
+		&quot;rootDir&quot;: &quot;.&quot;,
+		&quot;strict&quot;: true,
+		&quot;noImplicitAny&quot;: true,
+		&quot;strictNullChecks&quot;: true,
+		&quot;strictFunctionTypes&quot;: true,
+		&quot;strictBindCallApply&quot;: true,
+		&quot;strictPropertyInitialization&quot;: true,
+		&quot;noImplic
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #50</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">35 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>assets/scripts_README.md</span>
+              <span class="dup-loc">L224–L258</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.taskmaster/docs/README.md</span>
+              <span class="dup-loc">L249–L283</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>These commands:
+
+1. **Allow precise dependency management**:
+
+   - Add dependencies between tasks with automatic validation
+   - Remove dependencies when they&#x27;re no longer needed
+   - Update task files automatically after changes
+
+2. **Include validation checks**:
+
+   - Prevent circular dependencies (a task depending on itself)
+   - Prevent duplicate dependencies
+   - Verify that both tasks exist 
+... (truncated)</code></pre></div>
+      </div><div class="more-clones">
+        ...and 647 more clones
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Javascript</td><td class='cell-num'>407</td><td class='cell-num'>6,804</td></tr>
+    <tr><td>Typescript</td><td class='cell-num'>215</td><td class='cell-num'>3,557</td></tr>
+    <tr><td>Markdown</td><td class='cell-num'>39</td><td class='cell-num'>1,402</td></tr>
+    <tr><td>Json</td><td class='cell-num'>15</td><td class='cell-num'>723</td></tr>
+    <tr><td>Yaml</td><td class='cell-num'>9</td><td class='cell-num'>174</td></tr>
+    <tr><td>Bash</td><td class='cell-num'>5</td><td class='cell-num'>552</td></tr>
+    <tr><td>Txt</td><td class='cell-num'>4</td><td class='cell-num'>614</td></tr>
+    <tr><td>Tsx</td><td class='cell-num'>3</td><td class='cell-num'>34</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>658</td><td class='cell-num'>94.4%</td></tr>
+    <tr><td>Documentation</td><td class='cell-num'>39</td><td class='cell-num'>5.6%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: ai-job-agent — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>ai-job-agent</h1>
+      <div class="subtitle">
+        Owner: AkbarDevop &middot; 14,394 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-low" style="margin-left:12px">Low — 1.76%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">25</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">254</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#10b981">1.76%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">14,394</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">25 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/ashby-apply.js</span>
+              <span class="dup-loc">L183–L207</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/lever-apply.js</span>
+              <span class="dup-loc">L272–L199</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+    }
+
+    if (state.captchaFrames.length > 0 &amp;&amp; i > 5) {
+      console.log(JSON.stringify({ stage: &#x27;captcha-pending&#x27;, state }));
+      return false;
+    }
+
+    await sleep(1000);
+  }
+
+  console.log(JSON.stringify({ stage: &#x27;timeout&#x27; }));
+  return false;
+}
+
+async function main() {
+  const cdpUrl = process.env.CDP_URL;
+  const headless = process.env.HEADLESS !== &#x27;0&#x27;;
+  const launchOptions = proces
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">22 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/jobvite-apply.js</span>
+              <span class="dup-loc">L169–L190</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/lever-apply.js</span>
+              <span class="dup-loc">L266–L287</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>),
+      };
+    });
+
+    if (state.submitted) {
+      console.log(JSON.stringify({ stage: &#x27;submitted&#x27;, state }));
+      return true;
+    }
+
+    if (state.captchaFrames.length > 0 &amp;&amp; i > 5) {
+      console.log(JSON.stringify({ stage: &#x27;captcha-pending&#x27;, state }));
+      return false;
+    }
+
+    await sleep(1000);
+  }
+
+  console.log(JSON.stringify({ stage: &#x27;timeout&#x27; }));
+  return false;
+}
+
+async func
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">19 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/greenhouse-apply.js</span>
+              <span class="dup-loc">L195–L213</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/jobvite-apply.js</span>
+              <span class="dup-loc">L181–L199</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+
+    await sleep(1000);
+  }
+
+  console.log(JSON.stringify({ stage: &#x27;timeout&#x27; }));
+  return false;
+}
+
+async function main() {
+  const cdpUrl = process.env.CDP_URL;
+  const headless = process.env.HEADLESS !== &#x27;0&#x27;;
+  const launchOptions = process.env.PW_CHANNEL ? { headless, channel: process.env.PW_CHANNEL } : { headless };
+  const browser = cdpUrl ? await chromium.connectOverCDP(cdpUrl) : await ch
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">15 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/ashby-apply.js</span>
+              <span class="dup-loc">L220–L234</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/jobvite-apply.js</span>
+              <span class="dup-loc">L215–L229</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(page);
+    const submitted = await monitorSubmission(page);
+    process.exit(submitted ? 0 : 3);
+  } finally {
+    await page.close().catch(() => {});
+    if (!cdpUrl) {
+      await browser.close().catch(() => {});
+    }
+  }
+}
+
+main().catch((error) => {
+  console.error(error.stack || error.message || String(error));
+  process.exit(1);
+});</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">14 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/mirror-tracker.mjs</span>
+              <span class="dup-loc">L171–L184</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/mirror-tracker.mjs</span>
+              <span class="dup-loc">L112–L125</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>] || &#x27;unknown&#x27;).toLowerCase();
+    statusCounts[s] = (statusCounts[s] || 0) + 1;
+  }
+  out.push(&#x27;## Status breakdown&#x27;);
+  out.push(&#x27;&#x27;);
+  out.push(&#x27;| Status | Count |&#x27;);
+  out.push(&#x27;|--------|------:|&#x27;);
+  for (const [s, n] of Object.entries(statusCounts).sort(([, a], [, b]) => b - a)) {
+    out.push(`| ${statusCell(s)} | ${n} |`);
+  }
+  out.push(`| **total** | **${rows.length}** |`);
+  out.push(&#x27;
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/ashby-apply.js</span>
+              <span class="dup-loc">L169–L180</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/jobvite-apply.js</span>
+              <span class="dup-loc">L167–L178</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+        captchaFrames,
+        textSample: text.slice(0, 1000),
+      };
+    });
+
+    if (state.submitted) {
+      console.log(JSON.stringify({ stage: &#x27;submitted&#x27;, state }));
+      return true;
+    }
+
+    if (!</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/ashby-apply.js</span>
+              <span class="dup-loc">L209–L220</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/jobvite-apply.js</span>
+              <span class="dup-loc">L204–L215</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(page);
+    if (missingRequired.length > 0) {
+      console.log(JSON.stringify({ stage: &#x27;blocked&#x27;, missingRequired }));
+      process.exit(2);
+    }
+
+    if (!config.autoSubmit) {
+      console.log(JSON.stringify({ stage: &#x27;ready&#x27; }));
+      process.exit(0);
+    }
+
+    await clickSubmit</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/lever-apply.js</span>
+              <span class="dup-loc">L31–L41</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/linkedin-easy-apply.js</span>
+              <span class="dup-loc">L27–L37</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+  process.exit(1);
+}
+
+const config = JSON.parse(fs.readFileSync(configPath, &#x27;utf8&#x27;));
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/jobvite-apply.js</span>
+              <span class="dup-loc">L30–L40</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/linkedin-easy-apply.js</span>
+              <span class="dup-loc">L27–L41</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+  process.exit(1);
+}
+
+const config = JSON.parse(fs.readFileSync(configPath, &#x27;utf8&#x27;));
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function maybeSelectResidenceAndConsent</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/greenhouse-apply.js</span>
+              <span class="dup-loc">L30–L40</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/linkedin-easy-apply.js</span>
+              <span class="dup-loc">L27–L37</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+  process.exit(1);
+}
+
+const config = JSON.parse(fs.readFileSync(configPath, &#x27;utf8&#x27;));
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function locatorById</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/greenhouse-apply.js</span>
+              <span class="dup-loc">L155–L165</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/lever-apply.js</span>
+              <span class="dup-loc">L265–L275</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+        textSample: text.slice(0, 800),
+      };
+    });
+
+    if (state.submitted) {
+      console.log(JSON.stringify({ stage: &#x27;submitted&#x27;, state }));
+      return true;
+    }
+
+    if (state.captchaFrames.length > 0 &amp;&amp; i ===</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/ashby-apply.js</span>
+              <span class="dup-loc">L30–L40</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/linkedin-easy-apply.js</span>
+              <span class="dup-loc">L27–L41</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+  process.exit(1);
+}
+
+const config = JSON.parse(fs.readFileSync(configPath, &#x27;utf8&#x27;));
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function setValue</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/ashby-apply.js</span>
+              <span class="dup-loc">L137–L147</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/jobvite-apply.js</span>
+              <span class="dup-loc">L106–L116</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+        return !el.value;
+      })
+      .map((el) => el.id || el.name || el.outerHTML.slice(0, 80))
+  );
+
+  console.log(JSON.stringify({ stage: &#x27;filled&#x27;, missingRequired }));
+  return missingRequired;
+}
+
+async function clickSubmit</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/linkedin-easy-apply.js</span>
+              <span class="dup-loc">L510–L519</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/linkedin-easy-apply.js</span>
+              <span class="dup-loc">L495–L504</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>.count()) {
+      const labels = await fieldset.locator(&#x27;label&#x27;).evaluateAll((els) =>
+        els.map((el) => (el.textContent || &#x27;&#x27;).trim()).filter(Boolean)
+      );
+      const picked = pickChoice(questionText, labels);
+      if (picked) {
+        const label = fieldset.locator(&#x27;label&#x27;).filter({ hasText: picked }).first();
+        if (await label.count()) {
+          await label.click();
+        
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/jobvite-apply.js</span>
+              <span class="dup-loc">L187–L196</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/linkedin-easy-apply.js</span>
+              <span class="dup-loc">L588–L320</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+}
+
+async function main() {
+  const cdpUrl = process.env.CDP_URL;
+  const headless = process.env.HEADLESS !== &#x27;0&#x27;;
+  const launchOptions = process.env.PW_CHANNEL ? { headless, channel: process.env.PW_CHANNEL } : { headless };
+  const browser = cdpUrl ? await chromium.connectOverCDP(cdpUrl) : await chromium.launch(launchOptions);
+  const context = browser.contexts()[0] || await browser.newContext(
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/outlook-triage.js</span>
+              <span class="dup-loc">L142–L150</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/outlook-triage.js</span>
+              <span class="dup-loc">L99–L108</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>) {
+  const rows = page.locator(&#x27;[role=&quot;option&quot;]&#x27;);
+  const count = await rows.count();
+  if (index < 0 || index >= count) {
+    throw new Error(`Result index ${index} out of range; count=${count}`);
+  }
+  await rows.nth(index).click();
+  await page.waitForTimeout(waitMs);
+  const readButton</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/jobvite-apply.js</span>
+              <span class="dup-loc">L116–L124</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/lever-apply.js</span>
+              <span class="dup-loc">L287–L295</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(page) {
+  const clicked = await page.evaluate(() => {
+    const isVisible = (el) => {
+      const style = window.getComputedStyle(el);
+      return style.display !== &#x27;none&#x27; &amp;&amp; style.visibility !== &#x27;hidden&#x27; &amp;&amp; el.offsetParent !== null;
+    };
+
+    const candidates = [
+      ...document.querySelectorAll(&#x27;button, input[type=&quot;submit&quot;], input[type=&quot;button&quot;]&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">8 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/mirror-tracker.mjs</span>
+              <span class="dup-loc">L195–L202</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/mirror-tracker.mjs</span>
+              <span class="dup-loc">L138–L145</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)).join(&#x27; | &#x27;) + &#x27; |&#x27;);
+  out.push(&#x27;|&#x27; + colNames.map(() => &#x27;---&#x27;).join(&#x27;|&#x27;) + &#x27;|&#x27;);
+  for (const r of recent) {
+    const cells = colIdxs.map((i) => {
+      const colName = header[i];
+      const val = r[i] || &#x27;&#x27;;
+      if (colName === &#x27;status&#x27;) return statusCell(val);
+      if (colName === &#x27;sent_at&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">8 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/ashby-apply.js</span>
+              <span class="dup-loc">L43–L50</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/jobvite-apply.js</span>
+              <span class="dup-loc">L60–L67</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>await locator.first().click({ force: true });
+  await locator.first().fill(value ?? &#x27;&#x27;);
+  await locator.first().dispatchEvent(&#x27;input&#x27;);
+  await locator.first().dispatchEvent(&#x27;change&#x27;);
+  await locator.first().dispatchEvent(&#x27;blur&#x27;);
+}
+
+async function uploadFile</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #20</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">8 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/ashby-apply.js</span>
+              <span class="dup-loc">L130–L137</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/jobvite-apply.js</span>
+              <span class="dup-loc">L99–L106</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+  }
+
+  const missingRequired = await page.evaluate(() =>
+    [...document.querySelectorAll(&#x27;input[required], textarea[required], select[required]&#x27;)]
+      .filter((el) => {
+        if (el.type === &#x27;file&#x27;) return !el.files || !el.files.length;
+        if (el.type</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #21</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/greenhouse-apply.js</span>
+              <span class="dup-loc">L237–L243</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/jobvite-apply.js</span>
+              <span class="dup-loc">L215–L221</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+    const submitted = await monitorSubmission(page);
+    process.exit(submitted ? 0 : 3);
+  } finally {
+    await page.close().catch(() => {});
+    if (!cdpUrl) {
+      await browser.close();</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #22</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/ashby-apply.js</span>
+              <span class="dup-loc">L151–L157</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/greenhouse-apply.js</span>
+              <span class="dup-loc">L140–L146</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+
+async function monitorSubmission(page) {
+  let retriedWithToken = [REDACTED];
+  for (let i = 0; i < 180; i++) {
+    const state = await page.evaluate(() => {
+      const text = document.body ? document.body.innerText.slice(0, 6000</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #23</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/linkedin-easy-apply.js</span>
+              <span class="dup-loc">L265–L270</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/linkedin-easy-apply.js</span>
+              <span class="dup-loc">L95–L101</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(questionText, options) {
+  const q = normalize(questionText);
+  const normalized = options
+    .map((opt) => ({ raw: opt, norm: normalize(opt) }))
+    .filter((opt) => opt.norm &amp;&amp; opt.norm !== &#x27;select an option&#x27;);
+  if</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #24</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/linkedin-easy-apply.js</span>
+              <span class="dup-loc">L640–L645</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/linkedin-easy-apply.js</span>
+              <span class="dup-loc">L622–L627</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>.locator(&#x27;option&#x27;).evaluateAll((els) =>
+                els.map((el) => el.textContent?.trim() || &#x27;&#x27;).filter(Boolean)
+              );
+              const picked = pickOption(u.text, opts);
+              if (picked) {
+                await</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #25</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/ashby-apply.js</span>
+              <span class="dup-loc">L159–L164</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>scripts/jobvite-apply.js</span>
+              <span class="dup-loc">L157–L162</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&#x27;&#x27;;
+      const captchaFrames = [...document.querySelectorAll(&#x27;iframe&#x27;)]
+        .map((f) => f.src || &#x27;&#x27;)
+        .filter((src) => src.includes(&#x27;recaptcha&#x27;) || src.includes(&#x27;captcha&#x27;));
+      const submitted =
+        /thank you for applying|application submitted|we have received your application|thanks for applying|successfully applied/i</code></pre></div>
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Javascript</td><td class='cell-num'>25</td><td class='cell-num'>279</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>25</td><td class='cell-num'>100.0%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

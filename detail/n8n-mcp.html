@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: n8n-mcp — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>n8n-mcp</h1>
+      <div class="subtitle">
+        Owner: czlonkowski &middot; 228,211 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-medium" style="margin-left:12px">Medium — 8.98%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">988</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">20,497</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#f59e0b">8.98%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">228,211</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">887 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/extracted-nodes-db/n8n-nodes-base__If.json</span>
+              <span class="dup-loc">L9–L895</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/extracted-nodes-db/n8n-nodes-base__Webhook.json</span>
+              <span class="dup-loc">L9–L895</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  &quot;package_info&quot;: {
+    &quot;name&quot;: &quot;n8n-nodes-base&quot;,
+    &quot;version&quot;: &quot;1.14.1&quot;,
+    &quot;description&quot;: &quot;Base nodes of n8n&quot;,
+    &quot;license&quot;: &quot;SEE LICENSE IN LICENSE.md&quot;,
+    &quot;homepage&quot;: &quot;https://n8n.io&quot;,
+    &quot;author&quot;: {
+      &quot;name&quot;: &quot;Jan Oberhauser&quot;,
+      &quot;email&quot;: &quot;jan@n8n.io&quot;
+    },
+    &quot;main&quot;: &quot;index.js&quot;,
+    &quot;repository&quot;: {
+      &quot;type&quot;: &quot;git&quot;,
+      &quot;url&quot;: &quot;git+https://github.com/n8n-io/n8n.git&quot;
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">887 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/extracted-nodes-db/n8n-nodes-base__Airtable.json</span>
+              <span class="dup-loc">L9–L895</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/extracted-nodes-db/n8n-nodes-base__Webhook.json</span>
+              <span class="dup-loc">L9–L895</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  &quot;package_info&quot;: {
+    &quot;name&quot;: &quot;n8n-nodes-base&quot;,
+    &quot;version&quot;: &quot;1.14.1&quot;,
+    &quot;description&quot;: &quot;Base nodes of n8n&quot;,
+    &quot;license&quot;: &quot;SEE LICENSE IN LICENSE.md&quot;,
+    &quot;homepage&quot;: &quot;https://n8n.io&quot;,
+    &quot;author&quot;: {
+      &quot;name&quot;: &quot;Jan Oberhauser&quot;,
+      &quot;email&quot;: &quot;jan@n8n.io&quot;
+    },
+    &quot;main&quot;: &quot;index.js&quot;,
+    &quot;repository&quot;: {
+      &quot;type&quot;: &quot;git&quot;,
+      &quot;url&quot;: &quot;git+https://github.com/n8n-io/n8n.git&quot;
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">886 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/extracted-nodes-db/n8n-nodes-base__SplitInBatches.json</span>
+              <span class="dup-loc">L9–L894</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/extracted-nodes-db/n8n-nodes-base__Webhook.json</span>
+              <span class="dup-loc">L9–L894</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  &quot;package_info&quot;: {
+    &quot;name&quot;: &quot;n8n-nodes-base&quot;,
+    &quot;version&quot;: &quot;1.14.1&quot;,
+    &quot;description&quot;: &quot;Base nodes of n8n&quot;,
+    &quot;license&quot;: &quot;SEE LICENSE IN LICENSE.md&quot;,
+    &quot;homepage&quot;: &quot;https://n8n.io&quot;,
+    &quot;author&quot;: {
+      &quot;name&quot;: &quot;Jan Oberhauser&quot;,
+      &quot;email&quot;: &quot;jan@n8n.io&quot;
+    },
+    &quot;main&quot;: &quot;index.js&quot;,
+    &quot;repository&quot;: {
+      &quot;type&quot;: &quot;git&quot;,
+      &quot;url&quot;: &quot;git+https://github.com/n8n-io/n8n.git&quot;
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">886 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/extracted-nodes-db/n8n-nodes-base__Slack.json</span>
+              <span class="dup-loc">L9–L894</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/extracted-nodes-db/n8n-nodes-base__Webhook.json</span>
+              <span class="dup-loc">L9–L894</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  &quot;package_info&quot;: {
+    &quot;name&quot;: &quot;n8n-nodes-base&quot;,
+    &quot;version&quot;: &quot;1.14.1&quot;,
+    &quot;description&quot;: &quot;Base nodes of n8n&quot;,
+    &quot;license&quot;: &quot;SEE LICENSE IN LICENSE.md&quot;,
+    &quot;homepage&quot;: &quot;https://n8n.io&quot;,
+    &quot;author&quot;: {
+      &quot;name&quot;: &quot;Jan Oberhauser&quot;,
+      &quot;email&quot;: &quot;jan@n8n.io&quot;
+    },
+    &quot;main&quot;: &quot;index.js&quot;,
+    &quot;repository&quot;: {
+      &quot;type&quot;: &quot;git&quot;,
+      &quot;url&quot;: &quot;git+https://github.com/n8n-io/n8n.git&quot;
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">886 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/extracted-nodes-db/n8n-nodes-base__HttpRequest.json</span>
+              <span class="dup-loc">L9–L894</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/extracted-nodes-db/n8n-nodes-base__Webhook.json</span>
+              <span class="dup-loc">L9–L894</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  &quot;package_info&quot;: {
+    &quot;name&quot;: &quot;n8n-nodes-base&quot;,
+    &quot;version&quot;: &quot;1.14.1&quot;,
+    &quot;description&quot;: &quot;Base nodes of n8n&quot;,
+    &quot;license&quot;: &quot;SEE LICENSE IN LICENSE.md&quot;,
+    &quot;homepage&quot;: &quot;https://n8n.io&quot;,
+    &quot;author&quot;: {
+      &quot;name&quot;: &quot;Jan Oberhauser&quot;,
+      &quot;email&quot;: &quot;jan@n8n.io&quot;
+    },
+    &quot;main&quot;: &quot;index.js&quot;,
+    &quot;repository&quot;: {
+      &quot;type&quot;: &quot;git&quot;,
+      &quot;url&quot;: &quot;git+https://github.com/n8n-io/n8n.git&quot;
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">886 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/extracted-nodes-db/n8n-nodes-base__Function.json</span>
+              <span class="dup-loc">L9–L894</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/extracted-nodes-db/n8n-nodes-base__Webhook.json</span>
+              <span class="dup-loc">L9–L894</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  &quot;package_info&quot;: {
+    &quot;name&quot;: &quot;n8n-nodes-base&quot;,
+    &quot;version&quot;: &quot;1.14.1&quot;,
+    &quot;description&quot;: &quot;Base nodes of n8n&quot;,
+    &quot;license&quot;: &quot;SEE LICENSE IN LICENSE.md&quot;,
+    &quot;homepage&quot;: &quot;https://n8n.io&quot;,
+    &quot;author&quot;: {
+      &quot;name&quot;: &quot;Jan Oberhauser&quot;,
+      &quot;email&quot;: &quot;jan@n8n.io&quot;
+    },
+    &quot;main&quot;: &quot;index.js&quot;,
+    &quot;repository&quot;: {
+      &quot;type&quot;: &quot;git&quot;,
+      &quot;url&quot;: &quot;git+https://github.com/n8n-io/n8n.git&quot;
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">886 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/extracted-nodes-db/n8n-nodes-base__Discord.json</span>
+              <span class="dup-loc">L9–L894</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/extracted-nodes-db/n8n-nodes-base__Webhook.json</span>
+              <span class="dup-loc">L9–L894</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  &quot;package_info&quot;: {
+    &quot;name&quot;: &quot;n8n-nodes-base&quot;,
+    &quot;version&quot;: &quot;1.14.1&quot;,
+    &quot;description&quot;: &quot;Base nodes of n8n&quot;,
+    &quot;license&quot;: &quot;SEE LICENSE IN LICENSE.md&quot;,
+    &quot;homepage&quot;: &quot;https://n8n.io&quot;,
+    &quot;author&quot;: {
+      &quot;name&quot;: &quot;Jan Oberhauser&quot;,
+      &quot;email&quot;: &quot;jan@n8n.io&quot;
+    },
+    &quot;main&quot;: &quot;index.js&quot;,
+    &quot;repository&quot;: {
+      &quot;type&quot;: &quot;git&quot;,
+      &quot;url&quot;: &quot;git+https://github.com/n8n-io/n8n.git&quot;
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">105 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/services/n8n-validation.d.ts</span>
+              <span class="dup-loc">L263–L367</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/services/n8n-validation.d.ts</span>
+              <span class="dup-loc">L55–L263</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><{
+    main: z.ZodOptional<z.ZodArray<z.ZodArray<z.ZodObject<{
+        node: z.ZodString;
+        type: z.ZodString;
+        index: z.ZodNumber;
+    }, &quot;strip&quot;, z.ZodTypeAny, {
+        type: string;
+        node: string;
+        index: number;
+    }, {
+        type: string;
+        node: string;
+        index: number;
+    }>, &quot;many&quot;>, &quot;many&quot;>>;
+    error: z.ZodOptional<z.ZodArray<z.ZodArray<z.ZodO
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">93 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/services/n8n-validation.d.ts</span>
+              <span class="dup-loc">L159–L251</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/services/n8n-validation.d.ts</span>
+              <span class="dup-loc">L55–L147</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><{
+    main: z.ZodOptional<z.ZodArray<z.ZodArray<z.ZodObject<{
+        node: z.ZodString;
+        type: z.ZodString;
+        index: z.ZodNumber;
+    }, &quot;strip&quot;, z.ZodTypeAny, {
+        type: string;
+        node: string;
+        index: number;
+    }, {
+        type: string;
+        node: string;
+        index: number;
+    }>, &quot;many&quot;>, &quot;many&quot;>>;
+    error: z.ZodOptional<z.ZodArray<z.ZodArray<z.ZodO
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">76 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scripts/test-telemetry-mutations-verbose.ts</span>
+              <span class="dup-loc">L18–L93</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scripts/test-telemetry-mutations.ts</span>
+              <span class="dup-loc">L27–L102</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>const testMutation = {
+    sessionId: &#x27;test_session_&#x27; + Date.now(),
+    toolName: &#x27;n8n_update_partial_workflow&#x27;,
+    userIntent: &#x27;Add a Merge node for data consolidation&#x27;,
+    operations: [
+      {
+        type: &#x27;addNode&#x27;,
+        nodeId: &#x27;Merge1&#x27;,
+        node: {
+          id: &#x27;Merge1&#x27;,
+          type: &#x27;n8n-nodes-base.merge&#x27;,
+          name: &#x27;Merge&#x27;,
+          position: [600, 200],
+          para
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">76 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/test-telemetry-mutations-verbose.js</span>
+              <span class="dup-loc">L9–L84</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/test-telemetry-mutations.js</span>
+              <span class="dup-loc">L16–L91</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+    const testMutation = {
+        sessionId: &#x27;test_session_&#x27; + Date.now(),
+        toolName: &#x27;n8n_update_partial_workflow&#x27;,
+        userIntent: &#x27;Add a Merge node for data consolidation&#x27;,
+        operations: [
+            {
+                type: &#x27;addNode&#x27;,
+                nodeId: &#x27;Merge1&#x27;,
+                node: {
+                    id: &#x27;Merge1&#x27;,
+                    type: &#x27;n8n-nodes-base.merge&#x27;
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">65 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/types/n8n-api.d.ts</span>
+              <span class="dup-loc">L386–L450</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/types/n8n-api.ts</span>
+              <span class="dup-loc">L480–L555</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>export interface DataTableColumn {
+    name: string;
+    type?: &#x27;string&#x27; | &#x27;number&#x27; | &#x27;boolean&#x27; | &#x27;date&#x27;;
+}
+export interface DataTableColumnResponse {
+    id: string;
+    name: string;
+    type: &#x27;string&#x27; | &#x27;number&#x27; | &#x27;boolean&#x27; | &#x27;date&#x27;;
+    index: number;
+}
+export interface DataTable {
+    id: string;
+    name: string;
+    columns?: DataTableColumnResponse[];
+    projectId?: string;
+    createdAt?
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">56 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/telemetry/performance-monitor.d.ts</span>
+              <span class="dup-loc">L47–L102</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/telemetry/telemetry-manager.d.ts</span>
+              <span class="dup-loc">L67–L122</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>: {
+        summary: {
+            totalOperations: number;
+            averageDuration: number;
+            slowOperations: number;
+            operationsByType: {};
+            memoryUsage: {
+                heapUsed: number;
+                heapTotal: number;
+                external: number;
+            } | undefined;
+            uptimeMs: number;
+            overhead: {
+                percen
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">53 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/templates/template-service.d.ts</span>
+              <span class="dup-loc">L1–L53</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/templates/template-service.ts</span>
+              <span class="dup-loc">L3–L61</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+export interface TemplateInfo {
+    id: number;
+    name: string;
+    description: string;
+    author: {
+        name: string;
+        username: string;
+        verified: boolean;
+    };
+    nodes: string[];
+    views: number;
+    created: string;
+    url: string;
+    metadata?: {
+        categories: string[];
+        complexity: &#x27;simple&#x27; | &#x27;medium&#x27; | &#x27;complex&#x27;;
+        use_cases: string[];
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">50 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/database/node-repository-core.test.ts</span>
+              <span class="dup-loc">L4–L53</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/services/validation-fixes.test.ts</span>
+              <span class="dup-loc">L19–L67</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+
+// Create a complete mock for DatabaseAdapter
+class MockDatabaseAdapter implements DatabaseAdapter {
+  private statements = new Map<string, MockPreparedStatement>();
+  private mockData = new Map<string, any>();
+  
+  prepare = vi.fn((sql: string) => {
+    if (!this.statements.has(sql)) {
+      this.statements.set(sql, new MockPreparedStatement(sql, this.mockData));
+    }
+    return this.statemen
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">50 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/database/node-repository-ai-documentation.test.ts</span>
+              <span class="dup-loc">L13–L62</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/services/validation-fixes.test.ts</span>
+              <span class="dup-loc">L21–L70</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>// Create a complete mock for DatabaseAdapter
+class MockDatabaseAdapter implements DatabaseAdapter {
+  private statements = new Map<string, MockPreparedStatement>();
+  private mockData = new Map<string, any>();
+
+  prepare = vi.fn((sql: string) => {
+    if (!this.statements.has(sql)) {
+      this.statements.set(sql, new MockPreparedStatement(sql, this.mockData));
+    }
+    return this.statements.ge
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">49 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/utils/enhanced-documentation-fetcher.d.ts</span>
+              <span class="dup-loc">L1–L49</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/utils/enhanced-documentation-fetcher.ts</span>
+              <span class="dup-loc">L7–L62</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>export interface EnhancedNodeDocumentation {
+    markdown: string;
+    url: string;
+    title?: string;
+    description?: string;
+    operations?: OperationInfo[];
+    apiMethods?: ApiMethodMapping[];
+    examples?: CodeExample[];
+    templates?: TemplateInfo[];
+    relatedResources?: RelatedResource[];
+    requiredScopes?: string[];
+    metadata?: DocumentationMetadata;
+}
+export interface Operati
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">47 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/templates/template-repository-metadata.test.ts</span>
+              <span class="dup-loc">L4–L50</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/templates/template-repository-security.test.ts</span>
+              <span class="dup-loc">L3–L49</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+
+// Mock logger
+vi.mock(&#x27;../../../src/utils/logger&#x27;, () => ({
+  logger: {
+    info: vi.fn(),
+    warn: vi.fn(),
+    error: vi.fn(),
+    debug: vi.fn()
+  }
+}));
+
+// Mock template sanitizer
+vi.mock(&#x27;../../../src/utils/template-sanitizer&#x27;, () => {
+  class MockTemplateSanitizer {
+    sanitizeWorkflow = vi.fn((workflow) => ({ sanitized: workflow, wasModified: false }));
+    detectTokens = vi.fn(() =>
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">47 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/mcp/get-node-essentials-examples.test.ts</span>
+              <span class="dup-loc">L52–L98</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/mcp/search-nodes-examples.test.ts</span>
+              <span class="dup-loc">L43–L336</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+        category: &#x27;Core Nodes&#x27;,
+        is_ai_tool: 0,
+        is_trigger: 0,
+        is_webhook: 0,
+        is_versioned: 1,
+        version: &#x27;1&#x27;,
+        properties_schema: JSON.stringify([]),
+        operations: JSON.stringify([])
+      }
+    ];
+
+    // Insert test nodes into the in-memory database
+    const db = (server as any).db;
+    if (db) {
+      const insertStmt = db.prepare(`
+        
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #20</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">46 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/templates/template-repository-metadata.test.ts</span>
+              <span class="dup-loc">L50–L95</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/templates/template-repository-security.test.ts</span>
+              <span class="dup-loc">L50–L95</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>_setFTS5Support(supported: boolean) {
+    this._fts5Support = supported;
+  }
+
+  _getStatement(sql: string) {
+    return this.statements.get(sql);
+  }
+
+  _getExecCalls() {
+    return this.execCalls;
+  }
+
+  _clearExecCalls() {
+    this.execCalls = [];
+  }
+}
+
+class MockPreparedStatement implements PreparedStatement {
+  public mockResults: any[] = [];
+  public capturedParams: any[][] = [];
+
+  run = vi
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #21</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">43 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/setup/msw-setup.ts</span>
+              <span class="dup-loc">L18–L60</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/integration/setup/integration-setup.ts</span>
+              <span class="dup-loc">L3–L45</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+
+// Create the MSW server instance with default handlers
+export const server = setupServer(...defaultHandlers);
+
+// Enable request logging in development/debugging
+if (process.env.MSW_DEBUG === &#x27;true&#x27; || process.env.TEST_DEBUG === &#x27;true&#x27;) {
+  server.events.on(&#x27;request:start&#x27;, ({ request }) => {
+    console.log(&#x27;[MSW] %s %s&#x27;, request.method, request.url);
+  });
+
+  server.events.on(&#x27;request:match&#x27;
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #22</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">43 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/services/workflow-versioning-service.d.ts</span>
+              <span class="dup-loc">L25–L67</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/services/workflow-versioning-service.ts</span>
+              <span class="dup-loc">L36–L86</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+export interface RestoreResult {
+    success: boolean;
+    message: string;
+    workflowId: string;
+    fromVersion?: number;
+    toVersionId: number;
+    backupCreated: boolean;
+    backupVersionId?: number;
+    validationErrors?: string[];
+}
+export interface BackupResult {
+    versionId: number;
+    versionNumber: number;
+    pruned: number;
+    message: string;
+}
+export interface StorageStats
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #23</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">yaml</span>
+            <span class="dup-size">43 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.github/workflows/docker-build.yml</span>
+              <span class="dup-loc">L161–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.github/workflows/docker-build.yml</span>
+              <span class="dup-loc">L53–L96</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Sync runtime version
+        run: |
+          VERSION=$(node -p &quot;require(&#x27;./package.json&#x27;).version&quot;)
+          node -e &quot;
+            const fs = require(&#x27;fs&#x27;);
+            const pkg = JSON.parse(fs.readFileSync(&#x27;pack
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #24</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">43 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>README.md</span>
+              <span class="dup-loc">L111–L153</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>docs/ANTIGRAVITY_SETUP.md</span>
+              <span class="dup-loc">L80–L122</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/n8n-2.18.4-orange.svg)](https://github.com/n8n-io/n8n)
+[![Docker](https://img.shields.io/badge/docker-ghcr.io%2Fczlonkowski%2Fn8n--mcp-green.svg)](https://github.com/czlonkowski/n8n-mcp/pkgs/container/n8n-mcp)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/n8n-mcp?referralCode=n8n-mcp)
+
+A Model Context Protocol (MCP) server that provides AI assistants with compr
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #25</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">42 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/rebuild-optimized.js</span>
+              <span class="dup-loc">L1–L42</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/seed-canonical-ai-examples.js</span>
+              <span class="dup-loc">L1–L42</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>#!/usr/bin/env node
+&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defin
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #26</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">41 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/services/node-documentation-service.d.ts</span>
+              <span class="dup-loc">L1–L41</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/services/node-documentation-service.ts</span>
+              <span class="dup-loc">L16–L59</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+interface NodeInfo {
+    nodeType: string;
+    name: string;
+    displayName: string;
+    description: string;
+    category?: string;
+    subcategory?: string;
+    icon?: string;
+    sourceCode: string;
+    credentialCode?: string;
+    documentationMarkdown?: string;
+    documentationUrl?: string;
+    documentationTitle?: string;
+    operations?: OperationInfo[];
+    apiMethods?: ApiMethodMappin
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #27</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">40 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/types/n8n-api.d.ts</span>
+              <span class="dup-loc">L154–L193</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/types/n8n-api.ts</span>
+              <span class="dup-loc">L193–L235</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>export interface SourceControlStatus {
+    ahead: number;
+    behind: number;
+    conflicted: string[];
+    created: string[];
+    current: string;
+    deleted: string[];
+    detached: boolean;
+    files: Array<{
+        path: string;
+        status: string;
+    }>;
+    modified: string[];
+    notAdded: string[];
+    renamed: Array<{
+        from: string;
+        to: string;
+    }>;
+    staged: st
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #28</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">39 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/triggers/handlers/chat-handler.js</span>
+              <span class="dup-loc">L1–L39</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/triggers/handlers/webhook-handler.js</span>
+              <span class="dup-loc">L1–L39</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, des
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #29</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">39 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/types/n8n-api.d.ts</span>
+              <span class="dup-loc">L224–L262</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/types/n8n-api.ts</span>
+              <span class="dup-loc">L276–L322</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>projectId?: string;
+    excludePinnedData?: boolean;
+    instance?: string;
+}
+export interface WorkflowListResponse {
+    data: Workflow[];
+    nextCursor?: string | null;
+}
+export interface ExecutionListParams {
+    limit?: number;
+    cursor?: string;
+    workflowId?: string;
+    projectId?: string;
+    status?: ExecutionStatus;
+    includeData?: boolean;
+}
+export interface ExecutionListResponse
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #30</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">39 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/templates/batch-processor.js</span>
+              <span class="dup-loc">L1–L39</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/triggers/handlers/webhook-handler.js</span>
+              <span class="dup-loc">L1–L39</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, des
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #31</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">39 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/services/n8n-api-client.js</span>
+              <span class="dup-loc">L1–L39</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/triggers/handlers/webhook-handler.js</span>
+              <span class="dup-loc">L1–L39</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, des
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #32</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">39 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/database/database-adapter.js</span>
+              <span class="dup-loc">L1–L39</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/triggers/handlers/webhook-handler.js</span>
+              <span class="dup-loc">L1–L39</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, des
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #33</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">37 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/services/workflow-auto-fixer-tool-variants.test.ts</span>
+              <span class="dup-loc">L553–L589</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/services/workflow-auto-fixer-tool-variants.test.ts</span>
+              <span class="dup-loc">L65–L200</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, async () => {
+      const workflow = createMockWorkflow([
+        createMockNode(&#x27;supabase-1&#x27;, &#x27;Supabase&#x27;, &#x27;n8n-nodes-base.supabase&#x27;, {})
+      ]);
+
+      const validationResult: WorkflowValidationResult = {
+        valid: false,
+        errors: [
+          {
+            type: &#x27;error&#x27;,
+            nodeId: &#x27;supabase-1&#x27;,
+            nodeName: &#x27;Supabase&#x27;,
+            message: &#x27;Wrong node type&#x27;,
+   
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #34</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">37 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/services/operation-similarity-service.ts</span>
+              <span class="dup-loc">L394–L430</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/services/resource-similarity-service.ts</span>
+              <span class="dup-loc">L458–L498</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+    }
+
+    return similarity;
+  }
+
+  /**
+   * Calculate Levenshtein distance between two strings
+   */
+  private levenshteinDistance(str1: string, str2: string): number {
+    const m = str1.length;
+    const n = str2.length;
+    const dp: number[][] = Array(m + 1).fill(null).map(() => Array(n + 1).fill(0));
+
+    for (let i = 0; i <= m; i++) dp[i][0] = i;
+    for (let j = 0; j <= n; j++) dp[0][j
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #35</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">37 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/telemetry/performance-monitor.d.ts</span>
+              <span class="dup-loc">L11–L47</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/telemetry/telemetry-manager.d.ts</span>
+              <span class="dup-loc">L68–L104</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>: {
+        totalOperations: number;
+        averageDuration: number;
+        slowOperations: number;
+        operationsByType: {};
+        memoryUsage: {
+            heapUsed: number;
+            heapTotal: number;
+            external: number;
+        } | undefined;
+        uptimeMs: number;
+        overhead: {
+            percentage: number;
+            totalMs: number;
+        };
+        opera
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #36</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">37 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/rebuild.js</span>
+              <span class="dup-loc">L1–L37</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/seed-canonical-ai-examples.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>#!/usr/bin/env node
+&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defin
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #37</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">37 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/rebuild-database.js</span>
+              <span class="dup-loc">L1–L37</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/seed-canonical-ai-examples.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>#!/usr/bin/env node
+&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defin
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #38</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">37 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/fetch-templates.js</span>
+              <span class="dup-loc">L1–L37</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/seed-canonical-ai-examples.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>#!/usr/bin/env node
+&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defin
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #39</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">37 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/fetch-templates-robust.js</span>
+              <span class="dup-loc">L1–L37</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/seed-canonical-ai-examples.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>#!/usr/bin/env node
+&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defin
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #40</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">37 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/extract-from-docker.js</span>
+              <span class="dup-loc">L1–L37</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/seed-canonical-ai-examples.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>#!/usr/bin/env node
+&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defin
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #41</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">37 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/mcp/index.js</span>
+              <span class="dup-loc">L1–L37</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/seed-canonical-ai-examples.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>#!/usr/bin/env node
+&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defin
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #42</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/utils/node-source-extractor.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/triggers/handlers/webhook-handler.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, des
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #43</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/triggers/trigger-registry.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/triggers/handlers/webhook-handler.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, des
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #44</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/templates/template-service.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/triggers/handlers/webhook-handler.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, des
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #45</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/templates/template-repository.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/triggers/handlers/webhook-handler.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, des
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #46</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/telemetry/telemetry-manager.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/triggers/handlers/webhook-handler.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, des
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #47</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/test-autofix-workflow.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/triggers/handlers/webhook-handler.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, des
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #48</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/scripts/seed-canonical-ai-examples.js</span>
+              <span class="dup-loc">L2–L37</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/triggers/handlers/webhook-handler.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, des
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #49</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/mcp/handlers-workflow-diff.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>dist/triggers/handlers/webhook-handler.js</span>
+              <span class="dup-loc">L1–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;use strict&quot;;
+var __createBinding = (this &amp;&amp; this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || (&quot;get&quot; in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, des
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #50</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">35 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>ui-apps/src/apps/execution-history/App.tsx</span>
+              <span class="dup-loc">L65–L99</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>ui-apps/src/apps/workflow-list/App.tsx</span>
+              <span class="dup-loc">L21–L48</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={{ padding: &#x27;16px&#x27;, color: &#x27;#ef4444&#x27; }}>Error: {error}</div>;
+  }
+
+  if (!isConnected) {
+    return <div style={{ padding: &#x27;16px&#x27;, color: &#x27;var(--n8n-text-muted)&#x27; }}>Connecting...</div>;
+  }
+
+  if (!data) {
+    return <div style={{ padding: &#x27;16px&#x27;, color: &#x27;var(--n8n-text-muted)&#x27; }}>Waiting for data...</div>;
+  }
+
+  if (!data.success &amp;&amp; data.error) {
+    return (
+      <div style={{ maxWidth: &#x27;480p
+... (truncated)</code></pre></div>
+      </div><div class="more-clones">
+        ...and 938 more clones
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Typescript</td><td class='cell-num'>845</td><td class='cell-num'>12,840</td></tr>
+    <tr><td>Javascript</td><td class='cell-num'>113</td><td class='cell-num'>1,902</td></tr>
+    <tr><td>Json</td><td class='cell-num'>9</td><td class='cell-num'>6,268</td></tr>
+    <tr><td>Markdown</td><td class='cell-num'>7</td><td class='cell-num'>145</td></tr>
+    <tr><td>Yaml</td><td class='cell-num'>7</td><td class='cell-num'>191</td></tr>
+    <tr><td>Tsx</td><td class='cell-num'>3</td><td class='cell-num'>57</td></tr>
+    <tr><td>Sql</td><td class='cell-num'>2</td><td class='cell-num'>38</td></tr>
+    <tr><td>Bash</td><td class='cell-num'>2</td><td class='cell-num'>44</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>981</td><td class='cell-num'>99.3%</td></tr>
+    <tr><td>Documentation</td><td class='cell-num'>7</td><td class='cell-num'>0.7%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

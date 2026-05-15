@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: agent-teams — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>agent-teams</h1>
+      <div class="subtitle">
+        Owner: danfmaia &middot; 6,991 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-medium" style="margin-left:12px">Medium — 6.82%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">19</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">477</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#f59e0b">6.82%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">6,991</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">57 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_02.txt</span>
+              <span class="dup-loc">L298–L354</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_02.txt</span>
+              <span class="dup-loc">L35–L91</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🐻 Research Agent 🛠️ Executing Function
+Function(arguments=&#x27;{&quot;recipient&quot;:&quot;Content Writer&quot;,&quot;my_primary_instructions&quot;:&quot;1. Extract and understand technical content from PDF articles\n2. Identify key concepts and     
+formulas rela
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">51 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>langgraph_cursor_agent/cl_output/cl_output_01.txt</span>
+              <span class="dup-loc">L184–L234</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>langgraph_cursor_agent/cl_output/cl_output_01.txt</span>
+              <span class="dup-loc">L60–L110</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>Requirement already satisfied: protobuf<6,>=3.20 in /home/danfmaia/.local/lib/python3.10/site-packages (from streamlit>=1.39.0->langgraph_cursor_agent==0.1.0) (4.23.0)
+Requirement already satisfied: pyarrow>=7.0 in /home/danfmaia/miniconda3/envs/langgraph_agent/lib/python3.10/site-packages (from streamlit>=1.39.0->langgraph_cursor_agent==0.1.0) (18.1.0)
+Requirement already satisfied: rich<14,>=10.
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">49 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_03.txt</span>
+              <span class="dup-loc">L198–L246</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_03.txt</span>
+              <span class="dup-loc">L99–L147</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🐮 Content Writer 🛠️ Executing Function
+Function(arguments=&#x27;{&quot;recipient&quot;:&quot;Presentation Designer&quot;,&quot;my_primary_instructions&quot;:&quot;1. Recebi um resumo estruturado do artigo em PDF sobre estimativa de throughput. \n2.    
+Traduzir e ad
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">46 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>langgraph_cursor_agent/utils/types.py</span>
+              <span class="dup-loc">L1–L46</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>langgraph_cursor_agent/src/utils/types.py</span>
+              <span class="dup-loc">L1–L46</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>from typing import TypedDict, List, Dict, Optional
+
+
+class PDFContent(TypedDict):
+    text: str
+    formulas: List[str]
+    data_for_graphs: List[Dict]
+    sections: List[Dict[str, str]]
+
+
+class TranslatedContent(TypedDict):
+    sections: List[Dict[str, str]]
+    formulas: List[str]
+    technical_terms: Dict[str, str]
+
+
+class SlideContent(TypedDict):
+    title: str
+    content: str
+    layout: str
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">34 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_01.txt</span>
+              <span class="dup-loc">L173–L206</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_01.txt</span>
+              <span class="dup-loc">L114–L148</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>Slide 1: Introdução                                                                             
+
+ • Streaming HTTP e MPEG DASH:                                                                                                                                               
+    • O streaming HTTP é um método econômico para entrega de multimídia.                                                        
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">30 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/QAAgent/tools/ExampleTool.py</span>
+              <span class="dup-loc">L1–L30</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/ResearchAgent/tools/ExampleTool.py</span>
+              <span class="dup-loc">L1–L30</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>from agency_swarm.tools import BaseTool
+from pydantic import Field
+import os
+
+account_id = &quot;MY_ACCOUNT_ID&quot;
+api_key = [REDACTED].getenv(&quot;MY_API_KEY&quot;) # or access_token = [REDACTED].getenv(&quot;MY_ACCESS_TOKEN&quot;)
+
+class ExampleTool(BaseTool):
+    &quot;&quot;&quot;
+    A brief description of what the custom tool does.
+    The docstring should clearly explain the tool&#x27;s purpose and functionality.
+    It will be used by the agent to det
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">30 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/PresentationDesigner/tools/ExampleTool.py</span>
+              <span class="dup-loc">L1–L30</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/ResearchAgent/tools/ExampleTool.py</span>
+              <span class="dup-loc">L1–L30</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>from agency_swarm.tools import BaseTool
+from pydantic import Field
+import os
+
+account_id = &quot;MY_ACCOUNT_ID&quot;
+api_key = [REDACTED].getenv(&quot;MY_API_KEY&quot;) # or access_token = [REDACTED].getenv(&quot;MY_ACCESS_TOKEN&quot;)
+
+class ExampleTool(BaseTool):
+    &quot;&quot;&quot;
+    A brief description of what the custom tool does.
+    The docstring should clearly explain the tool&#x27;s purpose and functionality.
+    It will be used by the agent to det
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">30 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/ContentWriter/tools/ExampleTool.py</span>
+              <span class="dup-loc">L1–L30</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/ResearchAgent/tools/ExampleTool.py</span>
+              <span class="dup-loc">L1–L30</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>from agency_swarm.tools import BaseTool
+from pydantic import Field
+import os
+
+account_id = &quot;MY_ACCOUNT_ID&quot;
+api_key = [REDACTED].getenv(&quot;MY_API_KEY&quot;) # or access_token = [REDACTED].getenv(&quot;MY_ACCESS_TOKEN&quot;)
+
+class ExampleTool(BaseTool):
+    &quot;&quot;&quot;
+    A brief description of what the custom tool does.
+    The docstring should clearly explain the tool&#x27;s purpose and functionality.
+    It will be used by the agent to det
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">30 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_02.txt</span>
+              <span class="dup-loc">L60–L89</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_02.txt</span>
+              <span class="dup-loc">L4–L34</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>Key Concepts:                                                                                
+
+ 1 Adaptive Streaming and MPEG DASH:                                                                                                                                         
+    • MPEG DASH is a standard developed for adaptive streaming over HTTP, allowing interoperability across different platforms.    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">30 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_02.txt</span>
+              <span class="dup-loc">L253–L282</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_02.txt</span>
+              <span class="dup-loc">L155–L183</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>the translated and adapted content for the         
+presentation on throughput estimation using MPEG DASH:                                                                                                                       
+
+                                                           Slide 1: Introdução ao Streaming Adaptativo e MPEG DASH                                                           
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_02.txt</span>
+              <span class="dup-loc">L368–L388</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_02.txt</span>
+              <span class="dup-loc">L111–L131</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>para estimativa de taxa de transferência usando uma média móvel e função logística para se adaptar às mudanças na rede.                    
+    • A estrutura inclui extração de características para ajustar os modelos de estimativa de taxa de transferência.                                                         
+ 5 Modelo de Qualidade:                                                               
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">20 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>langgraph_cursor_agent/agents/base_agent.py</span>
+              <span class="dup-loc">L13–L32</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>langgraph_cursor_agent/src/agents/base_agent.py</span>
+              <span class="dup-loc">L21–L40</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>def _format_message(self, content: str, role: str = &quot;human&quot;) -> Dict:
+        return {&quot;role&quot;: role, &quot;content&quot;: content}
+
+    def _get_chat_history(self, messages: List[Dict]) -> str:
+        return &quot;\n&quot;.join([f&quot;{msg[&#x27;role&#x27;]}: {msg[&#x27;content&#x27;]}&quot; for msg in messages])
+
+    def _create_system_prompt(self, context: Dict) -> str:
+        return f&quot;&quot;&quot;You are {self.name}, a specialized AI agent responsible
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">17 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>langgraph_cursor_agent/cl_output/cl_output_01.txt</span>
+              <span class="dup-loc">L155–L171</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>langgraph_cursor_agent/cl_output/cl_output_01.txt</span>
+              <span class="dup-loc">L33–L49</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>Requirement already satisfied: PyYAML>=5.3 in /home/danfmaia/miniconda3/envs/langgraph_agent/lib/python3.10/site-packages (from langchain>=0.3.7->langgraph_cursor_agent==0.1.0) (6.0.2)
+Requirement already satisfied: SQLAlchemy<3,>=1.4 in /home/danfmaia/miniconda3/envs/langgraph_agent/lib/python3.10/site-packages (from langchain>=0.3.7->langgraph_cursor_agent==0.1.0) (2.0.36)
+Requirement already sa
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">15 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>langgraph_cursor_agent/cl_output/cl_output_01.txt</span>
+              <span class="dup-loc">L114–L128</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>langgraph_cursor_agent/cl_output/cl_output_01.txt</span>
+              <span class="dup-loc">L8–L22</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>Obtaining file:///home/danfmaia/_repos/langgraph_cursor_agent
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status &#x27;done&#x27;
+Requirement already satisfied: langchain>=0.3.7 in /home/danfmaia/miniconda3/envs/langgraph_agent/lib/python3.10/site-packages (from langgraph_cursor_agent==0.1.0) (0.3.11)
+Requirement already satisfied: langchain-anthropic>=0.2.4 in /h
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_01.txt</span>
+              <span class="dup-loc">L299–L307</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_01.txt</span>
+              <span class="dup-loc">L238–L246</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>ótima de alternativas de áudio e vídeo com base no throughput estimado.\n- Configuração experimental e resultados  
+que demonstram a eficácia dos métodos propostos.&quot;}]}]}&#x27;, name=&#x27;PPTXCreator&#x27;, output=None)                                                                                    
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">8 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>langgraph_cursor_agent/cl_output/cl_output_01.txt</span>
+              <span class="dup-loc">L135–L142</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>langgraph_cursor_agent/cl_output/cl_output_01.txt</span>
+              <span class="dup-loc">L22–L29</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>Requirement already satisfied: anyio<5,>=3.5.0 in /home/danfmaia/.local/lib/python3.10/site-packages (from anthropic>=0.38.0->langgraph_cursor_agent==0.1.0) (3.6.2)
+Requirement already satisfied: distro<2,>=1.7.0 in /home/danfmaia/.local/lib/python3.10/site-packages (from anthropic>=0.38.0->langgraph_cursor_agent==0.1.0) (1.8.0)
+Requirement already satisfied: httpx<1,>=0.23.0 in /home/danfmaia/min
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_02.txt</span>
+              <span class="dup-loc">L357–L363</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_02.txt</span>
+              <span class="dup-loc">L100–L106</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>Conceitos Chave:                                                                               
+
+ 1 Streaming Adaptativo e MPEG DASH:                                                                                                                                         
+    • O MPEG DASH é um padrão desenvolvido para streaming adaptativo sobre HTTP, permitindo interoperabilidade entre diferentes p
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_01.txt</span>
+              <span class="dup-loc">L128–L133</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_01.txt</span>
+              <span class="dup-loc">L78–L82</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>Método de Estimativa de Throughput:                                                                                                                                       
+    • O throughput para um segmento ( T_s(i) ) é calculado usando a duração da solicitação-resposta.                                                                         
+    • O throughput estimado ( T_e(i) ) para o segmento 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_01.txt</span>
+              <span class="dup-loc">L286–L291</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>agency-swarm-cursor-agent/presentation_agency/runs/run_01.txt</span>
+              <span class="dup-loc">L225–L230</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🐷 Presentation Designer 🛠️ Executing Function
+Function(arguments=&#x27;{&quot;output_filename&quot;:&quot;throughput_estimation_presentation.pptx&quot;,&quot;content&quot;:[{&quot;title&quot;:&quot;Introdução&quot;,&quot;elements&quot;:[{&quot;type&quot;:&quot;text&quot;,&quot;content&quot;:&quot;Streaming HTTP e MPEG
+DASH:\
+... (truncated)</code></pre></div>
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Txt</td><td class='cell-num'>14</td><td class='cell-num'>340</td></tr>
+    <tr><td>Python</td><td class='cell-num'>5</td><td class='cell-num'>156</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>19</td><td class='cell-num'>100.0%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

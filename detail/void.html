@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: void — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>void</h1>
+      <div class="subtitle">
+        Owner: voideditor &middot; 1,285,138 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-medium" style="margin-left:12px">Medium — 6.60%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">5312</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">84,822</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#f59e0b">6.60%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">1,285,138</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">467 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/git/src/cache.ts</span>
+              <span class="dup-loc">L19–L485</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/base/common/map.ts</span>
+              <span class="dup-loc">L227–L693</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>class LinkedMap<K, V> implements Map<K, V> {
+
+	readonly [Symbol.toStringTag] = &#x27;LinkedMap&#x27;;
+
+	private _map: Map<K, Item<K, V>>;
+	private _head: Item<K, V> | undefined;
+	private _tail: Item<K, V> | undefined;
+	private _size: number;
+
+	private _state: number;
+
+	constructor() {
+		this._map = new Map<K, Item<K, V>>();
+		this._head = undefined;
+		this._tail = undefined;
+		this._size = 0;
+		this._state 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">302 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/editor/test/node/diffing/fixtures/json-brackets/1.json</span>
+              <span class="dup-loc">L1–L302</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/editor/test/node/diffing/fixtures/json-brackets/2.json</span>
+              <span class="dup-loc">L1–L302</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>{
+	&quot;editor&quot;: [
+		{
+			&quot;name&quot;: &quot;vs/platform&quot;,
+			&quot;project&quot;: &quot;vscode-editor&quot;
+		},
+		{
+			&quot;name&quot;: &quot;vs/editor/contrib&quot;,
+			&quot;project&quot;: &quot;vscode-editor&quot;
+		},
+		{
+			&quot;name&quot;: &quot;vs/editor&quot;,
+			&quot;project&quot;: &quot;vscode-editor&quot;
+		},
+		{
+			&quot;name&quot;: &quot;vs/base&quot;,
+			&quot;project&quot;: &quot;vscode-editor&quot;
+		}
+	],
+	&quot;workbench&quot;: [
+		{
+			&quot;name&quot;: &quot;vs/code&quot;,
+			&quot;project&quot;: &quot;vscode-workbench&quot;
+		},
+		{
+			&quot;name&quot;: &quot;vs/workbench&quot;,
+			&quot;project
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">249 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/typescript-basics/language-configuration.json</span>
+              <span class="dup-loc">L1–L249</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/contrib/codeEditor/test/node/language-configuration.json</span>
+              <span class="dup-loc">L1–L249</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>{
+	// Note that this file should stay in sync with &#x27;javascript-language-basics/javascript-language-configuration.json&#x27;
+	&quot;comments&quot;: {
+		&quot;lineComment&quot;: &quot;//&quot;,
+		&quot;blockComment&quot;: [
+			&quot;/*&quot;,
+			&quot;*/&quot;
+		]
+	},
+	&quot;brackets&quot;: [
+		[
+			&quot;${&quot;,
+			&quot;}&quot;
+		],
+		[
+			&quot;{&quot;,
+			&quot;}&quot;
+		],
+		[
+			&quot;[&quot;,
+			&quot;]&quot;
+		],
+		[
+			&quot;(&quot;,
+			&quot;)&quot;
+		]
+	],
+	&quot;autoClosingPairs&quot;: [
+		{
+			&quot;open&quot;: &quot;{&quot;,
+			&quot;close&quot;: &quot;}&quot;
+		},
+		{
+			&quot;open&quot;: &quot;[&quot;,
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">231 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/editor/test/node/diffing/fixtures/difficult-move/1.js</span>
+              <span class="dup-loc">L234–L464</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/editor/test/node/diffing/fixtures/difficult-move/2.js</span>
+              <span class="dup-loc">L234–L464</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+}
+
+function packageTask(type, platform, arch, sourceFolderName, destinationFolderName) {
+	const destination = path.join(BUILD_ROOT, destinationFolderName);
+
+	return () => {
+		const json = require(&#x27;gulp-json-editor&#x27;);
+
+		const src = gulp.src(sourceFolderName + &#x27;/**&#x27;, { base: &#x27;.&#x27; })
+			.pipe(rename(function (path) { path.dirname = path.dirname.replace(new RegExp(&#x27;^&#x27; + sourceFolderName), &#x27;out&#x27;); })
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">213 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/vscode-colorize-tests/test/colorize-results/12750_html.json</span>
+              <span class="dup-loc">L350–L562</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/vscode-colorize-tests/test/colorize-results/12750_html.json</span>
+              <span class="dup-loc">L112–L323</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+	},
+	{
+		&quot;c&quot;: &quot;>&quot;,
+		&quot;t&quot;: &quot;text.html.derivative meta.embedded.block.html meta.tag.metadata.script.start.html punctuation.definition.tag.end.html&quot;,
+		&quot;r&quot;: {
+			&quot;dark_plus&quot;: &quot;punctuation.definition.tag: #808080&quot;,
+			&quot;light_plus&quot;: &quot;punctuation.definition.tag: #800000&quot;,
+			&quot;dark_vs&quot;: &quot;punctuation.definition.tag: #808080&quot;,
+			&quot;light_vs&quot;: &quot;punctuation.definition.tag: #800000&quot;,
+			&quot;hc_black&quot;: &quot;punctuat
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">211 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/vscode-colorize-tests/test/colorize-results/test-jsdoc-multiline-type_ts.json</span>
+              <span class="dup-loc">L633–L843</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/vscode-colorize-tests/test/colorize-results/test-jsdoc-multiline-type_ts.json</span>
+              <span class="dup-loc">L87–L325</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+		&quot;t&quot;: &quot;source.ts comment.block.documentation.ts entity.name.type.instance.jsdoc&quot;,
+		&quot;r&quot;: {
+			&quot;dark_plus&quot;: &quot;entity.name.type: #4EC9B0&quot;,
+			&quot;light_plus&quot;: &quot;entity.name.type: #267F99&quot;,
+			&quot;dark_vs&quot;: &quot;comment: #6A9955&quot;,
+			&quot;light_vs&quot;: &quot;comment: #008000&quot;,
+			&quot;hc_black&quot;: &quot;entity.name.type: #4EC9B0&quot;,
+			&quot;dark_modern&quot;: &quot;entity.name.type: #4EC9B0&quot;,
+			&quot;hc_light&quot;: &quot;entity.name.type: #185E73&quot;,
+			&quot;light_m
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">200 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/notebook-renderers/src/ansi.ts</span>
+              <span class="dup-loc">L133–L332</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/contrib/debug/browser/debugANSIHandling.ts</span>
+              <span class="dup-loc">L145–L344</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>= customFgColor;
+		changeColor(&#x27;foreground&#x27;, customBgColor);
+		changeColor(&#x27;background&#x27;, oldFgColor);
+	}
+
+	/**
+	 * Calculate and set basic ANSI formatting. Supports ON/OFF of bold, italic, underline,
+	 * double underline,  crossed-out/strikethrough, overline, dim, blink, rapid blink,
+	 * reverse/invert video, hidden, superscript, subscript and alternate font codes,
+	 * clearing/resetting of foregr
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">186 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/html-language-features/package-lock.json</span>
+              <span class="dup-loc">L15–L200</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/json-language-features/package-lock.json</span>
+              <span class="dup-loc">L15–L200</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>},
+      &quot;devDependencies&quot;: {
+        &quot;@types/node&quot;: &quot;20.x&quot;
+      },
+      &quot;engines&quot;: {
+        &quot;vscode&quot;: &quot;^1.77.0&quot;
+      }
+    },
+    &quot;node_modules/@microsoft/1ds-core-js&quot;: {
+      &quot;version&quot;: &quot;4.3.4&quot;,
+      &quot;resolved&quot;: &quot;https://registry.npmjs.org/@microsoft/1ds-core-js/-/1ds-core-js-4.3.4.tgz&quot;,
+      &quot;integrity&quot;: &quot;sha512-3gbDUQgAO8EoyQTNcAEkxpuPnioC0May13P1l1l0NKZ128L9Ts/sj8QsfwCRTjHz0HThlA+4Fptc
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">181 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/editor/test/node/diffing/fixtures/json-brackets/1.json</span>
+              <span class="dup-loc">L298–L478</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/editor/test/node/diffing/fixtures/json-brackets/2.json</span>
+              <span class="dup-loc">L302–L482</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+			&quot;project&quot;: &quot;vscode-workbench&quot;
+		},
+		{
+			&quot;name&quot;: &quot;vs/workbench/contrib/offline&quot;,
+			&quot;project&quot;: &quot;vscode-workbench&quot;
+		},
+		{
+			&quot;name&quot;: &quot;vs/workbench/services/actions&quot;,
+			&quot;project&quot;: &quot;vscode-workbench&quot;
+		},
+		{
+			&quot;name&quot;: &quot;vs/workbench/services/authToken&quot;,
+			&quot;project&quot;: &quot;vscode-workbench&quot;
+		},
+		{
+			&quot;name&quot;: &quot;vs/workbench/services/backup&quot;,
+			&quot;project&quot;: &quot;vscode-workbench&quot;
+		},
+		{
+			&quot;name&quot;: &quot;
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">177 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/contrib/interactive/browser/interactiveEditor.ts</span>
+              <span class="dup-loc">L567–L743</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/contrib/replNotebook/browser/replEditor.ts</span>
+              <span class="dup-loc">L577–L753</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+
+	override setOptions(options: INotebookEditorOptions | undefined): void {
+		this._notebookWidget.value?.setOptions(options);
+		super.setOptions(options);
+	}
+
+	private _toEditorPaneSelectionChangeReason(e: ICursorPositionChangedEvent): EditorPaneSelectionChangeReason {
+		switch (e.source) {
+			case TextEditorSelectionSource.PROGRAMMATIC: return EditorPaneSelectionChangeReason.PROGRAMMATIC;
+			ca
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">177 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/git/src/util.ts</span>
+              <span class="dup-loc">L595–L771</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/base/common/date.ts</span>
+              <span class="dup-loc">L25–L201</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>export function fromNow(date: number | Date, appendAgoLabel?: boolean, useFullTimeWords?: boolean, disallowNow?: boolean): string {
+	if (typeof date !== &#x27;number&#x27;) {
+		date = date.getTime();
+	}
+
+	const seconds = Math.round((new Date().getTime() - date) / 1000);
+	if (seconds < -30) {
+		return l10n.t(&#x27;in {0}&#x27;, fromNow(new Date().getTime() + seconds * 1000, false));
+	}
+
+	if (!disallowNow &amp;&amp; seconds < 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">168 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/theme-solarized-dark/themes/solarized-dark-color-theme.json</span>
+              <span class="dup-loc">L168–L335</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/theme-solarized-light/themes/solarized-light-color-theme.json</span>
+              <span class="dup-loc">L168–L334</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+		},
+		{
+			&quot;name&quot;: &quot;Tag attribute&quot;,
+			&quot;scope&quot;: &quot;entity.other.attribute-name&quot;,
+			&quot;settings&quot;: {
+				&quot;foreground&quot;: &quot;#93A1A1&quot;
+			}
+		},
+		{
+			&quot;name&quot;: &quot;Library function&quot;,
+			&quot;scope&quot;: &quot;support.function&quot;,
+			&quot;settings&quot;: {
+				&quot;foreground&quot;: &quot;#268BD2&quot;
+			}
+		},
+		{
+			&quot;name&quot;: &quot;Continuation&quot;,
+			&quot;scope&quot;: &quot;punctuation.separator.continuation&quot;,
+			&quot;settings&quot;: {
+				&quot;foreground&quot;: &quot;#DC322F&quot;
+			}
+		},
+		{
+	
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">161 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>test/unit/browser/renderer.html</span>
+              <span class="dup-loc">L1–L161</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>test/unit/electron/renderer.html</span>
+              <span class="dup-loc">L1–L122</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><html>
+
+<head>
+	<meta charset=&quot;utf-8&quot;>
+	<title>VSCode Tests</title>
+	<link href=&quot;../../../node_modules/mocha/mocha.css&quot; rel=&quot;stylesheet&quot; />
+</head>
+
+<body>
+	<div id=&quot;mocha&quot;></div>
+	<script src=&quot;../../../node_modules/mocha/mocha.js&quot;></script>
+	<script>
+		// !!! DO NOT CHANGE !!!
+		// Our unit tests may run in environments without
+		// display (e.g. from builds) and tests may by
+		// accident bring 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">150 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/json-language-features/package-lock.json</span>
+              <span class="dup-loc">L21–L170</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/typescript-language-features/package-lock.json</span>
+              <span class="dup-loc">L28–L168</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+    },
+    &quot;node_modules/@microsoft/1ds-core-js&quot;: {
+      &quot;version&quot;: &quot;4.3.4&quot;,
+      &quot;resolved&quot;: &quot;https://registry.npmjs.org/@microsoft/1ds-core-js/-/1ds-core-js-4.3.4.tgz&quot;,
+      &quot;integrity&quot;: &quot;sha512-3gbDUQgAO8EoyQTNcAEkxpuPnioC0May13P1l1l0NKZ128L9Ts/sj8QsfwCRTjHz0HThlA+4FptcAJXNYUy3rg==&quot;,
+      &quot;license&quot;: &quot;MIT&quot;,
+      &quot;dependencies&quot;: {
+        &quot;@microsoft/applicationinsights-core-js&quot;: &quot;3.3.4&quot;,
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">141 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/editor/test/node/diffing/fixtures/difficult-move/1.js</span>
+              <span class="dup-loc">L1–L141</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/editor/test/node/diffing/fixtures/difficult-move/2.js</span>
+              <span class="dup-loc">L1–L141</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+&#x27;use strict&#x27;;
+
+const gulp = require(&#x27;gulp&#x27;);
+co
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">136 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/merge-conflict/package-lock.json</span>
+              <span class="dup-loc">L19–L154</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/typescript-language-features/package-lock.json</span>
+              <span class="dup-loc">L28–L163</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+    },
+    &quot;node_modules/@microsoft/1ds-core-js&quot;: {
+      &quot;version&quot;: &quot;4.3.4&quot;,
+      &quot;resolved&quot;: &quot;https://registry.npmjs.org/@microsoft/1ds-core-js/-/1ds-core-js-4.3.4.tgz&quot;,
+      &quot;integrity&quot;: &quot;sha512-3gbDUQgAO8EoyQTNcAEkxpuPnioC0May13P1l1l0NKZ128L9Ts/sj8QsfwCRTjHz0HThlA+4FptcAJXNYUy3rg==&quot;,
+      &quot;license&quot;: &quot;MIT&quot;,
+      &quot;dependencies&quot;: {
+        &quot;@microsoft/applicationinsights-core-js&quot;: &quot;3.3.4&quot;,
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">135 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/microsoft-authentication/package-lock.json</span>
+              <span class="dup-loc">L79–L213</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/typescript-language-features/package-lock.json</span>
+              <span class="dup-loc">L29–L163</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>},
+    &quot;node_modules/@microsoft/1ds-core-js&quot;: {
+      &quot;version&quot;: &quot;4.3.4&quot;,
+      &quot;resolved&quot;: &quot;https://registry.npmjs.org/@microsoft/1ds-core-js/-/1ds-core-js-4.3.4.tgz&quot;,
+      &quot;integrity&quot;: &quot;sha512-3gbDUQgAO8EoyQTNcAEkxpuPnioC0May13P1l1l0NKZ128L9Ts/sj8QsfwCRTjHz0HThlA+4FptcAJXNYUy3rg==&quot;,
+      &quot;license&quot;: &quot;MIT&quot;,
+      &quot;dependencies&quot;: {
+        &quot;@microsoft/applicationinsights-core-js&quot;: &quot;3.3.4&quot;,
+      
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">133 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/open-remote-ssh/src/common/ports.ts</span>
+              <span class="dup-loc">L1–L133</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/open-remote-wsl/src/common/ports.ts</span>
+              <span class="dup-loc">L1–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+import * as net from &#x27;net&#x27;;
+
+/**
+ * Finds a rand
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">130 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/en.win.ts</span>
+              <span class="dup-loc">L45–L174</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/pl.win.ts</span>
+              <span class="dup-loc">L40–L168</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, 0, &#x27;VK_Z&#x27;],
+		Digit1: [&#x27;1&#x27;, &#x27;!&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_1&#x27;],
+		Digit2: [&#x27;2&#x27;, &#x27;@&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_2&#x27;],
+		Digit3: [&#x27;3&#x27;, &#x27;#&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_3&#x27;],
+		Digit4: [&#x27;4&#x27;, &#x27;$&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_4&#x27;],
+		Digit5: [&#x27;5&#x27;, &#x27;%&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_5&#x27;],
+		Digit6: [&#x27;6&#x27;, &#x27;^&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_6&#x27;],
+		Digit7: [&#x27;7&#x27;, &#x27;&amp;&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_7&#x27;],
+		Digit8: [&#x27;8&#x27;, &#x27;*&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_8&#x27;],
+		Digit9: [&#x27;9&#x27;, &#x27;(&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_9&#x27;],
+		Digit0: [&#x27;0&#x27;, &#x27;
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #20</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">130 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/media-preview/package-lock.json</span>
+              <span class="dup-loc">L14–L143</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/simple-browser/package-lock.json</span>
+              <span class="dup-loc">L17–L154</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>},
+      &quot;engines&quot;: {
+        &quot;vscode&quot;: &quot;^1.70.0&quot;
+      }
+    },
+    &quot;node_modules/@microsoft/1ds-core-js&quot;: {
+      &quot;version&quot;: &quot;4.3.4&quot;,
+      &quot;resolved&quot;: &quot;https://registry.npmjs.org/@microsoft/1ds-core-js/-/1ds-core-js-4.3.4.tgz&quot;,
+      &quot;integrity&quot;: &quot;sha512-3gbDUQgAO8EoyQTNcAEkxpuPnioC0May13P1l1l0NKZ128L9Ts/sj8QsfwCRTjHz0HThlA+4FptcAJXNYUy3rg==&quot;,
+      &quot;license&quot;: &quot;MIT&quot;,
+      &quot;dependencies&quot;: {
+   
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #21</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">130 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/markdown-language-features/package-lock.json</span>
+              <span class="dup-loc">L36–L165</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/simple-browser/package-lock.json</span>
+              <span class="dup-loc">L17–L154</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>},
+      &quot;engines&quot;: {
+        &quot;vscode&quot;: &quot;^1.70.0&quot;
+      }
+    },
+    &quot;node_modules/@microsoft/1ds-core-js&quot;: {
+      &quot;version&quot;: &quot;4.3.4&quot;,
+      &quot;resolved&quot;: &quot;https://registry.npmjs.org/@microsoft/1ds-core-js/-/1ds-core-js-4.3.4.tgz&quot;,
+      &quot;integrity&quot;: &quot;sha512-3gbDUQgAO8EoyQTNcAEkxpuPnioC0May13P1l1l0NKZ128L9Ts/sj8QsfwCRTjHz0HThlA+4FptcAJXNYUy3rg==&quot;,
+      &quot;license&quot;: &quot;MIT&quot;,
+      &quot;dependencies&quot;: {
+   
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #22</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">130 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/github/package-lock.json</span>
+              <span class="dup-loc">L20–L149</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/github-authentication/package-lock.json</span>
+              <span class="dup-loc">L20–L154</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>},
+      &quot;engines&quot;: {
+        &quot;vscode&quot;: &quot;^1.41.0&quot;
+      }
+    },
+    &quot;node_modules/@microsoft/1ds-core-js&quot;: {
+      &quot;version&quot;: &quot;4.3.4&quot;,
+      &quot;resolved&quot;: &quot;https://registry.npmjs.org/@microsoft/1ds-core-js/-/1ds-core-js-4.3.4.tgz&quot;,
+      &quot;integrity&quot;: &quot;sha512-3gbDUQgAO8EoyQTNcAEkxpuPnioC0May13P1l1l0NKZ128L9Ts/sj8QsfwCRTjHz0HThlA+4FptcAJXNYUy3rg==&quot;,
+      &quot;license&quot;: &quot;MIT&quot;,
+      &quot;dependencies&quot;: {
+   
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #23</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">127 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/simple-browser/package-lock.json</span>
+              <span class="dup-loc">L20–L146</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/typescript-language-features/package-lock.json</span>
+              <span class="dup-loc">L28–L154</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+    },
+    &quot;node_modules/@microsoft/1ds-core-js&quot;: {
+      &quot;version&quot;: &quot;4.3.4&quot;,
+      &quot;resolved&quot;: &quot;https://registry.npmjs.org/@microsoft/1ds-core-js/-/1ds-core-js-4.3.4.tgz&quot;,
+      &quot;integrity&quot;: &quot;sha512-3gbDUQgAO8EoyQTNcAEkxpuPnioC0May13P1l1l0NKZ128L9Ts/sj8QsfwCRTjHz0HThlA+4FptcAJXNYUy3rg==&quot;,
+      &quot;license&quot;: &quot;MIT&quot;,
+      &quot;dependencies&quot;: {
+        &quot;@microsoft/applicationinsights-core-js&quot;: &quot;3.3.4&quot;,
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #24</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">127 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/github-authentication/package-lock.json</span>
+              <span class="dup-loc">L23–L149</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/typescript-language-features/package-lock.json</span>
+              <span class="dup-loc">L28–L154</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+    },
+    &quot;node_modules/@microsoft/1ds-core-js&quot;: {
+      &quot;version&quot;: &quot;4.3.4&quot;,
+      &quot;resolved&quot;: &quot;https://registry.npmjs.org/@microsoft/1ds-core-js/-/1ds-core-js-4.3.4.tgz&quot;,
+      &quot;integrity&quot;: &quot;sha512-3gbDUQgAO8EoyQTNcAEkxpuPnioC0May13P1l1l0NKZ128L9Ts/sj8QsfwCRTjHz0HThlA+4FptcAJXNYUy3rg==&quot;,
+      &quot;license&quot;: &quot;MIT&quot;,
+      &quot;dependencies&quot;: {
+        &quot;@microsoft/applicationinsights-core-js&quot;: &quot;3.3.4&quot;,
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #25</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">127 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/git/package-lock.json</span>
+              <span class="dup-loc">L38–L164</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/typescript-language-features/package-lock.json</span>
+              <span class="dup-loc">L28–L154</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+    },
+    &quot;node_modules/@microsoft/1ds-core-js&quot;: {
+      &quot;version&quot;: &quot;4.3.4&quot;,
+      &quot;resolved&quot;: &quot;https://registry.npmjs.org/@microsoft/1ds-core-js/-/1ds-core-js-4.3.4.tgz&quot;,
+      &quot;integrity&quot;: &quot;sha512-3gbDUQgAO8EoyQTNcAEkxpuPnioC0May13P1l1l0NKZ128L9Ts/sj8QsfwCRTjHz0HThlA+4FptcAJXNYUy3rg==&quot;,
+      &quot;license&quot;: &quot;MIT&quot;,
+      &quot;dependencies&quot;: {
+        &quot;@microsoft/applicationinsights-core-js&quot;: &quot;3.3.4&quot;,
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #26</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">126 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/en.linux.ts</span>
+              <span class="dup-loc">L65–L190</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/ko.darwin.ts</span>
+              <span class="dup-loc">L61–L187</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, &#x27;~&#x27;, &#x27;`&#x27;, &#x27;~&#x27;, 0],
+		Comma: [&#x27;,&#x27;, &#x27;<&#x27;, &#x27;,&#x27;, &#x27;<&#x27;, 0],
+		Period: [&#x27;.&#x27;, &#x27;>&#x27;, &#x27;.&#x27;, &#x27;>&#x27;, 0],
+		Slash: [&#x27;/&#x27;, &#x27;?&#x27;, &#x27;/&#x27;, &#x27;?&#x27;, 0],
+		CapsLock: [],
+		F1: [],
+		F2: [],
+		F3: [],
+		F4: [],
+		F5: [],
+		F6: [],
+		F7: [],
+		F8: [],
+		F9: [],
+		F10: [],
+		F11: [],
+		F12: [],
+		PrintScreen: [],
+		ScrollLock: [],
+		Pause: [],
+		Insert: [],
+		Home: [],
+		PageUp: [],
+		Delete: [&#x27;&#x27;, &#x27;&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0],
+		End: [],
+		Pag
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #27</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">123 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/en-intl.darwin.ts</span>
+              <span class="dup-loc">L10–L132</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/zh-hans.darwin.ts</span>
+              <span class="dup-loc">L9–L131</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>},
+	secondaryLayouts: [],
+	mapping: {
+		KeyA: [&#x27;a&#x27;, &#x27;A&#x27;, &#x27;å&#x27;, &#x27;Å&#x27;, 0],
+		KeyB: [&#x27;b&#x27;, &#x27;B&#x27;, &#x27;∫&#x27;, &#x27;ı&#x27;, 0],
+		KeyC: [&#x27;c&#x27;, &#x27;C&#x27;, &#x27;ç&#x27;, &#x27;Ç&#x27;, 0],
+		KeyD: [&#x27;d&#x27;, &#x27;D&#x27;, &#x27;∂&#x27;, &#x27;Î&#x27;, 0],
+		KeyE: [&#x27;e&#x27;, &#x27;E&#x27;, &#x27;´&#x27;, &#x27;´&#x27;, 4],
+		KeyF: [&#x27;f&#x27;, &#x27;F&#x27;, &#x27;ƒ&#x27;, &#x27;Ï&#x27;, 0],
+		KeyG: [&#x27;g&#x27;, &#x27;G&#x27;, &#x27;©&#x27;, &#x27;˝&#x27;, 0],
+		KeyH: [&#x27;h&#x27;, &#x27;H&#x27;, &#x27;˙&#x27;, &#x27;Ó&#x27;, 0],
+		KeyI: [&#x27;i&#x27;, &#x27;I&#x27;, &#x27;ˆ&#x27;, &#x27;ˆ&#x27;, 4],
+		KeyJ: [&#x27;j&#x27;, &#x27;J&#x27;, &#x27;∆&#x27;, &#x27;Ô&#x27;, 0],
+		KeyK: [&#x27;k&#x27;, &#x27;K&#x27;, &#x27;˚&#x27;, &#x27;&#x27;, 0],
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #28</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">123 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/en-ext.darwin.ts</span>
+              <span class="dup-loc">L10–L132</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/jp-roman.darwin.ts</span>
+              <span class="dup-loc">L10–L131</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>},
+	secondaryLayouts: [],
+	mapping: {
+		KeyA: [&#x27;a&#x27;, &#x27;A&#x27;, &#x27;¯&#x27;, &#x27;̄&#x27;, 4],
+		KeyB: [&#x27;b&#x27;, &#x27;B&#x27;, &#x27;˘&#x27;, &#x27;̆&#x27;, 4],
+		KeyC: [&#x27;c&#x27;, &#x27;C&#x27;, &#x27;¸&#x27;, &#x27;̧&#x27;, 4],
+		KeyD: [&#x27;d&#x27;, &#x27;D&#x27;, &#x27;ð&#x27;, &#x27;Ð&#x27;, 0],
+		KeyE: [&#x27;e&#x27;, &#x27;E&#x27;, &#x27;´&#x27;, &#x27;́&#x27;, 4],
+		KeyF: [&#x27;f&#x27;, &#x27;F&#x27;, &#x27;ƒ&#x27;, &#x27;&#x27;, 0],
+		KeyG: [&#x27;g&#x27;, &#x27;G&#x27;, &#x27;©&#x27;, &#x27;‸&#x27;, 8],
+		KeyH: [&#x27;h&#x27;, &#x27;H&#x27;, &#x27;ˍ&#x27;, &#x27;̱&#x27;, 4],
+		KeyI: [&#x27;i&#x27;, &#x27;I&#x27;, &#x27;ʼ&#x27;, &#x27;̛&#x27;, 4],
+		KeyJ: [&#x27;j&#x27;, &#x27;J&#x27;, &#x27;˝&#x27;, &#x27;̋&#x27;, 4],
+		KeyK: [&#x27;k&#x27;, &#x27;K&#x27;, &#x27;˚&#x27;, &#x27;̊&#x27;, 4],
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #29</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">122 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/en.darwin.ts</span>
+              <span class="dup-loc">L19–L140</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/zh-hans.darwin.ts</span>
+              <span class="dup-loc">L10–L131</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>],
+	mapping: {
+		KeyA: [&#x27;a&#x27;, &#x27;A&#x27;, &#x27;å&#x27;, &#x27;Å&#x27;, 0],
+		KeyB: [&#x27;b&#x27;, &#x27;B&#x27;, &#x27;∫&#x27;, &#x27;ı&#x27;, 0],
+		KeyC: [&#x27;c&#x27;, &#x27;C&#x27;, &#x27;ç&#x27;, &#x27;Ç&#x27;, 0],
+		KeyD: [&#x27;d&#x27;, &#x27;D&#x27;, &#x27;∂&#x27;, &#x27;Î&#x27;, 0],
+		KeyE: [&#x27;e&#x27;, &#x27;E&#x27;, &#x27;´&#x27;, &#x27;´&#x27;, 4],
+		KeyF: [&#x27;f&#x27;, &#x27;F&#x27;, &#x27;ƒ&#x27;, &#x27;Ï&#x27;, 0],
+		KeyG: [&#x27;g&#x27;, &#x27;G&#x27;, &#x27;©&#x27;, &#x27;˝&#x27;, 0],
+		KeyH: [&#x27;h&#x27;, &#x27;H&#x27;, &#x27;˙&#x27;, &#x27;Ó&#x27;, 0],
+		KeyI: [&#x27;i&#x27;, &#x27;I&#x27;, &#x27;ˆ&#x27;, &#x27;ˆ&#x27;, 4],
+		KeyJ: [&#x27;j&#x27;, &#x27;J&#x27;, &#x27;∆&#x27;, &#x27;Ô&#x27;, 0],
+		KeyK: [&#x27;k&#x27;, &#x27;K&#x27;, &#x27;˚&#x27;, &#x27;&#x27;, 0],
+		KeyL: [&#x27;l&#x27;, &#x27;L&#x27;, &#x27;¬&#x27;
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #30</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">122 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/terminal-suggest/src/completions/upstream/python.ts</span>
+              <span class="dup-loc">L47–L168</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/terminal-suggest/src/completions/upstream/python3.ts</span>
+              <span class="dup-loc">L49–L170</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+			},
+		},
+		{
+			name: [&quot;-?&quot;, &quot;-h&quot;, &quot;--help&quot;],
+			description: &quot;Print a short description of all command line options&quot;,
+		},
+		{
+			name: [&quot;-V&quot;, &quot;--version&quot;],
+			description: &quot;Print the Python version number and exit&quot;,
+		},
+		{
+			name: &quot;-b&quot;,
+			description:
+				&quot;Issue a warning when comparing bytes or bytearray with str or bytes with int. Issue an error when the option is given twice (-bb)&quot;,
+	
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #31</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">120 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/platform/files/test/node/fixtures/service/index.html</span>
+              <span class="dup-loc">L1–L120</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/search/test/node/fixtures/index.html</span>
+              <span class="dup-loc">L1–L120</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!DOCTYPE html>
+<html>
+<head id=&#x27;headID&#x27;>
+    <title>Strada </title>
+    <link href=&quot;site.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; />
+    <script src=&quot;jquery-1.4.1.js&quot;></script>
+    <script src=&quot;../compiler/dtree.js&quot; type=&quot;text/javascript&quot;></script>
+    <script src=&quot;../compiler/typescript.js&quot; type=&quot;text/javascript&quot;></script>
+    <script type=&quot;text/javascript&quot;>
+
+    // Compile strada source into resul
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #32</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">120 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/platform/files/test/node/fixtures/resolver/index.html</span>
+              <span class="dup-loc">L1–L120</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/search/test/node/fixtures/index.html</span>
+              <span class="dup-loc">L1–L120</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!DOCTYPE html>
+<html>
+<head id=&#x27;headID&#x27;>
+    <title>Strada </title>
+    <link href=&quot;site.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; />
+    <script src=&quot;jquery-1.4.1.js&quot;></script>
+    <script src=&quot;../compiler/dtree.js&quot; type=&quot;text/javascript&quot;></script>
+    <script src=&quot;../compiler/typescript.js&quot; type=&quot;text/javascript&quot;></script>
+    <script type=&quot;text/javascript&quot;>
+
+    // Compile strada source into resul
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #33</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">120 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/base/test/node/pfs/fixtures/index.html</span>
+              <span class="dup-loc">L1–L120</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/search/test/node/fixtures/index.html</span>
+              <span class="dup-loc">L1–L120</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!DOCTYPE html>
+<html>
+<head id=&#x27;headID&#x27;>
+    <title>Strada </title>
+    <link href=&quot;site.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; />
+    <script src=&quot;jquery-1.4.1.js&quot;></script>
+    <script src=&quot;../compiler/dtree.js&quot; type=&quot;text/javascript&quot;></script>
+    <script src=&quot;../compiler/typescript.js&quot; type=&quot;text/javascript&quot;></script>
+    <script type=&quot;text/javascript&quot;>
+
+    // Compile strada source into resul
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #34</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">117 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/search/test/node/fixtures/examples/NullPoinderException.js</span>
+              <span class="dup-loc">L2–L118</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/platform/files/test/node/fixtures/resolver/other/deep/conway.js</span>
+              <span class="dup-loc">L1–L117</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&#x27;use strict&#x27;;
+var Conway;
+(function (Conway) {
+    var Cell = (function () {
+        function Cell() {
+        }
+        return Cell;
+    })();
+    (function (property, number, property, number, property, boolean) {
+        if (property === undefined) { property = row; }
+        if (property === undefined) { property = col; }
+        if (property === undefined) { property = live; }
+    });
+    var
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #35</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">117 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/platform/files/test/node/fixtures/service/deep/conway.js</span>
+              <span class="dup-loc">L1–L117</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/platform/files/test/node/fixtures/resolver/other/deep/conway.js</span>
+              <span class="dup-loc">L1–L117</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&#x27;use strict&#x27;;
+var Conway;
+(function (Conway) {
+    var Cell = (function () {
+        function Cell() {
+        }
+        return Cell;
+    })();
+    (function (property, number, property, number, property, boolean) {
+        if (property === undefined) { property = row; }
+        if (property === undefined) { property = col; }
+        if (property === undefined) { property = live; }
+    });
+    var
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #36</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">117 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/platform/files/test/node/fixtures/resolver/examples/conway.js</span>
+              <span class="dup-loc">L1–L117</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/platform/files/test/node/fixtures/resolver/other/deep/conway.js</span>
+              <span class="dup-loc">L1–L117</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&#x27;use strict&#x27;;
+var Conway;
+(function (Conway) {
+    var Cell = (function () {
+        function Cell() {
+        }
+        return Cell;
+    })();
+    (function (property, number, property, number, property, boolean) {
+        if (property === undefined) { property = row; }
+        if (property === undefined) { property = col; }
+        if (property === undefined) { property = live; }
+    });
+    var
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #37</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">114 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/vscode-colorize-tests/test/colorize-results/test-jsdoc-multiline-type_ts.json</span>
+              <span class="dup-loc">L408–L521</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/vscode-colorize-tests/test/colorize-results/test-jsdoc-multiline-type_ts.json</span>
+              <span class="dup-loc">L2–L115</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>{
+		&quot;c&quot;: &quot;/**&quot;,
+		&quot;t&quot;: &quot;source.ts comment.block.documentation.ts punctuation.definition.comment.ts&quot;,
+		&quot;r&quot;: {
+			&quot;dark_plus&quot;: &quot;comment: #6A9955&quot;,
+			&quot;light_plus&quot;: &quot;comment: #008000&quot;,
+			&quot;dark_vs&quot;: &quot;comment: #6A9955&quot;,
+			&quot;light_vs&quot;: &quot;comment: #008000&quot;,
+			&quot;hc_black&quot;: &quot;comment: #7CA668&quot;,
+			&quot;dark_modern&quot;: &quot;comment: #6A9955&quot;,
+			&quot;hc_light&quot;: &quot;comment: #515151&quot;,
+			&quot;light_modern&quot;: &quot;comment: #008000&quot;
+		
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #38</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">113 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/github-authentication/src/node/authServer.ts</span>
+              <span class="dup-loc">L1–L113</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/microsoft-authentication/src/node/authServer.ts</span>
+              <span class="dup-loc">L1–L113</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+import * as http from &#x27;http&#x27;;
+import { URL } fro
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #39</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">112 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/vscode-colorize-tests/test/colorize-results/test-cssvariables_scss.json</span>
+              <span class="dup-loc">L494–L605</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/vscode-colorize-tests/test/colorize-results/test-cssvariables_scss.json</span>
+              <span class="dup-loc">L214–L325</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+		&quot;r&quot;: {
+			&quot;dark_plus&quot;: &quot;default: #D4D4D4&quot;,
+			&quot;light_plus&quot;: &quot;default: #000000&quot;,
+			&quot;dark_vs&quot;: &quot;default: #D4D4D4&quot;,
+			&quot;light_vs&quot;: &quot;default: #000000&quot;,
+			&quot;hc_black&quot;: &quot;default: #FFFFFF&quot;,
+			&quot;dark_modern&quot;: &quot;default: #CCCCCC&quot;,
+			&quot;hc_light&quot;: &quot;default: #292929&quot;,
+			&quot;light_modern&quot;: &quot;default: #3B3B3B&quot;
+		}
+	},
+	{
+		&quot;c&quot;: &quot;4&quot;,
+		&quot;t&quot;: &quot;source.css.scss meta.property-list.scss meta.property-value.scss const
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #40</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">111 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/vscode-colorize-perf-tests/test/colorize-fixtures/test.ts</span>
+              <span class="dup-loc">L1–L111</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/vscode-colorize-tests/test/colorize-fixtures/test.ts</span>
+              <span class="dup-loc">L1–L111</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/* Game of Life
+ * Implemented in TypeScript
+ * To learn more about TypeScript, please visit http://www.typescriptlang.org/
+ */
+
+module Conway {
+
+	export class Cell {
+		public row: number;
+		public col: number;
+		public live: boolean;
+
+		constructor(row: number, col: number, live: boolean) {
+			this.row = row;
+			this.col = col;
+			this.live = live
+		}
+	}
+
+	export class GameOfLife {
+		private grid
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #41</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">110 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>extensions/extension-editing/src/extensionEngineValidation.ts</span>
+              <span class="dup-loc">L8–L117</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/platform/extensions/common/extensionValidator.ts</span>
+              <span class="dup-loc">L14–L123</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>export interface IParsedVersion {
+	hasCaret: boolean;
+	hasGreaterEquals: boolean;
+	majorBase: number;
+	majorMustEqual: boolean;
+	minorBase: number;
+	minorMustEqual: boolean;
+	patchBase: number;
+	patchMustEqual: boolean;
+	preRelease: string | null;
+}
+
+export interface INormalizedVersion {
+	majorBase: number;
+	majorMustEqual: boolean;
+	minorBase: number;
+	minorMustEqual: boolean;
+	patchBase: number;
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #42</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">108 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/it.win.ts</span>
+              <span class="dup-loc">L62–L169</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/pt.win.ts</span>
+              <span class="dup-loc">L62–L168</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, &#x27;&#x27;, 0, &#x27;VK_OEM_7&#x27;],
+		Backquote: [&#x27;\\&#x27;, &#x27;|&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_5&#x27;],
+		Comma: [&#x27;,&#x27;, &#x27;;&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_COMMA&#x27;],
+		Period: [&#x27;.&#x27;, &#x27;:&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_PERIOD&#x27;],
+		Slash: [&#x27;-&#x27;, &#x27;_&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_MINUS&#x27;],
+		CapsLock: [],
+		F1: [],
+		F2: [],
+		F3: [],
+		F4: [],
+		F5: [],
+		F6: [],
+		F7: [],
+		F8: [],
+		F9: [],
+		F10: [],
+		F11: [],
+		F12: [],
+		PrintScreen: [],
+		ScrollLock: [],
+		Pause
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #43</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">108 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/es-latin.win.ts</span>
+              <span class="dup-loc">L63–L170</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/sv.win.ts</span>
+              <span class="dup-loc">L65–L168</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, &#x27;&#x27;, 0, &#x27;VK_OEM_5&#x27;],
+		Comma: [&#x27;,&#x27;, &#x27;;&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_COMMA&#x27;],
+		Period: [&#x27;.&#x27;, &#x27;:&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_PERIOD&#x27;],
+		Slash: [&#x27;-&#x27;, &#x27;_&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_MINUS&#x27;],
+		CapsLock: [],
+		F1: [],
+		F2: [],
+		F3: [],
+		F4: [],
+		F5: [],
+		F6: [],
+		F7: [],
+		F8: [],
+		F9: [],
+		F10: [],
+		F11: [],
+		F12: [],
+		PrintScreen: [],
+		ScrollLock: [],
+		Pause: [],
+		Insert: [],
+		Home: [],
+		PageUp: [],
+		D
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #44</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">108 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/dk.win.ts</span>
+              <span class="dup-loc">L63–L170</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/no.win.ts</span>
+              <span class="dup-loc">L63–L168</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, &#x27;§&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_5&#x27;],
+		Comma: [&#x27;,&#x27;, &#x27;;&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_COMMA&#x27;],
+		Period: [&#x27;.&#x27;, &#x27;:&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_PERIOD&#x27;],
+		Slash: [&#x27;-&#x27;, &#x27;_&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_MINUS&#x27;],
+		CapsLock: [],
+		F1: [],
+		F2: [],
+		F3: [],
+		F4: [],
+		F5: [],
+		F6: [],
+		F7: [],
+		F8: [],
+		F9: [],
+		F10: [],
+		F11: [],
+		F12: [],
+		PrintScreen: [],
+		ScrollLock: [],
+		Pause: [],
+		Insert: [],
+		Home: [],
+		PageUp
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #45</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">txt</span>
+            <span class="dup-size">107 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/test/node/win_de_ch.txt</span>
+              <span class="dup-loc">L26–L132</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/test/node/win_por_ptb.txt</span>
+              <span class="dup-loc">L26–L132</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>|                Ctrl+Alt+E |                Ctrl+Alt+E |                 ctrl+alt+e |         |
+|            Ctrl+Shift+Alt+KeyE |  ---  |          Ctrl+Shift+Alt+E |          Ctrl+Shift+Alt+E |           ctrl+shift+alt+e |         |
+-----------------------------------------------------------------------------------------------------------------------------------------
+|                          
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #46</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">107 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/no.win.ts</span>
+              <span class="dup-loc">L63–L169</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/sv.win.ts</span>
+              <span class="dup-loc">L65–L168</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_5&#x27;],
+		Comma: [&#x27;,&#x27;, &#x27;;&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_COMMA&#x27;],
+		Period: [&#x27;.&#x27;, &#x27;:&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_PERIOD&#x27;],
+		Slash: [&#x27;-&#x27;, &#x27;_&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_MINUS&#x27;],
+		CapsLock: [],
+		F1: [],
+		F2: [],
+		F3: [],
+		F4: [],
+		F5: [],
+		F6: [],
+		F7: [],
+		F8: [],
+		F9: [],
+		F10: [],
+		F11: [],
+		F12: [],
+		PrintScreen: [],
+		ScrollLock: [],
+		Pause: [],
+		Insert: [],
+		Home: [],
+		PageUp: [],
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #47</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">107 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/es.win.ts</span>
+              <span class="dup-loc">L63–L169</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/sv.win.ts</span>
+              <span class="dup-loc">L65–L168</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, &#x27;&#x27;, 0, &#x27;VK_OEM_5&#x27;],
+		Comma: [&#x27;,&#x27;, &#x27;;&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_COMMA&#x27;],
+		Period: [&#x27;.&#x27;, &#x27;:&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_PERIOD&#x27;],
+		Slash: [&#x27;-&#x27;, &#x27;_&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_MINUS&#x27;],
+		CapsLock: [],
+		F1: [],
+		F2: [],
+		F3: [],
+		F4: [],
+		F5: [],
+		F6: [],
+		F7: [],
+		F8: [],
+		F9: [],
+		F10: [],
+		F11: [],
+		F12: [],
+		PrintScreen: [],
+		ScrollLock: [],
+		Pause: [],
+		Insert: [],
+		Home: [],
+		PageUp: [],
+		D
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #48</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">107 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/de.win.ts</span>
+              <span class="dup-loc">L63–L169</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/sv.win.ts</span>
+              <span class="dup-loc">L65–L168</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_5&#x27;],
+		Comma: [&#x27;,&#x27;, &#x27;;&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_COMMA&#x27;],
+		Period: [&#x27;.&#x27;, &#x27;:&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_PERIOD&#x27;],
+		Slash: [&#x27;-&#x27;, &#x27;_&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_MINUS&#x27;],
+		CapsLock: [],
+		F1: [],
+		F2: [],
+		F3: [],
+		F4: [],
+		F5: [],
+		F6: [],
+		F7: [],
+		F8: [],
+		F9: [],
+		F10: [],
+		F11: [],
+		F12: [],
+		PrintScreen: [],
+		ScrollLock: [],
+		Pause: [],
+		Insert: [],
+		Home: [],
+		PageUp: [],
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #49</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">107 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/de-swiss.win.ts</span>
+              <span class="dup-loc">L63–L169</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/sv.win.ts</span>
+              <span class="dup-loc">L65–L168</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>],
+		Comma: [&#x27;,&#x27;, &#x27;;&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_COMMA&#x27;],
+		Period: [&#x27;.&#x27;, &#x27;:&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_PERIOD&#x27;],
+		Slash: [&#x27;-&#x27;, &#x27;_&#x27;, &#x27;&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_MINUS&#x27;],
+		CapsLock: [],
+		F1: [],
+		F2: [],
+		F3: [],
+		F4: [],
+		F5: [],
+		F6: [],
+		F7: [],
+		F8: [],
+		F9: [],
+		F10: [],
+		F11: [],
+		F12: [],
+		PrintScreen: [],
+		ScrollLock: [],
+		Pause: [],
+		Insert: [],
+		Home: [],
+		PageUp: [],
+		Delete: [],
+		End: [
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #50</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">106 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/cz.win.ts</span>
+              <span class="dup-loc">L63–L168</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/vs/workbench/services/keybinding/browser/keyboardLayouts/hu.win.ts</span>
+              <span class="dup-loc">L64–L168</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, &#x27;&#x27;, 0, &#x27;VK_OEM_COMMA&#x27;],
+		Period: [&#x27;.&#x27;, &#x27;:&#x27;, &#x27;>&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_PERIOD&#x27;],
+		Slash: [&#x27;-&#x27;, &#x27;_&#x27;, &#x27;*&#x27;, &#x27;&#x27;, 0, &#x27;VK_OEM_MINUS&#x27;],
+		CapsLock: [],
+		F1: [],
+		F2: [],
+		F3: [],
+		F4: [],
+		F5: [],
+		F6: [],
+		F7: [],
+		F8: [],
+		F9: [],
+		F10: [],
+		F11: [],
+		F12: [],
+		PrintScreen: [],
+		ScrollLock: [],
+		Pause: [],
+		Insert: [],
+		Home: [],
+		PageUp: [],
+		Delete: [],
+		End: [],
+		PageDown: [],
+		Ar
+... (truncated)</code></pre></div>
+      </div><div class="more-clones">
+        ...and 5262 more clones
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Typescript</td><td class='cell-num'>4337</td><td class='cell-num'>60,733</td></tr>
+    <tr><td>Json</td><td class='cell-num'>646</td><td class='cell-num'>22,069</td></tr>
+    <tr><td>Javascript</td><td class='cell-num'>134</td><td class='cell-num'>3,346</td></tr>
+    <tr><td>Markup</td><td class='cell-num'>49</td><td class='cell-num'>1,183</td></tr>
+    <tr><td>Txt</td><td class='cell-num'>39</td><td class='cell-num'>702</td></tr>
+    <tr><td>Yaml</td><td class='cell-num'>39</td><td class='cell-num'>822</td></tr>
+    <tr><td>Css</td><td class='cell-num'>30</td><td class='cell-num'>801</td></tr>
+    <tr><td>Rust</td><td class='cell-num'>21</td><td class='cell-num'>235</td></tr>
+    <tr><td>Bash</td><td class='cell-num'>12</td><td class='cell-num'>144</td></tr>
+    <tr><td>Tsx</td><td class='cell-num'>3</td><td class='cell-num'>39</td></tr>
+    <tr><td>Objectivec</td><td class='cell-num'>1</td><td class='cell-num'>52</td></tr>
+    <tr><td>Handlebars</td><td class='cell-num'>1</td><td class='cell-num'>8</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>5312</td><td class='cell-num'>100.0%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

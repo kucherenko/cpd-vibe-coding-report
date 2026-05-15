@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: open-design — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>open-design</h1>
+      <div class="subtitle">
+        Owner: nexu-io &middot; 726,695 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-high" style="margin-left:12px">High — 28.80%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">3582</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">209,309</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#ef4444">28.80%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">726,695</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">960 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt/assets/runtime.js</span>
+              <span class="dup-loc">L1–L960</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt/assets/runtime.js</span>
+              <span class="dup-loc">L1–L960</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/* html-ppt :: runtime.js
+ * Keyboard-driven deck runtime. Zero dependencies.
+ *
+ * Features:
+ *   ← → / space / PgUp PgDn / Home End  navigation
+ *   F  fullscreen
+ *   S  presenter mode (opens a NEW WINDOW with current/next slide preview + notes + timer)
+ *       The original window stays as audience view, synced via BroadcastChannel.
+ *       Slide previews use CSS transform:scale() at design r
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">954 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-stencil-tablet/example.html</span>
+              <span class="dup-loc">L1–L954</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/example.html</span>
+              <span class="dup-loc">L1–L954</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!doctype html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot; />
+<title>Stencil &amp;amp; Tablet — Slide Template</title>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; />
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot; />
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin />
+<link href=&quot;https://fonts.googleapis.com/css2?family=Bowlby+One&amp;family=Stardos
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">946 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/live-dashboard/example.html</span>
+              <span class="dup-loc">L1–L946</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/live-dashboard/example.html</span>
+              <span class="dup-loc">L1–L946</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot; />
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; />
+<title>Acme · Team Dashboard</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-soft: #f7f6f3;
+    --bg-hover: #efeeec;
+    --ink: #37352f;
+    --ink-2: #787774;
+    --ink-3: #9b9a97;
+    --line: #ececea;
+    --line-strong: #d3d1cb;
+    --accent: #2eaadc;
+    -
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">908 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-stencil-tablet/example.html</span>
+              <span class="dup-loc">L11–L918</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/example.html</span>
+              <span class="dup-loc">L11–L918</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>
+  :root {
+    --bone:    #E2DCC9;
+    --black:   #000000;
+    --ink:     #0A0A0A;
+    --paper:   #F4EFE0;
+    --sienna:  #A06A3C;
+    --magenta: #C73B7A;
+    --orange:  #EE7A2E;
+    --teal:    #2D7E73;
+    --blue:    #3F73B7;
+    --mustard: #D8A93B;
+    --olive:   #6F7A2E;
+  }
+  html, body { margin:0; padding:0; background:#1a1a1a; }
+  body { font-family: &quot;Inter&quot;, &quot;Helvetica Neue&quot;, Arial, sans-se
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">876 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-bold-poster/example.html</span>
+              <span class="dup-loc">L1–L876</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-bold-poster/example.html</span>
+              <span class="dup-loc">L1–L876</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+  <meta charset=&quot;UTF-8&quot;>
+  <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+  <title>Bold Poster Business Presentation</title>
+  <link href=&quot;https://fonts.googleapis.com/css2?family=Shrikhand&amp;family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap&quot; rel=&quot;stylesheet&quot;>
+  <style>
+    :root
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">865 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-neo-grid-bold/example.html</span>
+              <span class="dup-loc">L1–L865</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-neo-grid-bold/example.html</span>
+              <span class="dup-loc">L1–L865</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!doctype html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot; />
+<title>Neo-Grid Bold — Slide Template</title>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; />
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot; />
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin />
+<link href=&quot;https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;f
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">833 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-biennale-yellow/example.html</span>
+              <span class="dup-loc">L1–L833</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-biennale-yellow/example.html</span>
+              <span class="dup-loc">L1–L833</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!doctype html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot; />
+<title>Biennale Yellow — Slide Template</title>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; />
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot; />
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin />
+<link href=&quot;https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;fami
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">825 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-peoples-platform/example.html</span>
+              <span class="dup-loc">L1–L825</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-peoples-platform/example.html</span>
+              <span class="dup-loc">L1–L825</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!doctype html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot; />
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; />
+<title>Block &amp;amp; Bold — Presentation Template</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Alfa+Slab+One&amp;family=Archi
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">807 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-neo-grid-bold/example.html</span>
+              <span class="dup-loc">L11–L817</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-neo-grid-bold/example.html</span>
+              <span class="dup-loc">L11–L817</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>
+  :root {
+    --bg: #ECECE8;
+    --ink: #0A0A0A;
+    --paper: #F5F4EF;
+    --accent: #E6FF3D;        /* signature neon yellow */
+    --line: #0A0A0A;
+    --muted: #8A8A85;
+  }
+  html, body { margin: 0; padding: 0; background: #1a1a1a; }
+  body { font-family: &quot;Space Grotesk&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; color: var(--ink); }
+  deck-stage { background: #1a1a1a; }
+
+  /* --- shared
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">794 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-peoples-platform/example.html</span>
+              <span class="dup-loc">L11–L804</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-peoples-platform/example.html</span>
+              <span class="dup-loc">L11–L804</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>
+  :root{
+    --blue:#2C2CDC;
+    --blue-deep:#1B1BB0;
+    --orange:#F2A03A;
+    --orange-deep:#E89321;
+    --red:#E83A2A;
+    --red-deep:#B7281C;
+    --cream:#F4E9D6;
+    --paper:#F5F2EA;
+    --ink:#0E0E14;
+  }
+
+  html,body{margin:0;background:#111;}
+  body{font-family:&#x27;Archivo Narrow&#x27;, system-ui, sans-serif; color:var(--ink);}
+
+  deck-stage > section{
+    width:1920px; height:1080px;
+    positio
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">774 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-taste-brutalist/example.html</span>
+              <span class="dup-loc">L1–L774</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-taste-brutalist/example.html</span>
+              <span class="dup-loc">L1–L774</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>
+<title>OPN-04 // INCIDENT TELEMETRY · CLASSIFIED INTERNAL</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">766 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/orbit-github/example.html</span>
+              <span class="dup-loc">L3–L768</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/orbit-notion/example.html</span>
+              <span class="dup-loc">L4–L768</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(function(){
+  function makeStore(){
+    var data = {};
+    var api = {
+      getItem: function(k){ return Object.prototype.hasOwnProperty.call(data, k) ? data[k] : null; },
+      setItem: function(k, v){ data[k] = String(v); },
+      removeItem: function(k){ delete data[k]; },
+      clear: function(){ data = {}; },
+      key: function(i){ return Object.keys(data)[i] || null; }
+    };
+    Object.d
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">750 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/tweaks/example.html</span>
+              <span class="dup-loc">L1–L750</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/tweaks/example.html</span>
+              <span class="dup-loc">L1–L437</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!doctype html>
+<html lang=&quot;en&quot; data-mode=&quot;light&quot;>
+<head>
+  <meta charset=&quot;utf-8&quot; />
+  <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; />
+  <title>Filebase · Tweaks demo</title>
+  <link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+  <link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+  <link href=&quot;https://fonts.googleapis.com/css2?family=Source+Serif+4
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">737 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-editorial-tri-tone/example.html</span>
+              <span class="dup-loc">L1–L737</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-editorial-tri-tone/example.html</span>
+              <span class="dup-loc">L1–L737</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!doctype html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot; />
+<title>Editorial Deck Template</title>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; />
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">725 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-presenter-mode-reveal/example.html</span>
+              <span class="dup-loc">L1–L725</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt/templates/full-decks/presenter-mode-reveal/index.html</span>
+              <span class="dup-loc">L1–L725</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!DOCTYPE html>
+<html lang=&quot;zh-CN&quot; data-themes=&quot;tokyo-night,dracula,catppuccin-mocha,nord,corporate-clean&quot;>
+<head>
+<meta charset=&quot;utf-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;>
+<title>演讲者模式示例 · Presenter Mode Deck</title>
+<style>/* html-ppt :: shared webfonts */
+@import url(&#x27;https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&amp;display=swa
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">713 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-presenter-mode-reveal/example.html</span>
+              <span class="dup-loc">L7–L719</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-xhs-white-editorial/example.html</span>
+              <span class="dup-loc">L7–L181</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/* html-ppt :: shared webfonts */
+@import url(&#x27;https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&amp;display=swap&#x27;);
+@import url(&#x27;https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@200;300;400;500;600;700;900&amp;display=swap&#x27;);
+@import url(&#x27;https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&amp;display=swap&#x27;);
+@import url(&#x27;https://fonts.googl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">698 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/clinical-case-report/examples/example-stemi.html</span>
+              <span class="dup-loc">L1–L698</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/clinical-case-report/example.html</span>
+              <span class="dup-loc">L1–L698</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+  <meta charset=&quot;UTF-8&quot;>
+  <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+  <title>Clinical Case Report — Inferior STEMI with Cardiogenic Shock</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, &#x27;Times New Roman&#x27;, serif;
+      font-size: 14px;
+      l
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">698 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/clinical-case-report/example.html</span>
+              <span class="dup-loc">L1–L698</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/clinical-case-report/example.html</span>
+              <span class="dup-loc">L1–L698</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!DOCTYPE html>
+<html lang=&quot;en&quot;>
+<head>
+  <meta charset=&quot;UTF-8&quot;>
+  <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+  <title>Clinical Case Report — Inferior STEMI with Cardiogenic Shock</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, &#x27;Times New Roman&#x27;, serif;
+      font-size: 14px;
+      l
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">697 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/orbit-github/example.html</span>
+              <span class="dup-loc">L3–L699</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/orbit-notion/example.html</span>
+              <span class="dup-loc">L4–L522</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(function(){
+  function makeStore(){
+    var data = {};
+    var api = {
+      getItem: function(k){ return Object.prototype.hasOwnProperty.call(data, k) ? data[k] : null; },
+      setItem: function(k, v){ data[k] = String(v); },
+      removeItem: function(k){ delete data[k]; },
+      clear: function(){ data = {}; },
+      key: function(i){ return Object.keys(data)[i] || null; }
+    };
+    Object.d
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #20</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">694 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-editorial-tri-tone/example.html</span>
+              <span class="dup-loc">L11–L704</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-editorial-tri-tone/example.html</span>
+              <span class="dup-loc">L11–L704</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>
+  :root{
+    --pink:#F2B6C6;
+    --pink-deep:#F2B6C6;
+    --cream:#F2D86A;
+    --navy:#7A1F35;
+    --forest:#7A1F35;
+    --burgundy:#7A1F35;
+    --lime:#F2D86A;
+    --sky:#F2B6C6;
+    --terracotta:#F2D86A;
+    --butter:#F2D86A;
+    --ink:#7A1F35;
+  }
+  html, body { margin:0; padding:0; background:#7A1F35; }
+  body { font-family: &quot;Bricolage Grotesque&quot;, sans-serif; color: var(--ink); }
+
+  deck-stag
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #21</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">686 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-taste-brutalist/example.html</span>
+              <span class="dup-loc">L10–L695</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-taste-brutalist/example.html</span>
+              <span class="dup-loc">L10–L695</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>
+  :root {
+    --crt: #0B0B0B;
+    --crt-2: #131312;
+    --phos: #ECECEA;
+    --phos-soft: #9F9F9C;
+    --phos-mute: #6A6A67;
+    --rule: #2A2A27;
+    --rule-strong: #3A3A36;
+    --hazard: #E61919;
+    --hazard-soft: rgba(230,25,25,0.12);
+    --green: #4AF626;
+    --display: &#x27;Archivo Black&#x27;, &#x27;Inter&#x27;, sans-serif;
+    --mono: &#x27;JetBrains Mono&#x27;, &#x27;IBM Plex Mono&#x27;, ui-monospace, monospace;
+  }
+  * { box-
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #22</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">673 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/kami-landing/example.html</span>
+              <span class="dup-loc">L1–L673</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/kami-landing/example.html</span>
+              <span class="dup-loc">L1–L673</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!DOCTYPE html>
+<html lang=&#x27;en&#x27;>
+<head>
+<meta charset=&#x27;utf-8&#x27; />
+<meta name=&#x27;viewport&#x27; content=&#x27;width=device-width, initial-scale=1&#x27; />
+<title>Open Design — Designing intelligence on warm paper.</title>
+<meta name=&#x27;description&#x27; content=&#x27;Open Design as a kami one-pager. Warm parchment canvas, ink-blue accent, serif at one weight, no italic, no cool grays.&#x27; />
+<link rel=&#x27;preconnect&#x27; href=&#x27;https://fo
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #23</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">671 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/critique/example.html</span>
+              <span class="dup-loc">L1–L671</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/critique/example.html</span>
+              <span class="dup-loc">L1–L671</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!doctype html>
+<html lang=&quot;en&quot;>
+<head>
+  <meta charset=&quot;utf-8&quot; />
+  <meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; />
+  <title>Critique · magazine-web-ppt example deck</title>
+  <link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+  <link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+  <link href=&quot;https://fonts.googleapis.com/css2?family=Source+Serif+4
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #24</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">670 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-biennale-yellow/example.html</span>
+              <span class="dup-loc">L10–L679</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-biennale-yellow/example.html</span>
+              <span class="dup-loc">L10–L679</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>
+  :root {
+    --paper:      #E9E5DB;   /* warm parchment ground */
+    --paper-deep: #DCD6C4;   /* slightly darker for shadows */
+    --sun:        #F1EE2E;   /* signature solar yellow */
+    --sun-soft:   #F8F39B;
+    --ink:        #1B2566;   /* deep indigo navy */
+    --ember:      #E26B4A;   /* warm peach accent */
+    --haze:       #F0DA7C;
+    --line:       #1B2566;
+  }
+
+  * { box-sizing: bo
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #25</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">666 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-pin-and-paper/assets/styles.css</span>
+              <span class="dup-loc">L1–L666</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-pin-and-paper/assets/styles.css</span>
+              <span class="dup-loc">L1–L666</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>:root {
+  --paper:    #EFE56A;
+  --paper-2:  #F5ECA0;
+  --paper-3:  #E8D85A;
+  --cream:    #F8F1D6;
+  --kraft:    #C9A66B;
+  --ink:      #1F3A8A;
+  --ink-soft: #2D4FB8;
+  --ink-line: #3457C4;
+  --black:    #0E1430;
+  --red:      #C2342B;
+  --olive:    #6B7A2E;
+  --orange:   #D8702A;
+}
+
+html, body { margin:0; padding:0; background:#1a1a1a; }
+body { font-family: &quot;Space Grotesk&quot;, &quot;Helvetica Neue&quot;, Ar
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #26</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">658 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-pink-script/example.html</span>
+              <span class="dup-loc">L1–L658</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-pink-script/example.html</span>
+              <span class="dup-loc">L1–L658</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!doctype html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot; />
+<title>Pink Script — After Hours</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap&quot; rel
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #27</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">647 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/guizang-ppt/assets/template.html</span>
+              <span class="dup-loc">L1–L647</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/guizang-ppt/assets/template.html</span>
+              <span class="dup-loc">L1–L647</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!DOCTYPE html>
+<html lang=&quot;zh-CN&quot;>
+<head>
+<meta charset=&quot;UTF-8&quot;>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;>
+<title>[必填] 替换为 PPT 标题 · Deck Title</title>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,50
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #28</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">643 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/live-dashboard/assets/template.html</span>
+              <span class="dup-loc">L1–L643</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/live-dashboard/assets/template.html</span>
+              <span class="dup-loc">L1–L643</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!DOCTYPE html>
+<!--
+  OD · live-dashboard · template seed
+  ----------------------------------------------------------------------
+  This is the skeleton an agent starts from. The structure is locked.
+  The agent is expected to:
+
+   1. Replace every {{placeholder}} with the user&#x27;s brief or DESIGN.md.
+   2. Fill the four SEED_* arrays at the bottom (people, rows, feed,
+      series) with plausible
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #29</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">638 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/orbit-gmail/example.html</span>
+              <span class="dup-loc">L4–L641</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/orbit-notion/example.html</span>
+              <span class="dup-loc">L4–L641</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(function(){
+  function makeStore(){
+    var data = {};
+    var api = {
+      getItem: function(k){ return Object.prototype.hasOwnProperty.call(data, k) ? data[k] : null; },
+      setItem: function(k, v){ data[k] = String(v); },
+      removeItem: function(k){ delete data[k]; },
+      clear: function(){ data = {}; },
+      key: function(i){ return Object.keys(data)[i] || null; }
+    };
+    Object.d
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #30</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">636 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-creative-mode/example.html</span>
+              <span class="dup-loc">L1–L636</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-creative-mode/example.html</span>
+              <span class="dup-loc">L1–L636</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><!doctype html>
+<html lang=&quot;en&quot;>
+<head>
+<meta charset=&quot;utf-8&quot; />
+<title>Creative Mode — Deck Template</title>
+<meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot; />
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;>
+<link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin>
+<link href=&quot;https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=Space+Grotesk:wgh
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #31</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">630 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/guizang-ppt/references/layouts.md</span>
+              <span class="dup-loc">L1–L630</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/guizang-ppt/references/layouts.md</span>
+              <span class="dup-loc">L1–L630</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># 页面布局库（Layouts）
+
+本文档收录 10 种最常用的页面布局骨架。每种都是一个完整可粘贴的 `<section class=&quot;slide ...&quot;>...</section>` 代码块，直接替换文案/图片即可使用。
+
+---
+
+## ⚠️ 生成前必读（Pre-flight）
+
+### A. 类名必须来自 template.html
+
+layouts.md 使用的所有类（`h-hero` / `h-xl` / `h-sub` / `h-md` / `lead` / `meta-row` / `stat-card` / `stat-label` / `stat-nb` / `stat-unit` / `stat-note` / `pipeline-section` / `pipeline-label` / `pipeline` / `step` / `step-nb` / `ste
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #32</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-soft-editorial/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #33</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-pink-script/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #34</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-pin-and-paper/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #35</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-peoples-platform/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #36</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-neo-grid-bold/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #37</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-editorial-tri-tone/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #38</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-creative-mode/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #39</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #40</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-soft-editorial/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #41</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-pink-script/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #42</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-pin-and-paper/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #43</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-peoples-platform/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #44</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-neo-grid-bold/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #45</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-editorial-tri-tone/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #46</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">619 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/html-ppt-zhangzara-creative-mode/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/html-ppt-zhangzara-stencil-tablet/assets/deck-stage.js</span>
+              <span class="dup-loc">L1–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/**
+ * <deck-stage> — reusable web component for HTML decks.
+ *
+ * Handles:
+ *  (a) speaker notes — reads <script type=&quot;application/json&quot; id=&quot;speaker-notes&quot;>
+ *      and posts {slideIndexChanged: N} to the parent window on nav.
+ *  (b) keyboard navigation — ←/→, PgUp/PgDn, Space, Home/End, number keys.
+ *  (c) press R to reset to slide 0 (with a tasteful keyboard hint).
+ *  (d) bottom-center overl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #47</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">612 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/orbit-gmail/example.html</span>
+              <span class="dup-loc">L4–L615</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/orbit-notion/example.html</span>
+              <span class="dup-loc">L4–L498</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(function(){
+  function makeStore(){
+    var data = {};
+    var api = {
+      getItem: function(k){ return Object.prototype.hasOwnProperty.call(data, k) ? data[k] : null; },
+      setItem: function(k, v){ data[k] = String(v); },
+      removeItem: function(k){ delete data[k]; },
+      clear: function(){ data = {}; },
+      key: function(i){ return Object.keys(data)[i] || null; }
+    };
+    Object.d
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #48</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">590 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/orbit-github/example.html</span>
+              <span class="dup-loc">L30–L619</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/orbit-github/example.html</span>
+              <span class="dup-loc">L30–L619</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #1f2328;
+      background: #f6f8fa;
+    }
+
+    /* ── GitHub Top Nav ── */
+    .gh-header {
+      background: #24292f;
+      height: 48px;
+   
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #49</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">585 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/clinical-case-report/examples/example-stemi.html</span>
+              <span class="dup-loc">L7–L591</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/clinical-case-report/example.html</span>
+              <span class="dup-loc">L7–L591</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, &#x27;Times New Roman&#x27;, serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #111;
+      background: #fff;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 48px;
+    }
+
+    /* ── Document Header ───────────────────────────────────────────── */
+    .doc-he
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #50</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">585 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>design-templates/clinical-case-report/example.html</span>
+              <span class="dup-loc">L7–L591</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>plugins/_official/examples/clinical-case-report/example.html</span>
+              <span class="dup-loc">L7–L591</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Georgia, &#x27;Times New Roman&#x27;, serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #111;
+      background: #fff;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 48px;
+    }
+
+    /* ── Document Header ───────────────────────────────────────────── */
+    .doc-he
+... (truncated)</code></pre></div>
+      </div><div class="more-clones">
+        ...and 3532 more clones
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Typescript</td><td class='cell-num'>782</td><td class='cell-num'>10,473</td></tr>
+    <tr><td>Markdown</td><td class='cell-num'>693</td><td class='cell-num'>55,404</td></tr>
+    <tr><td>Json</td><td class='cell-num'>550</td><td class='cell-num'>16,142</td></tr>
+    <tr><td>Markup</td><td class='cell-num'>413</td><td class='cell-num'>50,191</td></tr>
+    <tr><td>Css</td><td class='cell-num'>410</td><td class='cell-num'>46,037</td></tr>
+    <tr><td>Tsx</td><td class='cell-num'>297</td><td class='cell-num'>4,531</td></tr>
+    <tr><td>Yaml</td><td class='cell-num'>184</td><td class='cell-num'>5,277</td></tr>
+    <tr><td>Javascript</td><td class='cell-num'>174</td><td class='cell-num'>21,892</td></tr>
+    <tr><td>Python</td><td class='cell-num'>57</td><td class='cell-num'>1,197</td></tr>
+    <tr><td>Bash</td><td class='cell-num'>10</td><td class='cell-num'>1,094</td></tr>
+    <tr><td>Txt</td><td class='cell-num'>6</td><td class='cell-num'>557</td></tr>
+    <tr><td>Nginx</td><td class='cell-num'>6</td><td class='cell-num'>96</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>2889</td><td class='cell-num'>80.7%</td></tr>
+    <tr><td>Documentation</td><td class='cell-num'>693</td><td class='cell-num'>19.3%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

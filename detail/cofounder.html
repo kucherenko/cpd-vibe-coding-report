@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: cofounder — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>cofounder</h1>
+      <div class="subtitle">
+        Owner: nraiden &middot; 29,722 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-high" style="margin-left:12px">High — 25.26%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">118</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">7,509</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#ef4444">25.26%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">29,722</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">361 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/chart.tsx</span>
+              <span class="dup-loc">L1–L361</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/chart.tsx</span>
+              <span class="dup-loc">L1–L361</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as RechartsPrimitive from &quot;recharts&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+// Format: { THEME_NAME: CSS_SELECTOR }
+const THEMES = { light: &quot;&quot;, dark: &quot;.dark&quot; } as const;
+
+export type ChartConfig = {
+	[k in string]: {
+		label?: React.ReactNode;
+		icon?: React.ComponentType;
+	} &amp; (
+		| { color?: string; theme?: never }
+		| { color?: never; theme: Record<keyof t
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">260 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/carousel.tsx</span>
+              <span class="dup-loc">L1–L260</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/carousel.tsx</span>
+              <span class="dup-loc">L1–L260</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import useEmblaCarousel, {
+	type UseEmblaCarouselType,
+} from &quot;embla-carousel-react&quot;;
+import { ArrowLeft, ArrowRight } from &quot;lucide-react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+import { Button } from &quot;@/components/ui/button&quot;;
+
+type CarouselApi = UseEmblaCarouselType[1];
+type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
+type CarouselOptions = UseCarouse
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">257 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/chart.tsx</span>
+              <span class="dup-loc">L48–L304</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/chart.tsx</span>
+              <span class="dup-loc">L48–L304</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={{ config }}>
+			<div
+				data-chart={chartId}
+				ref={ref}
+				className={cn(
+					&quot;flex aspect-video justify-center text-xs [&amp;_.recharts-cartesian-axis-tick_text]:fill-muted-foreground [&amp;_.recharts-cartesian-grid_line[stroke=&#x27;#ccc&#x27;]]:stroke-border/50 [&amp;_.recharts-curve.recharts-tooltip-cursor]:stroke-border [&amp;_.recharts-dot[stroke=&#x27;#fff&#x27;]]:stroke-transparent [&amp;_.recharts-layer]:outline-none [&amp;
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">237 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/menubar.tsx</span>
+              <span class="dup-loc">L1–L237</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/menubar.tsx</span>
+              <span class="dup-loc">L1–L237</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as MenubarPrimitive from &quot;@radix-ui/react-menubar&quot;;
+import { Check, ChevronRight, Circle } from &quot;lucide-react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const MenubarMenu = MenubarPrimitive.Menu;
+
+const MenubarGroup = MenubarPrimitive.Group;
+
+const MenubarPortal = MenubarPrimitive.Portal;
+
+const MenubarSub = MenubarPrimitive.Sub;
+
+const MenubarRadioGroup = Menub
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">201 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/dropdown-menu.tsx</span>
+              <span class="dup-loc">L1–L201</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/dropdown-menu.tsx</span>
+              <span class="dup-loc">L1–L201</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as DropdownMenuPrimitive from &quot;@radix-ui/react-dropdown-menu&quot;;
+import { Check, ChevronRight, Circle } from &quot;lucide-react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const DropdownMenu = DropdownMenuPrimitive.Root;
+
+const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
+
+const DropdownMenuGroup = DropdownMenuPrimitive.Group;
+
+const DropdownMenuPortal = Dropdow
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">201 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/context-menu.tsx</span>
+              <span class="dup-loc">L1–L201</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/context-menu.tsx</span>
+              <span class="dup-loc">L1–L201</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as ContextMenuPrimitive from &quot;@radix-ui/react-context-menu&quot;;
+import { Check, ChevronRight, Circle } from &quot;lucide-react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const ContextMenu = ContextMenuPrimitive.Root;
+
+const ContextMenuTrigger = ContextMenuPrimitive.Trigger;
+
+const ContextMenuGroup = ContextMenuPrimitive.Group;
+
+const ContextMenuPortal = ContextMenuPrimi
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">192 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/menubar.tsx</span>
+              <span class="dup-loc">L22–L213</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/menubar.tsx</span>
+              <span class="dup-loc">L22–L213</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={ref}
+		className={cn(
+			&quot;flex h-10 items-center space-x-1 rounded-md border border-neutral-200 bg-white p-1 dark:border-neutral-800 dark:bg-neutral-950&quot;,
+			className,
+		)}
+		{...props}
+	/>
+));
+Menubar.displayName = MenubarPrimitive.Root.displayName;
+
+const MenubarTrigger = React.forwardRef<
+	React.ElementRef<typeof MenubarPrimitive.Trigger>,
+	React.ComponentPropsWithoutRef<typeof MenubarPrimit
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">188 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/hooks/use-toast.ts</span>
+              <span class="dup-loc">L1–L188</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/hooks/use-toast.ts</span>
+              <span class="dup-loc">L1–L188</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+
+import type { ToastActionElement, ToastProps } from &quot;@/components/ui/toast&quot;;
+
+const TOAST_LIMIT = 1;
+const TOAST_REMOVE_DELAY = 1000000;
+
+type ToasterToast = ToastProps &amp; {
+	id: string;
+	title?: React.ReactNode;
+	description?: React.ReactNode;
+	action?: ToastActionElement;
+};
+
+const actionTypes = {
+	ADD_TOAST: &quot;ADD_TOAST&quot;,
+	UPDATE_TOAST: &quot;UPDATE_TOAST&quot;,
+	DISMISS_TO
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">177 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/form.tsx</span>
+              <span class="dup-loc">L1–L177</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/form.tsx</span>
+              <span class="dup-loc">L1–L177</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as LabelPrimitive from &quot;@radix-ui/react-label&quot;;
+import { Slot } from &quot;@radix-ui/react-slot&quot;;
+import {
+	Controller,
+	ControllerProps,
+	FieldPath,
+	FieldValues,
+	FormProvider,
+	useFormContext,
+} from &quot;react-hook-form&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+import { Label } from &quot;@/components/ui/label&quot;;
+
+const Form = FormProvider;
+
+type FormFieldContextValue<
+	TF
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">161 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/select.tsx</span>
+              <span class="dup-loc">L1–L161</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/select.tsx</span>
+              <span class="dup-loc">L1–L161</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as SelectPrimitive from &quot;@radix-ui/react-select&quot;;
+import { Check, ChevronDown, ChevronUp } from &quot;lucide-react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const Select = SelectPrimitive.Root;
+
+const SelectGroup = SelectPrimitive.Group;
+
+const SelectValue = SelectPrimitive.Value;
+
+const SelectTrigger = React.forwardRef<
+	React.ElementRef<typeof SelectPrimitive.Trig
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">153 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/dropdown-menu.tsx</span>
+              <span class="dup-loc">L26–L178</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/dropdown-menu.tsx</span>
+              <span class="dup-loc">L26–L178</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={ref}
+		className={cn(
+			&quot;flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-neutral-100 data-[state=open]:bg-neutral-100 dark:focus:bg-neutral-800 dark:data-[state=open]:bg-neutral-800&quot;,
+			inset &amp;&amp; &quot;pl-8&quot;,
+			className,
+		)}
+		{...props}
+	>
+		{children}
+		<ChevronRight className=&quot;ml-auto h-4 w-4&quot; />
+	</DropdownMenuPrimitive.SubTrigger>
+));
+Dropdow
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">153 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/context-menu.tsx</span>
+              <span class="dup-loc">L26–L178</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/context-menu.tsx</span>
+              <span class="dup-loc">L26–L178</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={ref}
+		className={cn(
+			&quot;flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-neutral-100 focus:text-neutral-900 data-[state=open]:bg-neutral-100 data-[state=open]:text-neutral-900 dark:focus:bg-neutral-800 dark:focus:text-neutral-50 dark:data-[state=open]:bg-neutral-800 dark:data-[state=open]:text-neutral-50&quot;,
+			inset &amp;&amp; &quot;pl-8&quot;,
+			className,
+		)}
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">153 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/command.tsx</span>
+              <span class="dup-loc">L1–L153</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/command.tsx</span>
+              <span class="dup-loc">L1–L153</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import { type DialogProps } from &quot;@radix-ui/react-dialog&quot;;
+import { Command as CommandPrimitive } from &quot;cmdk&quot;;
+import { Search } from &quot;lucide-react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+import { Dialog, DialogContent } from &quot;@/components/ui/dialog&quot;;
+
+const Command = React.forwardRef<
+	React.ElementRef<typeof CommandPrimitive>,
+	React.ComponentPropsWithoutRef<typeof C
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">139 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/sheet.tsx</span>
+              <span class="dup-loc">L1–L139</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/sheet.tsx</span>
+              <span class="dup-loc">L1–L139</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as SheetPrimitive from &quot;@radix-ui/react-dialog&quot;;
+import { cva, type VariantProps } from &quot;class-variance-authority&quot;;
+import { X } from &quot;lucide-react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const Sheet = SheetPrimitive.Root;
+
+const SheetTrigger = SheetPrimitive.Trigger;
+
+const SheetClose = SheetPrimitive.Close;
+
+const SheetPortal = SheetPrimitive.Portal;
+
+const
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">136 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/alert-dialog.tsx</span>
+              <span class="dup-loc">L1–L136</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/alert-dialog.tsx</span>
+              <span class="dup-loc">L1–L136</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as AlertDialogPrimitive from &quot;@radix-ui/react-alert-dialog&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+import { buttonVariants } from &quot;@/components/ui/button&quot;;
+
+const AlertDialog = AlertDialogPrimitive.Root;
+
+const AlertDialogTrigger = AlertDialogPrimitive.Trigger;
+
+const AlertDialogPortal = AlertDialogPrimitive.Portal;
+
+const AlertDialogOverlay = React.forwardRef
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">129 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/navigation-menu.tsx</span>
+              <span class="dup-loc">L1–L129</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/navigation-menu.tsx</span>
+              <span class="dup-loc">L1–L129</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as NavigationMenuPrimitive from &quot;@radix-ui/react-navigation-menu&quot;;
+import { cva } from &quot;class-variance-authority&quot;;
+import { ChevronDown } from &quot;lucide-react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const NavigationMenu = React.forwardRef<
+	React.ElementRef<typeof NavigationMenuPrimitive.Root>,
+	React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">128 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/toast.tsx</span>
+              <span class="dup-loc">L1–L128</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/toast.tsx</span>
+              <span class="dup-loc">L1–L128</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as ToastPrimitives from &quot;@radix-ui/react-toast&quot;;
+import { cva, type VariantProps } from &quot;class-variance-authority&quot;;
+import { X } from &quot;lucide-react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const ToastProvider = ToastPrimitives.Provider;
+
+const ToastViewport = React.forwardRef<
+	React.ElementRef<typeof ToastPrimitives.Viewport>,
+	React.ComponentPropsWithoutRef<
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">127 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/select.tsx</span>
+              <span class="dup-loc">L18–L144</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/select.tsx</span>
+              <span class="dup-loc">L18–L144</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={ref}
+		className={cn(
+			&quot;flex h-10 w-full items-center justify-between rounded-md border border-neutral-200 bg-white px-3 py-2 text-sm ring-offset-white placeholder:text-neutral-500 focus:outline-none focus:ring-2 focus:ring-neutral-950 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&amp;>span]:line-clamp-1 dark:border-neutral-800 dark:bg-neutral-950 dark:ring-offset-neutral-9
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">124 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/form.tsx</span>
+              <span class="dup-loc">L36–L159</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/form.tsx</span>
+              <span class="dup-loc">L36–L159</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={{ name: props.name }}>
+			<Controller {...props} />
+		</FormFieldContext.Provider>
+	);
+};
+
+const useFormField = () => {
+	const fieldContext = React.useContext(FormFieldContext);
+	const itemContext = React.useContext(FormItemContext);
+	const { getFieldState, formState } = useFormContext();
+
+	const fieldState = getFieldState(fieldContext.name, formState);
+
+	if (!fieldContext) {
+		throw new Error(&quot;
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #20</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">123 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/command.tsx</span>
+              <span class="dup-loc">L14–L136</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/command.tsx</span>
+              <span class="dup-loc">L14–L136</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={ref}
+		className={cn(
+			&quot;flex h-full w-full flex-col overflow-hidden rounded-md bg-white text-neutral-950 dark:bg-neutral-950 dark:text-neutral-50&quot;,
+			className,
+		)}
+		{...props}
+	/>
+));
+Command.displayName = CommandPrimitive.displayName;
+
+interface CommandDialogProps extends DialogProps {}
+
+const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
+	return (
+		<Dialog {...props}
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #21</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">121 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/carousel.tsx</span>
+              <span class="dup-loc">L123–L243</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/carousel.tsx</span>
+              <span class="dup-loc">L123–L243</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={{
+					carouselRef,
+					api: api,
+					opts,
+					orientation:
+						orientation || (opts?.axis === &quot;y&quot; ? &quot;vertical&quot; : &quot;horizontal&quot;),
+					scrollPrev,
+					scrollNext,
+					canScrollPrev,
+					canScrollNext,
+				}}
+			>
+				<div
+					ref={ref}
+					onKeyDownCapture={handleKeyDown}
+					className={cn(&quot;relative&quot;, className)}
+					role=&quot;region&quot;
+					aria-roledescription=&quot;carousel&quot;
+					{...props}
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #22</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">120 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/table.tsx</span>
+              <span class="dup-loc">L1–L120</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/table.tsx</span>
+              <span class="dup-loc">L1–L120</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const Table = React.forwardRef<
+	HTMLTableElement,
+	React.HTMLAttributes<HTMLTableElement>
+>(({ className, ...props }, ref) => (
+	<div className=&quot;relative w-full overflow-auto&quot;>
+		<table
+			ref={ref}
+			className={cn(&quot;w-full caption-bottom text-sm&quot;, className)}
+			{...props}
+		/>
+	</div>
+));
+Table.displayName = &quot;Table&quot;;
+
+const Tab
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #23</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">118 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/breadcrumb.tsx</span>
+              <span class="dup-loc">L1–L118</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/breadcrumb.tsx</span>
+              <span class="dup-loc">L1–L118</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import { Slot } from &quot;@radix-ui/react-slot&quot;;
+import { ChevronRight, MoreHorizontal } from &quot;lucide-react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const Breadcrumb = React.forwardRef<
+	HTMLElement,
+	React.ComponentPropsWithoutRef<&quot;nav&quot;> &amp; {
+		separator?: React.ReactNode;
+	}
+>(({ ...props }, ref) => <nav ref={ref} aria-label=&quot;breadcrumb&quot; {...props} />);
+Breadcrumb.display
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #24</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">117 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/pagination.tsx</span>
+              <span class="dup-loc">L1–L117</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/pagination.tsx</span>
+              <span class="dup-loc">L1–L117</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import { ChevronLeft, ChevronRight, MoreHorizontal } from &quot;lucide-react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+import { ButtonProps, buttonVariants } from &quot;@/components/ui/button&quot;;
+
+const Pagination = ({ className, ...props }: React.ComponentProps<&quot;nav&quot;>) => (
+	<nav
+		role=&quot;navigation&quot;
+		aria-label=&quot;pagination&quot;
+		className={cn(&quot;mx-auto flex w-full justify-center&quot;, cla
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #25</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">117 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/dialog.tsx</span>
+              <span class="dup-loc">L1–L117</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/dialog.tsx</span>
+              <span class="dup-loc">L1–L117</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as DialogPrimitive from &quot;@radix-ui/react-dialog&quot;;
+import { X } from &quot;lucide-react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const Dialog = DialogPrimitive.Root;
+
+const DialogTrigger = DialogPrimitive.Trigger;
+
+const DialogPortal = DialogPrimitive.Portal;
+
+const DialogClose = DialogPrimitive.Close;
+
+const DialogOverlay = React.forwardRef<
+	React.ElementRef<typeo
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #26</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">110 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/drawer.tsx</span>
+              <span class="dup-loc">L1–L110</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/drawer.tsx</span>
+              <span class="dup-loc">L1–L110</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import { Drawer as DrawerPrimitive } from &quot;vaul&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const Drawer = ({
+	shouldScaleBackground = true,
+	...props
+}: React.ComponentProps<typeof DrawerPrimitive.Root>) => (
+	<DrawerPrimitive.Root
+		shouldScaleBackground={shouldScaleBackground}
+		{...props}
+	/>
+);
+Drawer.displayName = &quot;Drawer&quot;;
+
+const DrawerTrigger = DrawerPrimitive.Tri
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #27</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">102 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/sheet.tsx</span>
+              <span class="dup-loc">L21–L122</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/sheet.tsx</span>
+              <span class="dup-loc">L21–L122</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={cn(
+			&quot;fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0&quot;,
+			className,
+		)}
+		{...props}
+		ref={ref}
+	/>
+));
+SheetOverlay.displayName = SheetPrimitive.Overlay.displayName;
+
+const sheetVariants = cva(
+	&quot;fixed z-50 gap-4 bg-white p-6 shadow-lg transition ease-in-out data-[state=open]:animate-in
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #28</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">101 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/alert-dialog.tsx</span>
+              <span class="dup-loc">L18–L118</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/alert-dialog.tsx</span>
+              <span class="dup-loc">L18–L118</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={cn(
+			&quot;fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0&quot;,
+			className,
+		)}
+		{...props}
+		ref={ref}
+	/>
+));
+AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName;
+
+const AlertDialogContent = React.forwardRef<
+	React.ElementRef<typeof AlertDialogPrimitive.Content>,
+	React.
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #29</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">98 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/navigation-menu.tsx</span>
+              <span class="dup-loc">L13–L110</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/navigation-menu.tsx</span>
+              <span class="dup-loc">L13–L110</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={ref}
+		className={cn(
+			&quot;relative z-10 flex max-w-max flex-1 items-center justify-center&quot;,
+			className,
+		)}
+		{...props}
+	>
+		{children}
+		<NavigationMenuViewport />
+	</NavigationMenuPrimitive.Root>
+));
+NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName;
+
+const NavigationMenuList = React.forwardRef<
+	React.ElementRef<typeof NavigationMenuPrimitive.List>,
+	React.ComponentPro
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #30</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">95 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/table.tsx</span>
+              <span class="dup-loc">L11–L105</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/table.tsx</span>
+              <span class="dup-loc">L11–L105</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={ref}
+			className={cn(&quot;w-full caption-bottom text-sm&quot;, className)}
+			{...props}
+		/>
+	</div>
+));
+Table.displayName = &quot;Table&quot;;
+
+const TableHeader = React.forwardRef<
+	HTMLTableSectionElement,
+	React.HTMLAttributes<HTMLTableSectionElement>
+>(({ className, ...props }, ref) => (
+	<thead ref={ref} className={cn(&quot;[&amp;_tr]:border-b&quot;, className)} {...props} />
+));
+TableHeader.displayName = &quot;TableHeader&quot;;
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #31</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">94 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/toast.tsx</span>
+              <span class="dup-loc">L15–L108</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/toast.tsx</span>
+              <span class="dup-loc">L15–L108</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={ref}
+		className={cn(
+			&quot;fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]&quot;,
+			className,
+		)}
+		{...props}
+	/>
+));
+ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
+
+const toastVariants = cva(
+	&quot;group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden ro
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #32</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">90 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/pagination.tsx</span>
+              <span class="dup-loc">L11–L100</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/pagination.tsx</span>
+              <span class="dup-loc">L11–L100</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={cn(&quot;mx-auto flex w-full justify-center&quot;, className)}
+		{...props}
+	/>
+);
+Pagination.displayName = &quot;Pagination&quot;;
+
+const PaginationContent = React.forwardRef<
+	HTMLUListElement,
+	React.ComponentProps<&quot;ul&quot;>
+>(({ className, ...props }, ref) => (
+	<ul
+		ref={ref}
+		className={cn(&quot;flex flex-row items-center gap-1&quot;, className)}
+		{...props}
+	/>
+));
+PaginationContent.displayName = &quot;PaginationContent&quot;;
+
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #33</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">90 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/breadcrumb.tsx</span>
+              <span class="dup-loc">L12–L101</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/breadcrumb.tsx</span>
+              <span class="dup-loc">L12–L101</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={ref} aria-label=&quot;breadcrumb&quot; {...props} />);
+Breadcrumb.displayName = &quot;Breadcrumb&quot;;
+
+const BreadcrumbList = React.forwardRef<
+	HTMLOListElement,
+	React.ComponentPropsWithoutRef<&quot;ol&quot;>
+>(({ className, ...props }, ref) => (
+	<ol
+		ref={ref}
+		className={cn(
+			&quot;flex flex-wrap items-center gap-1.5 break-words text-sm text-neutral-500 sm:gap-2.5 dark:text-neutral-400&quot;,
+			className,
+		)}
+		{...props}
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #34</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">86 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/card.tsx</span>
+              <span class="dup-loc">L1–L86</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/card.tsx</span>
+              <span class="dup-loc">L1–L86</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const Card = React.forwardRef<
+	HTMLDivElement,
+	React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+	<div
+		ref={ref}
+		className={cn(
+			&quot;rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50&quot;,
+			className,
+		)}
+		{...prop
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #35</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">83 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/drawer.tsx</span>
+              <span class="dup-loc">L11–L93</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/drawer.tsx</span>
+              <span class="dup-loc">L11–L93</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={shouldScaleBackground}
+		{...props}
+	/>
+);
+Drawer.displayName = &quot;Drawer&quot;;
+
+const DrawerTrigger = DrawerPrimitive.Trigger;
+
+const DrawerPortal = DrawerPrimitive.Portal;
+
+const DrawerClose = DrawerPrimitive.Close;
+
+const DrawerOverlay = React.forwardRef<
+	React.ElementRef<typeof DrawerPrimitive.Overlay>,
+	React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>
+>(({ className, ...props }, re
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #36</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">81 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/context-menu.tsx</span>
+              <span class="dup-loc">L65–L145</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/menubar.tsx</span>
+              <span class="dup-loc">L100–L180</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)}
+			{...props}
+		/>
+	</ContextMenuPrimitive.Portal>
+));
+ContextMenuContent.displayName = ContextMenuPrimitive.Content.displayName;
+
+const ContextMenuItem = React.forwardRef<
+	React.ElementRef<typeof ContextMenuPrimitive.Item>,
+	React.ComponentPropsWithoutRef<typeof ContextMenuPrimitive.Item> &amp; {
+		inset?: boolean;
+	}
+>(({ className, inset, ...props }, ref) => (
+	<ContextMenuPrimitive.Item
+		ref=
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #37</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">81 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/dialog.tsx</span>
+              <span class="dup-loc">L20–L100</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/dialog.tsx</span>
+              <span class="dup-loc">L20–L100</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={ref}
+		className={cn(
+			&quot;fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0&quot;,
+			className,
+		)}
+		{...props}
+	/>
+));
+DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;
+
+const DialogContent = React.forwardRef<
+	React.ElementRef<typeof DialogPrimitive.Content>,
+	React.ComponentProps
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #38</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">70 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/input-otp.tsx</span>
+              <span class="dup-loc">L1–L70</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/input-otp.tsx</span>
+              <span class="dup-loc">L1–L70</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import { OTPInput, OTPInputContext } from &quot;input-otp&quot;;
+import { Dot } from &quot;lucide-react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const InputOTP = React.forwardRef<
+	React.ElementRef<typeof OTPInput>,
+	React.ComponentPropsWithoutRef<typeof OTPInput>
+>(({ className, containerClassName, ...props }, ref) => (
+	<OTPInput
+		ref={ref}
+		containerClassName={cn(
+			&quot;flex items
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #39</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">66 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/calendar.tsx</span>
+              <span class="dup-loc">L1–L66</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/calendar.tsx</span>
+              <span class="dup-loc">L1–L66</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import { ChevronLeft, ChevronRight } from &quot;lucide-react&quot;;
+import { DayPicker } from &quot;react-day-picker&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+import { buttonVariants } from &quot;@/components/ui/button&quot;;
+
+export type CalendarProps = React.ComponentProps<typeof DayPicker>;
+
+function Calendar({
+	className,
+	classNames,
+	showOutsideDays = true,
+	...props
+}: CalendarProps) {
+	r
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #40</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">64 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/card.tsx</span>
+              <span class="dup-loc">L10–L73</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/card.tsx</span>
+              <span class="dup-loc">L10–L73</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={ref}
+		className={cn(
+			&quot;rounded-lg border border-neutral-200 bg-white text-neutral-950 shadow-sm dark:border-neutral-800 dark:bg-neutral-950 dark:text-neutral-50&quot;,
+			className,
+		)}
+		{...props}
+	/>
+));
+Card.displayName = &quot;Card&quot;;
+
+const CardHeader = React.forwardRef<
+	HTMLDivElement,
+	React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+	<div
+		ref={ref}
+		className={cn(
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #41</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">60 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/alert.tsx</span>
+              <span class="dup-loc">L1–L60</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/alert.tsx</span>
+              <span class="dup-loc">L1–L60</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import { cva, type VariantProps } from &quot;class-variance-authority&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const alertVariants = cva(
+	&quot;relative w-full rounded-lg border border-neutral-200 p-4 [&amp;>svg~*]:pl-7 [&amp;>svg+div]:translate-y-[-3px] [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:text-neutral-950 dark:border-neutral-800 dark:[&amp;>svg]:text-neutral-50&quot;,
+	{
+		va
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #42</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">59 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/toggle-group.tsx</span>
+              <span class="dup-loc">L1–L59</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/toggle-group.tsx</span>
+              <span class="dup-loc">L1–L59</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as ToggleGroupPrimitive from &quot;@radix-ui/react-toggle-group&quot;;
+import { type VariantProps } from &quot;class-variance-authority&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+import { toggleVariants } from &quot;@/components/ui/toggle&quot;;
+
+const ToggleGroupContext = React.createContext<
+	VariantProps<typeof toggleVariants>
+>({
+	size: &quot;default&quot;,
+	variant: &quot;default&quot;,
+});
+
+const Togg
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #43</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">59 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/button.tsx</span>
+              <span class="dup-loc">L1–L59</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/button.tsx</span>
+              <span class="dup-loc">L1–L59</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import { Slot } from &quot;@radix-ui/react-slot&quot;;
+import { cva, type VariantProps } from &quot;class-variance-authority&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const buttonVariants = cva(
+	&quot;inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:rin
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #44</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">56 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/accordion.tsx</span>
+              <span class="dup-loc">L1–L56</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/accordion.tsx</span>
+              <span class="dup-loc">L1–L56</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as AccordionPrimitive from &quot;@radix-ui/react-accordion&quot;;
+import { ChevronDown } from &quot;lucide-react&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const Accordion = AccordionPrimitive.Root;
+
+const AccordionItem = React.forwardRef<
+	React.ElementRef<typeof AccordionPrimitive.Item>,
+	React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
+>(({ className, ...props
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #45</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">55 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/flow/nodes/cofounder-node.tsx</span>
+              <span class="dup-loc">L207–L261</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/flow/nodes/cofounder-node.tsx</span>
+              <span class="dup-loc">L133–L187</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+							style={{ fontFamily: &quot;JetBrains Mono&quot;, fontWeight: 400 }}
+						>
+							{(node_stream?.is_running &amp;&amp; node_stream?.data &amp;&amp; (
+								<>{node_stream.data.data}</>
+							)) || (
+								<>
+									{selectedVersion &amp;&amp; node_data
+										? node_data[selectedVersion].tsx.slice(0, 300) + &quot; ...&quot;
+										: &quot;&quot;}
+								</>
+							)}
+						</pre>
+					</div>
+
+					{(node_stream?.is_running &amp;&amp; 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #46</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">53 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/tabs.tsx</span>
+              <span class="dup-loc">L1–L53</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/tabs.tsx</span>
+              <span class="dup-loc">L1–L53</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as TabsPrimitive from &quot;@radix-ui/react-tabs&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const Tabs = TabsPrimitive.Root;
+
+const TabsList = React.forwardRef<
+	React.ElementRef<typeof TabsPrimitive.List>,
+	React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
+>(({ className, ...props }, ref) => (
+	<TabsPrimitive.List
+		ref={ref}
+		className={cn(
+			&quot;inline-flex
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #47</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">53 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/input-otp.tsx</span>
+              <span class="dup-loc">L12–L64</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/input-otp.tsx</span>
+              <span class="dup-loc">L12–L64</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={ref}
+		containerClassName={cn(
+			&quot;flex items-center gap-2 has-[:disabled]:opacity-50&quot;,
+			containerClassName,
+		)}
+		className={cn(&quot;disabled:cursor-not-allowed&quot;, className)}
+		{...props}
+	/>
+));
+InputOTP.displayName = &quot;InputOTP&quot;;
+
+const InputOTPGroup = React.forwardRef<
+	React.ElementRef<&quot;div&quot;>,
+	React.ComponentPropsWithoutRef<&quot;div&quot;>
+>(({ className, ...props }, ref) => (
+	<div ref={ref} classNa
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #48</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">48 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/avatar.tsx</span>
+              <span class="dup-loc">L1–L48</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/avatar.tsx</span>
+              <span class="dup-loc">L1–L48</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as AvatarPrimitive from &quot;@radix-ui/react-avatar&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const Avatar = React.forwardRef<
+	React.ElementRef<typeof AvatarPrimitive.Root>,
+	React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
+>(({ className, ...props }, ref) => (
+	<AvatarPrimitive.Root
+		ref={ref}
+		className={cn(
+			&quot;relative flex h-10 w-10 shrink-0 over
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #49</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">46 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/dashboard/src/components/ui/scroll-area.tsx</span>
+              <span class="dup-loc">L1–L46</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/boilerplate/vitereact-boilerplate/src/components/ui/scroll-area.tsx</span>
+              <span class="dup-loc">L1–L46</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import * as React from &quot;react&quot;;
+import * as ScrollAreaPrimitive from &quot;@radix-ui/react-scroll-area&quot;;
+
+import { cn } from &quot;@/lib/utils&quot;;
+
+const ScrollArea = React.forwardRef<
+	React.ElementRef<typeof ScrollAreaPrimitive.Root>,
+	React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>
+>(({ className, children, ...props }, ref) => (
+	<ScrollAreaPrimitive.Root
+		ref={ref}
+		className={cn(&quot;relati
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #50</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">44 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/api/system/functions/backend/asyncapi.js</span>
+              <span class="dup-loc">L84–L127</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>cofounder/api/system/functions/backend/openapi.js</span>
+              <span class="dup-loc">L93–L132</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+		},
+		{
+			role: &quot;user&quot;,
+			content: `\`\`\`PRD:product-requirements-document
+${prd}
+\`\`\``,
+		},
+		{
+			role: &quot;user&quot;,
+			content: `\`\`\`PRD:product-requirements-document
+${frd}
+\`\`\``,
+		},
+		{
+			role: &quot;user&quot;,
+			content: `\`\`\`DRD:database-requirements-document
+${drd}
+\`\`\`
+
+---
+
+\`\`\`DB:schemas
+${yaml.stringify({ schemas: db.schemas })}
+\`\`\`
+
+`,
+		},
+		{
+			role: &quot;user&quot;,
+			content:
+... (truncated)</code></pre></div>
+      </div><div class="more-clones">
+        ...and 68 more clones
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Javascript</td><td class='cell-num'>58</td><td class='cell-num'>3,143</td></tr>
+    <tr><td>Tsx</td><td class='cell-num'>51</td><td class='cell-num'>4,134</td></tr>
+    <tr><td>Json</td><td class='cell-num'>4</td><td class='cell-num'>106</td></tr>
+    <tr><td>Markup</td><td class='cell-num'>3</td><td class='cell-num'>31</td></tr>
+    <tr><td>Typescript</td><td class='cell-num'>2</td><td class='cell-num'>213</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>118</td><td class='cell-num'>100.0%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

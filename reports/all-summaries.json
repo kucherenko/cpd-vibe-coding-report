@@ -805,12 +805,35 @@
   {
     "project": "hapi",
     "owner": "tiann",
-    "totalClones": 0,
-    "totalLines": 854,
-    "totalDuplicatedLines": 0,
-    "percentage": 0,
-    "formatStats": {},
-    "cloneTypeCounts": {},
+    "totalClones": 413,
+    "totalLines": 135610,
+    "totalDuplicatedLines": 6632,
+    "percentage": 4.89,
+    "formatStats": {
+      "json": {
+        "count": 5,
+        "lines": 98
+      },
+      "javascript": {
+        "count": 12,
+        "lines": 1194
+      },
+      "tsx": {
+        "count": 96,
+        "lines": 1631
+      },
+      "typescript": {
+        "count": 298,
+        "lines": 4087
+      },
+      "yaml": {
+        "count": 2,
+        "lines": 35
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 413
+    },
     "crossProjectClones": 0
   },
   {
@@ -1071,12 +1094,64 @@
   {
     "project": "open-design",
     "owner": "nexu-io",
-    "totalClones": 0,
-    "totalLines": 854,
-    "totalDuplicatedLines": 0,
-    "percentage": 0,
-    "formatStats": {},
-    "cloneTypeCounts": {},
+    "totalClones": 3582,
+    "totalLines": 726695,
+    "totalDuplicatedLines": 209309,
+    "percentage": 28.8,
+    "formatStats": {
+      "javascript": {
+        "count": 174,
+        "lines": 21892
+      },
+      "typescript": {
+        "count": 782,
+        "lines": 10473
+      },
+      "tsx": {
+        "count": 297,
+        "lines": 4531
+      },
+      "markup": {
+        "count": 413,
+        "lines": 50191
+      },
+      "txt": {
+        "count": 6,
+        "lines": 557
+      },
+      "css": {
+        "count": 410,
+        "lines": 46037
+      },
+      "python": {
+        "count": 57,
+        "lines": 1197
+      },
+      "json": {
+        "count": 550,
+        "lines": 16142
+      },
+      "markdown": {
+        "count": 693,
+        "lines": 55404
+      },
+      "yaml": {
+        "count": 184,
+        "lines": 5277
+      },
+      "bash": {
+        "count": 10,
+        "lines": 1094
+      },
+      "nginx": {
+        "count": 6,
+        "lines": 96
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 2889,
+      "documentation": 693
+    },
     "crossProjectClones": 0
   },
   {
@@ -1385,12 +1460,100 @@
   {
     "project": "vibra-code",
     "owner": "sa4hnd",
-    "totalClones": 0,
-    "totalLines": 854,
-    "totalDuplicatedLines": 0,
-    "percentage": 0,
-    "formatStats": {},
-    "cloneTypeCounts": {},
+    "totalClones": 5559,
+    "totalLines": 1666449,
+    "totalDuplicatedLines": 153065,
+    "percentage": 9.19,
+    "formatStats": {
+      "java": {
+        "count": 108,
+        "lines": 3904
+      },
+      "kotlin": {
+        "count": 844,
+        "lines": 26286
+      },
+      "c-header": {
+        "count": 183,
+        "lines": 5260
+      },
+      "cpp": {
+        "count": 323,
+        "lines": 4929
+      },
+      "objectivec": {
+        "count": 397,
+        "lines": 28475
+      },
+      "markup": {
+        "count": 71,
+        "lines": 1991
+      },
+      "javascript": {
+        "count": 1115,
+        "lines": 24399
+      },
+      "typescript": {
+        "count": 1268,
+        "lines": 27616
+      },
+      "json": {
+        "count": 101,
+        "lines": 5652
+      },
+      "swift": {
+        "count": 268,
+        "lines": 7234
+      },
+      "css": {
+        "count": 3,
+        "lines": 344
+      },
+      "ruby": {
+        "count": 17,
+        "lines": 255
+      },
+      "groovy": {
+        "count": 26,
+        "lines": 1718
+      },
+      "yaml": {
+        "count": 50,
+        "lines": 901
+      },
+      "tsx": {
+        "count": 633,
+        "lines": 13178
+      },
+      "diff": {
+        "count": 20,
+        "lines": 1102
+      },
+      "prolog": {
+        "count": 8,
+        "lines": 510
+      },
+      "markdown": {
+        "count": 99,
+        "lines": 2431
+      },
+      "bash": {
+        "count": 23,
+        "lines": 2379
+      },
+      "toml": {
+        "count": 1,
+        "lines": 18
+      },
+      "properties": {
+        "count": 1,
+        "lines": 42
+      }
+    },
+    "cloneTypeCounts": {
+      "code": 5460,
+      "documentation": 99
+    },
     "crossProjectClones": 0
   },
   {

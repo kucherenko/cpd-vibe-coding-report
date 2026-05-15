@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: prodlint — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>prodlint</h1>
+      <div class="subtitle">
+        Owner: prodlint &middot; 14,891 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-low" style="margin-left:12px">Low — 2.73%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">45</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">407</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#10b981">2.73%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">14,891</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">16 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/leaked-env-in-logs.ts</span>
+              <span class="dup-loc">L66–L81</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/shallow-catch.ts</span>
+              <span class="dup-loc">L102–L123</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+            })
+          }
+        })
+        return findings
+      } catch {
+        // AST walk failed, fall through to regex
+      }
+    }
+
+    // Regex fallback
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+
+      const</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">16 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/insecure-random.ts</span>
+              <span class="dup-loc">L10–L25</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/verbose-error-response.ts</span>
+              <span class="dup-loc">L12–L26</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  category: &#x27;security&#x27;,
+  severity: &#x27;warning&#x27;,
+  fileExtensions: [&#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;js&#x27;, &#x27;jsx&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+    if (isScriptFile(file.relativePath)) return []
+
+    const findings: Finding[] = []
+
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.comment
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">16 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/insecure-cookie.ts</span>
+              <span class="dup-loc">L22–L37</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/verbose-error-response.ts</span>
+              <span class="dup-loc">L12–L43</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  category: &#x27;security&#x27;,
+  severity: &#x27;warning&#x27;,
+  fileExtensions: [&#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;js&#x27;, &#x27;jsx&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+    if (isScriptFile(file.relativePath)) return []
+
+    const findings: Finding[] = []
+
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.comment
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">15 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/unsafe-html.ts</span>
+              <span class="dup-loc">L74–L88</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/unsafe-html.ts</span>
+              <span class="dup-loc">L39–L53</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>.loc.start.line
+              findings.push({
+                ruleId: &#x27;unsafe-html&#x27;,
+                file: file.relativePath,
+                line,
+                column: file.lines[line - 1].indexOf(&#x27;dangerouslySetInnerHTML&#x27;) + 1,
+                message: &#x27;dangerouslySetInnerHTML is an XSS risk — sanitize with DOMPurify or similar&#x27;,
+                severity: &#x27;critical&#x27;,
+                category:
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">14 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/open-redirect.ts</span>
+              <span class="dup-loc">L104–L117</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/shallow-catch.ts</span>
+              <span class="dup-loc">L102–L115</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+            })
+          }
+        })
+        return findings
+      } catch {
+        // AST walk failed, fall through to regex
+      }
+    }
+
+    // Regex fallback
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">14 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/open-redirect.ts</span>
+              <span class="dup-loc">L106–L119</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/unsafe-html.ts</span>
+              <span class="dup-loc">L109–L123</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+        })
+        return findings
+      } catch {
+        // AST walk failed, fall through to regex
+      }
+    }
+
+    // Regex fallback
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+
+      for</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">14 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/hallucinated-imports.ts</span>
+              <span class="dup-loc">L108–L121</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/hallucinated-imports.ts</span>
+              <span class="dup-loc">L69–L82</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>const pkgName = getPackageName(importPath)
+
+        if (seen.has(pkgName)) continue
+        seen.add(pkgName)
+
+        if (isPathAlias(importPath, project.tsconfigPaths)) continue
+        if (isNodeBuiltin(pkgName)) continue
+        if (IMPLICIT_PACKAGES.has(importPath) || IMPLICIT_PACKAGES.has(pkgName)) continue
+        if (project.declaredDependencies.has(pkgName)) continue
+
+        findings.pus
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">13 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/deprecated-oauth-flow.ts</span>
+              <span class="dup-loc">L12–L24</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/eval-injection.ts</span>
+              <span class="dup-loc">L17–L26</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  fileExtensions: [&#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;js&#x27;, &#x27;jsx&#x27;, &#x27;mjs&#x27;, &#x27;cjs&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+
+    const findings: Finding[] = []
+
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+
+      const match = IMPLICIT_GRANT</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/unsafe-html.ts</span>
+              <span class="dup-loc">L61–L72</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/unsafe-html.ts</span>
+              <span class="dup-loc">L26–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>.value, (n: Node) => {
+                if (n.type !== &#x27;CallExpression&#x27;) return false
+                const call = n as CallExpression
+                if (call.callee.type === &#x27;MemberExpression&#x27;) {
+                  const mem = call.callee as MemberExpression
+                  return mem.object.type === &#x27;Identifier&#x27; &amp;&amp; mem.object.name === &#x27;JSON&#x27; &amp;&amp;
+                         mem.property.type === &#x27;Id
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/ssrf-risk.ts</span>
+              <span class="dup-loc">L37–L48</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/verbose-error-response.ts</span>
+              <span class="dup-loc">L12–L23</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  category: &#x27;security&#x27;,
+  severity: &#x27;warning&#x27;,
+  fileExtensions: [&#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;js&#x27;, &#x27;jsx&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+    if (!isApiRoute(file.relativePath) &amp;&amp; !/[&#x27;&quot;]use server[&#x27;&quot;]/.test(file.content)) return []
+
+    const findings: Finding[] = []
+
+    // AST path: per-call arg checking, no file-wide escap
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/next-public-sensitive.ts</span>
+              <span class="dup-loc">L18–L29</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/placeholder-content.ts</span>
+              <span class="dup-loc">L25–L26</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+
+    const findings: Finding[] = []
+
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+
+      const match = SENSITIVE_PATTERN</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/eval-injection.ts</span>
+              <span class="dup-loc">L18–L29</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/placeholder-content.ts</span>
+              <span class="dup-loc">L25–L27</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+
+    const findings: Finding[] = []
+
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+
+      for (const { pattern, msg } of EVAL_PATTERNS</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/env-fallback-secret.ts</span>
+              <span class="dup-loc">L16–L27</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/placeholder-content.ts</span>
+              <span class="dup-loc">L25–L43</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+
+    const findings: Finding[] = []
+
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+
+      const directMatch</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/ai-smells.ts</span>
+              <span class="dup-loc">L11–L22</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/comprehension-debt.ts</span>
+              <span class="dup-loc">L18–L72</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  category: &#x27;ai-quality&#x27;,
+  severity: &#x27;info&#x27;,
+  fileExtensions: [&#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;js&#x27;, &#x27;jsx&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+    if (isScriptFile(file.relativePath)) return []
+
+    const findings: Finding[] = []
+
+    let</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/utils/ast.test.ts</span>
+              <span class="dup-loc">L138–L148</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/utils/ast.test.ts</span>
+              <span class="dup-loc">L127–L137</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, &#x27;test.ts&#x27;)!
+    let found = false
+    walkAST(ast.program, (node) => {
+      if (node.type === &#x27;TaggedTemplateExpression&#x27;) {
+        found = isTaggedTemplateSql(node as TaggedTemplateExpression)
+      }
+    })
+    expect(found).toBe(true)
+  })
+
+  it(&#x27;rejects non-sql tags&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/open-redirect.ts</span>
+              <span class="dup-loc">L32–L42</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/unsafe-html.ts</span>
+              <span class="dup-loc">L11–L21</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  fileExtensions: [&#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;js&#x27;, &#x27;jsx&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    const findings: Finding[] = []
+
+    // AST path
+    if (file.ast) {
+      try {
+        walkAST(file.ast.program, (node: Node) => {
+          if</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/no-unbounded-query.ts</span>
+              <span class="dup-loc">L8–L18</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/shallow-catch.ts</span>
+              <span class="dup-loc">L62–L72</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  severity: &#x27;warning&#x27;,
+  fileExtensions: [&#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;js&#x27;, &#x27;jsx&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+    if (isScriptFile(file.relativePath)) return []
+
+    const findings: Finding[] = []
+
+    for</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/leaked-env-in-logs.ts</span>
+              <span class="dup-loc">L14–L24</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/shallow-catch.ts</span>
+              <span class="dup-loc">L62–L72</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  severity: &#x27;warning&#x27;,
+  fileExtensions: [&#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;js&#x27;, &#x27;jsx&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+    if (isScriptFile(file.relativePath)) return []
+
+    const findings: Finding[] = []
+
+    // AST path: walk call args for MemberExpression (skip string literals)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/cors-config.ts</span>
+              <span class="dup-loc">L20–L30</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/unhandled-promise.ts</span>
+              <span class="dup-loc">L35–L27</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    const findings: Finding[] = []
+
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+
+      const line = file.lines[i]
+
+      if</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #20</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/rules/auth-checks.test.ts</span>
+              <span class="dup-loc">L19–L28</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/rules/auth-checks.test.ts</span>
+              <span class="dup-loc">L8–L17</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      { relativePath: &#x27;app/api/users/route.ts&#x27; },
+    )
+    const project = makeProject()
+    const findings = authChecksRule.check(file, project)
+    expect(findings).toHaveLength(1)
+    expect(findings[0].severity).toBe(&#x27;critical&#x27;)
+  })
+
+  it(&#x27;flags PUT API route without auth as critical (mutation)&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #21</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/rules/auth-checks.test.ts</span>
+              <span class="dup-loc">L30–L39</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/rules/auth-checks.test.ts</span>
+              <span class="dup-loc">L8–L17</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      { relativePath: &#x27;app/api/users/route.ts&#x27; },
+    )
+    const project = makeProject()
+    const findings = authChecksRule.check(file, project)
+    expect(findings).toHaveLength(1)
+    expect(findings[0].severity).toBe(&#x27;critical&#x27;)
+  })
+
+  it(&#x27;flags GET API route without auth as info (read-only)&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #22</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/unsafe-file-upload.ts</span>
+              <span class="dup-loc">L37–L46</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/verbose-error-response.ts</span>
+              <span class="dup-loc">L12–L21</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  category: &#x27;security&#x27;,
+  severity: &#x27;warning&#x27;,
+  fileExtensions: [&#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;js&#x27;, &#x27;jsx&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+    if (!isApiRoute(file.relativePath) &amp;&amp; !/[&#x27;&quot;]use server[&#x27;&quot;]/.test(file.content)) return []
+
+    const hasUpload</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #23</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/no-unbounded-query.ts</span>
+              <span class="dup-loc">L13–L22</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/stale-fallback.ts</span>
+              <span class="dup-loc">L25–L27</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(file.relativePath)) return []
+    if (isScriptFile(file.relativePath)) return []
+
+    const findings: Finding[] = []
+
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+
+      // findMany() with no arguments — always unbounded</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #24</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/no-n-plus-one.ts</span>
+              <span class="dup-loc">L14–L23</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/no-unbounded-query.ts</span>
+              <span class="dup-loc">L7–L70</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  category: &#x27;performance&#x27;,
+  severity: &#x27;warning&#x27;,
+  fileExtensions: [&#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;js&#x27;, &#x27;jsx&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+    if (isScriptFile(file.relativePath)) return []
+
+    // Check for Promise.all(items.map(...)) pattern — this IS batching, skip the whole file</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #25</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/error-handling.ts</span>
+              <span class="dup-loc">L29–L38</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/rate-limiting.ts</span>
+              <span class="dup-loc">L54–L63</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>let handlerLine = 1
+    for (let i = 0; i < file.lines.length; i++) {
+      if (/export\s+(async\s+)?function\s+(GET|POST|PUT|PATCH|DELETE|handler)/i.test(file.lines[i])) {
+        handlerLine = i + 1
+        break
+      }
+    }
+
+    return [{
+      ruleId: &#x27;error-handling&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #26</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/stale-fallback.ts</span>
+              <span class="dup-loc">L26–L34</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/verbose-error-response.ts</span>
+              <span class="dup-loc">L19–L27</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)) return []
+
+    const findings: Finding[] = []
+
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+
+      // Skip lines that use env vars with fallback (process.env.X || &quot;http://localhost&quot;)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #27</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/server-component-fetch-self.ts</span>
+              <span class="dup-loc">L29–L37</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/stale-fallback.ts</span>
+              <span class="dup-loc">L26–L125</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(file.relativePath)) return []
+
+    const findings: Finding[] = []
+
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+
+      for (const pattern of SELF_FETCH_PATTERNS</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #28</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/placeholder-content.ts</span>
+              <span class="dup-loc">L28–L36</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/stale-fallback.ts</span>
+              <span class="dup-loc">L26–L27</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(file.relativePath)) return []
+
+    const findings: Finding[] = []
+
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+
+      for (const { pattern, label</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #29</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/no-sync-fs.ts</span>
+              <span class="dup-loc">L18–L26</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/server-component-fetch-self.ts</span>
+              <span class="dup-loc">L29–L43</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>.test(file.relativePath)) return []
+
+    const findings: Finding[] = []
+
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+
+      const match</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #30</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/deprecated-oauth-flow.ts</span>
+              <span class="dup-loc">L10–L18</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/jwt-no-expiry.ts</span>
+              <span class="dup-loc">L20–L27</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  category: &#x27;security&#x27;,
+  severity: &#x27;warning&#x27;,
+  fileExtensions: [&#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;js&#x27;, &#x27;jsx&#x27;, &#x27;mjs&#x27;, &#x27;cjs&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+
+    const</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #31</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">8 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/rules/hallucinated-imports.test.ts</span>
+              <span class="dup-loc">L131–L138</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/rules/hallucinated-imports.test.ts</span>
+              <span class="dup-loc">L123–L130</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>})
+    const project = makeProject({ packageJson: {} })
+    const findings = hallucinatedImportsRule.check(file, project)
+    expect(findings).toHaveLength(1)
+    expect(findings[0].severity).toBe(&#x27;warning&#x27;)
+  })
+
+  it(&#x27;keeps critical severity for production code&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #32</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">8 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/missing-revalidation.ts</span>
+              <span class="dup-loc">L27–L34</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/shallow-catch.ts</span>
+              <span class="dup-loc">L61–L68</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  category: &#x27;reliability&#x27;,
+  severity: &#x27;warning&#x27;,
+  fileExtensions: [&#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;js&#x27;, &#x27;jsx&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+    if (!</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #33</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">8 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/leaked-env-in-logs.ts</span>
+              <span class="dup-loc">L13–L20</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/verbose-error-response.ts</span>
+              <span class="dup-loc">L12–L19</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  category: &#x27;security&#x27;,
+  severity: &#x27;warning&#x27;,
+  fileExtensions: [&#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;js&#x27;, &#x27;jsx&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+    if (isScriptFile</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #34</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">8 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/client-side-auth-only.ts</span>
+              <span class="dup-loc">L16–L23</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/missing-useeffect-cleanup.ts</span>
+              <span class="dup-loc">L21–L27</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  fileExtensions: [&#x27;tsx&#x27;, &#x27;jsx&#x27;, &#x27;ts&#x27;, &#x27;js&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+    if (!isClientComponent(file.content)) return []
+
+    const</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #35</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/web-scanner/index.ts</span>
+              <span class="dup-loc">L54–L60</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/web-scanner/index.ts</span>
+              <span class="dup-loc">L43–L49</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>{
+  try {
+    const c = new AbortController();
+    const t = setTimeout(() => c.abort(), timeout);
+    const r = await fetch(url, { signal: c.signal, headers: { &quot;User-Agent&quot;: &quot;Prodlint-WebScanner/1.0&quot; }, redirect: &quot;follow&quot; });
+    clearTimeout(t);
+    if (r.url &amp;&amp; !validateRedirectUrl(r.url)) return {</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #36</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/utils/ast.ts</span>
+              <span class="dup-loc">L284–L290</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/utils/ast.ts</span>
+              <span class="dup-loc">L64–L70</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>for (const key of Object.keys(node)) {
+    if (key === &#x27;start&#x27; || key === &#x27;end&#x27; || key === &#x27;loc&#x27; || key === &#x27;type&#x27;) continue
+    const val = (node as any)[key]
+    if (Array.isArray(val)) {
+      for (const item of val) {
+        if (item &amp;&amp; typeof item === &#x27;object&#x27; &amp;&amp; item.type) {
+          if</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #37</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/path-traversal.ts</span>
+              <span class="dup-loc">L132–L138</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/ssrf-risk.ts</span>
+              <span class="dup-loc">L119–L27</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>) return []
+
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+
+      for (const { pattern, msg } of FS_WITH_USER_INPUT</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #38</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/comprehension-debt.ts</span>
+              <span class="dup-loc">L20–L26</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/shallow-catch.ts</span>
+              <span class="dup-loc">L63–L70</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  fileExtensions: [&#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;js&#x27;, &#x27;jsx&#x27;],
+
+  check(file: FileContext, _project: ProjectContext): Finding[] {
+    if (isTestFile(file.relativePath)) return []
+    if (isScriptFile(file.relativePath)) return []
+    if</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #39</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/utils/ast.ts</span>
+              <span class="dup-loc">L187–L192</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/utils/ast.ts</span>
+              <span class="dup-loc">L179–L184</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>1 &amp;&amp;
+        call.arguments[0].type === &#x27;StringLiteral&#x27;
+      ) {
+        sources.push({ source: (call.arguments[0] as StringLiteral).value, line: node.loc?.start.line ?? 1 })
+      }
+    }</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #40</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/unhandled-promise.ts</span>
+              <span class="dup-loc">L38–L43</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/verbose-error-response.ts</span>
+              <span class="dup-loc">L21–L27</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>const findings: Finding[] = []
+
+    for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+      const</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #41</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/redirect-in-try-catch.ts</span>
+              <span class="dup-loc">L19–L24</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/unhandled-promise.ts</span>
+              <span class="dup-loc">L40–L45</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+      const trimmed = line.trim()
+
+      // Track try blocks via braces</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #42</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/comprehension-debt.ts</span>
+              <span class="dup-loc">L39–L44</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/unhandled-promise.ts</span>
+              <span class="dup-loc">L40–L45</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>for (let i = 0; i < file.lines.length; i++) {
+      if (isCommentLine(file.lines, i, file.commentMap)) continue
+      const line = file.lines[i]
+      const trimmed = line.trim()
+
+      // Detect function declarations</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #43</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/scorer.test.ts</span>
+              <span class="dup-loc">L97–L102</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/scorer.test.ts</span>
+              <span class="dup-loc">L87–L92</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}, (_, i) =>
+      makeFinding({ ruleId: `rule-${i}`, severity: &#x27;critical&#x27;, category: &#x27;security&#x27; }),
+    )
+    const { categoryScores } = calculateScores(findings)
+    const security = categoryScores.find(c => c.category === &#x27;security&#x27;)!
+    expect(security.score).toBeGreaterThanOrEqual</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #44</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/cli.ts</span>
+              <span class="dup-loc">L130–L135</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/cli.ts</span>
+              <span class="dup-loc">L94–L100</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>result.summary = {
+      critical: result.findings.filter(f => f.severity === &#x27;critical&#x27;).length,
+      warning: result.findings.filter(f => f.severity === &#x27;warning&#x27;).length,
+      info: result.findings.filter(f => f.severity === &#x27;info&#x27;).length,
+    }
+  }</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #45</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>CONTRIBUTING.md</span>
+              <span class="dup-loc">L43–L48</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/unhandled-promise.ts</span>
+              <span class="dup-loc">L37–L42</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>he interface in `src/types.ts`
+3. Register it in `src/rules/index.ts`
+4. Add tests in `tests/rules/my-rule.test.ts`
+5. Update `README.md` rule table
+
+### Rule Template
+
+```ts
+import type { Rule, Finding, FileContext, </code></pre></div>
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Typescript</td><td class='cell-num'>45</td><td class='cell-num'>452</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>45</td><td class='cell-num'>100.0%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

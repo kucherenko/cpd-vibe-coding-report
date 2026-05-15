@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: deutsia-radio — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>deutsia-radio</h1>
+      <div class="subtitle">
+        Owner: deutsia &middot; 47,879 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-medium" style="margin-left:12px">Medium — 8.42%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">286</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">4,030</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#f59e0b">8.42%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">47,879</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">586 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_browse_stations.xml</span>
+              <span class="dup-loc">L85–L670</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_browse_stations.xml</span>
+              <span class="dup-loc">L75–L383</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>Style=&quot;bold&quot;
+                    android:paddingVertical=&quot;4dp&quot; />
+
+            </LinearLayout>
+
+            <!-- Genre Chips Row 1 -->
+            <HorizontalScrollView
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginTop=&quot;10dp&quot;
+                android:scrollbars=&quot;none&quot;
+                android:clipToPaddin
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">262 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_browse_radio_registry_only.xml</span>
+              <span class="dup-loc">L58–L319</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_browse_stations.xml</span>
+              <span class="dup-loc">L463–L690</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>Style=&quot;bold&quot; />
+
+                        <TextView
+                            android:layout_width=&quot;wrap_content&quot;
+                            android:layout_height=&quot;wrap_content&quot;
+                            android:layout_marginTop=&quot;2dp&quot;
+                            android:text=&quot;@string/browse_privacy_only_message&quot;
+                            android:textColor=&quot;?attr/colorOnSurfaceVariant&quot;
+      
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">106 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/dialog_sleep_timer.xml</span>
+              <span class="dup-loc">L135–L240</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/dialog_sleep_timer.xml</span>
+              <span class="dup-loc">L89–L199</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;
+                android:layout_width=&quot;0dp&quot;
+                android:layout_height=&quot;48dp&quot;
+                android:layout_weight=&quot;1&quot;
+                android:layout_marginEnd=&quot;4dp&quot;
+                android:text=&quot;10m&quot;
+                android:textSize=&quot;12sp&quot;
+                android:minWidth=&quot;0dp&quot;
+                android:paddingStart=&quot;8dp&quot;
+                android:paddingEnd=&quot;8dp&quot; />
+
+            <com.go
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">69 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/dialog_configure_proxy.xml</span>
+              <span class="dup-loc">L86–L154</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/dialog_configure_proxy.xml</span>
+              <span class="dup-loc">L19–L104</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>
+            style=&quot;@style/Widget.Material3.TextInputLayout.OutlinedBox&quot;>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id=&quot;@+id/proxyUsernameInput&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:inputType=&quot;text&quot;
+                android:singleLine=&quot;true&quot; />
+
+        </c
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">56 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/DashRecorder.kt</span>
+              <span class="dup-loc">L311–L366</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/HlsRecorder.kt</span>
+              <span class="dup-loc">L251–L306</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>${e.message}&quot;)
+            }
+            null
+        }
+    }
+
+    private fun downloadSegment(
+        client: OkHttpClient,
+        url: String,
+        outputStream: java.io.OutputStream,
+    ): Long {
+        val request = Request.Builder()
+            .url(url)
+            .header(&quot;User-Agent&quot;, &quot;DeutsiaRadio-Recorder/1.0&quot;)
+            .header(&quot;Accept&quot;, &quot;*/*&quot;)
+            .build()
+        val 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">47 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_browse_radio_registry_only.xml</span>
+              <span class="dup-loc">L203–L249</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_browse_stations.xml</span>
+              <span class="dup-loc">L575–L621</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><LinearLayout
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:gravity=&quot;center_vertical&quot;
+            android:orientation=&quot;horizontal&quot;
+            android:paddingHorizontal=&quot;8dp&quot;
+            android:paddingTop=&quot;12dp&quot;
+            android:paddingBottom=&quot;8dp&quot;>
+
+            <!-- Back button to return to discovery -->
+            <Image
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">43 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_browse_radio_registry_only.xml</span>
+              <span class="dup-loc">L249–L291</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_browse_stations.xml</span>
+              <span class="dup-loc">L621–L663</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;
+                        android:textColorHint=&quot;?attr/colorOnSurfaceVariant&quot;
+                        android:textColor=&quot;?attr/colorOnSurface&quot;
+                        android:inputType=&quot;text&quot;
+                        android:imeOptions=&quot;actionSearch&quot;
+                        android:singleLine=&quot;true&quot;
+                        android:ellipsize=&quot;end&quot;
+                        android:gravity=&quot;center_vert
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">41 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_browse_radio_registry_only.xml</span>
+              <span class="dup-loc">L305–L345</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_browse_stations.xml</span>
+              <span class="dup-loc">L697–L737</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;
+                    android:visibility=&quot;gone&quot;
+                    app:closeIconVisible=&quot;true&quot;
+                    style=&quot;@style/Widget.Material3.Chip.Filter&quot; />
+
+                <!-- Add filter button -->
+                <com.google.android.material.chip.Chip
+                    android:id=&quot;@+id/addFilterChip&quot;
+                    android:layout_width=&quot;wrap_content&quot;
+                    android:la
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseCarouselAdapter.kt</span>
+              <span class="dup-loc">L107–L142</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioCarouselAdapter.kt</span>
+              <span class="dup-loc">L128–L163</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>// Click listeners
+            itemView.setOnClickListener { onStationClick(station) }
+            btnLike.setOnClickListener { onLikeClick(station) }
+        }
+
+        fun updateLikedStatus(isLiked: Boolean) {
+            btnLike.setImageResource(
+                if (isLiked) R.drawable.ic_favorite else R.drawable.ic_favorite_border
+            )
+            // Animate the tint color change
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">28 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_browse_radio_registry_only.xml</span>
+              <span class="dup-loc">L167–L194</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_browse_stations.xml</span>
+              <span class="dup-loc">L382–L566</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;
+                    android:textStyle=&quot;bold&quot; />
+
+                <TextView
+                    android:id=&quot;@+id/i2pStationsSeeAll&quot;
+                    android:layout_width=&quot;wrap_content&quot;
+                    android:layout_height=&quot;wrap_content&quot;
+                    android:text=&quot;@string/see_all&quot;
+                    android:textColor=&quot;?attr/colorPrimary&quot;
+                    android:textSize=&quot;14sp&quot;
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">27 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_browse_radio_registry_only.xml</span>
+              <span class="dup-loc">L121–L147</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_browse_stations.xml</span>
+              <span class="dup-loc">L335–L361</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;
+                    android:textStyle=&quot;bold&quot; />
+
+                <TextView
+                    android:id=&quot;@+id/torStationsSeeAll&quot;
+                    android:layout_width=&quot;wrap_content&quot;
+                    android:layout_height=&quot;wrap_content&quot;
+                    android:text=&quot;@string/see_all&quot;
+                    android:textColor=&quot;?attr/colorPrimary&quot;
+                    android:textSize=&quot;14sp&quot;
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">26 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/browse/SkeletonCarouselAdapter.kt</span>
+              <span class="dup-loc">L23–L48</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/browse/SkeletonListAdapter.kt</span>
+              <span class="dup-loc">L23–L48</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.startShimmer(position)
+    }
+
+    override fun onViewRecycled(holder: ViewHolder) {
+        super.onViewRecycled(holder)
+        holder.stopShimmer()
+    }
+
+    override fun getItemCount(): Int = itemCount
+
+    fun stopAllShimmers() {
+        shimmerAnimator
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">26 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/utils/BiometricAuthManager.kt</span>
+              <span class="dup-loc">L45–L70</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/utils/DatabaseEncryptionManager.kt</span>
+              <span class="dup-loc">L55–L80</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>private fun getEncryptedPreferences(context: Context): android.content.SharedPreferences {
+        // Fast path - return cached instance
+        cachedPrefs?.let { return it }
+
+        // Slow path - create and cache
+        synchronized(prefsLock) {
+            // Double-check after acquiring lock
+            cachedPrefs?.let { return it }
+
+            return try {
+                EncryptedShared
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">24 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt</span>
+              <span class="dup-loc">L595–L618</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt</span>
+              <span class="dup-loc">L527–L484</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>$limit&amp;hidebroken=true&quot;
+
+                val request = Request.Builder()
+                    .url(url)
+                    .header(&quot;User-Agent&quot;, USER_AGENT)
+                    .header(&quot;Accept&quot;, &quot;application/json&quot;)
+                    .get()
+                    .build()
+
+                val response = client.newCall(request).execute()
+
+                if (!response.isSuccessful) {
+                
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">23 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseCarouselAdapter.kt</span>
+              <span class="dup-loc">L35–L57</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioCarouselAdapter.kt</span>
+              <span class="dup-loc">L39–L61</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)
+            if (wasLiked != isLiked) {
+                notifyItemChanged(index, PAYLOAD_LIKED_STATUS)
+            }
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_browse_station_card, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">22 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManager.kt</span>
+              <span class="dup-loc">L392–L413</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManager.kt</span>
+              <span class="dup-loc">L303–L324</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)
+
+            val request = Request.Builder()
+                .url(FALLBACK_API_URL)
+                .header(&quot;User-Agent&quot;, &quot;DeutsiaRadio/1.0&quot;)
+                .get()
+                .build()
+
+            val response = client.newCall(request).execute()
+
+            if (response.isSuccessful) {
+                val body = response.body?.string()
+                response.close()
+
+                if 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">22 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserClient.kt</span>
+              <span class="dup-loc">L529–L550</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/data/radioregistry/RadioRegistryClient.kt</span>
+              <span class="dup-loc">L198–L484</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>val request = Request.Builder()
+                    .url(url)
+                    .header(&quot;User-Agent&quot;, USER_AGENT)
+                    .header(&quot;Accept&quot;, &quot;application/json&quot;)
+                    .get()
+                    .build()
+
+                val response = client.newCall(request).execute()
+
+                if (!response.isSuccessful) {
+                    response.close()
+                    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">22 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/CustomProxyStatusView.kt</span>
+              <span class="dup-loc">L147–L168</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/TorStatusView.kt</span>
+              <span class="dup-loc">L192–L210</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+
+    private fun showConnectedAnimation() {
+        // Quick scale bounce when connected
+        statusIcon.animate()
+            .scaleX(1.3f)
+            .scaleY(1.3f)
+            .setDuration(150)
+            .withEndAction {
+                statusIcon.animate()
+                    .scaleX(1f)
+                    .scaleY(1f)
+                    .setDuration(150)
+                    .start()
+ 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">22 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_now_playing.xml</span>
+              <span class="dup-loc">L354–L375</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout-land/fragment_now_playing.xml</span>
+              <span class="dup-loc">L75–L96</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;>
+
+        <LinearLayout
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:orientation=&quot;horizontal&quot;
+            android:gravity=&quot;center_vertical&quot;
+            android:paddingHorizontal=&quot;12dp&quot;
+            android:paddingVertical=&quot;8dp&quot;>
+
+            <View
+                android:id=&quot;@+id/recordingDot&quot;
+                android:layout_w
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #20</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerApiTest.kt</span>
+              <span class="dup-loc">L48–L68</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/test/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserServerManagerDnsLeakTest.kt</span>
+              <span class="dup-loc">L54–L74</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>mockkObject(PreferencesHelper)
+        every { PreferencesHelper.isEmbeddedTorEnabled(any()) } returns false
+        every { PreferencesHelper.isForceTorAll(any()) } returns false
+        every { PreferencesHelper.isForceTorExceptI2P(any()) } returns false
+        every { PreferencesHelper.isForceCustomProxy(any()) } returns false
+        every { PreferencesHelper.isForceCustomProxyExceptTorI2P(an
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #21</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/test/java/com/opensource/i2pradio/security/MemorySafetyTest.kt</span>
+              <span class="dup-loc">L43–L63</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/test/java/com/opensource/i2pradio/security/SecureObjectLifecycleTest.kt</span>
+              <span class="dup-loc">L38–L58</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>private val GCM_IV_LENGTH = 12
+    private val GCM_TAG_LENGTH = 128
+
+    @Before
+    fun setup() {
+        mockkStatic(Base64::class)
+        every { Base64.encodeToString(any(), any()) } answers {
+            java.util.Base64.getEncoder().encodeToString(firstArg<ByteArray>())
+        }
+        every { Base64.decode(any<String>(), any()) } answers {
+            java.util.Base64.getDecoder().decode
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #22</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/test/java/com/opensource/i2pradio/security/DataResidueSecurityTest.kt</span>
+              <span class="dup-loc">L41–L61</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/test/java/com/opensource/i2pradio/security/SecureObjectLifecycleTest.kt</span>
+              <span class="dup-loc">L38–L58</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>private val GCM_IV_LENGTH = 12
+    private val GCM_TAG_LENGTH = 128
+
+    @Before
+    fun setup() {
+        mockkStatic(Base64::class)
+        every { Base64.encodeToString(any(), any()) } answers {
+            java.util.Base64.getEncoder().encodeToString(firstArg<ByteArray>())
+        }
+        every { Base64.decode(any<String>(), any()) } answers {
+            java.util.Base64.getDecoder().decode
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #23</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-vi/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-zh/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;language_i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #24</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-uk/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-zh/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;language_i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #25</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-tr/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-zh/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;language_i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #26</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-ru/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-zh/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;language_i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #27</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-pt/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-zh/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;language_i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #28</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-my/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-zh/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;language_i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #29</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-ko/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-zh/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;language_i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #30</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-ja/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-zh/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;language_i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #31</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-it/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-pt/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>sistema</string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;lan
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #32</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-hi/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-zh/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;language_i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #33</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-fr/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-zh/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;language_i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #34</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-fa/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-zh/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;language_i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #35</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-es/strings.xml</span>
+              <span class="dup-loc">L187–L207</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-pt/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>sistema</string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;lan
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #36</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-de/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-zh/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;language_i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #37</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-ar/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-zh/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;language_i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #38</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">20 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/MiniPlayerView.kt</span>
+              <span class="dup-loc">L229–L248</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/MiniPlayerView.kt</span>
+              <span class="dup-loc">L131–L150</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)
+                placeholder(R.drawable.ic_radio)
+                error(R.drawable.ic_radio)
+                listener(
+                    onStart = {
+                        // Ensure fitCenter during placeholder phase so vector icon fills container
+                        coverImage.scaleType = ImageView.ScaleType.FIT_CENTER
+                    },
+                    onSuccess = { _, _ ->
+     
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #39</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">20 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/CustomProxyStatusView.kt</span>
+              <span class="dup-loc">L51–L70</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/TorStatusView.kt</span>
+              <span class="dup-loc">L41–L60</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)
+
+        // Set click listener
+        statusContainer.setOnClickListener {
+            onClickAction?.invoke()
+        }
+
+        // Enable ripple effect
+        statusContainer.isClickable = true
+        statusContainer.isFocusable = true
+    }
+
+    fun setOnStatusClickListener(action: () -> Unit) {
+        onClickAction = action
+    }
+
+    fun setCompactMode(compact: Boolean) {
+        compac
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #40</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">20 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values/strings.xml</span>
+              <span class="dup-loc">L206–L225</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/values-zh/strings.xml</span>
+              <span class="dup-loc">L183–L203</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></string>
+    <string name=&quot;language_arabic&quot;>العربية</string>
+    <string name=&quot;language_german&quot;>Deutsch</string>
+    <string name=&quot;language_english&quot;>English</string>
+    <string name=&quot;language_spanish&quot;>Español</string>
+    <string name=&quot;language_farsi&quot;>فارسی</string>
+    <string name=&quot;language_french&quot;>Français</string>
+    <string name=&quot;language_hindi&quot;>हिन्दी</string>
+    <string name=&quot;language_i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #41</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">19 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/test/java/com/opensource/i2pradio/security/InputValidationSecurityTest.kt</span>
+              <span class="dup-loc">L35–L53</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/test/java/com/opensource/i2pradio/security/PasswordEncryptionUtilTest.kt</span>
+              <span class="dup-loc">L50–L58</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)
+
+        // Mock Android&#x27;s Base64 class for JVM tests
+        mockkStatic(Base64::class)
+        every { Base64.encodeToString(any(), any()) } answers {
+            java.util.Base64.getEncoder().encodeToString(firstArg<ByteArray>())
+        }
+        every { Base64.decode(any<String>(), any()) } answers {
+            java.util.Base64.getDecoder().decode(firstArg<String>())
+        }
+    }
+
+    @
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #42</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">19 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/test/java/com/opensource/i2pradio/security/CryptographicSecurityTest.kt</span>
+              <span class="dup-loc">L44–L62</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/test/java/com/opensource/i2pradio/security/PasswordHashUtilTest.kt</span>
+              <span class="dup-loc">L27–L58</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>@Before
+    fun setup() {
+        // Mock Android&#x27;s Base64 class for JVM tests
+        mockkStatic(Base64::class)
+        every { Base64.encodeToString(any(), any()) } answers {
+            java.util.Base64.getEncoder().encodeToString(firstArg<ByteArray>())
+        }
+        every { Base64.decode(any<String>(), any()) } answers {
+            java.util.Base64.getDecoder().decode(firstArg<String>())
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #43</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">19 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/utils/BiometricAuthManager.kt</span>
+              <span class="dup-loc">L26–L44</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/utils/DatabaseEncryptionManager.kt</span>
+              <span class="dup-loc">L36–L54</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>// Cache EncryptedSharedPreferences to avoid repeated slow initialization
+    // MasterKey creation and EncryptedSharedPreferences.create() are expensive operations
+    @Volatile
+    private var cachedPrefs: android.content.SharedPreferences? = null
+    private val prefsLock = Any()
+
+    /**
+     * Get or create the master key for encryption
+     */
+    private fun getMasterKey(context: Context): 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #44</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">19 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/CustomProxyStatusView.kt</span>
+              <span class="dup-loc">L1–L19</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/TorStatusView.kt</span>
+              <span class="dup-loc">L1–L14</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>package com.opensource.i2pradio.ui
+
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
+import android.content.Context
+import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.TextView
+i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #45</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">18 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseStationsAdapter.kt</span>
+              <span class="dup-loc">L202–L219</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioListAdapter.kt</span>
+              <span class="dup-loc">L172–L186</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>MotionEvent.ACTION_CANCEL -> {
+                        v.animate()
+                            .scaleX(1f)
+                            .scaleY(1f)
+                            .setDuration(100)
+                            .setInterpolator(DecelerateInterpolator())
+                            .start()
+                    }
+                }
+                false
+            }
+
+            // Click l
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #46</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">18 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserRepository.kt</span>
+              <span class="dup-loc">L288–L305</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/data/radiobrowser/RadioBrowserRepository.kt</span>
+              <span class="dup-loc">L248–L265</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>RadioStation(
+                name = station.name,
+                streamUrl = station.getStreamUrl(),
+                genre = station.getPrimaryGenre(),
+                coverArtUri = station.favicon.takeIf { it.isNotEmpty() },
+                source = if (asUserStation) StationSource.USER.name else StationSource.RADIOBROWSER.name,
+                radioBrowserUuid = station.stationuuid,
+          
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #47</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">17 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioCarouselAdapter.kt</span>
+              <span class="dup-loc">L30–L46</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioListAdapter.kt</span>
+              <span class="dup-loc">L35–L51</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>: Set<String> = emptySet()
+
+    fun updateLikedUuids(uuids: Set<String>) {
+        val oldLikedUuids = likedUuids
+        likedUuids = uuids
+
+        currentList.forEachIndexed { index, station ->
+            val uuid = &quot;registry_${station.id}&quot;
+            val wasLiked = oldLikedUuids.contains(uuid)
+            val isLiked = uuids.contains(uuid)
+            if (wasLiked != isLiked) {
+             
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #48</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">17 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/browse/BrowseCarouselAdapter.kt</span>
+              <span class="dup-loc">L89–L105</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/browse/PrivacyRadioCarouselAdapter.kt</span>
+              <span class="dup-loc">L102–L118</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>) {
+                    crossfade(true)
+                    placeholder(R.drawable.ic_radio)
+                    error(R.drawable.ic_radio)
+                }
+            }
+
+            // Rank badge
+            if (showRankBadge) {
+                rankBadge.visibility = View.VISIBLE
+                rankBadge.text = rank.toString()
+            } else {
+                rankBadge.visibility = View.GO
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #49</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">kotlin</span>
+            <span class="dup-size">17 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/StationActionHelper.kt</span>
+              <span class="dup-loc">L131–L147</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/java/com/opensource/i2pradio/ui/StationActionHelper.kt</span>
+              <span class="dup-loc">L64–L80</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>val stationAge = if (existingStation != null) {
+            System.currentTimeMillis() - existingStation.addedTimestamp
+        } else {
+            0L
+        }
+
+        val resultStationId: Long
+        val resultIsLiked: Boolean
+
+        if (wasLiked) {
+            // Unlike: Delete the station entirely from the library (matches BrowseViewModel behavior)
+            repository.deleteStationByUu
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #50</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">markup</span>
+            <span class="dup-size">17 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout/fragment_now_playing.xml</span>
+              <span class="dup-loc">L382–L398</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>app/src/main/res/layout-land/fragment_now_playing.xml</span>
+              <span class="dup-loc">L377–L393</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>>
+
+    <!-- Empty State (when nothing playing) -->
+    <LinearLayout
+        android:id=&quot;@+id/emptyPlayingState&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:gravity=&quot;center&quot;
+        android:orientation=&quot;vertical&quot;
+        android:visibility=&quot;gone&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toE
+... (truncated)</code></pre></div>
+      </div><div class="more-clones">
+        ...and 236 more clones
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Markup</td><td class='cell-num'>188</td><td class='cell-num'>2,016</td></tr>
+    <tr><td>Kotlin</td><td class='cell-num'>94</td><td class='cell-num'>1,277</td></tr>
+    <tr><td>Css</td><td class='cell-num'>4</td><td class='cell-num'>1,023</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>286</td><td class='cell-num'>100.0%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

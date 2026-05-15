@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: cherry-studio — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>cherry-studio</h1>
+      <div class="subtitle">
+        Owner: CherryHQ &middot; 396,445 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-medium" style="margin-left:12px">Medium — 6.25%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">924</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">24,776</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#f59e0b">6.25%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">396,445</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">968 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0006_snapshot.json</span>
+              <span class="dup-loc">L5–L972</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0007_snapshot.json</span>
+              <span class="dup-loc">L5–L979</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  &quot;tables&quot;: {
+    &quot;agents&quot;: {
+      &quot;name&quot;: &quot;agents&quot;,
+      &quot;columns&quot;: {
+        &quot;id&quot;: {
+          &quot;name&quot;: &quot;id&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: true,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: false
+        },
+        &quot;type&quot;: {
+          &quot;name&quot;: &quot;type&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: false,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: fal
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">723 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0005_snapshot.json</span>
+              <span class="dup-loc">L119–L841</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0007_snapshot.json</span>
+              <span class="dup-loc">L222–L979</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>},
+      &quot;uniqueConstraints&quot;: {},
+      &quot;checkConstraints&quot;: {}
+    },
+    &quot;channel_task_subscriptions&quot;: {
+      &quot;name&quot;: &quot;channel_task_subscriptions&quot;,
+      &quot;columns&quot;: {
+        &quot;channel_id&quot;: {
+          &quot;name&quot;: &quot;channel_id&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: false,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: false
+        },
+        &quot;task_id&quot;: {
+          &quot;name&quot;: &quot;task_id
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">539 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0004_snapshot.json</span>
+              <span class="dup-loc">L5–L543</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0007_snapshot.json</span>
+              <span class="dup-loc">L5–L130</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  &quot;tables&quot;: {
+    &quot;agents&quot;: {
+      &quot;name&quot;: &quot;agents&quot;,
+      &quot;columns&quot;: {
+        &quot;id&quot;: {
+          &quot;name&quot;: &quot;id&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: true,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: false
+        },
+        &quot;type&quot;: {
+          &quot;name&quot;: &quot;type&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: false,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: fal
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">364 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/gh-pr-review/references/teams-review.md</span>
+              <span class="dup-loc">L1–L364</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/gh-pr-review/references/teams-review.md</span>
+              <span class="dup-loc">L1–L364</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Teams Review
+
+You are the **coordinator**. Dispatch reviewer, verifier, and fixer agents
+using the Agent tool. Never modify files directly. Read code only for
+arbitration, diagnosis, and fix verification.
+
+Always process all auto-fixable issues before involving the user. Do NOT pause
+to ask the user anything until Confirm (Phase 5) or Report (Phase 6).
+
+The reviewer–verifier adversarial pair is 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">335 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0001_snapshot.json</span>
+              <span class="dup-loc">L5–L339</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0007_snapshot.json</span>
+              <span class="dup-loc">L5–L979</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  &quot;tables&quot;: {
+    &quot;agents&quot;: {
+      &quot;name&quot;: &quot;agents&quot;,
+      &quot;columns&quot;: {
+        &quot;id&quot;: {
+          &quot;name&quot;: &quot;id&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: true,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: false
+        },
+        &quot;type&quot;: {
+          &quot;name&quot;: &quot;type&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: false,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: fal
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">328 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>AGENTS.md</span>
+              <span class="dup-loc">L1–L328</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>CLAUDE.md</span>
+              <span class="dup-loc">L1–L328</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># AI Assistant Guide
+
+This file provides guidance to AI coding assistants when working with code in this repository. Adherence to these guidelines is crucial for maintaining code quality and consistency.
+
+## Guiding Principles (MUST FOLLOW)
+
+- **Keep it clear**: Write code that is easy to read, maintain, and explain.
+- **Match the house style**: Reuse existing patterns, naming, and conventions.
+- 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">231 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0003_snapshot.json</span>
+              <span class="dup-loc">L121–L351</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0007_snapshot.json</span>
+              <span class="dup-loc">L445–L129</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+    },
+    &quot;session_messages&quot;: {
+      &quot;name&quot;: &quot;session_messages&quot;,
+      &quot;columns&quot;: {
+        &quot;id&quot;: {
+          &quot;name&quot;: &quot;id&quot;,
+          &quot;type&quot;: &quot;integer&quot;,
+          &quot;primaryKey&quot;: true,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: true
+        },
+        &quot;session_id&quot;: {
+          &quot;name&quot;: &quot;session_id&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: false,
+          &quot;notNull&quot;: true,
+   
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">227 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0002_snapshot.json</span>
+              <span class="dup-loc">L88–L314</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0007_snapshot.json</span>
+              <span class="dup-loc">L487–L646</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: false,
+          &quot;notNull&quot;: false,
+          &quot;autoincrement&quot;: false
+        },
+        &quot;created_at&quot;: {
+          &quot;name&quot;: &quot;created_at&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: false,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: false
+        },
+        &quot;updated_at&quot;: {
+          &quot;name&quot;: &quot;updated_at&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+   
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">225 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/home/Tabs/components/AssistantItem.tsx</span>
+              <span class="dup-loc">L176–L400</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/home/Tabs/components/AssistantItem.tsx</span>
+              <span class="dup-loc">L175–L354</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>} className=&quot;text-(--color-text-secondary)&quot; />
+            </MenuButton>
+          </Dropdown>
+        )}
+      </Container>
+    </Dropdown>
+  )
+}
+
+// 提取排序相关的工具函数
+const sortAssistantsByPinyin = (assistants: Assistant[], isAscending: boolean) => {
+  return [...assistants].sort((a, b) => {
+    const pinyinA = tinyPinyin.convertToPinyin(a.name, &#x27;&#x27;, true)
+    const pinyinB = tinyPinyin.convertToPinyin
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">225 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/gh-pr-review/references/pr-review.md</span>
+              <span class="dup-loc">L1–L225</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/gh-pr-review/references/pr-review.md</span>
+              <span class="dup-loc">L1–L225</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># PR Review
+
+PR review uses **Worktree mode** — fetch the PR branch locally so review can
+read related code across modules, at the exact version of the PR branch. This
+is critical for review accuracy.
+
+## References
+
+| File | Purpose |
+|------|---------|
+| `code-checklist.md` | Code review checklist |
+| `doc-checklist.md` | Document review checklist |
+| `judgment-matrix.md` | Worth-fixing criteria
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">224 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/agents/AgentSettingsTab.tsx</span>
+              <span class="dup-loc">L139–L362</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/home/components/ChatNavBar/Tools/SettingsTab/AssistantSettingsTab.tsx</span>
+              <span class="dup-loc">L212–L437</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)}</SettingRowTitleSmall>
+            <Selector
+              value={messageStyle}
+              onChange={(value) => dispatch(setMessageStyle(value))}
+              options={[
+                { value: &#x27;plain&#x27;, label: t(&#x27;message.message.style.plain&#x27;) },
+                { value: &#x27;bubble&#x27;, label: t(&#x27;message.message.style.bubble&#x27;) }
+              ]}
+            />
+          </SettingRow>
+          <S
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">221 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/agents/AgentSettingsTab.tsx</span>
+              <span class="dup-loc">L145–L365</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/home/components/ChatNavBar/Tools/SettingsTab/AssistantSettingsTab.tsx</span>
+              <span class="dup-loc">L220–L440</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>) }
+              ]}
+            />
+          </SettingRow>
+          <SettingDivider />
+          <SettingRow>
+            <SettingRowTitleSmall>{t(&#x27;settings.messages.navigation.label&#x27;)}</SettingRowTitleSmall>
+            <Selector
+              value={messageNavigation}
+              onChange={(value) => dispatch(setMessageNavigation(value))}
+              options={[
+                { value: &#x27;no
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">196 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/gh-pr-review/references/code-checklist.md</span>
+              <span class="dup-loc">L1–L196</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/gh-pr-review/references/code-checklist.md</span>
+              <span class="dup-loc">L1–L196</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Code Review Checklist
+
+Review in priority order: A (highest impact) → B → C. The reviewer prompt specifies
+which levels to check. Test code: only check for obvious implementation errors.
+
+Project rules loaded in context override this checklist.
+
+## React &amp; Performance Deep Reference
+
+For React component and performance reviews, also consult
+`vercel-react-best-practices` skill (`../../vercel-reac
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">187 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0004_snapshot.json</span>
+              <span class="dup-loc">L537–L723</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0007_snapshot.json</span>
+              <span class="dup-loc">L793–L979</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>},
+      &quot;foreignKeys&quot;: {},
+      &quot;compositePrimaryKeys&quot;: {},
+      &quot;uniqueConstraints&quot;: {},
+      &quot;checkConstraints&quot;: {}
+    },
+    &quot;scheduled_tasks&quot;: {
+      &quot;name&quot;: &quot;scheduled_tasks&quot;,
+      &quot;columns&quot;: {
+        &quot;id&quot;: {
+          &quot;name&quot;: &quot;id&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: true,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: false
+        },
+        &quot;agent_id&quot;: {
+     
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">187 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0000_snapshot.json</span>
+              <span class="dup-loc">L145–L331</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0007_snapshot.json</span>
+              <span class="dup-loc">L485–L979</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>},
+        &quot;metadata&quot;: {
+          &quot;name&quot;: &quot;metadata&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: false,
+          &quot;notNull&quot;: false,
+          &quot;autoincrement&quot;: false
+        },
+        &quot;created_at&quot;: {
+          &quot;name&quot;: &quot;created_at&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: false,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: false
+        },
+        &quot;updated_at&quot;: {
+        
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">180 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/home/Messages/Tools/ToolHeader.tsx</span>
+              <span class="dup-loc">L49–L228</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/home/Tabs/components/AssistantItem.tsx</span>
+              <span class="dup-loc">L176–L354</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={14} />
+    case AgentToolsType.Task:
+      return <Bot size={14} />
+    case AgentToolsType.Bash:
+    case AgentToolsType.BashOutput:
+      return <Terminal size={14} />
+    case AgentToolsType.Search:
+      return <Search size={14} />
+    case AgentToolsType.Glob:
+      return <FolderSearch size={14} />
+    case AgentToolsType.Grep:
+      return <FileSearch size={14} />
+    case AgentToolsType.
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">174 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/prepare-release/SKILL.md</span>
+              <span class="dup-loc">L2–L175</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/prepare-release/SKILL.md</span>
+              <span class="dup-loc">L2–L175</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>name: prepare-release
+description: Prepare a new release by collecting commits, generating bilingual release notes, updating version files, and creating a release branch with PR. Use when asked to prepare/create a release, bump version, or run `/prepare-release`.
+---
+
+# Prepare Release
+
+Automate the Cherry Studio release workflow: collect changes → generate bilingual release notes → update files →
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">166 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/utils/tagExtraction.ts</span>
+              <span class="dup-loc">L3–L168</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/aiCore/src/core/plugins/built-in/toolUsePlugin/tagExtraction.ts</span>
+              <span class="dup-loc">L31–L196</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>export interface TagConfig {
+  openingTag: string
+  closingTag: string
+  separator?: string
+}
+
+export interface TagExtractionState {
+  textBuffer: string
+  isInsideTag: boolean
+  isFirstTag: boolean
+  isFirstText: boolean
+  afterSwitch: boolean
+  accumulatedTagContent: string
+  hasTagContent: boolean
+}
+
+export interface TagExtractionResult {
+  content: string
+  isTagContent: boolean
+  complete: bo
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">142 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0000_snapshot.json</span>
+              <span class="dup-loc">L5–L146</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0007_snapshot.json</span>
+              <span class="dup-loc">L5–L478</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  &quot;tables&quot;: {
+    &quot;agents&quot;: {
+      &quot;name&quot;: &quot;agents&quot;,
+      &quot;columns&quot;: {
+        &quot;id&quot;: {
+          &quot;name&quot;: &quot;id&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: true,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: false
+        },
+        &quot;type&quot;: {
+          &quot;name&quot;: &quot;type&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: false,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: fal
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #20</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">141 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/agents/AgentSettingsTab.tsx</span>
+              <span class="dup-loc">L361–L501</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/home/components/ChatNavBar/Tools/SettingsTab/AssistantSettingsTab.tsx</span>
+              <span class="dup-loc">L445–L585</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><SettingRow>
+            <SettingRowTitleSmall>{t(&#x27;settings.messages.input.paste_long_text_as_file&#x27;)}</SettingRowTitleSmall>
+            <Switch
+              size=&quot;small&quot;
+              checked={pasteLongTextAsFile}
+              onChange={(checked) => dispatch(setPasteLongTextAsFile(checked))}
+            />
+          </SettingRow>
+          {pasteLongTextAsFile &amp;&amp; (
+            <>
+              
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #21</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">141 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/vercel-react-best-practices/rules/server-hoist-static-io.md</span>
+              <span class="dup-loc">L2–L142</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/vercel-react-best-practices/rules/server-hoist-static-io.md</span>
+              <span class="dup-loc">L2–L142</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>title: Hoist Static I/O to Module Level
+impact: HIGH
+impactDescription: avoids repeated file/network I/O per request
+tags: server, io, performance, next.js, route-handlers, og-image
+---
+
+## Hoist Static I/O to Module Level
+
+**Impact: HIGH (avoids repeated file/network I/O per request)**
+
+When loading static assets (fonts, logos, images, config files) in route handlers or server functions, hoist th
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #22</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">140 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/vercel-react-best-practices/SKILL.md</span>
+              <span class="dup-loc">L2–L141</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/vercel-react-best-practices/SKILL.md</span>
+              <span class="dup-loc">L2–L141</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>name: vercel-react-best-practices
+description: React and Next.js performance optimization guidelines from Vercel Engineering. This skill should be used when writing, reviewing, or refactoring React/Next.js code to ensure optimal performance patterns. Triggers on tasks involving React components, Next.js pages, data fetching, bundle optimization, or performance improvements.
+license: MIT
+metadata:
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #23</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">138 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>docs/en/guides/logging.md</span>
+              <span class="dup-loc">L14–L151</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>docs/zh/guides/logging.md</span>
+              <span class="dup-loc">L14–L154</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># How to use the LoggerService
+
+This is a developer document on how to use the </code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #24</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">bash</span>
+            <span class="dup-size">128 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/gh-pr-review/references/pr-review.md</span>
+              <span class="dup-loc">L24–L151</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/gh-pr-review/references/pr-review.md</span>
+              <span class="dup-loc">L24–L151</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># PR Review
+
+PR review uses **Worktree mod</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #25</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">122 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/aiCore/test_utils/helpers/model-test-utils.ts</span>
+              <span class="dup-loc">L179–L300</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/aiCore/test_utils/helpers/model.ts</span>
+              <span class="dup-loc">L230–L351</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>} as ProviderV3
+}
+
+/**
+ * Creates a mock middleware for testing middleware chains
+ * Supports both generate and stream wrapping
+ *
+ * @example
+ * ```ts
+ * const middleware = createMockMiddleware({
+ *   name: &#x27;test-middleware&#x27;
+ * })
+ * ```
+ */
+export function createMockMiddleware(): LanguageModelV3Middleware {
+  return {
+    specificationVersion: &#x27;v3&#x27;,
+    wrapGenerate: vi.fn((doGenerate) => doGene
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #26</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">121 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/paintings/NewApiPage.tsx</span>
+              <span class="dup-loc">L774–L894</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/paintings/SiliconPage.tsx</span>
+              <span class="dup-loc">L495–L609</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>
+          />
+          <InputContainer>
+            <Textarea
+              ref={textareaRef}
+              variant=&quot;borderless&quot;
+              disabled={isLoading}
+              value={painting.prompt}
+              spellCheck={false}
+              onChange={(e) => updatePaintingState({ prompt: e.target.value })}
+              placeholder={
+                isTranslating
+                  ? t(&#x27;pai
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #27</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">119 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0005_snapshot.json</span>
+              <span class="dup-loc">L5–L123</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0007_snapshot.json</span>
+              <span class="dup-loc">L5–L130</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  &quot;tables&quot;: {
+    &quot;agents&quot;: {
+      &quot;name&quot;: &quot;agents&quot;,
+      &quot;columns&quot;: {
+        &quot;id&quot;: {
+          &quot;name&quot;: &quot;id&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: true,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: false
+        },
+        &quot;type&quot;: {
+          &quot;name&quot;: &quot;type&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: false,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: fal
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #28</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">119 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0003_snapshot.json</span>
+              <span class="dup-loc">L5–L123</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0007_snapshot.json</span>
+              <span class="dup-loc">L5–L130</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  &quot;tables&quot;: {
+    &quot;agents&quot;: {
+      &quot;name&quot;: &quot;agents&quot;,
+      &quot;columns&quot;: {
+        &quot;id&quot;: {
+          &quot;name&quot;: &quot;id&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: true,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: false
+        },
+        &quot;type&quot;: {
+          &quot;name&quot;: &quot;type&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: false,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: fal
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #29</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">110 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/agents/AgentSettingsTab.tsx</span>
+              <span class="dup-loc">L359–L468</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/home/components/ChatNavBar/Tools/SettingsTab/AssistantSettingsTab.tsx</span>
+              <span class="dup-loc">L441–L552</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}>
+        <SettingGroup>
+          <SettingRow>
+            <SettingRowTitleSmall>{t(&#x27;settings.messages.input.paste_long_text_as_file&#x27;)}</SettingRowTitleSmall>
+            <Switch
+              size=&quot;small&quot;
+              checked={pasteLongTextAsFile}
+              onChange={(checked) => dispatch(setPasteLongTextAsFile(checked))}
+            />
+          </SettingRow>
+          {pasteLongTextAsFil
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #30</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">106 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/vercel-react-best-practices/rules/server-hoist-static-io.md</span>
+              <span class="dup-loc">L17–L122</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/vercel-react-best-practices/rules/server-hoist-static-io.md</span>
+              <span class="dup-loc">L17–L122</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>---
+title: Hoist Static I/O to Module Level
+impact: HIGH
+impactDescription: avoids repeated file/network I/O per request
+tags: server, io, performance, next.js, route-handlers, og-image
+---
+
+## Hoist Static I/O to Module Level
+
+**Impact: HIGH (avoids repeated file/network I/O per request)**
+
+When loading static assets (fonts, logos, images, config files) in route handlers or server functions, hois
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #31</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">106 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/vercel-react-best-practices/rules/js-batch-dom-css.md</span>
+              <span class="dup-loc">L2–L107</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/vercel-react-best-practices/rules/js-batch-dom-css.md</span>
+              <span class="dup-loc">L2–L107</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>title: Avoid Layout Thrashing
+impact: MEDIUM
+impactDescription: prevents forced synchronous layouts and reduces performance bottlenecks
+tags: javascript, dom, css, performance, reflow, layout-thrashing
+---
+
+## Avoid Layout Thrashing
+
+Avoid interleaving style writes with layout reads. When you read a layout property (like `offsetWidth`, `getBoundingClientRect()`, or `getComputedStyle()`) between st
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #32</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">102 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/gh-pr-review/references/doc-checklist.md</span>
+              <span class="dup-loc">L1–L102</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/gh-pr-review/references/doc-checklist.md</span>
+              <span class="dup-loc">L1–L102</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Document Review Checklist
+
+Review in priority order: A (highest impact) → B → C. The reviewer prompt specifies
+which levels to check. Project rules loaded in context override this checklist.
+
+---
+
+## A. Accuracy
+
+Issues where the document contains incorrect, contradictory, or incomplete information.
+
+### A1. Code-Document Accuracy
+- Described behaviors match actual code implementation
+- Paramete
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #33</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">98 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/vercel-react-best-practices/rules/async-suspense-boundaries.md</span>
+              <span class="dup-loc">L2–L99</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/vercel-react-best-practices/rules/async-suspense-boundaries.md</span>
+              <span class="dup-loc">L2–L99</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>title: Strategic Suspense Boundaries
+impact: HIGH
+impactDescription: faster initial paint
+tags: async, suspense, streaming, layout-shift
+---
+
+## Strategic Suspense Boundaries
+
+Instead of awaiting data in async components before returning JSX, use Suspense boundaries to show the wrapper UI faster while data loads.
+
+**Incorrect (wrapper blocked by data fetching):**
+
+```tsx
+async function Page() {
+  
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #34</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">96 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/gh-pr-review/references/local-review.md</span>
+              <span class="dup-loc">L1–L96</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/gh-pr-review/references/local-review.md</span>
+              <span class="dup-loc">L1–L96</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Local Review
+
+Single-agent review for local changes. Reviews the diff, presents confirmed
+issues, and lets the user interactively choose which ones to fix.
+
+## References
+
+| File | Purpose |
+|------|---------|
+| `code-checklist.md` | Code review checklist |
+| `doc-checklist.md` | Document review checklist |
+| `judgment-matrix.md` | Risk levels, worth-fixing criteria, special rules |
+| `checklist
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #35</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">95 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/components/RichEditor/components/YamlFrontMatterNodeView.tsx</span>
+              <span class="dup-loc">L205–L299</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/components/RichEditor/components/YamlFrontMatterNodeView.tsx</span>
+              <span class="dup-loc">L73–L238</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>} />
+                {t(&#x27;richEditor.frontMatter.editValue&#x27;)}
+              </span>
+            ),
+            onClick: () => {
+              setEditingProperty(property.key)
+              setOpenDropdown(null)
+            }
+          },
+          {
+            type: &#x27;divider&#x27;
+          },
+          {
+            key: &#x27;type&#x27;,
+            label: t(&#x27;richEditor.frontMatter.changeType&#x27;),
+            ch
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #36</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">95 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/vercel-react-best-practices/rules/server-auth-actions.md</span>
+              <span class="dup-loc">L2–L96</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/vercel-react-best-practices/rules/server-auth-actions.md</span>
+              <span class="dup-loc">L2–L96</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>title: Authenticate Server Actions Like API Routes
+impact: CRITICAL
+impactDescription: prevents unauthorized access to server mutations
+tags: server, server-actions, authentication, security, authorization
+---
+
+## Authenticate Server Actions Like API Routes
+
+**Impact: CRITICAL (prevents unauthorized access to server mutations)**
+
+Server Actions (functions with `&quot;use server&quot;`) are exposed as public
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #37</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">css</span>
+            <span class="dup-size">94 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/cherry-studio/privacy-en.html</span>
+              <span class="dup-loc">L8–L101</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/cherry-studio/privacy-zh.html</span>
+              <span class="dup-loc">L8–L101</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, &#x27;Segoe UI&#x27;, &#x27;Roboto&#x27;, &#x27;Helvetica Neue&#x27;, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: transparent;
+            margin: 0 auto;
+        }
+
+        body.dark {
+        
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #38</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">93 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/gh-create-issue/SKILL.md</span>
+              <span class="dup-loc">L2–L94</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/gh-create-issue/SKILL.md</span>
+              <span class="dup-loc">L2–L94</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>name: gh-create-issue
+description: Use when user wants to create a GitHub issue for the current repository. Must read and follow the repository&#x27;s issue template format.
+---
+
+# GitHub Create Issue
+
+Use this skill when the user requests to create an issue. Must follow the repository&#x27;s issue template format.
+
+## Workflow
+
+### Step 1: Determine Template Type
+
+Analyze the user&#x27;s request to determine th
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #39</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">92 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/aiCore/test_utils/helpers/model-test-utils.ts</span>
+              <span class="dup-loc">L49–L140</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/aiCore/test_utils/helpers/model.ts</span>
+              <span class="dup-loc">L50–L141</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+    model: mockModel,
+    originalParams: {
+      model: mockModel,
+      messages: [{ role: &#x27;user&#x27;, content: &#x27;Test message&#x27; }]
+    } as StreamTextParams,
+    metadata: {},
+    startTime: Date.now(),
+    requestId: &#x27;test-request-id&#x27;,
+    recursiveCall: vi.fn(),
+    isRecursiveCall: false,
+    recursiveDepth: 0,
+    maxRecursiveDepth: 10,
+    extensions: new Map(),
+    pluginState: {}
+  }
+
+  if (
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #40</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">90 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0002_snapshot.json</span>
+              <span class="dup-loc">L5–L94</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>resources/database/drizzle/meta/0007_snapshot.json</span>
+              <span class="dup-loc">L5–L101</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  &quot;tables&quot;: {
+    &quot;agents&quot;: {
+      &quot;name&quot;: &quot;agents&quot;,
+      &quot;columns&quot;: {
+        &quot;id&quot;: {
+          &quot;name&quot;: &quot;id&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: true,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: false
+        },
+        &quot;type&quot;: {
+          &quot;name&quot;: &quot;type&quot;,
+          &quot;type&quot;: &quot;text&quot;,
+          &quot;primaryKey&quot;: false,
+          &quot;notNull&quot;: true,
+          &quot;autoincrement&quot;: fal
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #41</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">86 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>docs/en/references/app-upgrade.md</span>
+              <span class="dup-loc">L66–L151</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>docs/zh/references/app-upgrade.md</span>
+              <span class="dup-loc">L66–L151</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Update Configuration System Design Document
+
+## Background
+
+Currently, AppUpdater directly queries the GitHub API to retrieve beta and rc update information. To support users in China, we need to fetch a static JSON configuration file from GitHub/GitCode based on IP geolocation, which contains update URLs for all channels.
+
+## Design Goals
+
+1. Support different configuration sources based on IP 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #42</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">84 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/vercel-react-best-practices/rules/rendering-resource-hints.md</span>
+              <span class="dup-loc">L2–L85</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/vercel-react-best-practices/rules/rendering-resource-hints.md</span>
+              <span class="dup-loc">L2–L85</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>title: Use React DOM Resource Hints
+impact: HIGH
+impactDescription: reduces load time for critical resources
+tags: rendering, preload, preconnect, prefetch, resource-hints
+---
+
+## Use React DOM Resource Hints
+
+**Impact: HIGH (reduces load time for critical resources)**
+
+React DOM provides APIs to hint the browser about resources it will need. These are especially useful in server components to sta
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #43</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">84 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>docs/en/references/app-upgrade.md</span>
+              <span class="dup-loc">L268–L351</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/main/services/AppUpdater.ts</span>
+              <span class="dup-loc">L242–L251</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>upport different configuration sources based on IP geolocation (GitHub/GitCode)
+2. Support version compatibility control (e.g., users below v1.x must upgrade to v1.7.0 before upgrading to v2.0)
+3. Easy to extend, supporting future multi-major-version upgrade paths (v1.6 → v1.7 → v2.0 → v2.8 → v3.0)
+4. Maintain compatibility with existing elect</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #44</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">84 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/cherry-pr-test/SKILL.md</span>
+              <span class="dup-loc">L185–L268</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/cherry-pr-test/SKILL.md</span>
+              <span class="dup-loc">L185–L268</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>---
+name: cherry-pr-test
+description: Test Cherry Studio PRs by checking out the branch, launching the Electron app in debug mode, and running interactive UI tests via CDP.
+---
+
+# Cherry Studio PR Test
+
+Automated PR testing workflow for Cherry Studio. Checks out a PR, launches
+the Electron app with Chrome DevTools Protocol, connects agent-browser, and
+runs interactive UI + code review tests.
+
+## P
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #45</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">81 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/settings/DisplaySettings/DisplaySettings.tsx</span>
+              <span class="dup-loc">L145–L225</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/renderer/src/pages/settings/DisplaySettings/DisplaySettings.tsx</span>
+              <span class="dup-loc">L136–L154</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={{ display: &#x27;flex&#x27;, alignItems: &#x27;center&#x27;, gap: &#x27;5px&#x27; }}>
+            <Moon size={16} />
+            <span>{t(&#x27;settings.theme.dark&#x27;)}</span>
+          </div>
+        )
+      },
+      {
+        value: ThemeMode.system,
+        label: (
+          <div style={{ display: &#x27;flex&#x27;, alignItems: &#x27;center&#x27;, gap: &#x27;5px&#x27; }}>
+            <Monitor size={16} />
+            <span>{t(&#x27;settings.theme.system&#x27;)}</span>
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #46</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">81 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/vercel-react-best-practices/rules/rerender-no-inline-components.md</span>
+              <span class="dup-loc">L2–L82</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/vercel-react-best-practices/rules/rerender-no-inline-components.md</span>
+              <span class="dup-loc">L2–L82</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>title: Don&#x27;t Define Components Inside Components
+impact: HIGH
+impactDescription: prevents remount on every render
+tags: rerender, components, remount, performance
+---
+
+## Don&#x27;t Define Components Inside Components
+
+**Impact: HIGH (prevents remount on every render)**
+
+Defining a component inside another component creates a new component type on every render. React sees a different component each tim
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #47</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">81 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/vercel-react-best-practices/rules/rendering-hydration-no-flicker.md</span>
+              <span class="dup-loc">L2–L82</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/vercel-react-best-practices/rules/rendering-hydration-no-flicker.md</span>
+              <span class="dup-loc">L2–L82</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>title: Prevent Hydration Mismatch Without Flickering
+impact: MEDIUM
+impactDescription: avoids visual flicker and hydration errors
+tags: rendering, ssr, hydration, localStorage, flicker
+---
+
+## Prevent Hydration Mismatch Without Flickering
+
+When rendering content that depends on client-side storage (localStorage, cookies), avoid both SSR breakage and post-hydration flickering by injecting a synchro
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #48</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">81 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/vercel-react-best-practices/rules/js-min-max-loop.md</span>
+              <span class="dup-loc">L2–L82</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/vercel-react-best-practices/rules/js-min-max-loop.md</span>
+              <span class="dup-loc">L2–L82</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>title: Use Loop for Min/Max Instead of Sort
+impact: LOW
+impactDescription: O(n) instead of O(n log n)
+tags: javascript, arrays, performance, sorting, algorithms
+---
+
+## Use Loop for Min/Max Instead of Sort
+
+Finding the smallest or largest element only requires a single pass through the array. Sorting is wasteful and slower.
+
+**Incorrect (O(n log n) - sort to find latest):**
+
+```typescript
+interfac
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #49</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">79 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/vercel-react-best-practices/rules/server-parallel-fetching.md</span>
+              <span class="dup-loc">L2–L80</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/vercel-react-best-practices/rules/server-parallel-fetching.md</span>
+              <span class="dup-loc">L2–L80</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>title: Parallel Data Fetching with Component Composition
+impact: CRITICAL
+impactDescription: eliminates server-side waterfalls
+tags: server, rsc, parallel-fetching, composition
+---
+
+## Parallel Data Fetching with Component Composition
+
+React Server Components execute sequentially within a tree. Restructure with composition to parallelize data fetching.
+
+**Incorrect (Sidebar waits for Page&#x27;s fetch 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #50</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">79 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.agents/skills/vercel-react-best-practices/rules/js-cache-function-results.md</span>
+              <span class="dup-loc">L2–L80</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.claude/skills/vercel-react-best-practices/rules/js-cache-function-results.md</span>
+              <span class="dup-loc">L2–L80</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>title: Cache Repeated Function Calls
+impact: MEDIUM
+impactDescription: avoid redundant computation
+tags: javascript, cache, memoization, performance
+---
+
+## Cache Repeated Function Calls
+
+Use a module-level Map to cache function results when the same function is called repeatedly with the same inputs during render.
+
+**Incorrect (redundant computation):**
+
+```typescript
+function ProjectList({ proje
+... (truncated)</code></pre></div>
+      </div><div class="more-clones">
+        ...and 874 more clones
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Typescript</td><td class='cell-num'>387</td><td class='cell-num'>6,190</td></tr>
+    <tr><td>Tsx</td><td class='cell-num'>314</td><td class='cell-num'>6,261</td></tr>
+    <tr><td>Javascript</td><td class='cell-num'>80</td><td class='cell-num'>2,619</td></tr>
+    <tr><td>Markdown</td><td class='cell-num'>69</td><td class='cell-num'>5,198</td></tr>
+    <tr><td>Json</td><td class='cell-num'>28</td><td class='cell-num'>4,395</td></tr>
+    <tr><td>Yaml</td><td class='cell-num'>22</td><td class='cell-num'>492</td></tr>
+    <tr><td>Diff</td><td class='cell-num'>8</td><td class='cell-num'>161</td></tr>
+    <tr><td>Markup</td><td class='cell-num'>6</td><td class='cell-num'>65</td></tr>
+    <tr><td>Python</td><td class='cell-num'>5</td><td class='cell-num'>46</td></tr>
+    <tr><td>Css</td><td class='cell-num'>3</td><td class='cell-num'>128</td></tr>
+    <tr><td>Bash</td><td class='cell-num'>1</td><td class='cell-num'>128</td></tr>
+    <tr><td>Sql</td><td class='cell-num'>1</td><td class='cell-num'>17</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>855</td><td class='cell-num'>92.5%</td></tr>
+    <tr><td>Documentation</td><td class='cell-num'>69</td><td class='cell-num'>7.5%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

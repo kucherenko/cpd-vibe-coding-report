@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: VibeVoice — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>VibeVoice</h1>
+      <div class="subtitle">
+        Owner: Microsoft &middot; 13,252 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-medium" style="margin-left:12px">Medium — 7.93%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">45</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">1,051</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#f59e0b">7.93%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">13,252</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">85 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice.py</span>
+              <span class="dup-loc">L129–L213</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming.py</span>
+              <span class="dup-loc">L126–L152</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, lm_config.hidden_size).to(dtype)
+        
+        # Register scaling factors as buffers - use 1D tensors for FSDP compatibility
+        self.register_buffer(&#x27;speech_scaling_factor&#x27;, torch.tensor(float(&#x27;nan&#x27;)))  
+        self.register_buffer(&#x27;speech_bias_factor&#x27;, torch.tensor(float(&#x27;nan&#x27;)))
+
+        # Initialize prediction head for speech generation
+        self.prediction_head = AutoModel.from_c
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">81 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_processor.py</span>
+              <span class="dup-loc">L57–L137</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_streaming_processor.py</span>
+              <span class="dup-loc">L53–L133</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import os
+        import json
+        from transformers.utils import cached_file
+        from .vibevoice_tokenizer_processor import VibeVoiceTokenizerProcessor
+        from vibevoice.modular.modular_vibevoice_text_tokenizer import (
+            VibeVoiceTextTokenizer, 
+            VibeVoiceTextTokenizerFast
+        )
+        
+        # Try to load from local path first, then from HF hub
+        co
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">52 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modular_vibevoice_text_tokenizer.py</span>
+              <span class="dup-loc">L210–L261</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modular_vibevoice_text_tokenizer.py</span>
+              <span class="dup-loc">L112–L163</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(Qwen2TokenizerFast):
+    &quot;&quot;&quot;
+    Construct a &quot;fast&quot; VibeVoice tokenizer (backed by HuggingFace&#x27;s *tokenizers* library).
+    Based on the Qwen2 tokenizer with additional special tokens for speech.
+    
+    Args:
+        vocab_file (`str`, *optional*):
+            Path to the vocabulary file.
+        merges_file (`str`, *optional*):
+            Path to the merges file.
+        tokenizer_file (`str`
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">51 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_processor.py</span>
+              <span class="dup-loc">L461–L511</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_streaming_processor.py</span>
+              <span class="dup-loc">L313–L363</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>def prepare_speech_inputs(
+        self,
+        speech_inputs: List[np.ndarray],
+        return_tensors: Optional[Union[str, TensorType]] = None,
+        device: Optional[Union[str, torch.device]] = None,
+        dtype: Optional[torch.dtype] = None,
+    ) -> Dict[str, Any]:
+        &quot;&quot;&quot;
+        Prepare speech inputs for model consumption.
+        
+        Args:
+            speech_inputs: List of s
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">46 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_processor.py</span>
+              <span class="dup-loc">L646–L691</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_streaming_processor.py</span>
+              <span class="dup-loc">L363–L408</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>def batch_decode(self, *args, **kwargs):
+        &quot;&quot;&quot;
+        This method forwards all its arguments to VibeVoiceTextTokenizer&#x27;s [`~PreTrainedTokenizer.batch_decode`].
+        Please refer to the docstring of this method for more information.
+        &quot;&quot;&quot;
+        return self.tokenizer.batch_decode(*args, **kwargs)
+
+    def decode(self, *args, **kwargs):
+        &quot;&quot;&quot;
+        This method forwards all i
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">46 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/configs/qwen2.5_1.5b_64k.json</span>
+              <span class="dup-loc">L1–L46</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/configs/qwen2.5_7b_32k.json</span>
+              <span class="dup-loc">L1–L46</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>{
+  &quot;_attn_implementation_autoset&quot;: true,
+  &quot;acoustic_vae_dim&quot;: 64,
+  &quot;acoustic_tokenizer_config&quot;: {
+    &quot;causal&quot;: true,
+    &quot;channels&quot;: 1,
+    &quot;conv_bias&quot;: true,
+    &quot;conv_norm&quot;: &quot;none&quot;,
+    &quot;corpus_normalize&quot;: 0.0,
+    &quot;decoder_depths&quot;: null,
+    &quot;decoder_n_filters&quot;: 32,
+    &quot;decoder_ratios&quot;: [
+      8,
+      5,
+      5,
+      4,
+      2,
+      2
+    ],
+    &quot;disable_last_norm&quot;: true,
+    &quot;encode
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">42 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>README.md</span>
+              <span class="dup-loc">L127–L168</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>docs/vibevoice-tts.md</span>
+              <span class="dup-loc">L51–L86</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>**English**
+<div align=&quot;center&quot;>
+
+https://github.com/user-attachments/assets/0967027c-141e-4909-bec8-091558b1b784
+
+</div>
+
+
+**Chinese**
+<div align=&quot;center&quot;>
+
+https://github.com/user-attachments/assets/322280b7-3093-4c67-86e3-10be4746c88f
+
+</div>
+
+**Cross-Lingual**
+<div align=&quot;center&quot;>
+
+https://github.com/user-attachments/assets/838d8ad9-a201-4dde-bb45-8cd3f59ce722
+
+</div>
+
+**Spontaneous Singing**
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">41 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_processor.py</span>
+              <span class="dup-loc">L166–L206</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_streaming_processor.py</span>
+              <span class="dup-loc">L173–L210</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>]] = None,
+        padding: Union[bool, str, PaddingStrategy] = True,
+        truncation: Union[bool, str, TruncationStrategy] = False,
+        max_length: Optional[int] = None,
+        return_tensors: Optional[Union[str, TensorType]] = None,
+        return_attention_mask: bool = True,
+        **kwargs,
+    ) -> BatchEncoding:
+        &quot;&quot;&quot;
+        Main method to process one or more podcast scripts 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">40 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/configs/qwen2.5_1.5b_64k.json</span>
+              <span class="dup-loc">L73–L112</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/configs/qwen2.5_7b_32k.json</span>
+              <span class="dup-loc">L74–L113</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+    &quot;latent_size&quot;: 64,
+    &quot;model_type&quot;: &quot;vibepod_diffusion_head&quot;,
+    &quot;prediction_type&quot;: &quot;v_prediction&quot;,
+    &quot;rms_norm_eps&quot;: 1e-05,
+    &quot;speech_vae_dim&quot;: 64
+  },
+  &quot;model_type&quot;: &quot;vibepod&quot;,
+  &quot;semantic_tokenizer_config&quot;: {
+    &quot;causal&quot;: true,
+    &quot;channels&quot;: 1,
+    &quot;conv_bias&quot;: true,
+    &quot;conv_norm&quot;: &quot;none&quot;,
+    &quot;corpus_normalize&quot;: 0.0,
+    &quot;disable_last_norm&quot;: true,
+    &quot;encoder_depths&quot;: &quot;3-3-3
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">35 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/configuration_vibevoice.py</span>
+              <span class="dup-loc">L313–L347</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/configuration_vibevoice.py</span>
+              <span class="dup-loc">L208–L64</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>=None,
+        **kwargs
+    ):
+
+        # kwargs[&quot;_attn_implementation&quot;] = &quot;flash_attention_2&quot;
+        kwargs[&quot;_attn_implementation_autoset&quot;] = False 
+
+        if acoustic_tokenizer_config is None:
+            self.acoustic_tokenizer_config = self.sub_configs[&quot;acoustic_tokenizer_config&quot;]()
+        elif isinstance(acoustic_tokenizer_config, dict):
+            acoustic_tokenizer_config[&quot;model_type&quot;]
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">33 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice.py</span>
+              <span class="dup-loc">L76–L108</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming.py</span>
+              <span class="dup-loc">L61–L94</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>base_model_prefix = &quot;model&quot;
+    supports_gradient_checkpointing = True
+    _skip_keys_device_placement = &quot;past_key_values&quot;
+    _supports_cache_class = True
+    _supports_flash_attn_2 = True
+    _supports_sdpa = True
+    _supports_quantized_cache = True
+    _supports_static_cache = True
+    _supports_attention_backend = True
+
+    def _init_weights(self, module):
+        if isinstance(module, VibeVo
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">30 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/configuration_vibevoice.py</span>
+              <span class="dup-loc">L119–L148</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/configuration_vibevoice.py</span>
+              <span class="dup-loc">L60–L88</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+        **kwargs
+    ):
+        super().__init__(**kwargs)
+        self.channels = channels
+        self.corpus_normalize = corpus_normalize
+        self.causal = causal
+        self.vae_dim = vae_dim
+        self.fix_std = fix_std
+        self.std_dist_type = std_dist_type
+        
+        # common parameters
+        self.conv_norm = conv_norm
+        self.pad_mode = pad_mode
+        self.layer
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">28 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modular_vibevoice_text_tokenizer.py</span>
+              <span class="dup-loc">L181–L208</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modular_vibevoice_text_tokenizer.py</span>
+              <span class="dup-loc">L82–L109</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)
+        
+        return num_added
+    
+    @property
+    def eos_id(self) -> int:
+        &quot;&quot;&quot;ID of the end of sequence token.&quot;&quot;&quot;
+        return self._eos_id
+    
+    @property
+    def speech_start_id(self) -> int:
+        &quot;&quot;&quot;ID of the speech start token.&quot;&quot;&quot;
+        return self._speech_start_id
+    
+    @property
+    def speech_end_id(self) -> int:
+        &quot;&quot;&quot;ID of the speech end token.&quot;&quot;&quot;
+      
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">25 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vllm_plugin/tests/test_api.py</span>
+              <span class="dup-loc">L107–L131</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vllm_plugin/tests/test_api_auto_recover.py</span>
+              <span class="dup-loc">L485–L509</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)
+    print()
+    
+    # Handle video files: extract audio first
+    temp_audio_path = None
+    actual_audio_path = audio_path
+    if _is_video_file(audio_path):
+        print(f&quot;🎬 Detected video file, extracting audio...&quot;)
+        temp_audio_path = _extract_audio_from_video(audio_path)
+        actual_audio_path = temp_audio_path
+        print(f&quot;✅ Audio extracted to: {temp_audio_path}&quot;)
+    
+    # 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">25 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/configuration_vibevoice.py</span>
+              <span class="dup-loc">L233–L257</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/configuration_vibevoice_streaming.py</span>
+              <span class="dup-loc">L55–L79</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>if decoder_config is None:
+            self.decoder_config = self.sub_configs[&quot;decoder_config&quot;]()
+        elif isinstance(decoder_config, dict):
+            # If a dictionary is provided, instantiate the config class with it
+            # self.decoder_config = self.sub_configs[&quot;decoder_config&quot;](**decoder_config)
+            if decoder_config.get(&quot;model_type&quot;, &#x27;&#x27;) == &quot;qwen2&quot;:
+                self.d
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">24 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modular_vibevoice_text_tokenizer.py</span>
+              <span class="dup-loc">L156–L179</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modular_vibevoice_text_tokenizer.py</span>
+              <span class="dup-loc">L59–L82</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+            **kwargs,
+        )
+        
+        # Add VibeVoice-specific special tokens
+        self._add_vibevoice_special_tokens()
+        
+    def _add_vibevoice_special_tokens(self):
+        &quot;&quot;&quot;Add VibeVoice-specific special tokens.&quot;&quot;&quot;
+        special_tokens = {
+            &quot;additional_special_tokens&quot;: [
+                &quot;<|vision_start|>&quot;,  # Speech start (reusing vision tokens)
+           
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">24 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice.py</span>
+              <span class="dup-loc">L108–L131</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming.py</span>
+              <span class="dup-loc">L94–L85</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>):
+    def __init__(self, config):
+        super().__init__(config)
+        
+        if hasattr(config, &#x27;torch_dtype&#x27;) and config.torch_dtype is not None:
+            if isinstance(config.torch_dtype, str):
+                dtype = getattr(torch, config.torch_dtype)
+            else:
+                dtype = config.torch_dtype
+        else:
+            dtype = torch.float32
+        
+        # Initia
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">22 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modular_vibevoice_text_tokenizer.py</span>
+              <span class="dup-loc">L280–L301</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modular_vibevoice_text_tokenizer.py</span>
+              <span class="dup-loc">L180–L102</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>self._eos_id = self.eos_token_id # qwen2 / qwen3
+        self._pad_id = self.convert_tokens_to_ids(&#x27;<|image_pad|>&#x27;)
+        
+        return num_added    
+    
+    @property
+    def eos_id(self) -> int:
+        &quot;&quot;&quot;ID of the end of sequence token.&quot;&quot;&quot;
+        return self._eos_id
+    
+    @property
+    def speech_start_id(self) -> int:
+        &quot;&quot;&quot;ID of the speech start token.&quot;&quot;&quot;
+        return self._s
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">20 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_processor.py</span>
+              <span class="dup-loc">L145–L164</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_streaming_processor.py</span>
+              <span class="dup-loc">L141–L159</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+            &quot;speech_tok_compress_ratio&quot;: self.speech_tok_compress_ratio,
+            &quot;db_normalize&quot;: self.db_normalize,
+            &quot;audio_processor&quot;: {
+                &quot;feature_extractor_type&quot;: &quot;VibeVoiceTokenizerProcessor&quot;,
+                &quot;sampling_rate&quot;: getattr(self.audio_processor, &#x27;sampling_rate&#x27;, 24000),
+                &quot;normalize_audio&quot;: getattr(self.audio_processor, &#x27;normalize_audio&#x27;, 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #20</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">20 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/configuration_vibevoice.py</span>
+              <span class="dup-loc">L187–L206</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/configuration_vibevoice_streaming.py</span>
+              <span class="dup-loc">L18–L37</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+        &quot;decoder_config&quot;: Qwen2Config,
+        &quot;diffusion_head_config&quot;: VibeVoiceDiffusionHeadConfig,
+    }
+    # keys_to_ignore_at_inference = [&quot;past_key_values&quot;]
+    # Default tensor parallel plan for base model `Qwen2`
+    base_model_tp_plan = {
+        &quot;layers.*.self_attn.q_proj&quot;: &quot;colwise&quot;,
+        &quot;layers.*.self_attn.k_proj&quot;: &quot;colwise&quot;,
+        &quot;layers.*.self_attn.v_proj&quot;: &quot;colwise&quot;,
+     
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #21</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">20 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/configuration_vibevoice.py</span>
+              <span class="dup-loc">L295–L314</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/configuration_vibevoice.py</span>
+              <span class="dup-loc">L189–L208</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+    }
+    # keys_to_ignore_at_inference = [&quot;past_key_values&quot;]
+    # Default tensor parallel plan for base model `Qwen2`
+    base_model_tp_plan = {
+        &quot;layers.*.self_attn.q_proj&quot;: &quot;colwise&quot;,
+        &quot;layers.*.self_attn.k_proj&quot;: &quot;colwise&quot;,
+        &quot;layers.*.self_attn.v_proj&quot;: &quot;colwise&quot;,
+        &quot;layers.*.self_attn.o_proj&quot;: &quot;rowwise&quot;,
+        &quot;layers.*.mlp.gate_proj&quot;: &quot;colwise&quot;,
+        &quot;layer
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #22</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">18 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_asr.py</span>
+              <span class="dup-loc">L45–L62</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming.py</span>
+              <span class="dup-loc">L76–L94</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Use the language model&#x27;s initializer_range if available
+        if hasattr(self.config, &#x27;language_model_config&#x27;) and hasattr(self.config.language_model_config, &#x27;initializer_range&#x27;):
+            std = self.config.language_model_config.initializer_range
+        elif hasattr(self.config, &#x27;decoder_config&#x27;) and hasattr(self.config.decoder_config, &#x27;initializer_range&#x27;):
+            std = self.config.de
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #23</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">17 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_processor.py</span>
+              <span class="dup-loc">L1–L17</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_streaming_processor.py</span>
+              <span class="dup-loc">L1–L17</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import math
+import warnings
+from typing import List, Optional, Union, Dict, Any, Tuple
+import os
+import re
+
+import numpy as np
+import torch
+
+from transformers.tokenization_utils_base import BatchEncoding, PaddingStrategy, PreTokenizedInput, TextInput, TruncationStrategy
+from transformers.utils import TensorType, logging
+from .vibevoice_tokenizer_processor import AudioNormalizer
+
+logger = logging.g
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #24</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">17 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_processor.py</span>
+              <span class="dup-loc">L363–L379</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_streaming_processor.py</span>
+              <span class="dup-loc">L266–L282</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>] if return_attention_mask else None
+            
+        # Process speech inputs
+        all_speech_inputs = []
+        has_speech = False
+        for enc in encodings:
+            if enc[&quot;speech_inputs&quot;] is not None:
+                all_speech_inputs.extend(enc[&quot;speech_inputs&quot;])
+                has_speech = True
+                
+        # Prepare batch encoding
+        batch_encoding = BatchEnco
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #25</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">17 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice.py</span>
+              <span class="dup-loc">L5–L21</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming.py</span>
+              <span class="dup-loc">L5–L20</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import torch.distributed as dist
+
+from transformers.models.auto import AutoModel, AutoModelForCausalLM
+
+from transformers.activations import ACT2FN
+from transformers.modeling_outputs import CausalLMOutput, BaseModelOutputWithPast, ModelOutput
+from transformers.models.llama.modeling_llama import LlamaRMSNorm
+from transformers import
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #26</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">17 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/configuration_vibevoice.py</span>
+              <span class="dup-loc">L104–L120</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/configuration_vibevoice.py</span>
+              <span class="dup-loc">L41–L57</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+        # common 
+        mixer_layer: str = &#x27;depthwise_conv&#x27;,
+        conv_norm: str = &#x27;none&#x27;,
+        pad_mode: str = &#x27;constant&#x27;,
+        disable_last_norm: bool = True,
+        layernorm: str = &#x27;RMSNorm&#x27;,
+        layernorm_eps: float = 1e-5,
+        layernorm_elementwise_affine: bool = True,
+        conv_bias: bool = True,
+        layer_scale_init_value: float = 1e-6,
+        weight_init_valu
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #27</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">17 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/configuration_vibevoice.py</span>
+              <span class="dup-loc">L208–L224</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/configuration_vibevoice_streaming.py</span>
+              <span class="dup-loc">L39–L55</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+        **kwargs
+    ):
+
+        # kwargs[&quot;_attn_implementation&quot;] = &quot;flash_attention_2&quot;
+        kwargs[&quot;_attn_implementation_autoset&quot;] = False 
+
+        if acoustic_tokenizer_config is None:
+            self.acoustic_tokenizer_config = self.sub_configs[&quot;acoustic_tokenizer_config&quot;]()
+        elif isinstance(acoustic_tokenizer_config, dict):
+            acoustic_tokenizer_config[&quot;model_type&quot;] = &quot;v
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #28</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">16 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vllm_plugin/tools/generate_tokenizer_files.py</span>
+              <span class="dup-loc">L445–L460</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vllm_plugin/tools/generate_tokenizer_files.py</span>
+              <span class="dup-loc">L389–L404</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>result = {
+        &quot;name&quot;: name,
+        &quot;identical&quot;: False,
+        &quot;differences&quot;: [],
+    }
+    
+    if not os.path.exists(file1):
+        result[&quot;differences&quot;].append(f&quot;File 1 not found: {file1}&quot;)
+        return result
+    
+    if not os.path.exists(file2):
+        result[&quot;differences&quot;].append(f&quot;File 2 not found: {file2}&quot;)
+        return result
+    
+    with open(file1, &quot;r&quot;, encoding=&quot;utf-8&quot;) a
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #29</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">16 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_asr.py</span>
+              <span class="dup-loc">L83–L98</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming.py</span>
+              <span class="dup-loc">L140–L155</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)
+    
+    def get_input_embeddings(self):
+        if hasattr(self.language_model, &#x27;embed_tokens&#x27;):
+            # If the language model has an embed_tokens attribute, return it
+            return self.language_model.embed_tokens
+        
+        for name, attr in self.language_model.fullmap.items(): # parallel by nnscaler, the name is changed
+            if attr.orig_name == &#x27;embed_tokens.weight&#x27;:
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #30</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">16 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice.py</span>
+              <span class="dup-loc">L59–L74</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming.py</span>
+              <span class="dup-loc">L44–L59</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>class SpeechConnector(nn.Module):
+    def __init__(self, input_dim, output_dim):
+        super().__init__()
+        self.fc1 = nn.Linear(input_dim, output_dim)
+        self.norm = LlamaRMSNorm(output_dim, eps=1e-6)
+        self.fc2 = nn.Linear(output_dim, output_dim)
+
+    def forward(self, features, **kwargs):    
+        x = self.fc1(features)
+        x = self.norm(x)
+        x = self.fc2(x)
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #31</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">15 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_processor.py</span>
+              <span class="dup-loc">L386–L400</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_streaming_processor.py</span>
+              <span class="dup-loc">L297–L311</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>batch_encoding[&quot;speech_input_mask&quot;] = speech_input_masks_list
+            
+        # Process speech tensors if present
+        if has_speech:
+            speech_dict = self.prepare_speech_inputs(
+                all_speech_inputs,
+                return_tensors=return_tensors,
+            )
+            batch_encoding[&quot;speech_tensors&quot;] = speech_dict[&quot;padded_speeches&quot;]
+            batch_encoding[&quot;sp
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #32</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">15 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming_inference.py</span>
+              <span class="dup-loc">L452–L466</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming_inference.py</span>
+              <span class="dup-loc">L376–L391</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(
+            inputs_embeds=inputs_embeds,
+            attention_mask=attention_mask,
+            position_ids=position_ids,
+            past_key_values=past_key_values,
+            use_cache=use_cache,
+            output_attentions=output_attentions,
+            output_hidden_states=output_hidden_states,
+            return_dict=return_dict,
+            cache_position=cache_position,
+            *
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #33</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">14 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming_inference.py</span>
+              <span class="dup-loc">L401–L414</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming_inference.py</span>
+              <span class="dup-loc">L338–L351</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(
+        self,
+        input_ids: torch.LongTensor = None,
+        attention_mask: Optional[torch.Tensor] = None,
+        position_ids: Optional[torch.LongTensor] = None,
+        past_key_values: Optional[Tuple[Tuple[torch.FloatTensor]]] = None,
+        inputs_embeds: Optional[torch.FloatTensor] = None,
+        labels: Optional[torch.LongTensor] = None,
+        use_cache: Optional[bool] = None,
+ 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #34</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">14 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>README.md</span>
+              <span class="dup-loc">L106–L119</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>docs/vibevoice-tts.md</span>
+              <span class="dup-loc">L24–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>- **⏱️ 90-minute Long-form Generation**:
+  Synthesizes conversational/single-speaker speech up to **90 minutes** in a single pass, maintaining speaker consistency and semantic coherence throughout.
+
+- **👥 Multi-speaker Support**:
+  Supports up to **4 distinct speakers** in a single conversation, with natural turn-taking and speaker consistency across long dialogues.
+
+- **🎭 Expressive Speech**:
+  G
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #35</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">13 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_processor.py</span>
+              <span class="dup-loc">L306–L318</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_streaming_processor.py</span>
+              <span class="dup-loc">L249–L261</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>def _batch_encode(
+        self,
+        encodings: List[Dict[str, Any]],
+        padding: Union[bool, str, PaddingStrategy] = True,
+        truncation: Union[bool, str, TruncationStrategy] = False,
+        max_length: Optional[int] = None,
+        return_tensors: Optional[Union[str, TensorType]] = None,
+        return_attention_mask: bool = True,
+    ) -> BatchEncoding:
+        &quot;&quot;&quot;Combine multipl
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #36</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">13 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_asr.py</span>
+              <span class="dup-loc">L62–L74</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming.py</span>
+              <span class="dup-loc">L94–L106</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>):
+    def __init__(self, config):
+        super().__init__(config)
+        
+        if hasattr(config, &#x27;torch_dtype&#x27;) and config.torch_dtype is not None:
+            if isinstance(config.torch_dtype, str):
+                dtype = getattr(torch, config.torch_dtype)
+            else:
+                dtype = config.torch_dtype
+        else:
+            dtype = torch.float32
+        
+        # Initia
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #37</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_asr.py</span>
+              <span class="dup-loc">L116–L125</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming_inference.py</span>
+              <span class="dup-loc">L345–L369</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>] = None,
+        use_cache: Optional[bool] = None,
+        output_attentions: Optional[bool] = None,
+        output_hidden_states: Optional[bool] = None,
+        return_dict: Optional[bool] = None,
+        cache_position: Optional[torch.LongTensor] = None,
+        **kwargs,
+    ) -> Union[Tuple, BaseModelOutputWithPast]:
+        
+        return_dict</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #38</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">markdown</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>README.md</span>
+              <span class="dup-loc">L76–L85</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>docs/vibevoice-asr.md</span>
+              <span class="dup-loc">L18–L27</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>- **🕒 60-minute Single-Pass Processing**:
+  Unlike conventional ASR models that slice audio into short chunks (often losing global context), VibeVoice ASR accepts up to **60 minutes** of continuous audio input within 64K token length. This ensures consistent speaker tracking and semantic coherence across the entire hour.
+
+- **👤 Customized Hotwords**:
+  Users can provide customized hotwords (e.g., 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #39</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_asr.py</span>
+              <span class="dup-loc">L346–L354</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming_inference.py</span>
+              <span class="dup-loc">L343–L351</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>]] = None,
+        inputs_embeds: Optional[torch.FloatTensor] = None,
+        labels: Optional[torch.LongTensor] = None,
+        use_cache: Optional[bool] = None,
+        output_attentions: Optional[bool] = None,
+        output_hidden_states: Optional[bool] = None,
+        return_dict: Optional[bool] = None,
+        cache_position: Optional[torch.LongTensor] = None,
+        # Speech-specific argum
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #40</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">8 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_asr.py</span>
+              <span class="dup-loc">L110–L117</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming_inference.py</span>
+              <span class="dup-loc">L338–L345</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(
+        self,
+        input_ids: torch.LongTensor = None,
+        attention_mask: Optional[torch.Tensor] = None,
+        position_ids: Optional[torch.LongTensor] = None,
+        past_key_values: Optional[Tuple[Tuple[torch.FloatTensor]]] = None,
+        inputs_embeds: Optional[torch.FloatTensor] = None,
+        use_cache</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #41</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_streaming_processor.py</span>
+              <span class="dup-loc">L251–L257</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_streaming_processor.py</span>
+              <span class="dup-loc">L173–L179</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+        padding: Union[bool, str, PaddingStrategy] = True,
+        truncation: Union[bool, str, TruncationStrategy] = False,
+        max_length: Optional[int] = None,
+        return_tensors: Optional[Union[str, TensorType]] = None,
+        return_attention_mask: bool = True,
+    )</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #42</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_streaming_processor.py</span>
+              <span class="dup-loc">L386–L392</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_tokenizer_processor.py</span>
+              <span class="dup-loc">L282–L289</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>def save_audio(self, 
+        audio: Union[torch.Tensor, np.ndarray, List[Union[torch.Tensor, np.ndarray]]],
+        output_path: str = &quot;output.wav&quot;,
+        sampling_rate: Optional[int] = None,
+        normalize: bool = False,
+        batch_prefix: str = &quot;audio_&quot;,
+    ) -</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #43</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_processor.py</span>
+              <span class="dup-loc">L35–L41</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/processor/vibevoice_streaming_processor.py</span>
+              <span class="dup-loc">L32–L39</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>def __init__(self, tokenizer=None, audio_processor=None, speech_tok_compress_ratio=3200, db_normalize=True, **kwargs):
+        self.tokenizer = tokenizer
+        self.audio_processor = audio_processor
+        self.speech_tok_compress_ratio = speech_tok_compress_ratio
+        self.db_normalize = db_normalize
+        self.audio_normalizer = AudioNormalizer() if db_normalize else None
+        self</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #44</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice.py</span>
+              <span class="dup-loc">L335–L341</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_asr.py</span>
+              <span class="dup-loc">L343–L349</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>= None,
+        attention_mask: Optional[torch.Tensor] = None,
+        position_ids: Optional[torch.LongTensor] = None,
+        past_key_values: Optional[List[torch.FloatTensor]] = None,
+        inputs_embeds: Optional[torch.FloatTensor] = None,
+        labels: Optional[torch.LongTensor] = None,
+        use_cache: Optional[bool] = False</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #45</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming_inference.py</span>
+              <span class="dup-loc">L652–L657</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>vibevoice/modular/modeling_vibevoice_streaming_inference.py</span>
+              <span class="dup-loc">L634–L639</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>= {
+            &#x27;input_ids&#x27;: torch.full((kwargs[&#x27;input_ids&#x27;].shape[0], 1), neg_text_input_id, dtype=torch.long, device=kwargs[&#x27;input_ids&#x27;].device),
+            &#x27;attention_mask&#x27;:  torch.ones((kwargs[&#x27;input_ids&#x27;].shape[0], 1), dtype=torch.long, device=kwargs[&#x27;input_ids&#x27;].device),
+            &#x27;max_new_tokens&#x27;: kwargs.get(&#x27;max_new_tokens&#x27;, 100) 
+        }
+        tts_lm_negative_generation_config</code></pre></div>
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Python</td><td class='cell-num'>40</td><td class='cell-num'>944</td></tr>
+    <tr><td>Markdown</td><td class='cell-num'>3</td><td class='cell-num'>66</td></tr>
+    <tr><td>Json</td><td class='cell-num'>2</td><td class='cell-num'>86</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>42</td><td class='cell-num'>93.3%</td></tr>
+    <tr><td>Documentation</td><td class='cell-num'>3</td><td class='cell-num'>6.7%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

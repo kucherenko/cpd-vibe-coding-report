@@ -1,0 +1,2166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: refly — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>refly</h1>
+      <div class="subtitle">
+        Owner: refly-ai &middot; 310,927 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-low" style="margin-left:12px">Low — 4.42%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">774</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">13,728</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#10b981">4.42%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">310,927</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">236 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/api/src/modules/openapi/openapi.service.ts</span>
+              <span class="dup-loc">L605–L840</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/api/src/modules/webhook/webhook.service.ts</span>
+              <span class="dup-loc">L388–L623</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+    }
+  }
+
+  private async buildWorkflowVariables(
+    uid: string,
+    variables: Record<string, any>,
+  ): Promise<WorkflowVariable[]> {
+    if (!variables || typeof variables !== &#x27;object&#x27;) {
+      return [];
+    }
+
+    const entries = Object.entries(variables);
+    const storageKeys = new Set<string>();
+    for (const [, rawValue] of entries) {
+      const keys = this.extractOpenapiStorageKey
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">137 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading-safari.json</span>
+              <span class="dup-loc">L233–L369</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading-safari.json</span>
+              <span class="dup-loc">L10–L392</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      &quot;sr&quot;: 1,
+      &quot;st&quot;: 0,
+      &quot;op&quot;: 181.18,
+      &quot;ip&quot;: 0,
+      &quot;hd&quot;: true,
+      &quot;ddd&quot;: 0,
+      &quot;bm&quot;: 0,
+      &quot;hasMask&quot;: false,
+      &quot;ao&quot;: 0,
+      &quot;ks&quot;: {
+        &quot;a&quot;: { &quot;a&quot;: 0, &quot;k&quot;: [61, 61] },
+        &quot;s&quot;: { &quot;a&quot;: 0, &quot;k&quot;: [100, 100] },
+        &quot;sk&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+        &quot;p&quot;: { &quot;a&quot;: 0, &quot;k&quot;: [61, 61] },
+        &quot;r&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+        &quot;sa&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+        
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">135 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/queries/ensureQueryData.ts</span>
+              <span class="dup-loc">L1–L135</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/queries/prefetch.ts</span>
+              <span class="dup-loc">L1–L135</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>// generated with @7nohe/openapi-react-query-codegen@2.0.0-beta.3
+
+import { type Options } from &#x27;@hey-api/client-fetch&#x27;;
+import { type QueryClient } from &#x27;@tanstack/react-query&#x27;;
+import {
+  checkSettingsField,
+  checkToolOauthStatus,
+  downloadExportJobResult,
+  exportCanvas,
+  exportDocument,
+  exportToolsetDefinitions,
+  getActionResult,
+  getAuthConfig,
+  getAvailableVouchers,
+  getCanvasCommis
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">115 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/sider/layout.tsx</span>
+              <span class="dup-loc">L399–L513</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/sider/layout.tsx</span>
+              <span class="dup-loc">L293–L442</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>} />,
+          title: t(&#x27;loggedHomePage.siderMenu.home&#x27;),
+          onActionClick: () => navigate(&#x27;/&#x27;),
+          key: &#x27;home&#x27;,
+        },
+        {
+          icon: <Flow key=&quot;canvas&quot; style={{ fontSize: 20 }} />,
+          title: t(&#x27;loggedHomePage.siderMenu.canvas&#x27;),
+          onActionClick: () => navigate(&#x27;/workflow-list&#x27;),
+          key: &#x27;canvas&#x27;,
+        },
+        {
+          icon: <Project ke
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">114 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/nodes/website.tsx</span>
+              <span class="dup-loc">L222–L335</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/slideshow/components/WebsiteRenderer.tsx</span>
+              <span class="dup-loc">L26–L139</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+            className=&quot;w-full h-full border-0&quot;
+            sandbox=&quot;allow-scripts allow-same-origin allow-forms allow-popups allow-presentation&quot;
+            allow=&quot;fullscreen&quot;
+            referrerPolicy=&quot;no-referrer&quot;
+            loading=&quot;lazy&quot;
+            onLoad={(e) => {
+              try {
+                // Try to access iframe content to mute any audio/video elements
+                const if
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">105 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/settings/model-config/index.tsx</span>
+              <span class="dup-loc">L65–L169</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/settings/tools-config/tools/tool-list.tsx</span>
+              <span class="dup-loc">L45–L170</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={16} className=&quot;mr-2&quot; />
+          {t(&#x27;common.edit&#x27;)}
+        </div>
+      ),
+      key: &#x27;edit&#x27;,
+      onClick: () => handleEdit(),
+    },
+    {
+      label: (
+        <div
+          className=&quot;flex items-center text-red-600 flex-grow cursor-pointer&quot;
+          onClick={() => {
+            setVisible(false);
+            setModalVisible(true);
+          }}
+        >
+          <IconDelete size={16} 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">yaml</span>
+            <span class="dup-size">98 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.github/workflows/build-image-release.yml</span>
+              <span class="dup-loc">L39–L136</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>.github/workflows/build-image-test.yml</span>
+              <span class="dup-loc">L39–L135</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>build:
+    name: Build ${{ matrix.app }} (${{ matrix.suffix }})
+    runs-on: ${{ matrix.runner }}
+    if: github.repository == &#x27;refly-ai/refly&#x27;
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - app: api
+            platform: linux/amd64
+            runner: ubuntu-latest
+            suffix: amd64
+          - app: api
+            platform: linux/arm64
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">92 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/components/layout/ModalContainer.tsx</span>
+              <span class="dup-loc">L68–L159</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/components/layout/ModalContainer.tsx</span>
+              <span class="dup-loc">L61–L124</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/>
+
+      <LazyModal
+        visible={verificationModalOpen}
+        loader={() =>
+          import(&#x27;../../components/verification-modal&#x27;).then((m) => ({
+            default: m.VerificationModal,
+          }))
+        }
+      />
+
+      <LazyModal
+        visible={showOnboardingSuccessAnimation}
+        loader={() =>
+          import(&#x27;../onboarding-success-modal&#x27;).then((m) => ({
+            default
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">90 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/settings/tools-config/McpServerList.tsx</span>
+              <span class="dup-loc">L84–L173</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/settings/tools-config/tools/tool-list.tsx</span>
+              <span class="dup-loc">L61–L170</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>} className=&quot;mr-2&quot; />
+            {t(&#x27;common.delete&#x27;)}
+          </div>
+        ),
+        key: &#x27;delete&#x27;,
+      },
+    ];
+
+    const handleOpenChange: DropdownProps[&#x27;onOpenChange&#x27;] = useCallback(
+      (open: boolean, info: any) => {
+        if (info.source === &#x27;trigger&#x27;) {
+          setVisible(open);
+        }
+      },
+      [],
+    );
+
+    return (
+      <>
+        <Dropdown
+          trigger={[
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">86 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading-safari.json</span>
+              <span class="dup-loc">L140–L225</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading-safari.json</span>
+              <span class="dup-loc">L10–L226</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      &quot;sr&quot;: 1,
+      &quot;st&quot;: 0,
+      &quot;op&quot;: 181.18,
+      &quot;ip&quot;: 0,
+      &quot;hd&quot;: true,
+      &quot;ddd&quot;: 0,
+      &quot;bm&quot;: 0,
+      &quot;hasMask&quot;: false,
+      &quot;ao&quot;: 0,
+      &quot;ks&quot;: {
+        &quot;a&quot;: { &quot;a&quot;: 0, &quot;k&quot;: [61, 61] },
+        &quot;s&quot;: { &quot;a&quot;: 0, &quot;k&quot;: [100, 100] },
+        &quot;sk&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+        &quot;p&quot;: { &quot;a&quot;: 0, &quot;k&quot;: [61, 61] },
+        &quot;r&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+        &quot;sa&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+        
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">82 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/settings/model-providers/index.tsx</span>
+              <span class="dup-loc">L83–L164</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/settings/tools-config/McpServerList.tsx</span>
+              <span class="dup-loc">L82–L199</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}}
+        >
+          <Delete size={18} className=&quot;mr-2&quot; />
+          {t(&#x27;common.delete&#x27;)}
+        </div>
+      ),
+      key: &#x27;delete&#x27;,
+    },
+  ];
+
+  const handleOpenChange: DropdownProps[&#x27;onOpenChange&#x27;] = (open: boolean, info: any) => {
+    if (info.source === &#x27;trigger&#x27;) {
+      setVisible(open);
+    }
+  };
+
+  return (
+    <>
+      <Dropdown trigger={[&#x27;click&#x27;]} open={visible} onOpenChange={hand
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">82 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading-safari.json</span>
+              <span class="dup-loc">L369–L450</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading.json</span>
+              <span class="dup-loc">L392–L374</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>] },
+              &quot;r&quot;: 1,
+              &quot;o&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 100 }
+            }
+          ],
+          &quot;ind&quot;: 1
+        },
+        {
+          &quot;ty&quot;: 4,
+          &quot;nm&quot;: &quot;2&quot;,
+          &quot;sr&quot;: 1,
+          &quot;st&quot;: 0,
+          &quot;op&quot;: 181.18,
+          &quot;ip&quot;: 0,
+          &quot;hd&quot;: false,
+          &quot;ddd&quot;: 0,
+          &quot;bm&quot;: 0,
+          &quot;hasMask&quot;: false,
+          &quot;ao&quot;: 0,
+          &quot;ks&quot;: {
+            &quot;a&quot;: {
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">82 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading-safari.json</span>
+              <span class="dup-loc">L445–L526</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading.json</span>
+              <span class="dup-loc">L468–L374</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>] },
+              &quot;r&quot;: 1,
+              &quot;o&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 100 }
+            }
+          ],
+          &quot;ind&quot;: 2
+        },
+        {
+          &quot;ty&quot;: 4,
+          &quot;nm&quot;: &quot;4&quot;,
+          &quot;sr&quot;: 1,
+          &quot;st&quot;: 0,
+          &quot;op&quot;: 181.18,
+          &quot;ip&quot;: 0,
+          &quot;hd&quot;: false,
+          &quot;ddd&quot;: 0,
+          &quot;bm&quot;: 0,
+          &quot;hasMask&quot;: false,
+          &quot;ao&quot;: 0,
+          &quot;ks&quot;: {
+            &quot;a&quot;: {
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">82 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading-safari.json</span>
+              <span class="dup-loc">L521–L602</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading.json</span>
+              <span class="dup-loc">L544–L374</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>] },
+              &quot;r&quot;: 1,
+              &quot;o&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 100 }
+            }
+          ],
+          &quot;ind&quot;: 3
+        },
+        {
+          &quot;ty&quot;: 4,
+          &quot;nm&quot;: &quot;3&quot;,
+          &quot;sr&quot;: 1,
+          &quot;st&quot;: 0,
+          &quot;op&quot;: 181.18,
+          &quot;ip&quot;: 0,
+          &quot;hd&quot;: false,
+          &quot;ddd&quot;: 0,
+          &quot;bm&quot;: 0,
+          &quot;hasMask&quot;: false,
+          &quot;ao&quot;: 0,
+          &quot;ks&quot;: {
+            &quot;a&quot;: {
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">81 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading-safari.json</span>
+              <span class="dup-loc">L15–L95</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading.json</span>
+              <span class="dup-loc">L15–L95</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      &quot;ddd&quot;: 0,
+      &quot;bm&quot;: 0,
+      &quot;hasMask&quot;: false,
+      &quot;ao&quot;: 0,
+      &quot;ks&quot;: {
+        &quot;a&quot;: { &quot;a&quot;: 0, &quot;k&quot;: [61, 61] },
+        &quot;s&quot;: { &quot;a&quot;: 0, &quot;k&quot;: [100, 100] },
+        &quot;sk&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+        &quot;p&quot;: { &quot;a&quot;: 0, &quot;k&quot;: [61, 61] },
+        &quot;r&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+        &quot;sa&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+        &quot;o&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 100 }
+      },
+      &quot;shapes&quot;: [
+        {
+          &quot;ty&quot;: &quot;sh&quot;
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">74 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/core_business_metrics.json</span>
+              <span class="dup-loc">L1–L74</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L1–L73</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>{
+  &quot;annotations&quot;: {
+    &quot;list&quot;: [
+      {
+        &quot;builtIn&quot;: 1,
+        &quot;datasource&quot;: {
+          &quot;type&quot;: &quot;grafana&quot;,
+          &quot;uid&quot;: &quot;-- Grafana --&quot;
+        },
+        &quot;enable&quot;: true,
+        &quot;hide&quot;: true,
+        &quot;iconColor&quot;: &quot;rgba(0, 211, 255, 1)&quot;,
+        &quot;name&quot;: &quot;Annotations &amp; Alerts&quot;,
+        &quot;type&quot;: &quot;dashboard&quot;
+      }
+    ]
+  },
+  &quot;editable&quot;: true,
+  &quot;fiscalYearStartMonth&quot;: 0,
+  &quot;graphToo
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">70 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/workflow-app/FooterSection.tsx</span>
+              <span class="dup-loc">L66–L135</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/workflow-app/FooterSection.tsx</span>
+              <span class="dup-loc">L46–L86</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}}
+          />
+          <a
+            href=&quot;https://reflydoc.notion.site/welcome-to-refly&quot;
+            target=&quot;_blank&quot;
+            rel=&quot;noopener noreferrer&quot;
+            className=&quot;text-sm font-semibold hover:opacity-70 transition-opacity&quot;
+            style={{
+              fontFamily: &#x27;PingFang SC, -apple-system, BlinkMacSystemFont, sans-serif&#x27;,
+              fontSize: &#x27;14px&#x27;,
+              fon
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">70 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/hooks/use-file-upload.ts</span>
+              <span class="dup-loc">L584–L653</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/hooks/use-file-upload.ts</span>
+              <span class="dup-loc">L224–L293</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>return;
+              }
+
+              try {
+                const { data: createResult } = await getClient().batchCreateDriveFiles({
+                  body: {
+                    canvasId: currentCanvasId!,
+                    files: [
+                      {
+                        name: file.name,
+                        canvasId: currentCanvasId!,
+                        storageKey: data.stora
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">69 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/core_business_metrics.json</span>
+              <span class="dup-loc">L320–L388</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L116–L301</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      &quot;type&quot;: &quot;timeseries&quot;
+    },
+    {
+      &quot;datasource&quot;: {
+        &quot;type&quot;: &quot;prometheus&quot;,
+        &quot;uid&quot;: &quot;prometheus&quot;
+      },
+      &quot;fieldConfig&quot;: {
+        &quot;defaults&quot;: {
+          &quot;color&quot;: {
+            &quot;mode&quot;: &quot;palette-classic&quot;
+          },
+          &quot;custom&quot;: {
+            &quot;axisBorderShow&quot;: false,
+            &quot;axisCenteredZero&quot;: false,
+            &quot;axisColorMode&quot;: &quot;text&quot;,
+            &quot;axis
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #20</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">scss</span>
+            <span class="dup-size">66 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/workflow-list/index.scss</span>
+              <span class="dup-loc">L13–L78</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/top-toolbar/index.scss</span>
+              <span class="dup-loc">L16–L80</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+
+}
+
+// cover schedule select multi-select label style
+.schedule-select {
+  .ant-select-selector {
+    // remove text cursor
+    cursor: pointer !important;
+
+    // remove gray background when maxTagCount=0
+    .ant-select-selection-item,
+    .ant-select-selection-overflow-item {
+      background-color: transparent !important;
+      border: none !important;
+      margin: 0 !important;
+      paddi
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #21</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">64 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/core_business_metrics.json</span>
+              <span class="dup-loc">L417–L480</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L116–L84</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      &quot;type&quot;: &quot;timeseries&quot;
+    },
+    {
+      &quot;datasource&quot;: {
+        &quot;type&quot;: &quot;prometheus&quot;,
+        &quot;uid&quot;: &quot;prometheus&quot;
+      },
+      &quot;fieldConfig&quot;: {
+        &quot;defaults&quot;: {
+          &quot;color&quot;: {
+            &quot;mode&quot;: &quot;palette-classic&quot;
+          },
+          &quot;custom&quot;: {
+            &quot;axisBorderShow&quot;: false,
+            &quot;axisCenteredZero&quot;: false,
+            &quot;axisColorMode&quot;: &quot;text&quot;,
+            &quot;axis
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #22</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">61 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/hooks/use-file-upload.ts</span>
+              <span class="dup-loc">L523–L583</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/hooks/use-file-upload.ts</span>
+              <span class="dup-loc">L161–L221</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>try {
+            const uploadResult = await new Promise<{
+              data?: { data?: { storageKey: string }; success: boolean };
+            }>((resolve, reject) => {
+              const xhr = new XMLHttpRequest();
+              const formData = new FormData();
+              formData.append(&#x27;file&#x27;, file);
+              // Only include entityId/entityType if we have a canvas (non-staging mode)
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #23</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">60 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L341–L400</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L116–L80</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      &quot;type&quot;: &quot;timeseries&quot;
+    },
+    {
+      &quot;datasource&quot;: {
+        &quot;type&quot;: &quot;prometheus&quot;,
+        &quot;uid&quot;: &quot;prometheus&quot;
+      },
+      &quot;fieldConfig&quot;: {
+        &quot;defaults&quot;: {
+          &quot;color&quot;: {
+            &quot;mode&quot;: &quot;palette-classic&quot;
+          },
+          &quot;custom&quot;: {
+            &quot;axisBorderShow&quot;: false,
+            &quot;axisCenteredZero&quot;: false,
+            &quot;axisColorMode&quot;: &quot;text&quot;,
+            &quot;axis
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #24</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">60 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L447–L506</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L116–L80</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      &quot;type&quot;: &quot;timeseries&quot;
+    },
+    {
+      &quot;datasource&quot;: {
+        &quot;type&quot;: &quot;prometheus&quot;,
+        &quot;uid&quot;: &quot;prometheus&quot;
+      },
+      &quot;fieldConfig&quot;: {
+        &quot;defaults&quot;: {
+          &quot;color&quot;: {
+            &quot;mode&quot;: &quot;palette-classic&quot;
+          },
+          &quot;custom&quot;: {
+            &quot;axisBorderShow&quot;: false,
+            &quot;axisCenteredZero&quot;: false,
+            &quot;axisColorMode&quot;: &quot;text&quot;,
+            &quot;axis
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #25</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">60 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L542–L601</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L116–L80</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      &quot;type&quot;: &quot;timeseries&quot;
+    },
+    {
+      &quot;datasource&quot;: {
+        &quot;type&quot;: &quot;prometheus&quot;,
+        &quot;uid&quot;: &quot;prometheus&quot;
+      },
+      &quot;fieldConfig&quot;: {
+        &quot;defaults&quot;: {
+          &quot;color&quot;: {
+            &quot;mode&quot;: &quot;palette-classic&quot;
+          },
+          &quot;custom&quot;: {
+            &quot;axisBorderShow&quot;: false,
+            &quot;axisCenteredZero&quot;: false,
+            &quot;axisColorMode&quot;: &quot;text&quot;,
+            &quot;axis
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #26</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">60 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L648–L707</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L116–L80</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      &quot;type&quot;: &quot;timeseries&quot;
+    },
+    {
+      &quot;datasource&quot;: {
+        &quot;type&quot;: &quot;prometheus&quot;,
+        &quot;uid&quot;: &quot;prometheus&quot;
+      },
+      &quot;fieldConfig&quot;: {
+        &quot;defaults&quot;: {
+          &quot;color&quot;: {
+            &quot;mode&quot;: &quot;palette-classic&quot;
+          },
+          &quot;custom&quot;: {
+            &quot;axisBorderShow&quot;: false,
+            &quot;axisCenteredZero&quot;: false,
+            &quot;axisColorMode&quot;: &quot;text&quot;,
+            &quot;axis
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #27</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">58 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/core_business_metrics.json</span>
+              <span class="dup-loc">L629–L686</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L116–L290</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      &quot;type&quot;: &quot;timeseries&quot;
+    },
+    {
+      &quot;datasource&quot;: {
+        &quot;type&quot;: &quot;prometheus&quot;,
+        &quot;uid&quot;: &quot;prometheus&quot;
+      },
+      &quot;fieldConfig&quot;: {
+        &quot;defaults&quot;: {
+          &quot;color&quot;: {
+            &quot;mode&quot;: &quot;palette-classic&quot;
+          },
+          &quot;custom&quot;: {
+            &quot;axisBorderShow&quot;: false,
+            &quot;axisCenteredZero&quot;: false,
+            &quot;axisColorMode&quot;: &quot;text&quot;,
+            &quot;axis
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #28</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">57 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L119–L175</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L24–L80</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>{
+      &quot;datasource&quot;: {
+        &quot;type&quot;: &quot;prometheus&quot;,
+        &quot;uid&quot;: &quot;prometheus&quot;
+      },
+      &quot;fieldConfig&quot;: {
+        &quot;defaults&quot;: {
+          &quot;color&quot;: {
+            &quot;mode&quot;: &quot;palette-classic&quot;
+          },
+          &quot;custom&quot;: {
+            &quot;axisBorderShow&quot;: false,
+            &quot;axisCenteredZero&quot;: false,
+            &quot;axisColorMode&quot;: &quot;text&quot;,
+            &quot;axisLabel&quot;: &quot;&quot;,
+            &quot;axisPlacement&quot;:
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #29</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">56 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/context-menu/index.tsx</span>
+              <span class="dup-loc">L50–L105</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/menu-popper/index.tsx</span>
+              <span class="dup-loc">L63–L119</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+    },
+  ];
+
+  const handleConfirm = (selectedItems: ContextItem[]) => {
+    if (selectedItems.length > 0) {
+      const domain = selectedItems[0]?.domain;
+      selectedItems.forEach((item, index) => {
+        const nodePosition = {
+          x: position.x + index * 300,
+          y: position.y,
+        };
+        const contentPreview = item?.snippets?.map((snippet) => snippet?.text || &#x27;&#x27;).join
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #30</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">56 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/core_business_metrics.json</span>
+              <span class="dup-loc">L112–L167</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L116–L76</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      &quot;type&quot;: &quot;timeseries&quot;
+    },
+    {
+      &quot;datasource&quot;: {
+        &quot;type&quot;: &quot;prometheus&quot;,
+        &quot;uid&quot;: &quot;prometheus&quot;
+      },
+      &quot;fieldConfig&quot;: {
+        &quot;defaults&quot;: {
+          &quot;color&quot;: {
+            &quot;mode&quot;: &quot;palette-classic&quot;
+          },
+          &quot;custom&quot;: {
+            &quot;axisBorderShow&quot;: false,
+            &quot;axisCenteredZero&quot;: false,
+            &quot;axisColorMode&quot;: &quot;text&quot;,
+            &quot;axis
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #31</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">55 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/core_business_metrics.json</span>
+              <span class="dup-loc">L508–L562</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L116–L75</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      &quot;type&quot;: &quot;timeseries&quot;
+    },
+    {
+      &quot;datasource&quot;: {
+        &quot;type&quot;: &quot;prometheus&quot;,
+        &quot;uid&quot;: &quot;prometheus&quot;
+      },
+      &quot;fieldConfig&quot;: {
+        &quot;defaults&quot;: {
+          &quot;color&quot;: {
+            &quot;mode&quot;: &quot;palette-classic&quot;
+          },
+          &quot;custom&quot;: {
+            &quot;axisBorderShow&quot;: false,
+            &quot;axisCenteredZero&quot;: false,
+            &quot;axisColorMode&quot;: &quot;text&quot;,
+            &quot;axis
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #32</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">54 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading.json</span>
+              <span class="dup-loc">L420–L473</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading.json</span>
+              <span class="dup-loc">L344–L397</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>], &quot;t&quot;: 120 },
+                { &quot;s&quot;: [7, 7], &quot;t&quot;: 180 }
+              ]
+            },
+            &quot;r&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+            &quot;sa&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+            &quot;o&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 100 }
+          },
+          &quot;shapes&quot;: [
+            {
+              &quot;ty&quot;: &quot;sh&quot;,
+              &quot;bm&quot;: 0,
+              &quot;hd&quot;: false,
+              &quot;nm&quot;: &quot;&quot;,
+              &quot;d&quot;: 1,
+              &quot;ks&quot;: {
+      
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #33</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">54 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading.json</span>
+              <span class="dup-loc">L496–L549</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading.json</span>
+              <span class="dup-loc">L344–L397</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>], &quot;t&quot;: 120 },
+                { &quot;s&quot;: [7, 7], &quot;t&quot;: 180 }
+              ]
+            },
+            &quot;r&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+            &quot;sa&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+            &quot;o&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 100 }
+          },
+          &quot;shapes&quot;: [
+            {
+              &quot;ty&quot;: &quot;sh&quot;,
+              &quot;bm&quot;: 0,
+              &quot;hd&quot;: false,
+              &quot;nm&quot;: &quot;&quot;,
+              &quot;d&quot;: 1,
+              &quot;ks&quot;: {
+      
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #34</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">54 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading.json</span>
+              <span class="dup-loc">L572–L625</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading.json</span>
+              <span class="dup-loc">L496–L397</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, 20], &quot;t&quot;: 120 },
+                { &quot;s&quot;: [7, 7], &quot;t&quot;: 180 }
+              ]
+            },
+            &quot;r&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+            &quot;sa&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+            &quot;o&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 100 }
+          },
+          &quot;shapes&quot;: [
+            {
+              &quot;ty&quot;: &quot;sh&quot;,
+              &quot;bm&quot;: 0,
+              &quot;hd&quot;: false,
+              &quot;nm&quot;: &quot;&quot;,
+              &quot;d&quot;: 1,
+              &quot;ks&quot;: {
+  
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #35</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">bash</span>
+            <span class="dup-size">54 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>docs/community-version/self-deploy/index.md</span>
+              <span class="dup-loc">L21–L74</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>docs/zh/community-version/self-deploy/index.md</span>
+              <span class="dup-loc">L21–L74</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Self Deploy
+
+## Prerequisites {#prerequisites}
+
+### Hardware Requirements {#hardware-requirements}
+
+- **CPU:** 2 cores minimum
+- **RAM:** 4GB minimum (8GB recommended)
+- **Storage:** 20GB+ available
+
+### Software Requirements {#software-requirements}
+
+- **Docker:** Version 24.0+
+- **Docker Compose:** Version 2.20+
+
+## Steps {#steps}
+
+### 1. Clone the repository {#clone-the-repository}
+
+```bash
+g
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #36</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">53 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/api/src/modules/openapi/openapi.service.ts</span>
+              <span class="dup-loc">L552–L604</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/api/src/modules/webhook/webhook.service.ts</span>
+              <span class="dup-loc">L739–L791</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>public async recordApiCall(data: {
+    recordId: string;
+    uid: string;
+    apiId?: string | null;
+    canvasId?: string;
+    workflowExecutionId?: string;
+    requestUrl?: string;
+    requestMethod?: string;
+    requestBody?: any;
+    requestHeaders?: Record<string, unknown> | string;
+    httpStatus: number;
+    responseTime: number;
+    status: ApiCallStatus;
+    failureReason?: string;
+  }): 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #37</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">52 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/nodes/audio.tsx</span>
+              <span class="dup-loc">L237–L288</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/nodes/image.tsx</span>
+              <span class="dup-loc">L324–L364</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+        className=&quot;relative&quot;
+      >
+        {!isPreview &amp;&amp; !readonly &amp;&amp; (
+          <NodeActionButtons
+            nodeId={id}
+            nodeType=&quot;audio&quot;
+            isNodeHovered={isHovered}
+            isSelected={selected}
+          />
+        )}
+
+        {!isPreview &amp;&amp; !hideHandles &amp;&amp; (
+          <>
+            <CustomHandle
+              id={`${id}-target`}
+              nodeId={id}
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #38</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">50 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/integration-docs/components/skill-docs-tab.tsx</span>
+              <span class="dup-loc">L261–L310</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/integration-docs/components/skill-docs-tab.tsx</span>
+              <span class="dup-loc">L252–L283</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}>~/.claude/skills/</code>
+                </td>
+              </tr>
+              <tr>
+                <td className={tableCellClassName}>Codex</td>
+                <td className={tableCellClassName}>
+                  <code className={inlineCodeClassName}>~/.codex/skills/</code>
+                </td>
+              </tr>
+              <tr>
+                <td className={tableCellClassName}>Antigr
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #39</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">50 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/utils/src/file.ts</span>
+              <span class="dup-loc">L1–L50</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/workflow-variables/constants.ts</span>
+              <span class="dup-loc">L3–L56</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+
+// Code and text file extensions - these should always be treated as documents
+export const CODE_FILE_EXTENSIONS = [
+  // TypeScript/JavaScript
+  &#x27;ts&#x27;,
+  &#x27;tsx&#x27;,
+  &#x27;js&#x27;,
+  &#x27;jsx&#x27;,
+  &#x27;mjs&#x27;,
+  &#x27;cjs&#x27;,
+  // Web
+  &#x27;css&#x27;,
+  &#x27;scss&#x27;,
+  &#x27;sass&#x27;,
+  &#x27;less&#x27;,
+  // Other programming languages
+  &#x27;py&#x27;,
+  &#x27;java&#x27;,
+  &#x27;c&#x27;,
+  &#x27;cpp&#x27;,
+  &#x27;h&#x27;,
+  &#x27;hpp&#x27;,
+  &#x27;cs&#x27;,
+  &#x27;go&#x27;,
+  &#x27;rs&#x27;,
+  &#x27;rb&#x27;,
+  &#x27;php&#x27;,
+  &#x27;swift&#x27;,
+  &#x27;kt&#x27;,
+  &#x27;scala&#x27;,
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #40</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">47 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L233–L279</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>deploy/docker/trace/dashboards/default_metrics.json</span>
+              <span class="dup-loc">L116–L67</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      &quot;type&quot;: &quot;timeseries&quot;
+    },
+    {
+      &quot;datasource&quot;: {
+        &quot;type&quot;: &quot;prometheus&quot;,
+        &quot;uid&quot;: &quot;prometheus&quot;
+      },
+      &quot;fieldConfig&quot;: {
+        &quot;defaults&quot;: {
+          &quot;color&quot;: {
+            &quot;mode&quot;: &quot;palette-classic&quot;
+          },
+          &quot;custom&quot;: {
+            &quot;axisBorderShow&quot;: false,
+            &quot;axisCenteredZero&quot;: false,
+            &quot;axisColorMode&quot;: &quot;text&quot;,
+            &quot;axis
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #41</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">46 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/launchpad/variable/getVariableIcon.tsx</span>
+              <span class="dup-loc">L28–L73</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/launchpad/variable/getVariableIcon.tsx</span>
+              <span class="dup-loc">L24–L63</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>} color=&quot;white&quot; />;
+    case &#x27;audio&#x27;:
+      return <Audio className=&quot;bg-[#F93920] rounded-md p-1&quot; size={20} color=&quot;white&quot; />;
+    case &#x27;startNode&#x27;:
+    case &#x27;skillResponse&#x27;:
+    case &#x27;mediaSkillResponse&#x27;:
+      return <AiChat className=&quot;bg-[#FC8800] rounded-md p-1&quot; size={20} color=&quot;white&quot; />;
+    case &#x27;resourceLibrary&#x27;:
+      return <AiChat className=&quot;bg-[#FC8800] rounded-md p-1&quot; size={20} color=&quot;
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #42</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">46 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/nodes/code-artifact.tsx</span>
+              <span class="dup-loc">L249–L294</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/nodes/website.tsx</span>
+              <span class="dup-loc">L529–L291</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+        data-cy=&quot;code-artifact-node&quot;
+        onClick={onNodeClick}
+      >
+        {!isPreview &amp;&amp; !readonly &amp;&amp; (
+          <NodeActionButtons
+            nodeId={id}
+            nodeType=&quot;codeArtifact&quot;
+            isNodeHovered={isHovered}
+            isSelected={selected}
+          />
+        )}
+
+        {!isPreview &amp;&amp; !hideHandles &amp;&amp; (
+          <>
+            <CustomHandle
+              id={`
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #43</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">44 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/nodes/resource.tsx</span>
+              <span class="dup-loc">L317–L360</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/nodes/website.tsx</span>
+              <span class="dup-loc">L529–L568</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+        onClick={onNodeClick}
+      >
+        {!isPreview &amp;&amp; !readonly &amp;&amp; (
+          <NodeActionButtons
+            nodeId={id}
+            nodeType=&quot;resource&quot;
+            isNodeHovered={isHovered}
+            isSelected={selected}
+          />
+        )}
+
+        {/* Handles */}
+        {!isPreview &amp;&amp; !hideHandles &amp;&amp; (
+          <>
+            <CustomHandle
+              id={`${id}-target`}
+  
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #44</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">43 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/launchpad/chat-input.tsx</span>
+              <span class="dup-loc">L164–L206</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/launchpad/rich-chat-input/index.tsx</span>
+              <span class="dup-loc">L889–L932</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+        )}
+        onDragOver={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (!readonly) setIsDragging(true);
+        }}
+        onDragLeave={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (!readonly) setIsDragging(false);
+        }}
+        onDrop={async (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #45</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">42 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/nodes/image.tsx</span>
+              <span class="dup-loc">L304–L345</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/nodes/video.tsx</span>
+              <span class="dup-loc">L216–L257</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={!isPreview ? handleMouseEnter : undefined}
+        onMouseLeave={!isPreview ? handleMouseLeave : undefined}
+        style={NODE_SIDE_CONFIG}
+        onClick={onNodeClick}
+        className=&quot;relative&quot;
+      >
+        <div className=&quot;absolute -top-8 left-3 z-10 flex items-center h-8 gap-2 w-[40%]&quot;>
+          <div
+            className={cn(
+              &#x27;flex-1 min-w-0 rounded-t-lg px-1 py-1 trans
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #46</span>
+            <span class="dup-type type-config">config</span>
+            <span class="dup-fmt">json</span>
+            <span class="dup-size">42 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading-safari.json</span>
+              <span class="dup-loc">L90–L131</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/web-core/src/pages/workflow-app/loading-safari.json</span>
+              <span class="dup-loc">L10–L131</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      &quot;sr&quot;: 1,
+      &quot;st&quot;: 0,
+      &quot;op&quot;: 181.18,
+      &quot;ip&quot;: 0,
+      &quot;hd&quot;: true,
+      &quot;ddd&quot;: 0,
+      &quot;bm&quot;: 0,
+      &quot;hasMask&quot;: false,
+      &quot;ao&quot;: 0,
+      &quot;ks&quot;: {
+        &quot;a&quot;: { &quot;a&quot;: 0, &quot;k&quot;: [61, 61] },
+        &quot;s&quot;: { &quot;a&quot;: 0, &quot;k&quot;: [100, 100] },
+        &quot;sk&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+        &quot;p&quot;: { &quot;a&quot;: 0, &quot;k&quot;: [61, 61] },
+        &quot;r&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+        &quot;sa&quot;: { &quot;a&quot;: 0, &quot;k&quot;: 0 },
+        
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #47</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">42 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/cli/src/commands/workflow/detail.ts</span>
+              <span class="dup-loc">L13–L54</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/cli/src/commands/workflow/run-detail.ts</span>
+              <span class="dup-loc">L8–L49</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+
+interface ToolCallSummary {
+  callId: string;
+  toolName: string;
+  toolsetId: string;
+  status: &#x27;executing&#x27; | &#x27;completed&#x27; | &#x27;failed&#x27;;
+  durationMs?: number;
+  error?: string;
+}
+
+interface NodeExecutionDetail {
+  nodeId: string;
+  nodeExecutionId: string;
+  nodeType: string;
+  title: string;
+  status: &#x27;waiting&#x27; | &#x27;executing&#x27; | &#x27;finish&#x27; | &#x27;failed&#x27;;
+  progress: number;
+  startTime?: string;
+  end
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #48</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">41 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/modules/artifacts/code-runner/render/html.tsx</span>
+              <span class="dup-loc">L246–L286</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/modules/artifacts/code-runner/render/svg.tsx</span>
+              <span class="dup-loc">L459–L499</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></div>
+
+        {/* Action Buttons - conditionally rendered based on showActions prop */}
+        {!purePreview &amp;&amp; showActions &amp;&amp; (
+          <div className=&quot;absolute bottom-2 right-2 z-10&quot;>
+            <Space.Compact className=&quot;shadow-sm rounded-md overflow-hidden backdrop-blur-sm&quot;>
+              <Tooltip title={t(&#x27;common.preview&#x27;, &#x27;Preview&#x27;)}>
+                <Button
+                  type=&quot;defa
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #49</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">41 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/api/src/modules/tool/handlers/post/composio-post.service.ts</span>
+              <span class="dup-loc">L649–L689</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/api/src/modules/tool/handlers/post/regular-post.service.ts</span>
+              <span class="dup-loc">L302–L333</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>]),
+            content,
+          };
+        });
+      }
+    } else {
+      compressed.data = data ?? pick(rawObj, [&#x27;data&#x27;]);
+    }
+
+    return JSON.stringify(compressed, null, 2);
+  }
+
+  private async uploadToFile(args: {
+    toolsetKey: string;
+    toolName: string;
+    content: string;
+    context: PostHandlerInput[&#x27;context&#x27;];
+  }): Promise<{ fileId?: string; fileMeta?: DriveFile }> {
+    cons
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #50</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">40 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/cli/src/utils/file-type.ts</span>
+              <span class="dup-loc">L10–L49</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>packages/ai-workspace-common/src/components/canvas/workflow-variables/constants.ts</span>
+              <span class="dup-loc">L6–L45</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>const CODE_FILE_EXTENSIONS = [
+  // TypeScript/JavaScript
+  &#x27;ts&#x27;,
+  &#x27;tsx&#x27;,
+  &#x27;js&#x27;,
+  &#x27;jsx&#x27;,
+  &#x27;mjs&#x27;,
+  &#x27;cjs&#x27;,
+  // Web
+  &#x27;css&#x27;,
+  &#x27;scss&#x27;,
+  &#x27;sass&#x27;,
+  &#x27;less&#x27;,
+  // Other programming languages
+  &#x27;py&#x27;,
+  &#x27;java&#x27;,
+  &#x27;c&#x27;,
+  &#x27;cpp&#x27;,
+  &#x27;h&#x27;,
+  &#x27;hpp&#x27;,
+  &#x27;cs&#x27;,
+  &#x27;go&#x27;,
+  &#x27;rs&#x27;,
+  &#x27;rb&#x27;,
+  &#x27;php&#x27;,
+  &#x27;swift&#x27;,
+  &#x27;kt&#x27;,
+  &#x27;scala&#x27;,
+  &#x27;sh&#x27;,
+  &#x27;bash&#x27;,
+  &#x27;zsh&#x27;,
+  // Config files
+  &#x27;json&#x27;,
+  &#x27;yaml&#x27;,
+  &#x27;yml&#x27;,
+  &#x27;toml&#x27;,
+  &#x27;x
+... (truncated)</code></pre></div>
+      </div><div class="more-clones">
+        ...and 724 more clones
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Typescript</td><td class='cell-num'>436</td><td class='cell-num'>6,759</td></tr>
+    <tr><td>Tsx</td><td class='cell-num'>189</td><td class='cell-num'>3,224</td></tr>
+    <tr><td>Json</td><td class='cell-num'>60</td><td class='cell-num'>2,323</td></tr>
+    <tr><td>Javascript</td><td class='cell-num'>36</td><td class='cell-num'>1,181</td></tr>
+    <tr><td>Markdown</td><td class='cell-num'>22</td><td class='cell-num'>323</td></tr>
+    <tr><td>Yaml</td><td class='cell-num'>15</td><td class='cell-num'>356</td></tr>
+    <tr><td>Scss</td><td class='cell-num'>8</td><td class='cell-num'>212</td></tr>
+    <tr><td>Markup</td><td class='cell-num'>3</td><td class='cell-num'>26</td></tr>
+    <tr><td>Python</td><td class='cell-num'>2</td><td class='cell-num'>26</td></tr>
+    <tr><td>Bash</td><td class='cell-num'>2</td><td class='cell-num'>60</td></tr>
+    <tr><td>Css</td><td class='cell-num'>1</td><td class='cell-num'>12</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>752</td><td class='cell-num'>97.2%</td></tr>
+    <tr><td>Documentation</td><td class='cell-num'>22</td><td class='cell-num'>2.8%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,2086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: billmanager — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>billmanager</h1>
+      <div class="subtitle">
+        Owner: brdweb &middot; 48,281 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-medium" style="margin-left:12px">Medium — 6.80%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">165</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">3,285</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#f59e0b">6.80%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">48,281</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">131 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/BillList.tsx</span>
+              <span class="dup-loc">L393–L523</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/Dashboard/UpcomingBillsList.tsx</span>
+              <span class="dup-loc">L127–L234</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}}
+                onClick={() => onViewPayments(bill)}
+              >
+                <Table.Td>
+                  <Group gap=&quot;sm&quot;>
+                    <BillIcon icon={bill.icon} size={24} />
+                    <div>
+                      <Group gap={6} align=&quot;center&quot;>
+                        <Text fw={500}>{bill.name}</Text>
+                        {/* Sharing indicator icon - inline with bill
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">98 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/MonthlyTotalsChart.tsx</span>
+              <span class="dup-loc">L86–L183</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/Analytics.tsx</span>
+              <span class="dup-loc">L197–L279</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>} title=&quot;Error loading data&quot; color=&quot;red&quot;>
+            {error}
+          </Alert>
+        ) : data.length === 0 || totalSpent === 0 ? (
+          <Paper p=&quot;xl&quot; withBorder>
+            <Text ta=&quot;center&quot; c=&quot;dimmed&quot;>
+              No payment data available
+            </Text>
+          </Paper>
+        ) : (
+          <>
+            {/* Controls */}
+            <Group justify=&quot;space-between&quot;>
+        
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">60 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/Calendar.tsx</span>
+              <span class="dup-loc">L84–L143</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/MultiMonthCalendar.tsx</span>
+              <span class="dup-loc">L78–L135</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>} size=&quot;xs&quot; fw={600} ta=&quot;center&quot; c=&quot;dimmed&quot;>
+              {day}
+            </Text>
+          ))}
+        </SimpleGrid>
+
+        {weeks.map((week, weekIndex) => (
+          <SimpleGrid key={weekIndex} cols={7} spacing={1}>
+            {week.map((day, dayIndex) => {
+              if (day === null) {
+                return <div key={`empty-${dayIndex}`} />;
+              }
+
+              const bill
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">56 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/PaymentHistory.tsx</span>
+              <span class="dup-loc">L245–L300</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/AllPayments.tsx</span>
+              <span class="dup-loc">L516–L564</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}>${payment.amount.toFixed(2)}</Text>
+                    )}
+                  </Table.Td>
+                  <Table.Td>
+                    {isShared ? (
+                      <Text size=&quot;xs&quot; c=&quot;dimmed&quot;>Read-only</Text>
+                    ) : editingId === payment.id ? (
+                      <Group gap=&quot;xs&quot;>
+                        <ActionIcon
+                          color=&quot;green&quot;
+            
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">56 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/MonthlyTotalsChart.tsx</span>
+              <span class="dup-loc">L142–L197</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/Analytics.tsx</span>
+              <span class="dup-loc">L239–L291</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>>
+              {chartType === &#x27;bar&#x27; ? (
+                <BarChart
+                  h={300}
+                  data={displayData}
+                  dataKey=&quot;label&quot;
+                  series={[{ name: &#x27;total&#x27;, color: &#x27;violet.6&#x27;, label: &#x27;Total Paid&#x27; }]}
+                  withTooltip
+                  tooltipProps={{
+                    content: ({ payload }) => {
+                      if (!payload ||
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">54 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/BillIcon.tsx</span>
+              <span class="dup-loc">L1–L54</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/IconPicker.tsx</span>
+              <span class="dup-loc">L14–L67</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import {
+  // Finance &amp; Banking
+  IconCreditCard,
+  IconBuildingBank,
+  IconWallet,
+  IconCoin,
+  IconCash,
+  IconPigMoney,
+  IconReportMoney,
+  IconReceipt,
+  IconCurrencyDollar,
+  IconCurrencyEuro,
+  IconCurrencyPound,
+  IconCurrencyYen,
+
+  // Home &amp; Property
+  IconHome,
+  IconBuildingSkyscraper,
+  IconBuildingCottage,
+  IconParking,
+  IconPool,
+  IconFence,
+  IconLadder,
+
+  // Utilities
+  IconB
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">52 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/ForgotPassword.tsx</span>
+              <span class="dup-loc">L55–L106</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/ResendVerification.tsx</span>
+              <span class="dup-loc">L58–L109</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={420} my={40}>
+        <Paper withBorder shadow=&quot;md&quot; p={30} radius=&quot;md&quot;>
+          <Stack align=&quot;center&quot; gap=&quot;md&quot;>
+            <IconCheck size={48} color=&quot;var(--mantine-color-green-6)&quot; />
+            <Title order={2} ta=&quot;center&quot;>Check Your Email</Title>
+            <Text c=&quot;dimmed&quot; ta=&quot;center&quot;>
+              If an account exists for <strong>{email}</strong>, we&amp;apos;ve sent a password reset link.
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">52 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/SharedBillsScreen.tsx</span>
+              <span class="dup-loc">L347–L398</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/SharedBillsScreen.tsx</span>
+              <span class="dup-loc">L343–L361</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}>{formatCurrency(selectedShare.bill.amount)}</Text>
+                </View>
+
+                <View style={styles.modalInfoRow}>
+                  <Text style={styles.modalLabel}>Next Due</Text>
+                  <Text style={styles.modalValue}>{formatDate(selectedShare.bill.next_due)}</Text>
+                </View>
+
+                <View style={styles.modalInfoRow}>
+                  <Text style=
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">52 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/InvitationsScreen.tsx</span>
+              <span class="dup-loc">L292–L343</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L370–L528</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></Text>
+            <TextInput
+              style={[styles.input, {
+                backgroundColor: colors.background,
+                borderColor: colors.border,
+                color: colors.text,
+              }]}
+              value={email}
+              onChangeText={setEmail}
+              placeholder=&quot;user@example.com&quot;
+              placeholderTextColor={colors.textMuted}
+              ke
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">51 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/AcceptInvite.tsx</span>
+              <span class="dup-loc">L213–L263</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/ResetPassword.tsx</span>
+              <span class="dup-loc">L141–L191</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+              description=&quot;Letters, numbers, and underscores only&quot;
+              required
+            />
+
+            <div>
+              <PasswordInput
+                label=&quot;Password&quot;
+                placeholder=&quot;Create a strong password&quot;
+                leftSection={<IconLock size={16} />}
+                value={password}
+                onChange={(e) => setPassword(e.currentTarget.value)}
+  
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">51 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/SubscriptionScreen.tsx</span>
+              <span class="dup-loc">L218–L268</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/SubscriptionScreen.tsx</span>
+              <span class="dup-loc">L183–L200</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}>{feature}</Text>
+                </View>
+              ))}
+            </View>
+          </View>
+        </ScrollView>
+      </View>
+    );
+  }
+
+  const currentPlan = PLANS.find(p => p.id === subscription?.effective_tier);
+  const isFreeTier = !subscription?.has_subscription;
+  const currentTierName = currentPlan?.name || &#x27;Free&#x27;;
+
+  const getStatusBadge = () => {
+    if (isFreeTier) {
+      if (
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">50 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/AcceptInvite.tsx</span>
+              <span class="dup-loc">L122–L171</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/AcceptShareInvite.tsx</span>
+              <span class="dup-loc">L82–L131</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Loading state
+  if (inviteLoading) {
+    return (
+      <Container size={420} my={40}>
+        <Paper withBorder shadow=&quot;md&quot; p={30} mt={30} radius=&quot;md&quot;>
+          <Center py=&quot;xl&quot;>
+            <Stack align=&quot;center&quot; gap=&quot;md&quot;>
+              <Loader size=&quot;lg&quot; />
+              <Text c=&quot;dimmed&quot;>Loading invitation...</Text>
+            </Stack>
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">47 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/DatabaseManagementScreen.tsx</span>
+              <span class="dup-loc">L308–L354</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L329–L455</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+          contentContainerStyle={styles.list}
+          refreshControl={
+            <RefreshControl
+              refreshing={isRefreshing}
+              onRefresh={handleRefresh}
+              tintColor={colors.primary}
+              colors={[colors.primary]}
+            />
+          }
+          ListEmptyComponent={
+            <View style={styles.emptyContainer}>
+              <Text style={[s
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">46 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/AcceptInvite.tsx</span>
+              <span class="dup-loc">L131–L176</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/AcceptShareInvite.tsx</span>
+              <span class="dup-loc">L91–L135</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>={420} my={40}>
+        <Paper withBorder shadow=&quot;md&quot; p={30} mt={30} radius=&quot;md&quot;>
+          <Center py=&quot;xl&quot;>
+            <Stack align=&quot;center&quot; gap=&quot;md&quot;>
+              <Loader size=&quot;lg&quot; />
+              <Text c=&quot;dimmed&quot;>Loading invitation...</Text>
+            </Stack>
+          </Center>
+        </Paper>
+      </Container>
+    );
+  }
+
+  // Invalid/expired invite
+  if (inviteError) {
+    return (
+ 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">43 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/DatabaseManagementScreen.tsx</span>
+              <span class="dup-loc">L504–L546</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L575–L432</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>>
+          </View>
+        </View>
+      </Modal>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  centered: {
+    flex: 1,
+    justifyContent: &#x27;center&#x27;,
+    alignItems: &#x27;center&#x27;,
+  },
+  header: {
+    flexDirection: &#x27;row&#x27;,
+    justifyContent: &#x27;space-between&#x27;,
+    alignItems: &#x27;center&#x27;,
+    paddingHorizontal: 20,
+    paddingTop: 60,
+    paddingBottom: 20,
+  
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">42 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/InvitationsScreen.tsx</span>
+              <span class="dup-loc">L343–L384</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L528–L569</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></Text>
+            <View style={styles.databaseList}>
+              {databases.map((db) => (
+                <TouchableOpacity
+                  key={db.id}
+                  style={[
+                    styles.databaseItem,
+                    { backgroundColor: colors.background, borderColor: colors.border },
+                    selectedDatabases.includes(db.id) &amp;&amp; { borderColor: colors.primary
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">40 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/Billing.tsx</span>
+              <span class="dup-loc">L389–L428</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/Billing.tsx</span>
+              <span class="dup-loc">L340–L380</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>: 2 }}>
+              <Card.Section withBorder inheritPadding py=&quot;xs&quot;>
+                <Group justify=&quot;space-between&quot;>
+                  <Group>
+                    <ThemeIcon variant=&quot;light&quot; color=&quot;violet&quot; size=&quot;lg&quot;>
+                      <IconCrown size={20} />
+                    </ThemeIcon>
+                    <Text fw={600} size=&quot;lg&quot;>Plus</Text>
+                  </Group>
+                  <
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">40 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/BillList.tsx</span>
+              <span class="dup-loc">L403–L442</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/Dashboard/UpcomingBillsList.tsx</span>
+              <span class="dup-loc">L136–L175</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>{(bill.is_shared || (bill.share_count &amp;&amp; bill.share_count > 0)) &amp;&amp; (
+                          <Tooltip
+                            label={
+                              bill.is_shared
+                                ? `Shared with you by ${bill.share_info?.owner_name}`
+                                : `Shared with ${bill.share_count} ${bill.share_count === 1 ? &#x27;person&#x27; : &#x27;people&#x27;}`
+             
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">39 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/InvitationsScreen.tsx</span>
+              <span class="dup-loc">L387–L425</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L572–L610</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></Text>
+                )}
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  centered: {
+    flex: 1,
+    justifyContent: &#x27;center&#x27;,
+    alignItems: &#x27;center&#x27;,
+  },
+  header: {
+    flexDirection: &#x27;row&#x27;,
+    justifyContent: &#x27;space-between&#x27;,
+    alignItems: &#x27;ce
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #20</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">39 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/DatabaseManagementScreen.tsx</span>
+              <span class="dup-loc">L633–L671</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L673–L538</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+    color: &#x27;#fff&#x27;,
+  },
+  errorText: {
+    fontSize: 16,
+    marginBottom: 16,
+  },
+  retryButton: {
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  retryButtonText: {
+    color: &#x27;#fff&#x27;,
+    fontWeight: &#x27;600&#x27;,
+  },
+  emptyContainer: {
+    alignItems: &#x27;center&#x27;,
+    paddingTop: 40,
+  },
+  emptyText: {
+    fontSize: 16,
+    marginBottom: 8,
+  },
+  emptySubtext: {
+   
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #21</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/AcceptShareInvite.tsx</span>
+              <span class="dup-loc">L229–L264</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/AcceptShareInvite.tsx</span>
+              <span class="dup-loc">L155–L190</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code><div>
+            <Text size=&quot;sm&quot; c=&quot;dimmed&quot; mb={5}>Bill Name</Text>
+            <Text size=&quot;lg&quot; fw={500}>{inviteData?.bill_name}</Text>
+          </div>
+
+          <div>
+            <Text size=&quot;sm&quot; c=&quot;dimmed&quot; mb={5}>Full Amount</Text>
+            <Group gap=&quot;xs&quot;>
+              <IconCurrencyDollar size={20} />
+              <Text size=&quot;lg&quot; fw={500}>${inviteData?.bill_amount.toFixed(2)}</Text>
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #22</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/AcceptInvite.tsx</span>
+              <span class="dup-loc">L168–L203</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/ResetPassword.tsx</span>
+              <span class="dup-loc">L112–L150</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>} mt={30} radius=&quot;md&quot;>
+          <Stack align=&quot;center&quot; gap=&quot;md&quot;>
+            <IconCheck size={48} color=&quot;var(--mantine-color-green-6)&quot; />
+            <Title order={2} ta=&quot;center&quot;>Account Created!</Title>
+            <Text c=&quot;dimmed&quot; ta=&quot;center&quot;>
+              Your account has been created successfully. You can now sign in with your username{&#x27; &#x27;}
+              <strong>{createdUsername}</strong>.
+  
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #23</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/AcceptInvite.tsx</span>
+              <span class="dup-loc">L220–L255</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/ResetPassword.tsx</span>
+              <span class="dup-loc">L148–L183</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>&quot;
+                placeholder=&quot;Create a strong password&quot;
+                leftSection={<IconLock size={16} />}
+                value={password}
+                onChange={(e) => setPassword(e.currentTarget.value)}
+                required
+              />
+              {password &amp;&amp; (
+                <>
+                  <Progress
+                    value={passwordStrength}
+                    color
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #24</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/BillList.tsx</span>
+              <span class="dup-loc">L43–L78</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/Dashboard/UpcomingBillsList.tsx</span>
+              <span class="dup-loc">L42–L77</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+}
+
+function getFrequencyText(bill: Bill): string {
+  let frequencyConfig: { dates?: number[]; days?: number[] } = {};
+  try { frequencyConfig = bill.frequency_config ? JSON.parse(bill.frequency_config) : {}; } catch { /* ignore malformed config */ }
+
+  switch (bill.frequency) {
+    case &#x27;weekly&#x27;:
+      return &#x27;Weekly&#x27;;
+    case &#x27;bi-weekly&#x27;:
+    case &#x27;biweekly&#x27;:
+      return &#x27;Bi-weekly&#x27;;
+    case
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #25</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">36 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L493–L528</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L382–L417</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>
+            />
+
+            <Text style={[styles.inputLabel, { color: colors.textMuted }]}>Role</Text>
+            <View style={styles.roleSelector}>
+              <TouchableOpacity
+                style={[
+                  styles.roleOption,
+                  { backgroundColor: newRole === &#x27;user&#x27; ? colors.primary : colors.border }
+                ]}
+                onPress={() => setNewRole(&#x27;us
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #26</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">34 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/Calendar.tsx</span>
+              <span class="dup-loc">L146–L179</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/MultiMonthCalendar.tsx</span>
+              <span class="dup-loc">L139–L172</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>
+                    fw={isToday || billCount > 0 || isSelected ? 600 : 400}
+                    c={textColor}
+                  >
+                    {day}
+                  </Text>
+                  {billCount > 1 &amp;&amp; (
+                    <Badge
+                      size=&quot;xs&quot;
+                      color=&quot;red&quot;
+                      variant=&quot;filled&quot;
+                      style={{
+                
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #27</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">34 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/BillList.tsx</span>
+              <span class="dup-loc">L76–L109</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/Dashboard/UpcomingBillsList.tsx</span>
+              <span class="dup-loc">L12–L45</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}
+
+// Parse date string directly to avoid timezone issues
+function parseDate(dateStr: string): Date {
+  const [year, month, day] = dateStr.split(&#x27;-&#x27;).map(Number);
+  return new Date(year, month - 1, day);
+}
+
+function formatDate(dateStr: string): string {
+  const date = parseDate(dateStr);
+  return date.toLocaleDateString(&#x27;en-US&#x27;, {
+    month: &#x27;short&#x27;,
+    day: &#x27;numeric&#x27;,
+    year: &#x27;numeric&#x27;,
+  });
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #28</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">34 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/context/ConfigContext.tsx</span>
+              <span class="dup-loc">L64–L97</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/context/ConfigContext.tsx</span>
+              <span class="dup-loc">L66–L99</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>} catch (err) {
+      console.error(&#x27;Failed to fetch app config:&#x27;, err);
+      // Fall back to default config on error
+      setConfig(defaultConfig);
+      setError(&#x27;Failed to load configuration&#x27;);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchConfig();
+  }, []);
+
+  const value: ConfigContextType = {
+    config,
+    loading,
+    error,
+    isSaas: config?.deplo
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #29</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">33 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/BillIcon.tsx</span>
+              <span class="dup-loc">L55–L87</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/IconPicker.tsx</span>
+              <span class="dup-loc">L68–L101</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>IconBallFootball,
+  IconBallBaseball,
+  IconBallBasketball,
+  IconBallTennis,
+  IconBallVolleyball,
+  IconBallBowling,
+  IconPlayFootball,
+  IconGolf,
+  IconSwimming,
+  IconIceSkating,
+  IconSkiJumping,
+  IconGymnastics,
+  IconRun,
+  IconBarbell,
+  IconTrophy,
+  IconMedal,
+  IconAward,
+
+  // Healthcare &amp; Medical
+  IconHeartbeat,
+  IconHeartRateMonitor,
+  IconPill,
+  IconVaccine,
+  IconDental,
+  Ic
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #30</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">32 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/PaymentHistory.tsx</span>
+              <span class="dup-loc">L225–L256</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/AllPayments.tsx</span>
+              <span class="dup-loc">L496–L516</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>) : null)}
+                        size=&quot;xs&quot;
+                        w={140}
+                      />
+                    ) : (
+                      formatDateString(payment.payment_date)
+                    )}
+                  </Table.Td>
+                  <Table.Td>
+                    {editingId === payment.id ? (
+                      <NumberInput
+                        value={editAmount}
+ 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #31</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">31 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/tests/e2e/shared-bills.spec.ts</span>
+              <span class="dup-loc">L129–L159</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/tests/e2e/shared-bills.spec.ts</span>
+              <span class="dup-loc">L10–L107</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, async ({ page }) => {
+    const billRow = page.locator(&#x27;table tbody tr&#x27;).first();
+
+    if (await billRow.count() === 0) {
+      test.skip();
+      return;
+    }
+
+    const editButton = billRow.locator(&#x27;button[title=&quot;Edit&quot;]&#x27;);
+
+    if (await editButton.count() === 0) {
+      test.skip();
+      return;
+    }
+
+    await editButton.click();
+    const modal = page.locator(&#x27;[role=&quot;dialog&quot;]&#x27;).first();
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #32</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">31 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/DatabaseManagementScreen.tsx</span>
+              <span class="dup-loc">L265–L295</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L279–L311</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(item)}
+          >
+            <Text style={styles.deleteButtonText}>Delete Group</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  };
+
+  if (isLoading) {
+    return (
+      <View style={[styles.centered, { backgroundColor: colors.background }]}>
+        <ActivityIndicator size=&quot;large&quot; color={colors.primary} />
+      </View>
+    );
+  }
+
+  return (
+    <View style={[style
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #33</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">31 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/DatabaseManagementScreen.tsx</span>
+              <span class="dup-loc">L290–L320</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/PaymentHistoryScreen.tsx</span>
+              <span class="dup-loc">L358–L341</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></Text>
+        </TouchableOpacity>
+      </View>
+
+      {error ? (
+        <View style={styles.centered}>
+          <Text style={[styles.errorText, { color: colors.danger }]}>{error}</Text>
+          <TouchableOpacity
+            style={[styles.retryButton, { backgroundColor: colors.primary }]}
+            onPress={fetchDatabases}
+          >
+            <Text style={styles.retryButtonText}>Retry
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #34</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">31 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/DatabaseManagementScreen.tsx</span>
+              <span class="dup-loc">L692–L722</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L748–L629</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  },
+  modalButtons: {
+    flexDirection: &#x27;row&#x27;,
+    gap: 12,
+  },
+  cancelButton: {
+    flex: 1,
+    padding: 16,
+    borderRadius: 8,
+    alignItems: &#x27;center&#x27;,
+  },
+  cancelButtonText: {
+    fontSize: 16,
+    fontWeight: &#x27;600&#x27;,
+  },
+  confirmButton: {
+    flex: 1,
+    padding: 16,
+    borderRadius: 8,
+    alignItems: &#x27;center&#x27;,
+  },
+  confirmButtonText: {
+    color: &#x27;#fff&#x27;,
+    fontSize: 16,
+  
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #35</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">30 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/PaymentHistoryScreen.tsx</span>
+              <span class="dup-loc">L360–L389</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L313–L341</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code></View>
+
+      {error ? (
+        <View style={styles.centered}>
+          <Text style={[styles.errorText, { color: colors.danger }]}>{error}</Text>
+          <TouchableOpacity
+            style={[styles.retryButton, { backgroundColor: colors.primary }]}
+            onPress={fetchData}
+          >
+            <Text style={styles.retryButtonText}>Retry</Text>
+          </TouchableOpacity>
+        <
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #36</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">30 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/InvitationsScreen.tsx</span>
+              <span class="dup-loc">L498–L527</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L671–L688</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>: {
+    fontSize: 14,
+    fontWeight: &#x27;500&#x27;,
+    color: &#x27;#fff&#x27;,
+  },
+  errorText: {
+    fontSize: 16,
+    marginBottom: 16,
+  },
+  retryButton: {
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  retryButtonText: {
+    color: &#x27;#fff&#x27;,
+    fontWeight: &#x27;600&#x27;,
+  },
+  emptyContainer: {
+    alignItems: &#x27;center&#x27;,
+    paddingTop: 40,
+  },
+  emptyText: {
+    fontSize: 16,
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #37</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">28 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/InvitationsScreen.tsx</span>
+              <span class="dup-loc">L574–L601</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L786–L813</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+  },
+  databaseItem: {
+    flexDirection: &#x27;row&#x27;,
+    justifyContent: &#x27;space-between&#x27;,
+    alignItems: &#x27;center&#x27;,
+    padding: 12,
+    borderRadius: 8,
+    borderWidth: 1,
+    marginBottom: 8,
+  },
+  databaseName: {
+    fontSize: 16,
+  },
+  checkbox: {
+    width: 24,
+    height: 24,
+    borderRadius: 4,
+    borderWidth: 2,
+    alignItems: &#x27;center&#x27;,
+    justifyContent: &#x27;center&#x27;,
+  },
+  checkmark: {
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #38</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">28 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/BillsScreen.tsx</span>
+              <span class="dup-loc">L171–L198</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/SharedBillsScreen.tsx</span>
+              <span class="dup-loc">L195–L219</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+
+    const dueText = isOverdue
+      ? `Due ${Math.abs(daysUntil)}d ago`
+      : daysUntil === 0
+      ? &#x27;Due Today&#x27;
+      : `Due in ${daysUntil}d`;
+
+    return (
+      <TouchableOpacity
+        style={[
+          styles.billCard,
+          isShared &amp;&amp; { backgroundColor: colors.primary + &#x27;08&#x27;, borderLeftWidth: 3, borderLeftColor: colors.primary }
+        ]}
+        onPress={() => handleBillPress
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #39</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">27 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/InvitationsScreen.tsx</span>
+              <span class="dup-loc">L239–L265</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L315–L341</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>{error ? (
+        <View style={styles.centered}>
+          <Text style={[styles.errorText, { color: colors.danger }]}>{error}</Text>
+          <TouchableOpacity
+            style={[styles.retryButton, { backgroundColor: colors.primary }]}
+            onPress={fetchInvitations}
+          >
+            <Text style={styles.retryButtonText}>Retry</Text>
+          </TouchableOpacity>
+        </View>
+ 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #40</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">24 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/PaymentHistoryScreen.tsx</span>
+              <span class="dup-loc">L274–L297</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L281–L304</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>}>
+            {isDeposit ? &#x27;+&#x27; : &#x27;-&#x27;}{formatCurrency(item.amount)}
+          </Text>
+        </View>
+      </Swipeable>
+    );
+  };
+
+  if (isLoading) {
+    return (
+      <View style={[styles.centered, { backgroundColor: colors.background }]}>
+        <ActivityIndicator size=&quot;large&quot; color={colors.primary} />
+      </View>
+    );
+  }
+
+  return (
+    <View style={[styles.container, { backgroundColo
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #41</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">24 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/BillsScreen.tsx</span>
+              <span class="dup-loc">L270–L293</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/SharedBillsScreen.tsx</span>
+              <span class="dup-loc">L243–L266</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>>
+    );
+  };
+
+  if (isLoading) {
+    return (
+      <View style={styles.centered}>
+        <ActivityIndicator size=&quot;large&quot; color={colors.primary} />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.centered}>
+        <Text style={styles.errorText}>{error}</Text>
+        <TouchableOpacity style={styles.retryButton} onPress={fetchBills}>
+          <Text style={styles.
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #42</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">23 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/ForgotPassword.tsx</span>
+              <span class="dup-loc">L80–L102</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/ResendVerification.tsx</span>
+              <span class="dup-loc">L83–L105</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>link
+      </Text>
+
+      <Paper withBorder shadow=&quot;md&quot; p={30} mt={30} radius=&quot;md&quot;>
+        <form onSubmit={handleSubmit}>
+          <Stack gap=&quot;md&quot;>
+            {error &amp;&amp; (
+              <Alert icon={<IconAlertCircle size={16} />} color=&quot;red&quot; variant=&quot;light&quot;>
+                {error}
+              </Alert>
+            )}
+
+            <TextInput
+              label=&quot;Email&quot;
+              placeholder
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #43</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">23 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/PaymentHistory.tsx</span>
+              <span class="dup-loc">L87–L109</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/AllPayments.tsx</span>
+              <span class="dup-loc">L179–L196</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>) => {
+    setEditingId(payment.id);
+    setEditAmount(payment.amount);
+    setEditDate(parseLocalDate(payment.payment_date));
+  };
+
+  const handleCancelEdit = () => {
+    setEditingId(null);
+    setEditAmount(&#x27;&#x27;);
+    setEditDate(null);
+  };
+
+  const handleSaveEdit = async () => {
+    if (editingId === null || editAmount === &#x27;&#x27; || !editDate) return;
+
+    try {
+      await updatePayment(
+        e
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #44</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">23 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/BillList.tsx</span>
+              <span class="dup-loc">L499–L521</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/components/Dashboard/UpcomingBillsList.tsx</span>
+              <span class="dup-loc">L208–L230</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>>
+                  <Group gap=&quot;xs&quot; onClick={(e) => e.stopPropagation()}>
+                    {!bill.is_shared &amp;&amp; (
+                      <>
+                        <ActionIcon
+                          variant=&quot;subtle&quot;
+                          color=&quot;blue&quot;
+                          onClick={() => onEdit(bill)}
+                          title=&quot;Edit&quot;
+                        >
+                     
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #45</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">23 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/PaymentHistoryScreen.tsx</span>
+              <span class="dup-loc">L62–L84</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/SharedBillsScreen.tsx</span>
+              <span class="dup-loc">L84–L403</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+    } finally {
+      setIsLoading(false);
+      setIsRefreshing(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [fetchData])
+  );
+
+  const handleRefresh = useCallback(() => {
+    setIsRefreshing(true);
+    fetchData();
+  }, [fetchData]);
+
+  const prevMonth</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #46</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">23 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/PaymentHistoryScreen.tsx</span>
+              <span class="dup-loc">L525–L547</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/UserManagementScreen.tsx</span>
+              <span class="dup-loc">L574–L596</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>>
+            </View>
+          </View>
+        </View>
+      </Modal>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  centered: {
+    flex: 1,
+    justifyContent: &#x27;center&#x27;,
+    alignItems: &#x27;center&#x27;,
+  },
+  header: {
+    flexDirection: &#x27;row&#x27;,
+    justifyContent: &#x27;space-between&#x27;,
+    alignItems: &#x27;center&#x27;,
+    paddingHorizontal: 16</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #47</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">javascript</span>
+            <span class="dup-size">23 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/InvitationsScreen.tsx</span>
+              <span class="dup-loc">L202–L224</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/mobile/src/screens/PaymentHistoryScreen.tsx</span>
+              <span class="dup-loc">L274–L307</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>]}>Cancel</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  };
+
+  if (isLoading) {
+    return (
+      <View style={[styles.centered, { backgroundColor: colors.background }]}>
+        <ActivityIndicator size=&quot;large&quot; color={colors.primary} />
+      </View>
+    );
+  }
+
+  return (
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <View style=
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #48</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">22 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/tests/e2e/shared-bills.spec.ts</span>
+              <span class="dup-loc">L77–L98</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/tests/e2e/shared-bills.spec.ts</span>
+              <span class="dup-loc">L10–L60</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, async ({ page }) => {
+    const billRow = page.locator(&#x27;table tbody tr&#x27;).first();
+
+    if (await billRow.count() === 0) {
+      test.skip();
+      return;
+    }
+
+    const editButton = billRow.locator(&#x27;button[title=&quot;Edit&quot;]&#x27;);
+
+    if (await editButton.count() === 0) {
+      test.skip();
+      return;
+    }
+
+    await editButton.click();
+    const modal = page.locator(&#x27;[role=&quot;dialog&quot;]&#x27;).first();
+
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #49</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">22 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/Login.tsx</span>
+              <span class="dup-loc">L30–L51</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/ResetPassword.tsx</span>
+              <span class="dup-loc">L15–L36</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+import * as api from &#x27;../api/client&#x27;;
+
+function getPasswordStrength(password: [REDACTED] number {
+  let strength = 0;
+  if (password.length >= 8) strength += 25;
+  if (password.length >= 12) strength += 15;
+  if (/[a-z]/.test(password)) strength += 15;
+  if (/[A-Z]/.test(password)) strength += 15;
+  if (/[0-9]/.test(password)) strength += 15;
+  if (/[^a-zA-Z0-9]/.test(password)) strength += 15;
+  
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #50</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">tsx</span>
+            <span class="dup-size">22 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/ForgotPassword.tsx</span>
+              <span class="dup-loc">L18–L39</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>apps/web/src/pages/ResendVerification.tsx</span>
+              <span class="dup-loc">L21–L42</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+  const [error, setError] = useState(&#x27;&#x27;);
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(&#x27;&#x27;);
+
+    if (!email.trim()) {
+      setError(&#x27;Email is required&#x27;);
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError(&#x27;Please
+... (truncated)</code></pre></div>
+      </div><div class="more-clones">
+        ...and 115 more clones
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Tsx</td><td class='cell-num'>106</td><td class='cell-num'>2,067</td></tr>
+    <tr><td>Javascript</td><td class='cell-num'>29</td><td class='cell-num'>1,015</td></tr>
+    <tr><td>Typescript</td><td class='cell-num'>23</td><td class='cell-num'>300</td></tr>
+    <tr><td>Python</td><td class='cell-num'>7</td><td class='cell-num'>68</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>165</td><td class='cell-num'>100.0%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

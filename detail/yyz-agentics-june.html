@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: yyz-agentics-june — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>yyz-agentics-june</h1>
+      <div class="subtitle">
+        Owner: ruvnet &middot; 16,682 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-low" style="margin-left:12px">Low — 2.55%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">35</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">426</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#10b981">2.55%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">16,682</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">62 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/pooling.py</span>
+              <span class="dup-loc">L192–L253</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/pooling.py</span>
+              <span class="dup-loc">L25–L86</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>super().__init__()
+        
+        # Handle pool size
+        if isinstance(pool_size, int):
+            self.pool_size = (pool_size, pool_size)
+        else:
+            self.pool_size = pool_size
+            
+        # Handle strides (default to pool_size)
+        if strides is None:
+            self.strides = self.pool_size
+        elif isinstance(strides, int):
+            self.strides = (str
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">29 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/pooling.py</span>
+              <span class="dup-loc">L314–L342</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/pooling.py</span>
+              <span class="dup-loc">L149–L177</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Remove padding
+        if self.padding == &#x27;same&#x27;:
+            inputs_shape = self.cache[&#x27;inputs&#x27;].shape
+            h, w = inputs_shape[1:3]
+            h_padded, w_padded = grad_x_padded.shape[1:3]
+            
+            pad_h = h_padded - h
+            pad_w = w_padded - w
+            
+            pad_top = pad_h // 2
+            pad_bottom = pad_h - pad_top
+            pad_left = pad_w // 2
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">20 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/conv2d.py</span>
+              <span class="dup-loc">L52–L71</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/dense.py</span>
+              <span class="dup-loc">L38–L57</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Get activation function
+        if isinstance(activation, str):
+            self.activation = get_activation(activation)
+        else:
+            self.activation = activation
+            
+        self.use_bias = use_bias
+        
+        # Get initializers
+        if isinstance(kernel_initializer, str):
+            self.kernel_initializer = get_initializer(kernel_initializer)
+        else:
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">18 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/normalization.py</span>
+              <span class="dup-loc">L203–L220</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/normalization.py</span>
+              <span class="dup-loc">L77–L94</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)
+        
+        # Normalize
+        x_normalized = (x.data - mean) / np.sqrt(var + self.epsilon)
+        
+        # Scale and shift
+        output_data = x_normalized
+        if self.scale:
+            output_data = output_data * self.gamma.data
+        if self.center:
+            output_data = output_data + self.beta.data
+        
+        output = Tensor(output_data, requires_grad=x.requires_g
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">16 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/recurrent.py</span>
+              <span class="dup-loc">L182–L197</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/recurrent.py</span>
+              <span class="dup-loc">L48–L63</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>self.built = False
+    
+    def build(self, input_shape: tuple):
+        &quot;&quot;&quot;Initialize weights based on input shape.&quot;&quot;&quot;
+        # input_shape: (batch_size, timesteps, features)
+        input_dim = input_shape[-1]
+        
+        # Initialize weights
+        if self.weight_initializer == &#x27;glorot_uniform&#x27;:
+            limit_w = np.sqrt(6 / (input_dim + self.units))
+            limit_u = np.sqrt(6 /
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">16 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/dropout.py</span>
+              <span class="dup-loc">L97–L112</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/dropout.py</span>
+              <span class="dup-loc">L24–L39</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>super().__init__()
+        
+        if not 0.0 <= rate < 1.0:
+            raise ValueError(f&quot;Dropout rate must be in [0, 1), got {rate}&quot;)
+            
+        self.rate = rate
+        self.seed = seed
+        self.trainable = False  # No trainable parameters
+        
+        # Set random seed if provided
+        if seed is not None:
+            np.random.seed(seed)
+            
+    def build(self,
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">15 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/dropout.py</span>
+              <span class="dup-loc">L48–L62</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/normalization.py</span>
+              <span class="dup-loc">L133–L147</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>return output
+    
+    def __call__(self, x: Tensor) -> Tensor:
+        return self.forward(x)
+    
+    def train(self):
+        &quot;&quot;&quot;Set layer to training mode.&quot;&quot;&quot;
+        self.training = True
+    
+    def eval(self):
+        &quot;&quot;&quot;Set layer to evaluation mode.&quot;&quot;&quot;
+        self.training = False
+    
+    def get_parameters(self) -> list:
+        &quot;&quot;&quot;Dropout has no trainable parameters.&quot;&quot;&quot;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">15 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/dropout.py</span>
+              <span class="dup-loc">L137–L151</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/dropout.py</span>
+              <span class="dup-loc">L59–L73</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>output = inputs * self.cache[&#x27;mask&#x27;] / (1 - self.rate)
+        else:
+            # During inference, just pass through
+            output = inputs
+            self.cache[&#x27;mask&#x27;] = None
+            
+        self.cache[&#x27;training&#x27;] = training
+        return output
+        
+    def backward(self, grad_output):
+        &quot;&quot;&quot;
+        Backward propagation.
+        
+        Apply the same spatial mask used 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">14 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/conv.py</span>
+              <span class="dup-loc">L188–L201</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/dense.py</span>
+              <span class="dup-loc">L78–L90</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>return output
+    
+    def __call__(self, x: Tensor) -> Tensor:
+        return self.forward(x)
+    
+    def get_parameters(self) -> list:
+        &quot;&quot;&quot;Get all trainable parameters.&quot;&quot;&quot;
+        params = [self.weights]
+        if self.use_bias:
+            params.append(self.bias)
+        return params
+
+
+class</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">14 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/initializers/initializers.py</span>
+              <span class="dup-loc">L133–L146</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/initializers/initializers.py</span>
+              <span class="dup-loc">L108–L121</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, shape).astype(dtype)
+    
+    def _compute_fan_in(self, shape):
+        if len(shape) == 2:  # Dense layer
+            fan_in = shape[0]
+        elif len(shape) == 4:  # Conv2D layer
+            receptive_field_size = shape[2] * shape[3]
+            fan_in = shape[1] * receptive_field_size
+        else:
+            fan_in = np.prod(shape[:-1])
+        return fan_in
+
+
+class Zeros</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">13 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/recurrent.py</span>
+              <span class="dup-loc">L244–L256</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/recurrent.py</span>
+              <span class="dup-loc">L120–L131</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>outputs.append(h_t)
+        
+        # Prepare output
+        if self.return_sequences:
+            # Stack all outputs
+            output = Tensor(np.stack([o.data for o in outputs], axis=1), requires_grad=True)
+        else:
+            # Return only last output
+            output = outputs[-1]
+        
+        if self.return_state:
+            return output, h_t
+        else</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">13 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/conv2d.py</span>
+              <span class="dup-loc">L97–L109</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/pooling.py</span>
+              <span class="dup-loc">L60–L72</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)
+        self.built = True
+        
+    def _add_padding(self, x):
+        &quot;&quot;&quot;Add padding to input.&quot;&quot;&quot;
+        if self.padding == &#x27;valid&#x27;:
+            return x
+            
+        # Calculate padding for &#x27;same&#x27;
+        h, w = x.shape[1:3]
+        
+        if h % self.strides[0] == 0:
+            pad_h = max(self.kernel_size</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/normalization.py</span>
+              <span class="dup-loc">L253–L264</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/normalization.py</span>
+              <span class="dup-loc">L127–L138</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>x.backward(grad_input)
+        
+        if output.requires_grad:
+            output._grad_fn = _backward
+            output._prev = {x} | ({self.gamma} if self.scale else set()) | ({self.beta} if self.center else set())
+        
+        return output
+    
+    def __call__(self, x: Tensor) -> Tensor:
+        return self.forward(x)
+    
+    def get_parameters</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/pooling.py</span>
+              <span class="dup-loc">L267–L278</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/pooling.py</span>
+              <span class="dup-loc">L100–L111</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>batch_size, h, w, c = x_padded.shape
+        pool_h, pool_w = self.pool_size
+        stride_h, stride_w = self.strides
+        
+        # Calculate output dimensions
+        out_h = (h - pool_h) // stride_h + 1
+        out_w = (w - pool_w) // stride_w + 1
+        
+        # Initialize output
+        output = np.zeros((batch_size, out_h, out_w, c))
+        
+        # Perform average pooling</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/recurrent.py</span>
+              <span class="dup-loc">L157–L167</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/recurrent.py</span>
+              <span class="dup-loc">L20–L30</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>def __init__(self,
+                 units: int,
+                 return_sequences: bool = False,
+                 return_state: bool = False,
+                 weight_initializer: str = &#x27;glorot_uniform&#x27;,
+                 name: Optional[str] = None):
+        self.units = units
+        self.return_sequences = return_sequences
+        self.return_state = return_state
+        self.weight_initializer = 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/dropout.py</span>
+              <span class="dup-loc">L194–L204</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/dropout.py</span>
+              <span class="dup-loc">L34–L49</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>if seed is not None:
+            np.random.seed(seed)
+            
+    def build(self, input_shape):
+        &quot;&quot;&quot;Build the layer.&quot;&quot;&quot;
+        self.input_shape = input_shape
+        self.output_shape = input_shape
+        self.built = True
+        
+    def forward(self, inputs, training=True):
+        &quot;&quot;&quot;Forward propagation with alpha dropout.&quot;&quot;&quot;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/conv2d.py</span>
+              <span class="dup-loc">L116–L126</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/pooling.py</span>
+              <span class="dup-loc">L246–L256</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>[1] - (w % self.strides[1]), 0)
+            
+        pad_top = pad_h // 2
+        pad_bottom = pad_h - pad_top
+        pad_left = pad_w // 2
+        pad_right = pad_w - pad_left
+        
+        return np.pad(x, ((0, 0), (pad_top, pad_bottom), (pad_left, pad_right), (0, 0)), 
+                     mode=&#x27;constant&#x27;, constant_values=0)
+        
+    def _im2col</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/benchmarks/test_performance.py</span>
+              <span class="dup-loc">L257–L267</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/benchmarks/test_performance.py</span>
+              <span class="dup-loc">L182–L192</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>timestamp = datetime.now().strftime(&quot;%Y%m%d_%H%M%S&quot;)
+        filename = f&quot;benchmark_{test_name}_{timestamp}.json&quot;
+        
+        os.makedirs(&#x27;benchmark_results&#x27;, exist_ok=True)
+        filepath = os.path.join(&#x27;benchmark_results&#x27;, filename)
+        
+        with open(filepath, &#x27;w&#x27;) as f:
+            json.dump(results, f, indent=2)
+
+
+class TestMemoryUsage</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>performance_optimization/run_benchmarks.py</span>
+              <span class="dup-loc">L241–L251</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>performance_optimization/run_benchmarks.py</span>
+              <span class="dup-loc">L218–L228</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>].items():
+                baseline_time = implementations[&#x27;baseline&#x27;].execution_time
+                
+                speedups = {
+                    name: baseline_time / impl.execution_time
+                    for name, impl in implementations.items()
+                }
+                
+                best_impl = max(speedups.items(), key=lambda x: x[1])
+                
+                conv_s
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #20</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/optimizers/optimizers.py</span>
+              <span class="dup-loc">L183–L192</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/optimizers/optimizers.py</span>
+              <span class="dup-loc">L150–L159</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>for param in self.parameters:
+            if param is None or param.grad is None:
+                continue
+            
+            # Initialize cache if needed
+            if id(param) not in self.cache:
+                self.cache[id(param)] = np.zeros_like(param.data)
+            
+            # Update cache
+            self</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #21</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/test_initializers.py</span>
+              <span class="dup-loc">L163–L172</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/test_initializers.py</span>
+              <span class="dup-loc">L149–L126</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>/ fan_in)
+        
+        shape = (fan_in, 200)
+        weights = np.random.normal(0, stddev, shape)
+        
+        # Test statistical properties
+        self.assertAlmostEqual(np.mean(weights), 0.0, places=1)
+        self.assertAlmostEqual(np.std(weights), stddev, places=2)
+        
+    def test_orthogonal_initialization</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #22</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/notebooks/02_advanced_architectures.py</span>
+              <span class="dup-loc">L8–L17</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/notebooks/03_practical_examples.py</span>
+              <span class="dup-loc">L8–L17</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
+import numpy as np
+import neuralflow as nf
+from neuralflow.utils import data_utils, visualization
+
+# %% [markdown]
+# ## 1. Convolutional Neural Networks (CNNs)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #23</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/demos/image_classification_demo.py</span>
+              <span class="dup-loc">L9–L18</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/demos/regression_classification_demo.py</span>
+              <span class="dup-loc">L9–L18</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))
+
+import numpy as np
+import neuralflow as nf
+from neuralflow.utils import data_utils, visualization
+
+
+def create_cnn_model</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #24</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>performance_optimization/run_benchmarks.py</span>
+              <span class="dup-loc">L309–L318</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>performance_optimization/run_benchmarks.py</span>
+              <span class="dup-loc">L281–L290</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)
+            baseline_time = impls[&#x27;baseline&#x27;].execution_time
+            
+            for name, impl in impls.items():
+                if name not in implementations:
+                    implementations[name] = []
+                speedup = baseline_time / impl.execution_time
+                implementations[name].append(speedup)
+        
+        plt.figure(figsize=(12</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #25</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/initializers/initializers.py</span>
+              <span class="dup-loc">L73–L81</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/initializers/initializers.py</span>
+              <span class="dup-loc">L47–L55</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>def __init__(self, seed=None):
+        self.seed = seed
+        
+    def __call__(self, shape, dtype=np.float32):
+        if self.seed is not None:
+            np.random.seed(self.seed)
+        
+        fan_in, fan_out = self._compute_fans(shape)
+        limit</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #26</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/initializers/initializers.py</span>
+              <span class="dup-loc">L124–L132</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/initializers/initializers.py</span>
+              <span class="dup-loc">L99–L107</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>def __init__(self, seed=None):
+        self.seed = seed
+        
+    def __call__(self, shape, dtype=np.float32):
+        if self.seed is not None:
+            np.random.seed(self.seed)
+        
+        fan_in = self._compute_fan_in(shape)
+        limit</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #27</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/test_loss_functions.py</span>
+              <span class="dup-loc">L37–L45</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/test_loss_functions.py</span>
+              <span class="dup-loc">L17–L25</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Test case 1: Perfect predictions
+        y_true = np.random.randn(self.batch_size, 1)
+        y_pred = y_true.copy()
+        expected_loss = 0.0
+        
+        # Test case 2: Known error
+        y_true = np.array([[1.0], [2.0], [3.0]])
+        y_pred = np.array([[1.5], [2.5], [3.5]])
+        expected_loss = 0.5</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #28</span>
+            <span class="dup-type type-docs">docs</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/README.md</span>
+              <span class="dup-loc">L54–L62</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/notebooks/01_getting_started.py</span>
+              <span class="dup-loc">L36–L44</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>ork Library for Rapid Prototyping and Deployment**
+
+[![Python Version](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.o</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #29</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">8 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/test_initializers.py</span>
+              <span class="dup-loc">L151–L158</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>tests/unit/test_initializers.py</span>
+              <span class="dup-loc">L119–L126</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)
+        weights = np.random.normal(0, stddev, shape)
+        
+        # Test statistical properties
+        self.assertAlmostEqual(np.mean(weights), 0.0, places=1)
+        self.assertAlmostEqual(np.std(weights), stddev, places=2)
+        
+    def test_lecun_initialization</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #30</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">8 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>performance_optimization/src/cache_optimized.py</span>
+              <span class="dup-loc">L155–L162</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>performance_optimization/src/parallel_optimized.py</span>
+              <span class="dup-loc">L173–L181</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>if len(image.shape) != 2 or len(kernel.shape) != 2:
+            raise ValueError(&quot;Both image and kernel must be 2D arrays&quot;)
+        
+        img_h, img_w = image.shape
+        ker_h, ker_w = kernel.shape
+        out_h = img_h - ker_h + 1
+        out_w = img_w - ker_w + 1
+        output</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #31</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">8 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>performance_optimization/src/cache_optimized.py</span>
+              <span class="dup-loc">L251–L258</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>performance_optimization/src/cache_optimized.py</span>
+              <span class="dup-loc">L60–L67</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>for i in range(0, m, block_size):
+            i_end = min(i + block_size, m)
+            for j in range(0, n, block_size):
+                j_end = min(j + block_size, n)
+                for l in range(0, k, block_size):
+                    l_end = min(l + block_size, k)
+                    
+                    # Process all batches at once for this block</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #32</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/conv.py</span>
+              <span class="dup-loc">L178–L184</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/core/layers/conv.py</span>
+              <span class="dup-loc">L160–L166</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)
+        
+        idx = 0
+        for b in range(batch_size):
+            for i in range(0, height - kernel_h + 1, stride[0]):
+                for j in range(0, width - kernel_w + 1, stride[1]):
+                    patch = col</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #33</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>performance_optimization/src/baseline_operations.py</span>
+              <span class="dup-loc">L117–L123</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>performance_optimization/src/cache_optimized.py</span>
+              <span class="dup-loc">L242–L248</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>if A.shape[0] != B.shape[0] or A.shape[2] != B.shape[1]:
+            raise ValueError(f&quot;Invalid dimensions: {A.shape} x {B.shape}&quot;)
+        
+        batch_size = A.shape[0]
+        m, k = A.shape[1], A.shape[2]
+        n = B.shape[2]
+        C = np.zeros((batch_size, m, n))</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #34</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/notebooks/03_practical_examples.py</span>
+              <span class="dup-loc">L250–L256</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neuralflow/notebooks/03_practical_examples.py</span>
+              <span class="dup-loc">L126–L134</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>nf.layers.Conv2D(64, 3, padding=&#x27;same&#x27;, activation=&#x27;relu&#x27;),
+    nf.layers.Conv2D(64, 3, padding=&#x27;same&#x27;, activation=&#x27;relu&#x27;),
+    nf.layers.MaxPool2D(2),
+    nf.layers.Conv2D(128, 3, padding=&#x27;same&#x27;, activation=&#x27;relu&#x27;),
+    nf.layers.Conv2D(128, 3, padding=&#x27;same&#x27;, activation=&#x27;relu&#x27;),
+    nf.layers.MaxPool2D(2),
+]</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #35</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">python</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/conv2d.py</span>
+              <span class="dup-loc">L89–L94</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>neural_network/core/layers/pooling.py</span>
+              <span class="dup-loc">L52–L57</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code># Calculate output shape
+        if self.padding == &#x27;same&#x27;:
+            out_h = int(np.ceil(h / self.strides[0]))
+            out_w = int(np.ceil(w / self.strides[1]))
+        else:  # &#x27;valid&#x27;
+            out_h = int((h - self.kernel_size</code></pre></div>
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Python</td><td class='cell-num'>35</td><td class='cell-num'>461</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>35</td><td class='cell-num'>100.0%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>

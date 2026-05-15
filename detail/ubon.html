@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail: ubon — CPD Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep:#03060e;--bg-base:#0b0f1a;--bg-elevated:#111827;--bg-card:#151d2e;--bg-hover:#1a2335;
+      --border:#1e293b;--border-light:#334155;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-tertiary:#64748b;
+      --accent-blue:#3b82f6;--accent-red:#ef4444;--accent-amber:#f59e0b;--accent-green:#10b981;--accent-purple:#8b5cf6;
+      --radius-sm:8px;--radius-md:12px;--radius-lg:16px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'DM Sans',sans-serif;background:var(--bg-base);color:var(--text-secondary);line-height:1.6;min-height:100vh}
+    ::selection{background:rgba(59,130,246,0.3);color:var(--text-primary)}
+
+    header{background:linear-gradient(135deg,#0b0f1a 0%,#0f172a 50%,#1e1b4b 100%);padding:2rem;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:1rem}
+    .back-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--radius-sm);background:rgba(255,255,255,0.05);border:1px solid var(--border);color:var(--text-secondary);text-decoration:none;font-size:0.875rem;font-weight:500;transition:.2s}
+    .back-btn:hover{background:rgba(255,255,255,0.08);color:var(--text-primary)}
+    .header-title{flex:1}
+    .header-title h1{font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--text-primary);line-height:1.2}
+    .header-title .subtitle{color:var(--text-tertiary);font-size:0.9rem;margin-top:4px}
+    .severity-pill{display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+
+    main{max-width:1200px;margin:0 auto;padding:2rem}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+    .stat-card{background:linear-gradient(145deg,#151d2e 0%,#0f172a 100%);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem;text-align:center;transition:transform .2s}
+    .stat-card:hover{transform:translateY(-3px);border-color:var(--border-light)}
+    .stat-card .val{font-family:'JetBrains Mono',monospace;font-size:2rem;font-weight:700;color:var(--text-primary);margin-bottom:.25rem}
+    .stat-card .lbl{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text-tertiary)}
+
+    section{margin-bottom:2.5rem}
+    section h2{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--text-primary);margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+    section h2::before{content:'';display:block;width:28px;height:3px;background:var(--accent-blue);border-radius:2px}
+
+    table{width:100%;border-collapse:collapse;font-size:.875rem}
+    th,td{padding:.75rem 1rem;text-align:left;border-bottom:1px solid var(--border)}
+    th{background:var(--bg-elevated);font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary)}
+    tr:hover{background:var(--bg-hover)}
+    .cell-num{font-family:'JetBrains Mono',monospace;text-align:right;color:var(--text-primary)}
+
+    .dup-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-md);margin-bottom:1rem;overflow:hidden;transition:border-color .2s}
+    .dup-card:hover{border-color:var(--border-light)}
+    .dup-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border)}
+    .dup-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-bottom:.5rem}
+    .dup-num{font-family:'JetBrains Mono',monospace;font-size:.8rem;font-weight:600;color:var(--accent-blue);background:rgba(59,130,246,.08);padding:3px 10px;border-radius:4px}
+    .dup-type{font-size:.7rem;font-weight:600;text-transform:uppercase;padding:2px 8px;border-radius:4px}
+    .dup-fmt{font-size:.75rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
+    .dup-size{font-size:.75rem;color:var(--text-tertiary);margin-left:auto}
+    .dup-files{display:flex;flex-direction:column;gap:4px}
+    .dup-file{display:flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--text-secondary)}
+    .dup-file svg{color:var(--text-tertiary);flex-shrink:0}
+    .dup-loc{color:var(--text-tertiary);font-size:.75rem;margin-left:auto}
+    .dup-code{background:var(--bg-deep);border-top:1px solid var(--border)}
+    .dup-code pre{padding:1rem 1.25rem;margin:0;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.6;color:var(--text-secondary)}
+    .dup-code code{white-space:pre}
+
+    .type-code{background:rgba(59,130,246,.1);color:var(--accent-blue)}
+    .type-config{background:rgba(245,158,11,.1);color:var(--accent-amber)}
+    .type-test{background:rgba(16,185,129,.1);color:var(--accent-green)}
+    .type-docs{background:rgba(139,92,246,.1);color:var(--accent-purple)}
+
+    .no-clones{text-align:center;padding:4rem 2rem}
+    .no-clones-icon{font-size:4rem;margin-bottom:1rem}
+    .no-clones h3{font-family:'Playfair Display',serif;color:var(--text-primary);font-size:1.5rem;margin-bottom:.5rem}
+    .no-clones p{color:var(--text-tertiary)}
+    .more-clones{text-align:center;padding:1.5rem;color:var(--text-tertiary);font-style:italic;border-top:1px dashed var(--border}
+
+    .badge-high{background:rgba(239,68,68,.12);color:var(--accent-red);border:1px solid rgba(239,68,68,.2)}
+    .badge-medium{background:rgba(245,158,11,.12);color:var(--accent-amber);border:1px solid rgba(245,158,11,.2)}
+    .badge-low{background:rgba(16,185,129,.12);color:var(--accent-green);border:1px solid rgba(16,185,129,.2)}
+    .badge-none{background:var(--bg-elevated);color:var(--text-tertiary);border:1px solid var(--border)}
+
+    @media(max-width:640px){
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .dup-file{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="back-btn">← Back to Leaderboard</a>
+    <div class="header-title">
+      <h1>ubon</h1>
+      <div class="subtitle">
+        Owner: luisfer &middot; 22,085 lines &middot; jscpd v4.2.1
+        <span class="severity-pill badge-low" style="margin-left:12px">Low — 2.81%</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="val">59</div>
+      <div class="lbl">Total Clones</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">620</div>
+      <div class="lbl">Duplicated Lines</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" style="color:#10b981">2.81%</div>
+      <div class="lbl">Duplication Rate</div>
+    </div>
+    <div class="stat-card">
+      <div class="val">22,085</div>
+      <div class="lbl">Total Lines</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Clones Detail</h2>
+    
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #1</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">47 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/lovable-supabase-scanner.ts</span>
+              <span class="dup-loc">L42–L88</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/vite-scanner.ts</span>
+              <span class="dup-loc">L67–L113</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>) {
+          const rule = getRule(ruleId);
+          if (!rule || !rule.impl.detect) continue;
+
+          // Check file type restrictions
+          if (rule.impl.fileTypes) {
+            const fileExt = file.split(&#x27;.&#x27;).pop() || &#x27;&#x27;;
+            if (!rule.impl.fileTypes.includes(fileExt)) continue;
+          }
+
+          // Run detection
+          const detections = rule.impl.detect(content, file, 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #2</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">32 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/react-security-scanner.ts</span>
+              <span class="dup-loc">L29–L60</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/vite-scanner.ts</span>
+              <span class="dup-loc">L67–L98</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>) {
+          const rule = getRule(ruleId);
+          if (!rule || !rule.impl.detect) continue;
+
+          // Check file type restrictions
+          if (rule.impl.fileTypes) {
+            const fileExt = file.split(&#x27;.&#x27;).pop() || &#x27;&#x27;;
+            if (!rule.impl.fileTypes.includes(fileExt)) continue;
+          }
+
+          // Run detection
+          const detections = rule.impl.detect(content, file, 
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #3</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">22 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/vite/VITE003.ts</span>
+              <span class="dup-loc">L45–L66</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/vite/VITE003.ts</span>
+              <span class="dup-loc">L21–L42</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>.exec(content)) !== null) {
+        const beforeMatch = content.substring(0, match.index);
+        const lineNumber = beforeMatch.split(&#x27;\n&#x27;).length;
+
+        // Check if there&#x27;s validation nearby (within 3 lines before)
+        const startCheck = Math.max(0, lineNumber - 4);
+        const contextLines = lines.slice(startCheck, lineNumber);
+        const hasValidation = contextLines.some(l =>
+    
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #4</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">21 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/accessibility-scanner.ts</span>
+              <span class="dup-loc">L38–L58</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/development-scanner.ts</span>
+              <span class="dup-loc">L41–L61</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+          }
+        }
+
+        if (rule.impl.patterns) {
+          for (const pattern of rule.impl.patterns) {
+            ctx.lines.forEach((line, index) => {
+              if (line.trim().startsWith(&#x27;//&#x27;) || line.trim().startsWith(&#x27;*&#x27;)) return;
+              if (this.isSuppressed(ctx.lines, index, pattern.ruleId)) return;
+              const match = line.match(pattern.pattern);
+              
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #5</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">19 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/reporters/HumanReporter.ts</span>
+              <span class="dup-loc">L22–L40</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/reporters/InteractiveReporter.ts</span>
+              <span class="dup-loc">L16–L34</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>colorMode: &#x27;auto&#x27; | &#x27;always&#x27; | &#x27;never&#x27; = &#x27;auto&#x27;) {
+    this.useColor = this.shouldUseColor(colorMode);
+  }
+
+  private shouldUseColor(mode: &#x27;auto&#x27; | &#x27;always&#x27; | &#x27;never&#x27;): boolean {
+    if (mode === &#x27;always&#x27;) return true;
+    if (mode === &#x27;never&#x27;) return false;
+    return Boolean(process.stdout.isTTY) &amp;&amp; !process.env.NO_COLOR;
+  }
+
+  private colorize(fn: Styler, text: string): string {
+    return thi
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #6</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">16 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/react-security-scanner.ts</span>
+              <span class="dup-loc">L60–L75</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/vite-scanner.ts</span>
+              <span class="dup-loc">L98–L113</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+              match: detection.match,
+              fix: rule.meta.fix,
+              helpUri: rule.meta.helpUri,
+              ...(detection.fixEdits ? { fixEdits: detection.fixEdits } : {})
+            });
+          }
+        }
+      } catch (error) {
+        // Skip files that can&#x27;t be read
+      }
+    }
+
+    return results;
+  }
+}</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #7</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">16 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L278–L293</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L213–L185</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>) continue;
+      out.push(
+        this.createResult(
+          {
+            type: &#x27;warning&#x27;,
+            category: &#x27;security&#x27;,
+            severity: meta.severity,
+            ruleId: meta.id,
+            message: meta.message,
+            fix: meta.fix,
+            file,
+            line: lineIndex + 1,
+            match: redact((lines[lineIndex] ?? &#x27;&#x27;).trim().slice(0, 200)),
+            confi
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #8</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">16 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L452–L467</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L417–L322</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)) return out;
+    out.push(
+      this.createResult(
+        {
+          type: &#x27;error&#x27;,
+          category: &#x27;security&#x27;,
+          severity: meta.severity,
+          ruleId: meta.id,
+          message: meta.message,
+          fix: meta.fix,
+          file,
+          line: idx + 1,
+          match: redact((lines[idx] ?? &#x27;&#x27;).trim().slice(0, 200)),
+          confidence: 0.6,
+          confidenceReaso
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #9</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">16 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/cli/shared.ts</span>
+              <span class="dup-loc">L32–L47</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/mcp/server.ts</span>
+              <span class="dup-loc">L56–L71</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>function stableStringify(value: unknown, indent: number = 2): string {
+  const replacer = (_key: string, v: unknown) => {
+    if (v &amp;&amp; typeof v === &#x27;object&#x27; &amp;&amp; !Array.isArray(v)) {
+      return Object.keys(v as object)
+        .sort()
+        .reduce<Record<string, unknown>>((acc, k) => {
+          acc[k] = (v as Record<string, unknown>)[k];
+          return acc;
+        }, {});
+    }
+    return v
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #10</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">15 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L250–L264</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L169–L183</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>)?.meta;
+      if (!meta) continue;
+      out.push(
+        this.createResult(
+          {
+            type: &#x27;error&#x27;,
+            category: &#x27;security&#x27;,
+            severity: meta.severity,
+            ruleId: meta.id,
+            message: meta.message,
+            fix: meta.fix,
+            file,
+            line: lineIndex + 1,
+            match: redact((lines[lineIndex] ?? &#x27;&#x27;).trim().slice(0, 20
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #11</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">14 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/ai-scanner.ts</span>
+              <span class="dup-loc">L56–L69</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L36–L52</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+      [&#x27;node_modules/**&#x27;, &#x27;dist/**&#x27;, &#x27;build/**&#x27;, &#x27;.next/**&#x27;, &#x27;coverage/**&#x27;, &#x27;examples/**&#x27;]
+    )) {
+      if (this.hasFileSuppression(ctx.lines)) continue;
+
+      const cached = this.getCached(ctx.file, ctx.contentHash);
+      if (cached) {
+        results.push(...cached);
+        continue;
+      }
+
+      const fileResults: ScanResult[] = [];
+
+      if</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #12</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">14 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/accessibility-scanner.ts</span>
+              <span class="dup-loc">L21–L34</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/development-scanner.ts</span>
+              <span class="dup-loc">L22–L35</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>{
+          const detectionResults = rule.impl.detect(ctx.content, ctx.file, ctx.lines);
+          for (const detection of detectionResults) {
+            if (this.isSuppressed(ctx.lines, detection.line - 1, rule.meta.id)) continue;
+            results.push(this.createResult({
+              type: rule.meta.severity === &#x27;high&#x27; ? &#x27;error&#x27; : &#x27;warning&#x27;,
+              category: rule.meta.category,
+     
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #13</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">14 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/framework-scanner.test.ts</span>
+              <span class="dup-loc">L15–L28</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/quick-wins-3.0.2.test.ts</span>
+              <span class="dup-loc">L18–L32</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>));
+  });
+
+  afterEach(() => {
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  const writeFile = (rel: string, content: string) => {
+    const full = join(dir, rel);
+    mkdirSync(join(full, &#x27;..&#x27;), { recursive: true });
+    writeFileSync(full, content);
+  };
+
+  it</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #14</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">14 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/ai-scanner.test.ts</span>
+              <span class="dup-loc">L16–L29</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/quick-wins-3.0.2.test.ts</span>
+              <span class="dup-loc">L18–L28</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>));
+  });
+
+  afterEach(() => {
+    rmSync(dir, { recursive: true, force: true });
+  });
+
+  const writeFile = (rel: string, content: string) => {
+    const full = join(dir, rel);
+    mkdirSync(join(full, &#x27;..&#x27;), { recursive: true });
+    writeFileSync(full, content);
+  };
+
+  it(&#x27;flags MCP server config with hardcoded secret (AI005)&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #15</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">13 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L489–L501</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L308–L320</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>out.push(
+        this.createResult(
+          {
+            type: &#x27;warning&#x27;,
+            category: &#x27;security&#x27;,
+            severity: meta.severity,
+            ruleId: meta.id,
+            message: meta.message,
+            fix: meta.fix,
+            file,
+            line: idx + 1,
+            match: redact((lines[idx] ?? &#x27;&#x27;).trim().slice(0, 200)),
+            confidence: 0.65</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #16</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">13 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/ai-scanner.ts</span>
+              <span class="dup-loc">L111–L123</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L170–L182</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+      out.push(
+        this.createResult(
+          {
+            type: &#x27;error&#x27;,
+            category: &#x27;security&#x27;,
+            severity: meta.severity,
+            ruleId: meta.id,
+            message: meta.message,
+            fix: meta.fix,
+            file,
+            line: lineIndex + 1,
+            match: redact(lineText</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #17</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">13 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/ai-scanner.ts</span>
+              <span class="dup-loc">L177–L189</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L307–L319</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>) {
+        out.push(
+          this.createResult(
+            {
+              type: &#x27;warning&#x27;,
+              category: &#x27;security&#x27;,
+              severity: meta.severity,
+              ruleId: meta.id,
+              message: meta.message,
+              fix: meta.fix,
+              file,
+              line: idx + 1,
+              match: redact(lines</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #18</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/ai-scanner.ts</span>
+              <span class="dup-loc">L76–L87</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L59–L70</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>(ctx.file, ctx.content, ctx.lines));
+      }
+
+      this.setCached(ctx.file, ctx.contentHash, fileResults);
+      results.push(...fileResults);
+    }
+
+    this.saveCache();
+    return results;
+  }
+
+  // ---- AI002 -------------------------------------------------------------</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #19</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/react-security-scanner.test.ts</span>
+              <span class="dup-loc">L6–L17</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/suppressions.test.ts</span>
+              <span class="dup-loc">L6–L10</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+
+  beforeAll(() => {
+    try { rmSync(tmp, { recursive: true, force: true }); } catch {}
+    mkdirSync(tmp, { recursive: true });
+  });
+
+  afterAll(() => {
+    try { rmSync(tmp, { recursive: true, force: true }); } catch {}
+  });
+
+  describe</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #20</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/lovable-scanner.test.ts</span>
+              <span class="dup-loc">L6–L17</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/suppressions.test.ts</span>
+              <span class="dup-loc">L6–L17</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+
+  beforeAll(() => {
+    try { rmSync(tmp, { recursive: true, force: true }); } catch {}
+    mkdirSync(tmp, { recursive: true });
+  });
+
+  afterAll(() => {
+    try { rmSync(tmp, { recursive: true, force: true }); } catch {}
+  });
+
+  describe(&#x27;LOVABLE001: Missing RLS Policy Validation&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #21</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/core.test.ts</span>
+              <span class="dup-loc">L8–L19</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/suppressions.test.ts</span>
+              <span class="dup-loc">L6–L10</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+
+  beforeAll(() => {
+    try { rmSync(tmp, { recursive: true, force: true }); } catch {}
+    mkdirSync(tmp, { recursive: true });
+  });
+
+  afterAll(() => {
+    try { rmSync(tmp, { recursive: true, force: true }); } catch {}
+  });
+
+  it(&#x27;filters by confidence and enabled/disabled rules&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #22</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/baseline.test.ts</span>
+              <span class="dup-loc">L7–L18</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/suppressions.test.ts</span>
+              <span class="dup-loc">L6–L10</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+
+  beforeAll(() => {
+    try { rmSync(tmp, { recursive: true, force: true }); } catch {}
+    mkdirSync(tmp, { recursive: true });
+  });
+
+  afterAll(() => {
+    try { rmSync(tmp, { recursive: true, force: true }); } catch {}
+  });
+
+  it(&#x27;writes and applies baseline&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #23</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">12 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/ast-scanner.test.ts</span>
+              <span class="dup-loc">L6–L17</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/suppressions.test.ts</span>
+              <span class="dup-loc">L6–L10</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+
+  beforeAll(() => {
+    try { rmSync(tmp, { recursive: true, force: true }); } catch {}
+    mkdirSync(tmp, { recursive: true });
+  });
+
+  afterAll(() => {
+    try { rmSync(tmp, { recursive: true, force: true }); } catch {}
+  });
+
+  it(&#x27;detects eval, dangerouslySetInnerHTML, env fallback, and fetch without signal&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #24</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/security-scanner.ts</span>
+              <span class="dup-loc">L608–L618</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/security-scanner.ts</span>
+              <span class="dup-loc">L521–L514</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>;
+            results.push({
+              type: &#x27;error&#x27;,
+              category: meta.category,
+              message: meta.message,
+              file,
+              line: index + 1,
+              range: { startLine: index + 1, startColumn: 1, endLine: index + 1, endColumn: Math.max(1, line.length) },
+              severity: meta.severity,
+              ruleId: meta.id,
+              confidence:
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #25</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/react-patterns-scanner.ts</span>
+              <span class="dup-loc">L27–L37</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/vibe-scanner.ts</span>
+              <span class="dup-loc">L41–L52</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>]
+    )) {
+      if (this.hasFileSuppression(ctx.lines)) continue;
+      const cached = this.getCached(ctx.file, ctx.contentHash);
+      if (cached) {
+        results.push(...cached);
+        continue;
+      }
+
+      const fileResults: ScanResult[] = [];
+      fileResults</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #26</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L37–L47</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/vibe-scanner.ts</span>
+              <span class="dup-loc">L41–L37</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>]
+    )) {
+      if (this.hasFileSuppression(ctx.lines)) continue;
+      const cached = this.getCached(ctx.file, ctx.contentHash);
+      if (cached) {
+        results.push(...cached);
+        continue;
+      }
+
+      const fileResults: ScanResult[] = [];
+      fileResults.push(...this.detectNextServerActions</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #27</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">11 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/ast-security-scanner.ts</span>
+              <span class="dup-loc">L388–L398</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/ast-security-scanner.ts</span>
+              <span class="dup-loc">L379–L388</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>.text === &#x27;createHash&#x27;) {
+            const arg0 = node.arguments[0];
+            if (arg0 &amp;&amp; tsReal.isStringLiteralLike(arg0)) {
+              const algo = arg0.text.toLowerCase();
+              if (algo === &#x27;md5&#x27; || algo === &#x27;sha1&#x27;) {
+                if (credentialContextNearby(node)) add(&#x27;SEC023&#x27;, node);
+              }
+            }
+          }
+
+          /</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #28</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/lovable/LOVABLE004.ts</span>
+              <span class="dup-loc">L33–L42</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/lovable/LOVABLE005.ts</span>
+              <span class="dup-loc">L42–L76</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>) {
+        let match;
+        while ((match = pattern.exec(content)) !== null) {
+          const beforeMatch = content.substring(0, match.index);
+          const lineNumber = beforeMatch.split(&#x27;\n&#x27;).length;
+
+          results.push({
+            line: lineNumber,
+            match: match[0].slice(0, 100),
+            confidence: 0.88</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #29</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/lovable/LOVABLE002.ts</span>
+              <span class="dup-loc">L39–L48</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/lovable/LOVABLE002.ts</span>
+              <span class="dup-loc">L21–L30</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>.exec(content)) !== null) {
+        const beforeMatch = content.substring(0, match.index);
+        const lineNumber = beforeMatch.split(&#x27;\n&#x27;).length;
+        const line = lines[lineNumber - 1];
+
+        // Check if it&#x27;s in an env var access (that&#x27;s OK)
+        if (!/import\.meta\.env|process\.env|Deno\.env/i.test(line)) {
+          results.push({
+            line: lineNumber,
+            match: ma
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #30</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L217–L226</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L174–L183</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+            category: &#x27;security&#x27;,
+            severity: meta.severity,
+            ruleId: meta.id,
+            message: meta.message,
+            fix: meta.fix,
+            file,
+            line: lineIndex + 1,
+            match: redact((lines[lineIndex] ?? &#x27;&#x27;).trim().slice(0, 200)),
+            confidence: 0.5</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #31</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L421–L430</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/framework-scanner.ts</span>
+              <span class="dup-loc">L311–L320</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+          category: &#x27;security&#x27;,
+          severity: meta.severity,
+          ruleId: meta.id,
+          message: meta.message,
+          fix: meta.fix,
+          file,
+          line: idx + 1,
+          match: redact((lines[idx] ?? &#x27;&#x27;).trim().slice(0, 200)),
+          confidence: 0.55</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #32</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/ai-scanner.ts</span>
+              <span class="dup-loc">L297–L306</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/ai-scanner.ts</span>
+              <span class="dup-loc">L181–L190</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+          category: &#x27;security&#x27;,
+          severity: meta.severity,
+          ruleId: meta.id,
+          message: meta.message,
+          fix: meta.fix,
+          file,
+          line: idx + 1,
+          match: redact(lines[idx].trim().slice(0, 200)),
+          confidence: 0.6</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #33</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/accessibility-scanner.ts</span>
+              <span class="dup-loc">L13–L22</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/development-scanner.ts</span>
+              <span class="dup-loc">L13–L22</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>])) {
+      const fileExt = ctx.file.split(&#x27;.&#x27;).pop()?.toLowerCase();
+      if (this.hasFileSuppression(ctx.lines)) continue;
+
+      for (const rule of rules) {
+        if (!rule) continue;
+        if (rule.impl.fileTypes &amp;&amp; !rule.impl.fileTypes.includes(fileExt || &#x27;&#x27;)) continue;
+
+        if (rule.impl.detect) {
+          const</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #34</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">10 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/scanners.test.ts</span>
+              <span class="dup-loc">L36–L45</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/scanners.test.ts</span>
+              <span class="dup-loc">L23–L32</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>();
+    const results = await scanner.scan({ directory: tempDir });
+
+    expect(results.length).toBeGreaterThan(0);
+    const finding = results[0];
+    expect(typeof finding.ruleId).toBe(&#x27;string&#x27;);
+    expect(typeof finding.confidence).toBe(&#x27;number&#x27;);
+  });
+
+  it(&#x27;EnvScanner returns ruleId and confidence&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #35</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/lovable/LOVABLE005.ts</span>
+              <span class="dup-loc">L44–L52</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/vite/VITE003.ts</span>
+              <span class="dup-loc">L69–L76</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>.exec(content)) !== null) {
+          const beforeMatch = content.substring(0, match.index);
+          const lineNumber = beforeMatch.split(&#x27;\n&#x27;).length;
+
+          results.push({
+            line: lineNumber,
+            match: match[0].slice(0, 100),
+            confidence
+          }</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #36</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/security-scanner.ts</span>
+              <span class="dup-loc">L523–L531</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/security-scanner.ts</span>
+              <span class="dup-loc">L506–L514</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+                category: meta.category,
+                message: meta.message,
+                file,
+                line: index + 1,
+                range: { startLine: index + 1, startColumn: 1, endLine: index + 1, endColumn: Math.max(1, line.length) },
+                severity: meta.severity,
+                ruleId: meta.id,
+                confidence: 0.8</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #37</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/lovable-supabase-scanner.ts</span>
+              <span class="dup-loc">L25–L33</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/vite-scanner.ts</span>
+              <span class="dup-loc">L45–L53</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>];
+
+    for (const file of files) {
+      try {
+        const filePath = `${options.directory}/${file}`;
+        const content = readFileSync(filePath, &#x27;utf-8&#x27;);
+        const lines = content.split(&#x27;\n&#x27;);
+
+        // Check if file contains</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #38</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/iac-scanner.ts</span>
+              <span class="dup-loc">L50–L58</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/iac-scanner.ts</span>
+              <span class="dup-loc">L23–L31</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+              category: meta.category,
+              message: meta.message,
+              file,
+              line: i + 1,
+              range: { startLine: i + 1, startColumn: 1, endLine: i + 1, endColumn: Math.max(1, line.length) },
+              severity: meta.severity,
+              ruleId: meta.id,
+              confidence: 0.9</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #39</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/mcp/server.ts</span>
+              <span class="dup-loc">L382–L390</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/mcp/server.ts</span>
+              <span class="dup-loc">L347–L356</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>,
+    inputSchema: {
+      type: &#x27;object&#x27;,
+      properties: {
+        directory: { type: &#x27;string&#x27; },
+        profile: { type: &#x27;string&#x27; },
+        changedFiles: { type: &#x27;array&#x27;, items: { type: &#x27;string&#x27; } },
+        gitChangedSince: { type: &#x27;string&#x27; },
+        baseSha: { type: &#x27;string&#x27; },</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #40</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/scanners.test.ts</span>
+              <span class="dup-loc">L49–L57</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/scanners.test.ts</span>
+              <span class="dup-loc">L23–L32</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>();
+    const results = await scanner.scan({ directory: tempDir });
+
+    expect(results.length).toBeGreaterThan(0);
+    const finding = results[0];
+    expect(typeof finding.ruleId).toBe(&#x27;string&#x27;);
+    expect(typeof finding.confidence).toBe(&#x27;number&#x27;);
+  });
+}</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #41</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">9 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/baseline.test.ts</span>
+              <span class="dup-loc">L18–L26</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/core.test.ts</span>
+              <span class="dup-loc">L37–L45</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, async () => {
+    const s = new UbonScan(false, true);
+    const findings = [
+      { type: &#x27;warning&#x27;, category: &#x27;security&#x27;, message: &#x27;m&#x27;, file: &#x27;a.ts&#x27;, line: 1, severity: &#x27;low&#x27;, ruleId: &#x27;R1&#x27;, confidence: 0.9 },
+      { type: &#x27;warning&#x27;, category: &#x27;security&#x27;, message: &#x27;n&#x27;, file: &#x27;b.ts&#x27;, line: 2, severity: &#x27;low&#x27;, ruleId: &#x27;R2&#x27;, confidence: 0.9 }
+    ];
+    // @ts-ignore private
+    const withFp = f
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #42</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">8 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/mcp/server.ts</span>
+              <span class="dup-loc">L294–L301</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/mcp/server.ts</span>
+              <span class="dup-loc">L270–L277</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>},
+        minConfidence: { type: &#x27;number&#x27;, minimum: 0, maximum: 1 },
+        changedFiles: { type: &#x27;array&#x27;, items: { type: &#x27;string&#x27; } },
+        gitChangedSince: { type: &#x27;string&#x27; },
+        baseSha: { type: &#x27;string&#x27; },
+        enabledRules: { type: &#x27;array&#x27;, items: { type: &#x27;string&#x27; } },
+        disabledRules: { type: &#x27;array&#x27;, items: { type: &#x27;string&#x27; } },
+        focusSecurity</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #43</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/vite/VITE002.ts</span>
+              <span class="dup-loc">L49–L55</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/vite/VITE003.ts</span>
+              <span class="dup-loc">L69–L75</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>.exec(content)) !== null) {
+        const beforeMatch = content.substring(0, match.index);
+        const lineNumber = beforeMatch.split(&#x27;\n&#x27;).length;
+
+        results.push({
+          line: lineNumber,
+          match: match[0].slice(0, 80</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #44</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/iac-scanner.ts</span>
+              <span class="dup-loc">L41–L47</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/iac-scanner.ts</span>
+              <span class="dup-loc">L14–L20</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>) {
+      try {
+        const content = readFileSync(`${options.directory}/${file}`, &#x27;utf-8&#x27;);
+        const lines = content.split(&#x27;\n&#x27;);
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i];
+          if (/\becho\s+\$\{\{\s*secrets\.[^}]+\}\}/i</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #45</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/accessibility-scanner.ts</span>
+              <span class="dup-loc">L7–L13</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/scanners/development-scanner.ts</span>
+              <span class="dup-loc">L7–L13</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>];
+
+  async scan(options: ScanOptions): Promise<ScanResult[]> {
+    const results: ScanResult[] = [];
+    const rules = this.ruleIds.map((id) => getRule(id)).filter(Boolean);
+
+    for await (const ctx of this.iterateFiles(options, &#x27;**/*.{js,jsx,ts,tsx,svelte,astro,html}&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #46</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/reporters/InteractiveReporter.ts</span>
+              <span class="dup-loc">L83–L89</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/reporters/InteractiveReporter.ts</span>
+              <span class="dup-loc">L76–L81</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>, 63).forEach((line) => {
+        console.log(`│ ${line} ${&#x27; &#x27;.repeat(Math.max(0, 65 - (line.length + 1)))}│`);
+      });
+      console.log(`├${&#x27;─&#x27;.repeat(65)}┤`);
+    }
+
+    if (result.file</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #47</span>
+            <span class="dup-type type-test">test</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">7 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/quick-wins-3.0.2.test.ts</span>
+              <span class="dup-loc">L136–L142</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/__tests__/quick-wins-3.0.2.test.ts</span>
+              <span class="dup-loc">L125–L131</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>);
+      const scanner = new AstSecurityScanner();
+      const results = await scanner.scan({ directory: dir, verbose: false } as any);
+      expect(results.some((r: any) => r.ruleId === &#x27;SEC020&#x27;)).toBe(true);
+    });
+
+    it(&#x27;does not flag a clean parameterised .prepare(&quot;... ?&quot;)&#x27;</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #48</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/react/TAILWIND001.ts</span>
+              <span class="dup-loc">L59–L64</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/react/TAILWIND001.ts</span>
+              <span class="dup-loc">L32–L37</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>const startCheck = Math.max(0, index - 5);
+          const contextLines = lines.slice(startCheck, index + 1);
+          const hasValidation = contextLines.some(l =>
+            /whitelist|allowed|includes\(|switch\s*\(/i.test(l) ||
+            /^(const|let|var)\s+\w+\s*=\s*\[[&#x27;&quot;`]/.test(l) || // Array of allowed values
+            /clsx\(|classnames\(|cn\(/i.test(l) // Using class utility with con
+... (truncated)</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #49</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/frameworks/index.ts</span>
+              <span class="dup-loc">L1–L6</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/module/index.ts</span>
+              <span class="dup-loc">L1–L6</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>import { Rule, RuleMeta } from &#x27;../types&#x27;;
+
+const make = (meta: RuleMeta, fileTypes?: string[]): Rule => ({
+  meta,
+  impl: {
+    fileTypes: fileTypes || [&#x27;js&#x27;, &#x27;jsx&#x27;, &#x27;ts&#x27;, &#x27;tsx&#x27;, &#x27;mjs&#x27;, &#x27;cjs&#x27;,</code></pre></div>
+      </div>
+      <div class="dup-card">
+        <div class="dup-header">
+          <div class="dup-meta">
+            <span class="dup-num">Clone #50</span>
+            <span class="dup-type type-code">code</span>
+            <span class="dup-fmt">typescript</span>
+            <span class="dup-size">6 lines / ~0 tokens</span>
+          </div>
+          <div class="dup-files">
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/accessibility/index.ts</span>
+              <span class="dup-loc">L41–L46</span>
+            </div>
+            <div class="dup-file">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
+              <span>src/rules/development/DEV005.ts</span>
+              <span class="dup-loc">L12–L17</span>
+            </div>
+          </div>
+        </div>
+        <div class="dup-code"><pre><code>},
+  impl: {
+    detect: (content: string, file: string, lines: string[]) => {
+      const results: import(&#x27;../types&#x27;).DetectionResult[] = [];
+      lines.forEach((line, index) => {
+        if (!/<div[^>]*(onClick|@click|v-on:click)/i</code></pre></div>
+      </div><div class="more-clones">
+        ...and 9 more clones
+      </div>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Format</h2>
+    <table>
+      <thead><tr><th>Format</th><th class='cell-num'>Count</th><th class='cell-num'>Lines</th></tr></thead>
+      <tbody>
+          <tr><td>Typescript</td><td class='cell-num'>56</td><td class='cell-num'>661</td></tr>
+    <tr><td>Markup</td><td class='cell-num'>3</td><td class='cell-num'>18</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Clone Distribution by Type</h2>
+    <table>
+      <thead><tr><th>Type</th><th class='cell-num'>Count</th><th class='cell-num'>Share</th></tr></thead>
+      <tbody>
+          <tr><td>Code</td><td class='cell-num'>59</td><td class='cell-num'>100.0%</td></tr>
+
+      </tbody>
+    </table>
+  </section>
+</main>
+
+</body>
+</html>
