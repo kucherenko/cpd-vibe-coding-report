@@ -12,6 +12,9 @@ const config = {
 		runes: ({ filename }) => (filename.split(/[/\\]/).includes('node_modules') ? undefined : true)
 	},
 	kit: {
+		paths: {
+			base: '/cpd-vibe-coding-report'
+		},
 		adapter: adapter({
 			pages: '../build',
 			assets: '../build',
@@ -20,7 +23,7 @@ const config = {
 			strict: true
 		}),
 		prerender: {
-			entries: entries,
+			entries,
 			crawl: true,
 			handleHttpError: ({ path, message }) => {
 				console.warn(`Warning: ${path}: ${message}`);
